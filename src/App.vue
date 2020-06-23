@@ -1,0 +1,146 @@
+<template>
+  <div id="app">
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
+    <img src="./assets/logo.png">
+    <div class = "content">
+      <router-view/>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App'
+}
+</script>
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+.content {
+  text-align: initial;
+  padding: 10px 20px 3% 3%;
+}
+details{
+  display:block;
+  background: #fff;
+  box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  overflow:hidden;
+  margin-bottom: 1.5rem;
+}
+summary::-webkit-details-marker{display:none;}
+summary::-moz-list-bullet{list-style-type:none;}
+summary::marker{display:none;} 
+summary {
+   display:block;
+   padding: .3em .3em .3em 1.4em;
+   font-size:1.4em;
+   cursor: pointer;
+   position: relative;
+   border-bottom: 1px solid #e2e8f0;
+}
+summary:before {  
+  top: .4em;
+  left: .3em;
+  color: transparent;
+  background: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjM0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
+  width: 1em;
+  height: 1em;  
+  content: "";
+  position: absolute;
+  transition: transform .5s;
+}
+details[open] > summary:before {
+  transform: rotateZ(90deg);
+}
+summary ~ * {
+   padding: 0 2em 10px 2em;
+}
+details[open] summary ~ *{ 
+  animation: sweep .5s ease-in-out;
+}
+@keyframes sweep {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}
+summary:focus {
+  outline:0;
+  box-shadow: inset 0 0 1px rgba(0,0,0,0.3), inset 0 0 2px rgba(0,0,0,0.3);
+}
+.wiki {
+    text-align: initial;
+}
+.wiki h2,h1,h3 {
+    text-align: center;
+}
+span.codes {
+    font-size: 12px;
+    font-family: Consolas, monospace, serif;
+    color: #000;
+    white-space: nowrap;
+    padding: 0 4px;
+    background: #bdbdbd;
+    border-radius: 2px;
+}
+
+.gtag {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+}
+.gtag::before {
+    content: '';
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+}
+
+.gtag-deprecated {
+    background-color: #faad14;
+}
+.gtag-deprecated::before {
+    background-image: url('./assets/gtag/error.svg');
+}
+.gtag-important {
+    background-color: #f5222d;
+}
+.gtag-important::before {
+    background-image: url('./assets/gtag/star.svg');
+}
+.gtag-info {
+    background-color: #722ed1;
+}
+.gtag-info::before {
+    background-image: url('./assets/gtag/push-pin.svg');
+}
+.gtag-easy {
+    background-color: #52c41a;
+}
+.gtag-easy::before {
+    background-image: url('./assets/gtag/joke.svg');
+}
+.gtag-medium {
+    background-color: #1890ff;
+}
+.gtag-medium::before {
+    background-image: url('./assets/gtag/straight.svg');
+}
+.gtag-hard {
+    background-color: #f5222d;
+}
+.gtag-hard::before {
+    background-image: url('./assets/gtag/sos.svg');
+}
+
+</style>
