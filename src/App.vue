@@ -2,7 +2,11 @@
   <div id="app">
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
-    <img src="./assets/logo.png">
+      <div>
+  <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar-brand href="#">GravitLauncher Wiki</b-navbar-brand>
+    </b-navbar>
+    </div>
     <div class = "content">
       <router-view/>
     </div>
@@ -21,7 +25,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .content {
   text-align: initial;

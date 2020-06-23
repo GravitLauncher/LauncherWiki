@@ -6,6 +6,14 @@ import router from './router'
 import VueHighlightJS from 'vue-highlightjs'
 
 Vue.use(VueHighlightJS)
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
