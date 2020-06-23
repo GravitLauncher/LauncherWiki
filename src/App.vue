@@ -37,7 +37,7 @@ details{
 }
 summary::-webkit-details-marker{display:none;}
 summary::-moz-list-bullet{list-style-type:none;}
-summary::marker{display:none;} 
+summary::marker{display:none;}
 summary {
    display:block;
    padding: .3em .3em .3em 1.4em;
@@ -46,13 +46,13 @@ summary {
    position: relative;
    border-bottom: 1px solid #e2e8f0;
 }
-summary:before {  
+summary:before {
   top: .4em;
   left: .3em;
   color: transparent;
   background: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjM0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz48L3N2Zz4=") no-repeat 50% 50% / 1em 1em;
   width: 1em;
-  height: 1em;  
+  height: 1em;
   content: "";
   position: absolute;
   transition: transform .5s;
@@ -63,7 +63,7 @@ details[open] > summary:before {
 summary ~ * {
    padding: 0 2em 10px 2em;
 }
-details[open] summary ~ *{ 
+details[open] summary ~ *{
   animation: sweep .5s ease-in-out;
 }
 @keyframes sweep {
