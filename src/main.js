@@ -3,16 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import { BootstrapVue } from 'bootstrap-vue'
 import VueHighlightJS from 'vue-highlightjs'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VueHighlightJS)
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
