@@ -4,7 +4,7 @@
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
       <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-navbar-brand href="#">GravitLauncher Wiki</b-navbar-brand>
+    <b-navbar-brand to="/">GravitLauncher Wiki</b-navbar-brand>
     </b-navbar>
     </div>
     <div class = "content">
