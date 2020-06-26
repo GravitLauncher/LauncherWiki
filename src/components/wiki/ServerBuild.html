@@ -6,9 +6,9 @@
   <h2>Скрипт развертывания ServerWrapper <div class="gtag gtag-easy">Это просто</div>
   </h2>
   <p>В 5.0.0 введен новый способ установки ServerWrapper'а - с помощью скрипта установки. Для его запуска выполните:</p>
-  <pre class="prettyprint">
+  <pre v-highlightjs><code class="json">
     java -jar ServerWrapper.jar setup
-</pre>
+</code></pre>
   <p>И следуйте инструкции по установке</p>
   <h2>Основы привязки лаунчера к серверу</h2>
   <p><b>Main-Class</b> - точка входа, то с чего начинается выполнение. Его можно найти открыв jar файл ядра и посмотрев
@@ -21,20 +21,20 @@
   <p><b>Аккаунт сервера</b> - полноценный аккаунт с логином и паролем, который будет использоватья для авторизации
     сервера</p>
   <h3>Указание Main-Class в строке запуска</h3>
-  <pre class="prettyprint">
+  <pre v-highlightjs><code class="json">
 java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.launcher.server.ServerWrapper {ваш MainClass}
-</pre>
+</code></pre>
   <h3>Указание Main-Class в конфигурации</h3>
   <p>Можно указать Main-Class в ServerWrapperConfig.json , тогда строка запуска будет выглядеть так:</p>
-  <pre class="prettyprint">
+  <pre v-highlightjs><code class="json">
 java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.launcher.server.ServerWrapper
-</pre>
+</code></pre>
   <h2>Конфигурация ServerWrapperConfig.json</h2>
   <p>Необходимо скопировать public.key из директории лаунчсервера в директорию ServerWrapper</p>
   <p>Для успешной авторизации сервера необходимо наличие в базе данных специального аккаунта, от имени которого будет
     совершен вход</p>
   <p>Для 5.0.10 и ниже аккаунт сервера обязан обладать правом canServer, см ниже как прописать права</p>
-  <pre class="prettyprint">
+  <pre v-highlightjs><code class="json">
 {
   "title": "Action1.12", //Заголовок профиля, к которому привязывается сервер
   "projectname": "MineCraft", //Название вашего проекта
@@ -57,5 +57,5 @@ java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.la
   },
   "env": "STD" //Окружение
 }
-</pre>
+</code></pre>
 </div>

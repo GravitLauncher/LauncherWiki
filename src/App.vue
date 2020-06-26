@@ -16,6 +16,9 @@
             <b-dropdown-item to="/clientbuild">Сборка клиента</b-dropdown-item>
             <b-dropdown-item to="/serverbuild">Сборка сервера</b-dropdown-item>
           </b-nav-item-dropdown>
+          <b-nav-item-dropdown text="Разработчикам" right>
+            <b-dropdown-item to="/developerapi">Написание модулей</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
