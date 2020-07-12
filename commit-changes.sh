@@ -7,5 +7,6 @@ rm -rf '(^"CNAME"|".git/")'
 cp -r $GITHUB_WORKSPACE/dist/ ./
 git config --global user.email "auto@gravit.pro"
 git config --global user.name "auto-commiter"
+git add .
 git commit -m "Autoupdate from source repo"
 git push
