@@ -13,7 +13,7 @@ jobs:
     - name: Cache NPM
       uses: actions/cache@v1
       with:
-        path: ~/node_modules
+        path: node_modules
         key: node-${{ runner.os }}-${{ hashFiles('package.json') }}
 
     - name: Install packages
@@ -21,3 +21,14 @@ jobs:
 
     - name: Build static pages
       run: npm run build
+
+    - name: Commit changes to production
+      run:
+        - mkdir ~/production
+        - cd ~/production
+        - git clone https://github.com/GravitLauncher/WikiProduction
+        - cd WikiProduction
+        - "rm -rf !(\"CNAME\"|\".git/\")"
+        - cp -r $GITHUB_WORKSPACE/dist/ ./
+        - "git commit -m \"Autoupdate from source repo\""
+        - "git push"
