@@ -1,0 +1,23 @@
+name: push-master
+on:
+  push:
+    branches:
+    - master
+jobs:
+  vue-wiki:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Cache NPM
+      uses: actions/cache@v1
+      with:
+        path: ~/node_modules
+        key: node-${{ runner.os }}-${{ hashFiles('package.json') }}
+
+    - name: Install packages
+      run: npm install
+
+    - name: Build static pages
+      run: npm run build
