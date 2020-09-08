@@ -28,7 +28,8 @@
           "username": "launchserver",          // имя пользователя
           "password": "password",              // пароль пользователя
           "database": "db?serverTimezone=UTC", // база данных (до ?), после находится установка серверной таймзоны
-          "timezone": "UTC"                    // установка клиентской таймзоны
+          "timezone": "UTC",                   // установка клиентской таймзоны
+          "useHikari": true                    // использовать ли HikariCP 
         },
         "table": "users",                      // таблица
         "uuidColumn": "uuid",                  // название столбца с uuid
@@ -73,7 +74,8 @@
           "username": "launchserver",          // имя пользователя
           "password": "password",              // пароль пользователя
           "database": "db?serverTimezone=UTC", // база данных (до ?), после находится установка серверной таймзоны
-          "timezone": "UTC"                    // установка клиентской таймзоны
+          "timezone": "UTC",                   // установка клиентской таймзоны
+          "useHikari": true                    // использовать ли HikariCP 
         },
         "table": "users",                      // таблица
         "uuidColumn": "uuid",                  // название столбца с uuid

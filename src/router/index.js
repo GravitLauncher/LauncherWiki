@@ -7,10 +7,13 @@ import WikiProtection from '@/components/WikiProtection'
 import WikiClientBuild from '@/components/WikiClientBuild'
 import WikiServerBuild from '@/components/WikiServerBuild'
 import WikiDeveloperAPI from '@/components/WikiDeveloperAPI'
+import WikiRuntimeAPI from '@/components/WikiRuntimeAPI'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -46,6 +49,11 @@ export default new Router({
       path: '/developerapi',
       name: 'WikiDeveloperAPI',
       component: WikiDeveloperAPI
+    },
+    {
+      path: '/runtimeapi',
+      name: 'WikiRuntimeAPI',
+      component: WikiRuntimeAPI
     }
   ]
 })

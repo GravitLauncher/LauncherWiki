@@ -1,8 +1,33 @@
 <div class="wiki">
   <h2>Поддерживаемые ядра серверов</h2>
-  <p>Протестированные ядра: Sponge, Thermos, KCaldron, UltraMine, Waterfall/BungeeCoed, Spigot/Bukkit. Некоторые можно
+  <p>Протестированные ядра: Fabric, Sponge, Thermos, KCaldron, UltraMine, Waterfall/BungeeCoed, Spigot/Bukkit. Некоторые можно
     скачать тут: <a class="link-animated" href="https://mirror.gravit.pro/servers/">mirror.gravit.pro</a><br></p>
   <p>Непротестированы: Atom и другие</p>
+  <p>Неработоспособны на текущий момент: Forge 1.13+</p>
+  <h2>Особенности сборки некоторых ядер</h2>
+  <p>Для любых ядер <b>требуется</b> установка ServerWrapper</p>
+  <details>
+    <summary tabindex="2">Сборка Forge/Sponge 1.12.2</summary>
+    <p>Замените launchwrapper на <a href="https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar">этот</a>. Обратите внимание - нужно именно заменить - новый лаунчвраппер должен находится по тому же пути и с тем же именем что и стандартный</p>
+  </details>
+  <details>
+    <summary tabindex="2">Сборка Fabric 1.13+</summary>
+    <p>Перед запуском ядра удалите authlib из стандартного minecraft.jar(а если запустили - очистите кеш фабрика в папке .fabric)</p>
+    <p>После этого докиньте файлы библиотеки apache lang3 в classpath или ServerWrapper.jar</p>
+  </details>
+  <details>
+    <summary tabindex="2">Сборка Spigot</summary>
+    <p>Докиньте файлы библиотеки apache lang3 в classpath или ServerWrapper.jar, удалив перед этим стандартную authlib из minecraft.jar</p>
+  </details>
+  <details>
+    <summary tabindex="2">Сборка PaperSpigot</summary>
+    <p>Вам необходимо пропатчить исходники при сборке патчем из архива Захара (<a href="https://cdn.discordapp.com/attachments/478133900045189122/631184267975589908/srv-patches.7z">закрепленное сообщение от Захара в канале #offtop нашего дискорд сервера</a> (файл paper.diff)<br>
+    При необходимости докиньте файлы библиотеки apache lang3 в classpath или ServerWrapper.jar</p>
+  </details>
+  <details>
+    <summary tabindex="2">Сборка Waterfall/BungeeCord</summary>
+    <p>Вам необходимо пропатчить исходники при сборке патчем из архива Захара (<a href="https://cdn.discordapp.com/attachments/478133900045189122/631184267975589908/srv-patches.7z">закрепленное сообщение от Захара в канале #offtop нашего дискорд сервера</a> (3 файла, начинающиеся с bungee)</p>
+  </details>
   <h2>Скрипт развертывания ServerWrapper <div class="gtag gtag-easy">Это просто</div>
   </h2>
   <p>В 5.0.0 введен новый способ установки ServerWrapper'а - с помощью скрипта установки. Для его запуска выполните:</p>

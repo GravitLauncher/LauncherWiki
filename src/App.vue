@@ -18,6 +18,7 @@
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="Разработчикам" right>
             <b-dropdown-item to="/developerapi">Написание модулей</b-dropdown-item>
+            <b-dropdown-item to="/runtimeapi">Редактирование runtime</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -40,7 +41,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
 }
 .content {
   text-align: initial;
