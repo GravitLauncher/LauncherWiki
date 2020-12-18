@@ -13,6 +13,7 @@
             <b-nav-item-dropdown :text="version" right>
               <b-dropdown-item @click="setVersion(5,1,9, 'dev')">v5.1.9-dev</b-dropdown-item>
               <b-dropdown-item @click="setVersion(5,1,8, 'stable')">v5.1.8-stable</b-dropdown-item>
+              <b-dropdown-item @click="setVersion(5,1,7, 'stable')">v5.1.7-stable</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item-dropdown text="Разделы" right>
               <b-dropdown-item to="/">Главная</b-dropdown-item>

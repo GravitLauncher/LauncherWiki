@@ -101,6 +101,24 @@
     ]
     </code></pre>
     <h3>
+      Способ json
+      <div class="gtag gtag-medium">Средний уровень</div>
+    </h3>
+    <!-- TODO -->
+    <pre v-highlightjs><code class="json">
+    "auth": [
+      {
+        "handler": {
+          "type": "json",
+          "getUrl": "http://gravit.pro/auth/get",   // получение username:uuid:accessToken:serverID по username или uuid (user) | (username or uuid + apiKey) -> (username + uuid + accessToken + serverId)
+          "updateAuthUrl": "http://gravit.pro/auth/updateAuth",           // обновление accessToken | (username + uuid + accessToken + serverId) -> OK
+          "updateServerIdUrl": "http://gravit.pro/auth/updateServerId",         // обновление serverId | (uuid + serverId) -> OK
+          "apiKey": "yourKey" //Случайный ключ для обеспечения безопасности
+        }
+      }
+    ]
+    </code></pre>
+    <h3>
       Способ request
       <div class="gtag gtag-medium">Средний уровень</div>
       <div class="gtag gtag-deprecated">Устаревшее</div>
@@ -125,35 +143,12 @@
       }
     ]
     </code></pre>
-    <h3>
-      Способ json
-      <div class="gtag gtag-medium">Средний уровень</div>
-    </h3>
-    <!-- TODO -->
-    <h3>
-      Способ hibernate
-      <div class="gtag gtag-medium">Средний уровень</div>
-    </h3>
-    <p>
-      Hibernate — самая популярная реализация спецификации JPA, предназначенная
-      для решения задач объектно-реляционного отображения (ORM)<br />
-      Для проверки логина и пароля лаунчсервер обращается к любой базе данных<br />
-      <b
-        >Для подключения к базам данных, в libraries необходимо положить
-        библиотеку для поддержки соответствующей базы данных</b
-      ><br />
-      <a href="index.php?r=wiki/page&page=hibernate"
-        >Инструкция по настройке Hibernate</a
-      >
-    </p>
-    <pre v-highlightjs><code class="json">
-    "auth": [
-      {
-        "handler": {
-          "type": "hibernate"
-        }
-      }
-    ]
-    </code></pre>
   </div>
 </template>
+<script>
+import coremethods from '@/components/core-methods.js'
+export default {
+  mixins: [coremethods],
+  created: function () {}
+}
+</script>

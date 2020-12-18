@@ -142,7 +142,7 @@
   </h3>
   <p>Опциональные моды позволяют игроку управлять загрузкой определенных модов/classpath/jvmargs</p>
   <p>Настройка опциональных модов производится для каждого профиля отдельно</p>
-  <pre v-highlightjs><code class="json">
+  <pre v-if="version < 50108" v-highlightjs><code class="json">
 "updateOptional": [
     {
        "type": "FILE", //Тип опционального мода. Может быть FILE, CLIENTARGS, JVMARGS, CLASSPATH
@@ -183,6 +183,80 @@
     }
   ],
 </code></pre>
+<p v-if="version >= 50108">В новых версиях изменили структуру опциональных модов. Теперь каждый опциональный мод может содержать один или несколько действий - это может быть файл или список файлов, изменение аргументов клиента или JVM, classpath, а так же любые кастомные действия, добавляемые модулями
+  Для конвертации старого формата опциональных модов в новый используйте команду saveprofile
+</p>
+<p v-if="version >= 50108">
+  <pre v-highlightjs><code class="json">
+"updateOptional": [
+    {
+       "actions": [ //Список действий опционального мода
+        { //Первое действие
+          "files": {
+            "mods/1.7.10/NotEnoughItems-1.7.10-1.0.5.118-universal.jar": "", //Простое добавление файла без переименований
+            "mods/SuperStrangeMod0.jar": "mods/SuperStrangeMod.jar", //Добавление файла с перемещением. на стороне лаунчсервера файл находится по пути 'mods/SuperStrangeMod0.jar', а в клиент он попадет сюда 'mods/SuperStrangeMod.jar'
+            "mods2/LowStrangeMod2.jar": "mods/LowStrangeMod.jar", //Между папками перемещение тоже работает
+            "config2/ic2": "config/ic2" //Перемещение папок с файлами тоже работает
+          },
+          "type": "file" //Тип действия - обработка файлов
+        }
+      ],
+       "info": "Мод, показывающий рецепты", //Описание
+       "visible": true, //Видимость
+       "mark": true, //Включен по умолчанию
+       "permissions": 0, //Маска привилегий. 0 - мод для всех, 1 - только для админов.
+       "name": "NotEnoughItems" //Имя
+    },
+    {
+       "actions": [
+        {
+          "files": {
+            "mods/Waila_1.5.10_1.7.10.jar": ""
+          },
+          "type": "file"
+        }
+      ],
+       "info": "Мод, показывающий дополнительную информацию при наведении на блок",
+       "name": "Walia",
+       "permissions": 0,
+       "visible": true,
+       "dependenciesFile": [{"name":"NotEnoughItems"/* Имя зависимого мода */}],
+       "conflictFile": [{"name":"ClientFixer"/* Имя конфликтующего мода */}],
+       "subTreeLevel": 2  //Смещение относительно первого мода. Используется для создания визуального отображения дерева зависимостей
+    },
+    {
+       "actions": [
+         {
+           "args": [
+             "--add-modules",
+             "jdk.unsupported"
+           ],
+           "type": "jvmArgs"
+         }
+       ],
+       "triggers": [{"type": "JAVA_VERSION", "compareMode": 1, "need": true, "value": 8}], //Триггеры, о них ниже
+       "info": "Аргументы Java9+",
+       "visible": false,
+       "permissions": 0,
+       "name": "Java9Args"
+    },
+    {
+       "actions": [
+        {
+          "files": {
+            "mods/1.7.10/OptiFine_1.7.10_HD_U_E7.jar": ""
+          },
+          "type": "file"
+        }
+      ],
+       "info": "Улучшение производительности",
+       "permissions": 0,
+       "visible": true,
+       "name": "OptiFine HD"
+    }
+  ],
+</code></pre>
+</p>
   <h3>Триггеры в опциональных модах <div class="gtag gtag-medium">Средний уровень</div>
   </h3>
   <p>Триггеры - условия, при которых опциональный мод будет включен без участия пользователя автоматически.<br>Первый
@@ -242,3 +316,10 @@ td {
   padding: 3px;
 }
 </style>
+<script>
+import coremethods from '@/components/core-methods.js'
+export default {
+  mixins: [coremethods],
+  created: function () {}
+}
+</script>

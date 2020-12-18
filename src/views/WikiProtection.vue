@@ -65,56 +65,61 @@ server {
     "type": "none"
 }
 </code></pre>
-          <h3>Способ std (5.1+)</h3>
-          <p>Стандартный protectHandler</p>
-          <ul>
-            <li>
-              Токен авторизации можно получить только если authType CLIENT и
-              пройдена проверка хеша лаунчера
-            </li>
-            <li>
-              Получить и сменить профиль можно только если пройдена проверка на
-              белый список
-            </li>
-            <li>
-              Получить можно только такие папки updates: assets выбранного
-              клиента, папка выбранного клиента, все папки из allowUpdates
-            </li>
-          </ul>
-          <pre v-highlightjs><code class="json">
+          <div v-if="version > 50104">
+            <h3>Способ std</h3>
+            <p>Стандартный protectHandler</p>
+            <ul>
+              <li>
+                Токен авторизации можно получить только если authType CLIENT и
+                пройдена проверка хеша лаунчера
+              </li>
+              <li>
+                Получить и сменить профиль можно только если пройдена проверка
+                на белый список
+              </li>
+              <li>
+                Получить можно только такие папки updates: assets выбранного
+                клиента, папка выбранного клиента, все папки из allowUpdates
+              </li>
+            </ul>
+            <pre v-highlightjs><code class="json">
 "protectHandler": {
     "profileWhitelist": { "Ваш UUID профиля": ["Ник1", "Ник2"] }, //Использование вайтлиста
     "allowUpdates": [],
     "type": "std"
   }
 </code></pre>
-          <h3>Способ advanced (5.1.6+)</h3>
-          <p>Включает в себя все функции std а так же:</p>
-          <ul>
-            <li>Включает механизмы TrustLevel и обмен ключами с клиентом</li>
-            <li>Включает обработку SecurityReport от нативных защит</li>
-            <li>Можно включить обработку HardwareInfo и баны по железу</li>
-          </ul>
-          <p>Стандартная конфигурация без hardwareFeature</p>
-          <pre v-highlightjs><code class="json">
+          </div>
+          <div v-if="version >= 50107">
+            <h3>Способ advanced</h3>
+            <p>Включает в себя все функции std а так же:</p>
+            <ul>
+              <li>Включает механизмы TrustLevel и обмен ключами с клиентом</li>
+              <li>Включает обработку SecurityReport от нативных защит</li>
+              <li>Можно включить обработку HardwareInfo и баны по железу</li>
+            </ul>
+            <p>Стандартная конфигурация без hardwareFeature</p>
+            <pre v-highlightjs><code class="json">
 "protectHandler": {
     "profileWhitelist": { "Ваш UUID профиля": ["Ник1", "Ник2"] }, //Использование вайтлиста
     "allowUpdates": [],
     "type": "advanced"
   }
 </code></pre>
-          <h3>Настройка HWIDProvider ( 5.1.6+ )</h3>
-          <p>
-            HWIDProvider является частью advanced protectHandler и позволяет
-            выдавать баны по железу, собирать статистику железа пользователя и
-            отслеживать мультиакки. Конфигурации:
-          </p>
-          <p>
-            Настройка HWIDHandler для версий ниже 5.1 находится
-            <a href="?r=wiki%2Fpage&page=hwidhandler">тут</a>
-          </p>
-          <h4>Способ memory</h4>
-          <pre v-highlightjs><code class="json">
+          </div>
+          <div v-if="version >= 50107">
+            <h3>Настройка HWIDProvider</h3>
+            <p>
+              HWIDProvider является частью advanced protectHandler и позволяет
+              выдавать баны по железу, собирать статистику железа пользователя и
+              отслеживать мультиакки. Конфигурации:
+            </p>
+            <p>
+              Настройка HWIDHandler для версий ниже 5.1 находится
+              <a href="?r=wiki%2Fpage&page=hwidhandler">тут</a>
+            </p>
+            <h4>Способ memory</h4>
+            <pre v-highlightjs><code class="json">
 "protectHandler": {
     "profileWhitelist": {},
     "allowUpdates": [],
@@ -127,15 +132,15 @@ server {
     "type": "advanced"
   }
 </code></pre>
-          <p>
-            Используя этот способ вы можете посмотреть собарнные HIWD командой
-            <span class="codes">config protecthandler hardwarelist</span>.
-            Забанить HWID -
-            <span class="codes">config protecthandler hardwareban [ID]</span>,
-            где ID вы берете из вывода первой команды
-          </p>
-          <h4>Способ mysql</h4>
-          <pre v-highlightjs><code class="json">
+            <p>
+              Используя этот способ вы можете посмотреть собарнные HIWD командой
+              <span class="codes">config protecthandler hardwarelist</span>.
+              Забанить HWID -
+              <span class="codes">config protecthandler hardwareban [ID]</span>,
+              где ID вы берете из вывода первой команды
+            </p>
+            <h4>Способ mysql</h4>
+            <pre v-highlightjs><code class="json">
 "protectHandler": {
     "profileWhitelist": {},
     "allowUpdates": [],
@@ -156,11 +161,11 @@ server {
     "type": "advanced"
   }
 </code></pre>
-          <p>
-            Выполните следующие SQL запросы что бы создать таблицы для работы
-            mysql hwid provider
-          </p>
-          <pre v-highlightjs><code class="sql">
+            <p>
+              Выполните следующие SQL запросы что бы создать таблицы для работы
+              mysql hwid provider
+            </p>
+            <pre v-highlightjs><code class="sql">
 CREATE TABLE `hwidLog` (
   `id` bigint(20) NOT NULL,
   `hwidId` bigint(20) NOT NULL,
@@ -193,6 +198,7 @@ ALTER TABLE `hwids`
 ALTER TABLE `hwidLog`
   ADD CONSTRAINT `hwidLog_ibfk_1` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 </code></pre>
+          </div>
         </details>
       </li>
       <li>
@@ -247,14 +253,17 @@ ALTER TABLE `hwidLog`
           <h3>Для формата PKCS12 (рекомендуется)</h3>
 
           <pre v-highlightjs><code class="json">
-{
-  "key": "/home/myname/MyCert.p12",  // Путь к хранилищу ключей
-  "storepass": "mypassword",         // Пароль от хранилища
-  "algo": "PKCS12",                  // Тип хранилища
-  "keyalias": "gravit code sign",    // Key Alias, см ниже как его узнать
-  "pass": "mypassword",              // Пароль от хранилища, совпадает с storepass
-  "signAlgo": "SHA256WITHRSA"        // При использовании ключей на эллиптический криптографии используйте SHA256withECDSA
-}
+"sign": {
+    "enabled": false, //Включить/выключить подпись своим сертификатом
+    "keyStore": "MyKeyStore.p12",  // Путь к хранилищу ключей
+    "keyStoreType": "PKCS12",                // Тип хранилища
+    "keyStorePass": "mypass",         // Пароль от хранилища
+    "keyAlias": "myname",                     // Key Alias, см ниже как его узнать
+    "keyPass": "mypass",              // Пароль от ключа, может не совпадать с storepass
+    "metaInfKeyName": "SIGNUMO.RSA",
+    "metaInfSfName": "SIGNUMO.SF",
+    "signAlgo": "SHA256WITHRSA"        // При использовании ключей на эллиптический криптографии используйте SHA256withECDSA
+  }
 </code></pre>
           <h4>Как узнать key alias из PKCS12 хранилища</h4>
           Выполните
@@ -271,63 +280,23 @@ ALTER TABLE `hwidLog`
           <b>Утилита keystore поставляется вместе с JDK</b>
           <h3>Для JKS(Java KeyStore)</h3>
           <pre v-highlightjs><code class="json">
-{
-  "key": "/home/myname/MyCert.jks",  // Путь к хранилищу ключей
-  "storepass": "mypassword",         // Пароль от хранилища
-  "algo": "JKS",                     // Тип хранилища
-  "keyalias": "gravit code sign ec", // Key Alias, задается при создании
-  "pass": "mypassword",              // Пароль от хранилища, может не совпадать с storepass
-  "signAlgo": "SHA256WITHRSA"        // При использовании ключей на эллиптический криптографии используйте SHA256withECDSA
-}
+"sign": {
+    "enabled": false, //Включить/выключить подпись своим сертификатом
+    "keyStore": "MyKeyStore.p12",  // Путь к хранилищу ключей
+    "keyStoreType": "JKS",                // Тип хранилища
+    "keyStorePass": "mypass",         // Пароль от хранилища
+    "keyAlias": "myname",                     // Key Alias, задается при создании
+    "keyPass": "mypass",              // Пароль от ключа, может не совпадать с storepass
+    "metaInfKeyName": "SIGNUMO.RSA",
+    "metaInfSfName": "SIGNUMO.SF",
+    "signAlgo": "SHA256WITHRSA"        // При использовании ключей на эллиптический криптографии используйте SHA256withECDSA
+  }
 </code></pre>
           <h2>
             Подпись exe
-            <div class="gtag gtag-hard">Сложный уровень</div>
+            <div class="gtag gtag-easy">Это просто</div>
           </h2>
-          <b>Инструкция и скрипты написаны под Linux</b><br />
-          Перед началом работы с этими скриптами у вас уже должны быть:
-          <ol>
-            <li>
-              Установлен osslsigncode<br />
-              Debian-подобные системы: sudo apt install osslsigncode
-            </li>
-            <li>Сертификат</li>
-            <li>
-              <a class="link-animated" href="https://yadi.sk/d/PAt9gkJyBORXjA"
-                >Скрипты для подписи</a
-              >
-            </li>
-          </ol>
-          Если ваш сертификат имеет расширение pfx просто переименуйте его в p12
-          (это одно и тоже)<br />
-          В другом случае конвертируйте свой сертификат в формат p12<br />
-          <ol>
-            <li>В папку с скриптами положите ваш Launcher.exe</li>
-            <li>
-              Выполните <span class="codes">sh sign-update.sh Launcher.exe</span
-              ><br />
-              Будет создан файл signsize.txt, который понадобится на следующем
-              этапе<br />
-              Эту процедуру достаточно провести один раз
-            </li>
-            <li>
-              Выполните <span class="codes">sh sign.sh Launcher.exe</span><br />
-              У вас в папке со скриптами должен присутствовать signsize.txt<br />
-              Если всё прошло успешно, вам покажет информацию о сертификатах
-              внутри exe
-            </li>
-            <li>
-              Замените ваш Launcher.exe рядом с лаунчсервером подписанной
-              версией, и пропишите <span class="codes">syncBinaries</span> в
-              консоли лаунчсервера
-            </li>
-          </ol>
-          <b>При каждом билде шаги 3-4 нужно будет повторять заново</b><br />
-          <b
-            >При появлении ошибки
-            <span class="codes">Corrupt jar file</span> (размер подписи
-            изменился) заново выполните шаги 1-4</b
-          >
+          <p>Следуйте <a href="https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module">этим</a> инструкциям</p>
           <h2>
             Создание CSR (Certificate Signing Request) для 3 варианта получения
             сертификата
@@ -576,11 +545,13 @@ An optional company name []:
           </ol>
         </details>
       </li>
-      <li>
-        <details>
-          <summary tabindex="2">Проксирование через Nginx</summary>
-        </details>
-      </li>
     </ol>
   </div>
 </template>
+<script>
+import coremethods from '@/components/core-methods.js'
+export default {
+  mixins: [coremethods],
+  created: function () {}
+}
+</script>

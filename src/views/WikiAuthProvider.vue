@@ -58,12 +58,12 @@
             "username": "launchserver",           // имя пользователя
             "password": "password",               // пароль пользователя
             "database": "db",                     // база данных, при проблемах с timezone используйте "database": "db?serverTimezone=UTC"
-            "timezone": "UTC",                    // установка клиентской таймзоны
             "useHikari": true                     // использовать ли HikariCP
           },
           "query": "SELECT login, permission FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
           "queryParams": [ "%login%", "%password%" ],                                               // параметры sql запроса
           "usePermission": true,
+          "flagsEnabled": false,
           "message": "Пароль неверный!"                                                             // сообщение при неверном пароле
         }
       }
@@ -98,12 +98,12 @@
             "username": "launchserver",           // имя пользователя
             "password": "password",               // пароль пользователя
             "database": "db",                     // база данных, при проблемах с timezone используйте "database": "db?serverTimezone=UTC" (?)
-            "timezone": "UTC",                    // установка клиентской таймзоны
             "useHikari": true                     // использовать ли HikariCP
           },
           "query": "SELECT login, permission FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
           "queryParams": [ "%login%", "%password%" ],                                               // параметры sql запроса
           "usePermission": true,
+          "flagsEnabled": false,
           "message": "Пароль неверный!"                                                             // сообщение при неверном пароле
         }
       }
@@ -126,14 +126,15 @@
       {
         "provider": {
           "type": "request",
-          "usePermission": true,
+          "usePermission": true, //Если ваш скрипт передает permission
+          "flagsEnabled": false, //Если ваш скрипт не передает flags
           "url": "http://gravit.pro/auth.php?username=%login%&password=%password%&ip=%ip%",
           "response": "OK:(?&lt;username&gt;.+):(?&lt;permissions&gt;.+)"
         }
       }
     ]
     </code></pre>
-    <p>
+    <p v-if="version > 50109">
       Некоторые скрипты авторизации не поддерживают передачу permissions и их
       ответ выглядит как OK:Gravit, где Gravit - ваш никнейм<br />
       Вы можете использовать конфигурацию ниже на версиях до 5.1.0, однако
@@ -141,18 +142,21 @@
         >рекомендуется найти/написать/подправить скрипт, что бы он передавал
         permissions</b
       >
-    </p>
+      <br/>
     <pre v-highlightjs><code class="json">
     "auth": [
       {
         "provider": {
           "type": "request",
           "url": "http://gravit.pro/auth.php?username=%login%&password=%password%&ip=%ip%", // ссылка до скрипта проверки логина-пароля
+          "usePermission": false, //Если ваш скрипт не передает permission
+          "flagsEnabled": false, //Если ваш скрипт не передает flag
           "response": "OK:(?&lt;username&gt;.+)" // маска ответа, если не соответствует, будет выведено сообщение с возвращенным текстом
         }
       }
     ]
     </code></pre>
+    </p>
     <h3>
       Способ json
       <div class="gtag gtag-medium">Средний уровень</div>
@@ -195,33 +199,8 @@
       "error": "Неверный логин или пароль"
     }
     </code></pre>
-    <h3>
-      Способ hibernate
-      <div class="gtag gtag-medium">Средний уровень</div>
-    </h3>
-    <p>
-      Hibernate — самая популярная реализация спецификации JPA, предназначенная
-      для решения задач объектно-реляционного отображения (ORM)<br />
-      Для проверки логина и пароля лаунчсервер обращается к любой базе данных<br />
-      <b
-        >Для подключения к базам данных, в libraries необходимо положить
-        библиотеку для поддержки соответствующей базы данных</b
-      ><br />
-      <a href="index.php?r=wiki/page&page=hibernate"
-        >Инструкция по настройке Hibernate</a
-      >
-    </p>
-    <pre v-highlightjs><code class="json">
-    "auth": [
-      {
-        "provider": {
-          "type": "hibernate"
-        }
-      }
-    ]
-    </code></pre>
     <h2>
-      Permissions. Маска
+      Permissions и Flags. Маска
       <div class="gtag gtag-medium">Средний уровень</div>
     </h2>
     <p>
@@ -234,17 +213,34 @@
     </p>
     <ul>
       <li>Ничего - 0</li>
-      <li>canAdmin - 1</li>
-      <li>canServer - 2 (устаревший)</li>
-      <li>canUSR1 - 4</li>
-      <li>canUSR2 - 8</li>
-      <li>canUSR3 - 16</li>
-      <li>canBot - 32 (устаревший)</li>
+      <li>ADMIN - 2<sup>0</sup></li>
+      <li>MANAGEMENT - 2<sup>1</sup></li>
+      <li>С 2<sup>2</sup> по 2<sup>32</sup> - зарезервировано</li>
+      <li>С 2<sup>33</sup> по 2<sup>51</sup> - пользовательские permissions</li>
+      <li>С 2<sup>52</sup> по 2<sup>63</sup> - зарезервировано</li>
+    </ul>
+    <p>Флаги - способ сообщить особенности аккаунта пользователя, которые могут учитыватся модулями для своих целей</p>
+    <ul>
+      <li>Ничего - 0</li>
+      <li>SYSTEM - 2<sup>0</sup></li>
+      <li>BANNED - 2<sup>1</sup></li>
+      <li>UNTRUSTED - 2<sup>2</sup></li>
+      <li>HIDDEN - 2<sup>3</sup></li>
+      <li>С 2<sup>4</sup> по 2<sup>32</sup> - зарезервировано</li>
+      <li>С 2<sup>33</sup> по 2<sup>51</sup> - пользовательские flags</li>
+      <li>С 2<sup>52</sup> по 2<sup>63</sup> - зарезервировано</li>
     </ul>
     <p>
       Проверка в лаунчере выполняется путем выполнения побитового И, например
-      если для опционального мода требуется право 9(canUSR2+canAdmin) то
-      подойдут 9, 11, 13, 15 и тд
+      если для опционального мода требуется право 3(ADMIN+MANAGEMENT) то
+      подойдут 3, 7, 11, 15 и тд
     </p>
   </div>
 </template>
+<script>
+import coremethods from '@/components/core-methods.js'
+export default {
+  mixins: [coremethods],
+  created: function () {}
+}
+</script>

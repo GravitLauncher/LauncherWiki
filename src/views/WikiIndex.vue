@@ -74,10 +74,6 @@
               заного запустить скрипт
             </li>
           </ol>
-          <p>
-            При установке на Windows можно воспользоваться Cygwin или другим
-            методом установки
-          </p>
           <h4>
             Требования для успешной установки лаунчсервера скриптом
             <div class="gtag gtag-important">Важно</div>
@@ -318,32 +314,32 @@
             Следуем дальнейшем инструкциям на Wiki по настройке. Используя этот
             способ вам нужно устанавливать модуль рантайма самостоятельно
           </p>
-          <h3>
-            Вариант 4: Скачивание релиза с GitLab Pipelines
-            <div class="gtag gtag-deprecated">Только для 5.1.2 и ниже</div>
-          </h3>
-          <p>
-            Скачиваем последний релиз с
-            <a
-              class="link-animated"
-              href="https://gitlab.com/gravitlauncherteam/Launcher/pipelines"
-              >GitLab</a
-            ><br />
-            Он выглядит так: <br />
-            <img
-              src="https://cdn.discordapp.com/attachments/612736409677070338/635566914189393940/v.png"
-            /><br />
-            (С пометкой latest, а так же ветка должна быть <b>master</b>)<br />
-            Так же встречаются ветки hotfix/X.X.X, если они первее master'а -
-            используйте их<br />
-            Распаковываем в нужную папку
-          </p>
-          <p>
-            Запускаем лаунчсервер командой
-            <span class="codes"
-              >java -javaagent:LaunchServer.jar -jar LaunchServer.jar</span
-            >
-          </p>
+          <div v-if="version <= 50102">
+            <h3>Вариант 4: Скачивание релиза с GitLab Pipelines</h3>
+            <p>
+              Скачиваем последний релиз с
+              <a
+                class="link-animated"
+                href="https://gitlab.com/gravitlauncherteam/Launcher/pipelines"
+                >GitLab</a
+              ><br />
+              Он выглядит так: <br />
+              <img
+                src="https://cdn.discordapp.com/attachments/612736409677070338/635566914189393940/v.png"
+              /><br />
+              (С пометкой latest, а так же ветка должна быть
+              <b>master</b>)<br />
+              Так же встречаются ветки hotfix/X.X.X, если они первее master'а -
+              используйте их<br />
+              Распаковываем в нужную папку
+            </p>
+            <p>
+              Запускаем лаунчсервер командой
+              <span class="codes"
+                >java -javaagent:LaunchServer.jar -jar LaunchServer.jar</span
+              >
+            </p>
+          </div>
         </details>
       </li>
       <li>
@@ -377,12 +373,14 @@
           <b>Ссылка на CI рантайма</b>:
           <a href="https://github.com/GravitLauncher/LauncherRuntime/actions"
             >GitHub Actions</a
-          ><br />
-          <b
-            >Если вы не можете скачать файлы с GitHub Actions
-            войдите/зарегистрируйтесь на GitHub либо скачайте из раздела
-            релизов</b
-          ><br />
+          >
+          <p>
+            <b
+              >Если вы не можете скачать файлы с GitHub Actions
+              войдите/зарегистрируйтесь на GitHub либо скачайте из раздела
+              релизов</b
+            >
+          </p>
           <p>Инструкция по установке нового рантайма:</p>
           <ol>
             <li>
@@ -462,6 +460,9 @@
     "checkSecure": true,
     "type": "std"
   },
+  "sessions": { //SessionStorage, отвечает за хранение сессий
+    "type": "memory"
+  },
   "components": { //Опциональные компоненты
     "regLimiter": { //Лимит регистраций(через Hibernate/DAO)
       "message": "Превышен лимит регистраций",
@@ -498,6 +499,7 @@
   "netty": {
     "fileServerEnabled": true, //Включить раздачу файлов из updates по http
     "sendExceptionEnabled": true, //Разрешить отправку сообщений об ошибке лаунчсервера на клиент. Рекомендуется false для прода
+    "disableWebApiInterface": false, //Отключение /webapi - http запросов к лаунчсерверу. По умолчанию - false
     "ipForwarding": false, //Разрешить проксирование реального IP через HTTP заголовки. Включить если используется проксирование nginx/apache2/cloudflare
     "showHiddenFiles": false, //Разрешает раздачу файлов, начинающихся с точки(.)
     "launcherURL": "http://localhost:9274/Launcher.jar", //URL скачки лаунчера(JAR)
@@ -529,9 +531,6 @@
     "deleteTempFiles": true, //Удалять временные файлы в папке build
     "proguardGenMappings": true //Включить генерацию маппингов proguard
   },
-  "certificate": { //Не включать
-    "enabled": false
-  },
   "sign": { //Подпись лаунчера. См отдельный раздел
     "enabled": true,
     "keyStore": "GravitCodeSignEC_Java.p12",
@@ -543,14 +542,6 @@
     "keyPass": "password",
     "signAlgo": "SHA256withECDSA"
   },
-  "dao": { //Нстройка DAO/Hibernate. См отдельный раздел
-    "type": "hibernate",
-    "driver": "org.postgresql.Driver",
-    "url": "jdbc:postgresql://localhost/launcher",
-    "username": "launcher",
-    "password": "password",
-    "pool_size": "4"
-   },
   "startScript": "./start.sh" //Скрипт запуска лаунчсервера(используется только в команде restart)
 }
 </code></pre>
@@ -632,6 +623,8 @@
     downloadasset [version] [dir] - скачать ассеты с зеркала
     syncupdates [subdirs...] - синхронизировать хеши в памяти с файлами в updates на диске
     syncprofiles [nothing] - синхронизировать профили в памяти с файлами в profiles на диске
+    syncup [nothing] - выполнить команды syncUpdates и syncProfiles
+    saveprofile [name] - конвертировать профиль старой версии в актуальный формат(profileUUID, ServerProfile, опциональные моды и пр)
     debug [true/false] [true/false] - включает или отключает режим отладки в лаунчсервере
     version [nothing] - версия лаунчсервера если вдруг забыли
     </code></pre>
@@ -660,7 +653,7 @@
     </code></pre>
     <p>Экспертные команды из стандартной поставки:</p>
     <pre v-highlightjs><code class="ini">
-    proguarddictregen [nothing] - перегенерировать маппинги proguard
+    proguarddictregen [nothing] - перегенерировать словарь proguard
     loadmodule [jar] - загрузить модуль не из папки modules в runtime
     proguardclean [nothing] - сброс конфига proguard
     proguardmappingsremove [nothing] - удалить маппинги proguard
@@ -684,7 +677,7 @@
     synclaunchermodules [] - синхронизировать модули лаунчера(LauncherModuleLoader)
     eval [line] - выполнить JavaScript код на стороне лаунчсервера(ServerScriptEngine)
     </code></pre>
-    <h3>Команды лаунчера. Разблокировка консоли. Удаленное управление</h3>
+    <h3>Команды лаунчера. Разблокировка консоли</h3>
     <p>
       Начиная с версии 5.0.0 в лаунчере появилась консоль, которую можно открыть
       после авторизации, нажав справа на значок консоли.<br />
@@ -692,11 +685,8 @@
       консоль заблокирована. Для её разблокировки используется команда
       <span>unlock [key]</span><br />
       Ключ находится в RuntimeLaunchServerConfig.json, поле oemUnlockKey<br />
-      После разблокировки консоли, вы получите доступ к командам, недоступным
-      ранее, в том числе возможность удаленно управлять лаунчсервером (при
-      наличии прав)<br />
-      Что бы удаленно управлять лаунчсервером, ваш аккаунт должен иметь право
-      canAdmin<br />
+      После разблокировки консоли, вы получите доступ к тестовым и утилитарным командам, недоступным
+      ранее<br />
       <!-- TODO commands list -->
     </p>
 
@@ -705,46 +695,14 @@
       <div class="gtag gtag-medium">Средний уровень</div>
     </h2>
     <p>
-      Systemd - стандарт в мире дистрибутивов Linux. Ниже привожу .service файлы
-      для лаунчсервера и сервера Minecraft.<br />
-      Для правильного порядка загрузки с systemd требуется установить модуль
-      SystemdNotify
+      Обратитесь к <a href="https://github.com/GravitLauncher/LauncherModules/tree/master/SystemdNotifer_module">этой</a> инструкции
     </p>
-    <pre v-highlightjs><code class="ini">
-    [Unit]
-    Description=LaunchServer
-    After=network.target
-
-    [Service]
-    WorkingDirectory=/home/launchserver/
-    Type=notify
-    User=launchserver
-    Group=servers
-    NotifyAccess=all
-    Restart=always
-
-    ExecStart=/usr/bin/screen -DmS launchserver /usr/bin/java -Xmx128M -javaagent:LaunchServer.jar -jar LaunchServer.jar
-    ExecStop=/usr/bin/screen -p 0 -S launchserver -X eval 'stuff "stop"\015'
-    [Install]
-    WantedBy=multi-user.target
-    </code></pre>
-    <pre v-highlightjs><code class="ini">
-    [Unit]
-    Description=Minecraft HiTech Server
-    After=network.target
-    After=LaunchServer.service
-    [Service]
-    WorkingDirectory=/home/hitech/
-
-    User=hitech
-    Group=servers
-
-    Restart=always
-
-    ExecStart=/home/hitech/start.sh
-    ExecStop=/usr/bin/screen -p 0 -S hitech -X eval 'stuff "stop"\015'
-    [Install]
-    WantedBy=multi-user.target
-    </code></pre>
   </div>
 </template>
+<script>
+import coremethods from '@/components/core-methods.js'
+export default {
+  mixins: [coremethods],
+  created: function () {}
+}
+</script>

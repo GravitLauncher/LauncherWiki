@@ -9,7 +9,6 @@
       ><br />
     </p>
     <p>Непротестированы: Atom и другие</p>
-    <p>Неработоспособны на текущий момент: Forge 1.13+</p>
     <h2>Особенности сборки некоторых ядер</h2>
     <p>Для любых ядер <b>требуется</b> установка ServerWrapper</p>
     <details>
@@ -91,11 +90,17 @@
       открыв jar файл ядра и посмотрев содержимое манифеста, либо скопировать из
       старого скрипта запуска
     </p>
-    <p>
+    <p v-if="version <= 50108">
       <b>Profile title</b> - имя профиля клиента, его можно посмотреть открыв в
       лаунчсервере папку profiles, открыв файл своего профиля и посмотрев на
       поле title. title в конфигурации ServerWrapper и title в профиле должны
       совпадать на 100%
+    </p>
+    <p v-if="version >= 50109">
+      <b>ServerName</b> - имя профиля сервера, его можно посмотреть открыв в
+      лаунчсервере папку profiles, открыв файл своего профиля и в секции servers посмотрев на
+      поле name. serverName в конфигурации ServerWrapper и name в профиле должны совпадать для работы
+      интеграционных плагинов к серверу
     </p>
     <p>
       <b>Аккаунт сервера</b> - полноценный аккаунт с логином и паролем, который
@@ -152,3 +157,10 @@ java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.la
 </code></pre>
   </div>
 </template>
+<script>
+import coremethods from '@/components/core-methods.js'
+export default {
+  mixins: [coremethods],
+  created: function () {}
+}
+</script>
