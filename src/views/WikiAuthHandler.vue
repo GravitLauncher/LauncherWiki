@@ -1,24 +1,31 @@
-<template><div class="wiki">
-  <h2>Настройка AuthHandler</h2>
-  <details>
-    <summary tabindex="1"><span>Question #1</span></summary>
-    <p>Answer #1</p>
-  </details>
-  <h3>Способ memory <div class="gtag gtag-easy">Это просто</div>
-  </h3>
-  <p>UUID получается путем преобразования бинарного представления ника<br>
-    Каждому нику будет соответствовать ровно один UUID</p>
-  <pre v-highlightjs><code class="json">
+<template>
+  <div class="wiki">
+    <h2>Настройка AuthHandler</h2>
+    <details>
+      <summary tabindex="1"><span>Question #1</span></summary>
+      <p>Answer #1</p>
+    </details>
+    <h3>
+      Способ memory
+      <div class="gtag gtag-easy">Это просто</div>
+    </h3>
+    <p>
+      UUID получается путем преобразования бинарного представления ника<br />
+      Каждому нику будет соответствовать ровно один UUID
+    </p>
+    <pre v-highlightjs><code class="json">
     "auth": [
       "handler": {
         "type": "memory"
       }
     ]
     </code></pre>
-  <h3>Способ mysql <div class="gtag gtag-easy">Это просто</div>
-  </h3>
-  <p>Для получения UUID лаунчсервер обращается к базе данных mysql</p>
-  <pre v-highlightjs><code class="json">
+    <h3>
+      Способ mysql
+      <div class="gtag gtag-easy">Это просто</div>
+    </h3>
+    <p>Для получения UUID лаунчсервер обращается к базе данных mysql</p>
+    <pre v-highlightjs><code class="json">
     "auth": [
       "handler": {
         "type": "mysql",
@@ -39,9 +46,11 @@
       }
     ]
     </code></pre>
-  <p>Для автоматического создания нужных полей в таблице и созданию UUID можно воспользоватся следующими SQL запросами:
-  </p>
-  <pre v-highlightjs><code class="sql">
+    <p>
+      Для автоматического создания нужных полей в таблице и созданию UUID можно
+      воспользоватся следующими SQL запросами:
+    </p>
+    <pre v-highlightjs><code class="sql">
     -- Добавляет недостающие поля в таблицу
     ALTER TABLE users
     ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
@@ -61,10 +70,12 @@
     -- Генерирует UUID для уже существующих пользователей
     UPDATE users SET uuid=(SELECT UUID()) WHERE uuid IS NULL;
     </code></pre>
-  <h3>Способ postgresql <div class="gtag gtag-medium">Средний уровень</div>
-  </h3>
-  <p>Для получения UUID лаунчсервер обращается к базе данных postgresql</p>
-  <pre v-highlightjs><code class="json">
+    <h3>
+      Способ postgresql
+      <div class="gtag gtag-medium">Средний уровень</div>
+    </h3>
+    <p>Для получения UUID лаунчсервер обращается к базе данных postgresql</p>
+    <pre v-highlightjs><code class="json">
     "auth": [
       "handler": {
         "type": "postgresql",
@@ -89,12 +100,17 @@
       }
     ]
     </code></pre>
-  <h3>Способ request <div class="gtag gtag-medium">Средний уровень</div>
-    <div class="gtag gtag-deprecated">Устаревшее</div>
-  </h3>
-  <p>Для получения и обновления uuid, accessToken, serverID лаунчсервер обращается к сайту по протоколу HTTP/HTTPS<br>
-    В скобках указаны параметры запроса</p>
-  <pre v-highlightjs><code class="json">
+    <h3>
+      Способ request
+      <div class="gtag gtag-medium">Средний уровень</div>
+      <div class="gtag gtag-deprecated">Устаревшее</div>
+    </h3>
+    <p>
+      Для получения и обновления uuid, accessToken, serverID лаунчсервер
+      обращается к сайту по протоколу HTTP/HTTPS<br />
+      В скобках указаны параметры запроса
+    </p>
+    <pre v-highlightjs><code class="json">
     "auth": [
       {
         "handler": {
@@ -109,18 +125,28 @@
       }
     ]
     </code></pre>
-  <h3>Способ json <div class="gtag gtag-medium">Средний уровень</div>
-  </h3>
-  <!-- TODO -->
-  <h3>Способ hibernate <div class="gtag gtag-medium">Средний уровень</div>
-  </h3>
-  <p>Hibernate — самая популярная реализация спецификации JPA, предназначенная для решения задач объектно-реляционного
-    отображения (ORM)<br>
-    Для проверки логина и пароля лаунчсервер обращается к любой базе данных<br>
-    <b>Для подключения к базам данных, в libraries необходимо положить библиотеку для поддержки соответствующей базы
-      данных</b><br>
-    <a href="index.php?r=wiki/page&page=hibernate">Инструкция по настройке Hibernate</a></p>
-  <pre v-highlightjs><code class="json">
+    <h3>
+      Способ json
+      <div class="gtag gtag-medium">Средний уровень</div>
+    </h3>
+    <!-- TODO -->
+    <h3>
+      Способ hibernate
+      <div class="gtag gtag-medium">Средний уровень</div>
+    </h3>
+    <p>
+      Hibernate — самая популярная реализация спецификации JPA, предназначенная
+      для решения задач объектно-реляционного отображения (ORM)<br />
+      Для проверки логина и пароля лаунчсервер обращается к любой базе данных<br />
+      <b
+        >Для подключения к базам данных, в libraries необходимо положить
+        библиотеку для поддержки соответствующей базы данных</b
+      ><br />
+      <a href="index.php?r=wiki/page&page=hibernate"
+        >Инструкция по настройке Hibernate</a
+      >
+    </p>
+    <pre v-highlightjs><code class="json">
     "auth": [
       {
         "handler": {
@@ -129,4 +155,5 @@
       }
     ]
     </code></pre>
-</div></template>
+  </div>
+</template>
