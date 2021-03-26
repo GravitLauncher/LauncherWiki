@@ -3,7 +3,7 @@
     <h2>Базовая настройка защиты</h2>
     <ol>
       <li>
-        <sploiler text="Проксирование через Nginx <a name='nginx' href='#nginx'>&#128279;</a>">
+        <sploiler link="nginx"><template #header>Проксирование через Nginx </template>
           <p>
             Для проксирования можно воспользоваться следующим конфигом nginx
           </p>
@@ -51,7 +51,7 @@ server {
         </sploiler>
       </li>
       <li>
-        <sploiler text="Настройка ProtectHandler <a name='protecthandler' href='#protecthandler'>&#128279;</a>">
+        <sploiler link="protecthandler"><template #header>Настройка ProtectHandler </template>
           <p>
             ProtectHandler часть находится в состоянии активной разработки. В
             дальнейшем будут появлятся всё новые и новые возможности
@@ -200,7 +200,7 @@ ALTER TABLE `hwidLog`
         </sploiler>
       </li>
       <li>
-        <sploiler text="Подпись лаунчера и EXE <a name='singing' href='#signing'>&#128279;</a>">
+        <sploiler link="singing"><template #header>Подпись лаунчера и EXE </template>
           <h2>
             Где взять сертификат
             <gtag type="medium">Средний уровень</gtag>
@@ -550,7 +550,7 @@ An optional company name []:
         </sploiler>
       </li>
       <li v-if="version >= 50110">
-        <sploiler text="Настройка certificatePinning <a name='certificatepinning' href='#certificatepinning'>&#128279;</a>">
+        <sploiler link="certificatepinning"><template #header>Настройка certificatePinning </template>
           <p>
             Опция <span class="codes">certificatePinning</span> позволяет работать лаунчеру независимо от системного хранилища сертификатов. Это повысит безопасность лаунчера и устранит проблемы с старой Java у пользователя и Lets'Encrypt сертификатом
           </p>

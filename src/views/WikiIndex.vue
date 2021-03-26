@@ -12,15 +12,15 @@
     ><br />
     Модули, заканчивающиеся на <codes>_module</codes> - для
     лаунчсервера, на <codes>_lmodule</codes> - для
-    лаунчера(требутется LauncherModuleLoader), на
+    лаунчера, на
     <codes>_swmodule</codes> для ServerWrapper'а<br />
     <ol>
       <li>
-        <sploiler text="Устанавливаем лаунчсервер">
+        <sploiler link="start"><template #header>Устанавливаем лаунчсервер </template>
           <h3>
             Вариант 1: Скрипт установки
-            <div class="gtag gtag-easy">Самый простой вариант</div>
-            <div class="gtag gtag-info">Рекомендуется</div>
+            <gtag type="easy">Самый простой вариант</gtag>
+            <gtag type="info">Рекомендуется</gtag>
           </h3>
           <p>
             Для установки лаунчера версии 5.1.3+ можно воспользоваться скриптом.
@@ -75,7 +75,7 @@
           </ol>
           <h4>
             Требования для успешной установки лаунчсервера скриптом
-            <div class="gtag gtag-important">Важно</div>
+            <gtag type="important">Важно</gtag>
           </h4>
           <ul>
             <li>
@@ -127,7 +127,7 @@
           </ul>
           <h4>
             Как пользоваться скриптом после успешной установки лаунчсервера
-            <div class="gtag gtag-important">Важно</div>
+            <gtag type="important">Важно</gtag>
           </h4>
           <p>
             Скрипт экономит много времени и делает за вас большую часть работы.
@@ -178,7 +178,7 @@
           <p></p>
           <h3>
             Вариант 2: Скачивание релиза с GitHub Actions
-            <div class="gtag gtag-easy">Это просто</div>
+            <gtag type="easy">Это просто</gtag>
           </h3>
           <p>
             Открываем по ссылке
@@ -211,7 +211,7 @@
           </p>
           <h3>
             Вариант 3: Сборка из исходников
-            <div class="gtag gtag-medium">Средний уровень</div>
+            <gtag type="medium">Средний уровень</gtag>
           </h3>
           <p>
             Для сборки вам потребуется: JDK, JavaFX библиотеки той же версии что
@@ -342,10 +342,10 @@
         </sploiler>
       </li>
       <li>
-        <sploiler text="Устанавливаем рантайм">
+        <sploiler><template #header>Устанавливаем рантайм</template>
           <h2>
             <a name="runtime_guide"></a>Сборка лаунчера на 5.1.0+
-            <div class="gtag gtag-important">Важно</div>
+            <gtag type="important">Важно</gtag>
           </h2>
           <p>
             Если вы соберете лаунчер командой build сразу после настройки
@@ -394,11 +394,6 @@
               runtime лаунчсервера
             </li>
             <li>
-              Установите модуль LauncherModuleLoader_module на лаунчсервер в
-              папку modules (<b>только для версий от 5.1.0 до 5.1.3</b>, на
-              версиях 5.1.4+ этот модуль встроен)
-            </li>
-            <li>
               Скопируйте файл JavaRuntime-xxxx.jar в папку launcher-modules(если
               её нет - создайте)
             </li>
@@ -411,7 +406,7 @@
         </sploiler>
       </li>
       <li>
-        <sploiler text="Конфигурация лаунчсервера">
+        <sploiler><template #header>Конфигурация лаунчсервера</template>
           <p>
             Это конфигурация для 5.1.0. Ваш конфиг может отличаться. Все
             пояснения ниже приведены для ознакомления, не пытайтесь копировать
@@ -564,8 +559,8 @@
     <hr />
     <h2>
       Рекомендуемые настройки безопасности для проектов
-      <div class="gtag gtag-important">Важно</div>
-      <div class="gtag gtag-info">Знать всем</div>
+      <gtag type="important">Важно</gtag>
+      <gtag type="info">Знать всем</gtag> <a name="security" href="#security">&#128279;</a>
     </h2>
     <ul>
       <li>
@@ -610,7 +605,7 @@
       </li>
     </ul>
 
-    <h2>Команды LaunchServer</h2>
+    <h2>Команды LaunchServer <a name="commands" href="#commands">&#128279;</a></h2>
     <p>Простейшие команды, которые понядобятся в первую очередь:</p>
     <pre v-highlightjs><code class="ini">
     help [command name] - Вывести справку по команде или по всем командам
@@ -671,7 +666,7 @@
     loadjar [jarfile] - добавить в SystemClassLoader любой JAR(используя javaagent)(UnsafeCommandsPack)
     registercomponent [name] [classname] - зарегистрировать компонент по классу(UnsafeCommandsPack)
     scriptmappings [nothing] - посмотреть все маппинги классов лаунчсервера в javascript(ServerScriptEngine)
-    synclaunchermodules [] - синхронизировать модули лаунчера(LauncherModuleLoader)
+    synclaunchermodules [] - синхронизировать модули лаунчера
     eval [line] - выполнить JavaScript код на стороне лаунчсервера(ServerScriptEngine)
     </code></pre>
     <h3>Команды лаунчера. Разблокировка консоли</h3>
@@ -689,7 +684,7 @@
 
     <h2>
       Интеграция с systemd
-      <div class="gtag gtag-medium">Средний уровень</div>
+      <gtag type="medium">Средний уровень</gtag>
     </h2>
     <p>
       Обратитесь к <a href="https://github.com/GravitLauncher/LauncherModules/tree/master/SystemdNotifer_module">этой</a> инструкции

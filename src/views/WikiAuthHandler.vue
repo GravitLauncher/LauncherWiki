@@ -1,7 +1,7 @@
 <template>
   <div class="wiki">
     <h2>Настройка AuthHandler</h2>
-    <sploiler text="<span>Question #1</span>">
+    <sploiler><template #header><span>Question #1</span></template>
       <p>Answer #1</p>
     </sploiler>
     <h3>

@@ -11,7 +11,7 @@
     <p>Непротестированы: Atom и другие</p>
     <h2>Особенности сборки некоторых ядер</h2>
     <p>Для любых ядер <b>требуется</b> установка ServerWrapper</p>
-    <sploiler text="Сборка Forge/Sponge 1.12.2">
+    <sploiler><template #header>Сборка Forge/Sponge 1.12.2</template>
       <p>
         Замените launchwrapper на
         <a
@@ -21,7 +21,7 @@
         находится по тому же пути и с тем же именем что и стандартный
       </p>
     </sploiler>
-    <sploiler text="Сборка Fabric 1.13+">
+    <sploiler><template #header>Сборка Fabric 1.13+</template>
       <p>
         Перед запуском ядра удалите authlib из стандартного minecraft.jar(а если
         запустили - очистите кеш фабрика в папке .fabric)
@@ -31,14 +31,14 @@
         ServerWrapper.jar
       </p>
     </sploiler>
-    <sploiler text="Сборка Spigot">
+    <sploiler><template #header>Сборка Spigot</template>
       <p>
         Докиньте файлы библиотеки apache lang3 в classpath или
         ServerWrapper.jar, удалив перед этим стандартную authlib из
         minecraft.jar
       </p>
     </sploiler>
-    <sploiler text="Сборка PaperSpigot">
+    <sploiler><template #header>Сборка PaperSpigot</template>
       <p>
         Вам необходимо пропатчить исходники при сборке патчем из архива Захара
         (<a
@@ -51,7 +51,7 @@
         ServerWrapper.jar
       </p>
     </sploiler>
-    <sploiler text="Сборка Waterfall/BungeeCord">
+    <sploiler><template #header>Сборка Waterfall/BungeeCord</template>
       <p>
         Вам необходимо пропатчить исходники при сборке патчем из архива Захара
         (<a
