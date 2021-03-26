@@ -2,7 +2,7 @@
   <div class="wiki">
     <h2>
       Модули
-      <div class="gtag gtag-hard">Программистам</div>
+      <gtag type="hard">Программистам</gtag>
     </h2>
     <p>Этот раздел посвящен разработке модулей на Java</p>
     <p>

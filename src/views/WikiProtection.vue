@@ -3,8 +3,7 @@
     <h2>Базовая настройка защиты</h2>
     <ol>
       <li>
-        <details>
-          <summary tabindex="2">Проксирование через Nginx</summary>
+        <sploiler text="Проксирование через Nginx <a name='nginx' href='#nginx'>&#128279;</a>">
           <p>
             Для проксирования можно воспользоваться следующим конфигом nginx
           </p>
@@ -49,11 +48,10 @@ server {
         }
 }
 </code></pre>
-        </details>
+        </sploiler>
       </li>
       <li>
-        <details>
-          <summary tabindex="2">Настройка ProtectHandler</summary>
+        <sploiler text="Настройка ProtectHandler <a name='protecthandler' href='#protecthandler'>&#128279;</a>">
           <p>
             ProtectHandler часть находится в состоянии активной разработки. В
             дальнейшем будут появлятся всё новые и новые возможности
@@ -199,14 +197,13 @@ ALTER TABLE `hwidLog`
   ADD CONSTRAINT `hwidLog_ibfk_1` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 </code></pre>
           </div>
-        </details>
+        </sploiler>
       </li>
       <li>
-        <details>
-          <summary tabindex="2">Подпись лаунчера и EXE</summary>
+        <sploiler text="Подпись лаунчера и EXE <a name='singing' href='#signing'>&#128279;</a>">
           <h2>
             Где взять сертификат
-            <div class="gtag gtag-medium">Средний уровень</div>
+            <gtag type="medium">Средний уровень</gtag>
           </h2>
           Вариантов несколько:
           <ul>
@@ -235,7 +232,7 @@ ALTER TABLE `hwidLog`
           </ul>
           <h2>
             Подпись jar
-            <div class="gtag gtag-medium">Средний уровень</div>
+            <gtag type="medium">Средний уровень</gtag> <a name="signjar" href="#signjar">&#128279;</a>
           </h2>
           <p>
             Этот гайд необходим всем тем кто хочет настроить JarSigner module, а
@@ -294,13 +291,20 @@ ALTER TABLE `hwidLog`
 </code></pre>
           <h2>
             Подпись exe
-            <div class="gtag gtag-easy">Это просто</div>
+            <gtag type="easy">Это просто</gtag> <a name="signexe" href="#signexe">&#128279;</a>
           </h2>
-          <p>Следуйте <a href="https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module">этим</a> инструкциям</p>
+          <p>
+            Следуйте
+            <a
+              href="https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module"
+              >этим</a
+            >
+            инструкциям
+          </p>
           <h2>
             Создание CSR (Certificate Signing Request) для 3 варианта получения
             сертификата
-            <div class="gtag gtag-medium">Средний уровень</div>
+            <gtag type="medium">Средний уровень</gtag> <a name="signcsr" href="#signcsr">&#128279;</a>
           </h2>
           <b>CSR это не сертификат - это запрос на сертификат</b><br />
           <b
@@ -358,7 +362,7 @@ An optional company name []:
           <h2>
             Создание самоподписаного CodeSign сертификата (минимальная
             настройка)
-            <div class="gtag gtag-medium">Средний уровень</div>
+            <gtag type="medium">Средний уровень</gtag> <a name="signxcamini" href="#signxcamini">&#128279;</a>
           </h2>
           <p>
             Вы не хотите ни от кого зависить и полностью владеть всей цепочкой
@@ -472,7 +476,7 @@ An optional company name []:
           </p>
           <h2>
             Создание самоподписаного CA (серьезная настройка)
-            <div class="gtag gtag-hard">Сложный уровень</div>
+            <gtag type="hard">Сложный уровень</gtag> <a name="signxcahard" href="#signxcahard">&#128279;</a>
           </h2>
           <p>
             Хотите почувствовать себя настоящим экспертом? Что бы всё выглядело
@@ -543,7 +547,23 @@ An optional company name []:
               добавить кастомные extendedKeyUsage
             </li>
           </ol>
-        </details>
+        </sploiler>
+      </li>
+      <li v-if="version >= 50110">
+        <sploiler text="Настройка certificatePinning <a name='certificatepinning' href='#certificatepinning'>&#128279;</a>">
+          <p>
+            Опция <span class="codes">certificatePinning</span> позволяет работать лаунчеру независимо от системного хранилища сертификатов. Это повысит безопасность лаунчера и устранит проблемы с старой Java у пользователя и Lets'Encrypt сертификатом
+          </p>
+          <ol>
+            <li>Откройте в браузере свой сайт, где находятся клиенты и /api лаунчсервера</li>
+            <li>Откройте в браузере "Просмотр сертификата" и найдите там ваш корневой сертификат(Root CA). Скачайте его</li>
+            <li>Повторите пункт 2 для всех сертификатов, которые вы хотите добавить в доверенные</li>
+            <li>Скопируйте все файлы .crt, скачанные на предыдущих этапах в папку truststore лаунчсервера</li>
+            <li>В конфиге лаунчсервера измените параметр certificatePinning на true</li>
+            <li>Перезапустите лаунчсервер и сделайте build</li>
+            <li>Проверьте работоспособность</li>
+          </ol>
+        </sploiler>
       </li>
     </ol>
   </div>

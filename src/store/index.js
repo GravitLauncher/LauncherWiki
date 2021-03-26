@@ -7,8 +7,8 @@ export default new Vuex.Store({
   state: {
     major: 5,
     minor: 1,
-    patch: 9,
-    state: 'dev'
+    patch: 10,
+    state: 'stable'
   },
   mutations: {
     setVersion: function (state, version) {

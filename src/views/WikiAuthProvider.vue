@@ -3,7 +3,7 @@
     <h2>Настройка AuthProvider</h2>
     <h3>
       Способ accept
-      <div class="gtag gtag-easy">Только для ознакомления</div>
+      <gtag type="easy">Только для ознакомления</gtag>
     </h3>
     <p>Принимает любые пары логин-пароль</p>
     <pre v-highlightjs><code class="json">
@@ -17,7 +17,7 @@
     </code></pre>
     <h3>
       Способ reject
-      <div class="gtag gtag-easy">Это просто</div>
+      <gtag type="easy">Это просто</gtag>
     </h3>
     <p>Отклоняет любые пары логин-пароль</p>
     <pre v-highlightjs><code class="json">
@@ -32,7 +32,7 @@
     </code></pre>
     <h3>
       Способ mysql
-      <div class="gtag gtag-easy">Это просто</div>
+      <gtag type="easy">Это просто</gtag>
     </h3>
     <p>
       Для проверки логина и пароля лаунчсервер обращается к базе данных mysql<br />
@@ -71,7 +71,7 @@
     </code></pre>
     <h3>
       Способ postgresql
-      <div class="gtag gtag-medium">Средний уровень</div>
+      <gtag type="medium">Средний уровень</gtag>
     </h3>
     <p>
       Для проверки логина и пароля лаунчсервер обращается к базе данных
@@ -111,7 +111,7 @@
     </code></pre>
     <h3>
       Способ request
-      <div class="gtag gtag-easy">Это просто</div>
+      <gtag type="easy">Это просто</gtag>
     </h3>
     <p>
       Для проверки логина и пароля лаунчсервер обращается к сайту по протоколу
@@ -159,7 +159,7 @@
     </p>
     <h3>
       Способ json
-      <div class="gtag gtag-medium">Средний уровень</div>
+      <gtag type="medium">Средний уровень</gtag>
     </h3>
     <p>
       Для проверки логина и пароля лаунчсервер обращается к сайту по протоколу
@@ -201,7 +201,7 @@
     </code></pre>
     <h2>
       Permissions и Flags. Маска
-      <div class="gtag gtag-medium">Средний уровень</div>
+      <gtag type="medium">Средний уровень</gtag>
     </h2>
     <p>
       Маска permissions представляет собой обычное 64-битное число(long в

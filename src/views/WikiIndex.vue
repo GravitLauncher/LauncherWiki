@@ -5,19 +5,18 @@
         >GravitLauncher - профессиональный лаунчер Minecraft с лучшей защитой</b
       >
     </p>
-    <h2>Начало работы</h2>
+    <h2>Начало работы <a name="start" href="#start">&#128279;</a></h2>
     <b
       >Ставьте только те модули, что вам действительно необходимы. Большинство
       модулей требует дополнительной конфигурации</b
     ><br />
-    Модули, заканчивающиеся на <span class="codes">_module</span> - для
-    лаунчсервера, на <span class="codes">_lmodule</span> - для
+    Модули, заканчивающиеся на <codes>_module</codes> - для
+    лаунчсервера, на <codes>_lmodule</codes> - для
     лаунчера(требутется LauncherModuleLoader), на
-    <span class="codes">_swmodule</span> для ServerWrapper'а<br />
+    <codes>_swmodule</codes> для ServerWrapper'а<br />
     <ol>
       <li>
-        <details>
-          <summary tabindex="1">Устанавливаем лаунчсервер</summary>
+        <sploiler text="Устанавливаем лаунчсервер">
           <h3>
             Вариант 1: Скрипт установки
             <div class="gtag gtag-easy">Самый простой вариант</div>
@@ -50,15 +49,15 @@
               >.
             </li>
             <li>
-              (ОПЦИОНАЛЬНО) Выполните <span class="codes">cat setup.sh</span> и
+              (ОПЦИОНАЛЬНО) Выполните <codes>cat setup.sh</codes> и
               убедитесь, что скрипт скачан без ошибок.
             </li>
             <li>
-              Выполните <span class="codes">chmod +x setup.sh</span> что бы
+              Выполните <codes>chmod +x setup.sh</codes> что бы
               выдать права на выполнение
             </li>
             <li>
-              И наконец запустите скрипт <span class="codes">./setup.sh</span>
+              И наконец запустите скрипт <codes>./setup.sh</codes>
             </li>
             <li>
               Если всё прошло успешно последним сообщением будет:
@@ -93,7 +92,7 @@
             <li>
               У вас должен быть установлен OpenJDK 11(и запускаться по
               умолчанию, т.е. вывод
-              <span class="codes">java -version</span> должен выдать OpenJDK 11)
+              <codes>java -version</codes> должен выдать OpenJDK 11)
             </li>
             <li>
               Для работы ProGuard уже после установки лаунчсервера вам
@@ -157,9 +156,9 @@
           <p>
             <i>startscreen.sh</i> - Запуск лаунчсервера с использованием screen.
             Рекомендуется для постоянной работы.
-            <span class="codes">Ctrl + A + D</span> - выйти из консоли
+            <codes>Ctrl + A + D</codes> - выйти из консоли
             лаунчсервере не убивая процесс.
-            <span class="codes">screen -x</span> - подключится к консоли
+            <codes>screen -x</codes> - подключится к консоли
             лаунчсервера.<b
               >Следите за тем что бы не запустить случайно два лаунчсервера.
               Если вы запустите два лаунчсервера одновременно - вы можете
@@ -188,7 +187,7 @@
               href="https://github.com/GravitLauncher/Launcher/actions"
               >GitHub Actions</a
             ><br />
-            Выбираем ветку нажав на <span class="codes">Branch</span> и выбрав в
+            Выбираем ветку нажав на <codes>Branch</codes> и выбрав в
             открывшемся меню нужную ветку<br />
             Открываем самый последний билд и в разделе Artifacts вы увидите
             архив с готовыми .jar. Скачиваем его, распаковываем LaunchServer.jar
@@ -235,7 +234,7 @@
             </li>
             <b
               >Обязательно выполните
-              <span class="codes">git submodule update --init</span><br
+              <codes>git submodule update --init</codes><br
             /></b>
             Если у вас не настроены SSH ключи для доступа к GitHub вам нужно
             изменить в файле .gitmodules
@@ -252,12 +251,12 @@
             </li>
             <li>
               Открываем в консоли папку с исходниками и выполняем
-              <span class="codes">gradlew.bat build</span> (Windows)
-              <span class="codes">sh gradlew build</span> (Linux)
+              <codes>gradlew.bat build</codes> (Windows)
+              <codes>sh gradlew build</codes> (Linux)
             </li>
             <li>
               Готовый результат появится в
-              <span class="codes">LaunchServer/build/libs</span>. Туда же будут
+              <codes>LaunchServer/build/libs</codes>. Туда же будут
               скопированы все необходимые библиотеки
             </li>
             <li>
@@ -301,12 +300,12 @@
             </li>
             <li>
               Открываем в консоли папку с исходниками и выполняем
-              <span class="codes">gradlew.bat build</span> (Windows)
-              <span class="codes">sh gradlew build</span> (Linux)
+              <codes>gradlew.bat build</codes> (Windows)
+              <codes>sh gradlew build</codes> (Linux)
             </li>
             <li>
               Готовый результат появится в
-              <span class="codes">LaunchServer/build/libs</span>. Туда же будут
+              <codes>LaunchServer/build/libs</codes>. Туда же будут
               скопированы все необходимые библиотеки
             </li>
           </ol>
@@ -340,11 +339,10 @@
               >
             </p>
           </div>
-        </details>
+        </sploiler>
       </li>
       <li>
-        <details>
-          <summary tabindex="2">Устанавливаем рантайм</summary>
+        <sploiler text="Устанавливаем рантайм">
           <h2>
             <a name="runtime_guide"></a>Сборка лаунчера на 5.1.0+
             <div class="gtag gtag-important">Важно</div>
@@ -410,11 +408,10 @@
               запускается и отображает GUI
             </li>
           </ol>
-        </details>
+        </sploiler>
       </li>
       <li>
-        <details>
-          <summary tabindex="2">Конфигурация лаунчсервера</summary>
+        <sploiler text="Конфигурация лаунчсервера">
           <p>
             Это конфигурация для 5.1.0. Ваш конфиг может отличаться. Все
             пояснения ниже приведены для ознакомления, не пытайтесь копировать
@@ -545,7 +542,7 @@
   "startScript": "./start.sh" //Скрипт запуска лаунчсервера(используется только в команде restart)
 }
 </code></pre>
-        </details>
+        </sploiler>
       </li>
       <li>
         Настраиваем <router-link to="/authprovider">AuthProvider</router-link> и
@@ -573,14 +570,14 @@
     <ul>
       <li>
         Рекомендуется выделить лаунчсерверу отдельного пользователя и папку в
-        <span class="codes">/home</span>
+        <codes>/home</codes>
       </li>
       <li>
         Права на папку должны быть <b>755</b>, на private.key, LaunchServer.json
         и прочие конфигурации <b>640</b> или <b>600</b>
       </li>
       <li>
-        Рекомендуется использовать <span class="codes">screen</span> для
+        Рекомендуется использовать <codes>screen</codes> для
         удобного контроля за работой лаунчсервера
       </li>
       <li>
@@ -593,7 +590,7 @@
       </li>
       <li>
         Крайне аккуратно пользуйтесь параметром <b>updateExclusions</b>. Если вы
-        пишите что то вида <span class="codes">"mods/railcraft"</span> то это
+        пишите что то вида <codes>"mods/railcraft"</codes> то это
         означает "игнорировать всё что начинается с railcraft в папке mods, в
         том числе railcraft_SuperMegaCheat.jar". Для игнорирования папки
         railcraft в mods вы должны прописать "mods/railcraft/"(при этом событие

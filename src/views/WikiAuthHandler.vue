@@ -1,13 +1,12 @@
 <template>
   <div class="wiki">
     <h2>Настройка AuthHandler</h2>
-    <details>
-      <summary tabindex="1"><span>Question #1</span></summary>
+    <sploiler text="<span>Question #1</span>">
       <p>Answer #1</p>
-    </details>
+    </sploiler>
     <h3>
       Способ memory
-      <div class="gtag gtag-easy">Это просто</div>
+      <gtag type="easy">Это просто</gtag>
     </h3>
     <p>
       UUID получается путем преобразования бинарного представления ника<br />
@@ -22,7 +21,7 @@
     </code></pre>
     <h3>
       Способ mysql
-      <div class="gtag gtag-easy">Это просто</div>
+      <gtag type="easy">Это просто</gtag>
     </h3>
     <p>Для получения UUID лаунчсервер обращается к базе данных mysql</p>
     <pre v-highlightjs><code class="json">
@@ -72,7 +71,7 @@
     </code></pre>
     <h3>
       Способ postgresql
-      <div class="gtag gtag-medium">Средний уровень</div>
+      <gtag type="medium">Средний уровень</gtag>
     </h3>
     <p>Для получения UUID лаунчсервер обращается к базе данных postgresql</p>
     <pre v-highlightjs><code class="json">
@@ -102,7 +101,7 @@
     </code></pre>
     <h3>
       Способ json
-      <div class="gtag gtag-medium">Средний уровень</div>
+      <gtag type="medium">Средний уровень</gtag>
     </h3>
     <!-- TODO -->
     <pre v-highlightjs><code class="json">
@@ -120,8 +119,8 @@
     </code></pre>
     <h3>
       Способ request
-      <div class="gtag gtag-medium">Средний уровень</div>
-      <div class="gtag gtag-deprecated">Устаревшее</div>
+      <gtag type="medium">Средний уровень</gtag>
+      <gtag type="deprecated">Устаревшее</gtag>
     </h3>
     <p>
       Для получения и обновления uuid, accessToken, serverID лаунчсервер

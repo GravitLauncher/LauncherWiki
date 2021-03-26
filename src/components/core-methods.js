@@ -1,3 +1,7 @@
+import codes from './codes.vue'
+import gtag from './gtag.vue'
+import sploiler from './sploiler.vue'
+
 export default {
   computed: {
     version: function () {
@@ -15,5 +19,8 @@ export default {
       console.log(true)
       return true
     }
+  },
+  components: {
+    codes, gtag, sploiler
   }
 }

@@ -11,8 +11,7 @@
     <p>Непротестированы: Atom и другие</p>
     <h2>Особенности сборки некоторых ядер</h2>
     <p>Для любых ядер <b>требуется</b> установка ServerWrapper</p>
-    <details>
-      <summary tabindex="2">Сборка Forge/Sponge 1.12.2</summary>
+    <sploiler text="Сборка Forge/Sponge 1.12.2">
       <p>
         Замените launchwrapper на
         <a
@@ -21,9 +20,8 @@
         >. Обратите внимание - нужно именно заменить - новый лаунчвраппер должен
         находится по тому же пути и с тем же именем что и стандартный
       </p>
-    </details>
-    <details>
-      <summary tabindex="2">Сборка Fabric 1.13+</summary>
+    </sploiler>
+    <sploiler text="Сборка Fabric 1.13+">
       <p>
         Перед запуском ядра удалите authlib из стандартного minecraft.jar(а если
         запустили - очистите кеш фабрика в папке .fabric)
@@ -32,17 +30,15 @@
         После этого докиньте файлы библиотеки apache lang3 в classpath или
         ServerWrapper.jar
       </p>
-    </details>
-    <details>
-      <summary tabindex="2">Сборка Spigot</summary>
+    </sploiler>
+    <sploiler text="Сборка Spigot">
       <p>
         Докиньте файлы библиотеки apache lang3 в classpath или
         ServerWrapper.jar, удалив перед этим стандартную authlib из
         minecraft.jar
       </p>
-    </details>
-    <details>
-      <summary tabindex="2">Сборка PaperSpigot</summary>
+    </sploiler>
+    <sploiler text="Сборка PaperSpigot">
       <p>
         Вам необходимо пропатчить исходники при сборке патчем из архива Захара
         (<a
@@ -54,9 +50,8 @@
         При необходимости докиньте файлы библиотеки apache lang3 в classpath или
         ServerWrapper.jar
       </p>
-    </details>
-    <details>
-      <summary tabindex="2">Сборка Waterfall/BungeeCord</summary>
+    </sploiler>
+    <sploiler text="Сборка Waterfall/BungeeCord">
       <p>
         Вам необходимо пропатчить исходники при сборке патчем из архива Захара
         (<a
@@ -66,10 +61,10 @@
         >
         (3 файла, начинающиеся с bungee)
       </p>
-    </details>
+    </sploiler>
     <h2>
       Скрипт развертывания ServerWrapper
-      <div class="gtag gtag-easy">Это просто</div>
+      <gtag type="easy">Это просто</gtag>
     </h2>
     <p>
       В 5.0.0 введен новый способ установки ServerWrapper'а - с помощью скрипта
