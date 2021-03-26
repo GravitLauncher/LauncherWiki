@@ -6,6 +6,12 @@ export default {
   computed: {
     version: function () {
       return this.$store.state.major * 10000 + this.$store.state.minor * 100 + this.$store.state.patch * 1
+    },
+    os: function () {
+      return this.$store.state.osType
+    },
+    osc: function () {
+      return this.$store.state.osClass
     }
   },
   methods: {

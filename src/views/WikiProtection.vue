@@ -11,7 +11,7 @@
             Подходит если у вас нет SSL сертификата или его предоставляет вам
             CloudFlare
           </p>
-          <pre v-highlightjs><code class="json">
+          <pre v-highlightjs><code class="conf">
 server {
         listen 80;
         server_name projectname.ru;
@@ -24,13 +24,19 @@ server {
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Real-IP $remote_addr;
         }
+        location /webapi {
+                proxy_pass http://localhost:9274/webapi;
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Real-IP $remote_addr;
+        }
 }
 </code></pre>
           <p>
             Подходит если у вас есть SSL сертификат(в том числе от Let's
             Encrypt)
           </p>
-          <pre v-highlightjs><code class="json">
+          <pre v-highlightjs><code class="conf">
     server {
         listen 80;
         listen 443 ssl;
@@ -42,6 +48,12 @@ server {
         }
         location /api {
                 proxy_pass http://localhost:9274/api;
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Real-IP $remote_addr;
+        }
+        location /webapi {
+                proxy_pass http://localhost:9274/webapi;
                 proxy_set_header Host $host;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Real-IP $remote_addr;
@@ -163,7 +175,10 @@ server {
               Выполните следующие SQL запросы что бы создать таблицы для работы
               mysql hwid provider
             </p>
-            <pre v-highlightjs><code class="sql">
+            <p v-if="version >= 50200">
+              Начиная с 5.2.0 в HWID входит информация о видеокарте
+            </p>
+            <pre v-if="version < 50200" v-highlightjs><code class="sql">
 CREATE TABLE `hwidLog` (
   `id` bigint(20) NOT NULL,
   `hwidId` bigint(20) NOT NULL,
@@ -173,6 +188,40 @@ CREATE TABLE `hwids` (
   `id` bigint(20) NOT NULL,
   `publickey` blob,
   `hwDiskId` varchar(255) DEFAULT NULL,
+  `baseboardSerialNumber` varchar(255) DEFAULT NULL,
+  `displayId` blob,
+  `bitness` int(11) DEFAULT NULL,
+  `totalMemory` bigint(20) DEFAULT NULL,
+  `logicalProcessors` int(11) DEFAULT NULL,
+  `physicalProcessors` int(11) DEFAULT NULL,
+  `processorMaxFreq` bigint(11) DEFAULT NULL,
+  `battery` tinyint(1) NOT NULL DEFAULT '0',
+  `banned` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `hwidLog`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hwidId` (`hwidId`);
+ALTER TABLE `hwids`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `publickey` (`publickey`(255));
+ALTER TABLE `hwidLog`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `hwids`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `hwidLog`
+  ADD CONSTRAINT `hwidLog_ibfk_1` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
+</code></pre>
+            <pre v-if="version >= 50200" v-highlightjs><code class="sql">
+CREATE TABLE `hwidLog` (
+  `id` bigint(20) NOT NULL,
+  `hwidId` bigint(20) NOT NULL,
+  `newPublicKey` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `hwids` (
+  `id` bigint(20) NOT NULL,
+  `publickey` blob,
+  `hwDiskId` varchar(255) DEFAULT NULL,
+  `graphicCard` varchar(255) DEFAULT NULL,
   `baseboardSerialNumber` varchar(255) DEFAULT NULL,
   `displayId` blob,
   `bitness` int(11) DEFAULT NULL,
@@ -214,11 +263,9 @@ ALTER TABLE `hwidLog`
             </li>
             <li>
               Можно попросить сертификат у того, кто уже настроил грамотно свой
-              СА и может подписывать другие сертификаты (Например maintainer
-              Gravit, активные участники sasha0552, radioegor146 за небольшую
-              сумму (до 500 рублей))<br />
+              СА и может подписывать другие сертификаты<br />
               Для этого надо создать CSR, и передать его человеку, который его
-              подпишет (см. инструкцию в конце)
+              подпишет <a href="#signcsr">инструкция</a>
             </li>
             <li>
               Можно отдавать каждый билд лаунчера человеку, имеющему сертификат,

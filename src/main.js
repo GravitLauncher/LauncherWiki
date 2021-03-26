@@ -13,6 +13,21 @@ Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 
+if (localStorage.getItem('version.major')) {
+  store.commit('setVersion', {
+    major: localStorage.getItem('version.major'),
+    minor: localStorage.getItem('version.minor'),
+    patch: localStorage.getItem('version.patch'),
+    state: localStorage.getItem('version.state')
+  })
+}
+if (localStorage.getItem('os.class')) {
+  store.commit('setOperatingSystem', {
+    osClass: localStorage.getItem('os.class'),
+    osType: localStorage.getItem('os.type')
+  })
+}
+
 new Vue({
   router,
   store,

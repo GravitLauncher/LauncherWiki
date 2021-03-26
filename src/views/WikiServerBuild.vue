@@ -3,7 +3,7 @@
     <h2>Поддерживаемые ядра серверов</h2>
     <p>
       Протестированные ядра: Fabric, Sponge, Thermos, KCaldron, UltraMine,
-      Waterfall/BungeeCoed, Spigot/Bukkit. Некоторые можно скачать тут:
+      Waterfall/BungeeCoed, Spigot/Bukkit, Mohist. Некоторые можно скачать тут:
       <a class="link-animated" href="https://mirror.gravit.pro/servers/"
         >mirror.gravit.pro</a
       ><br />
@@ -11,6 +11,14 @@
     <p>Непротестированы: Atom и другие</p>
     <h2>Особенности сборки некоторых ядер</h2>
     <p>Для любых ядер <b>требуется</b> установка ServerWrapper</p>
+    <sploiler link="authlib2"><template #header>Сборка AuthLib 2 для 1.16.4+ <gtag type="important">Важно</gtag></template>
+      <p>
+        Для работы online-mode на 1.16.4 и выше вам понадобится специальные authlib-clean и LauncherAuthlib<br>
+authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib/2.0.27/authlib-2.0.27.jar">официальный authlib</a>, откуда вы должны будете удалить все те классы что есть в LauncherAuthlib.<br>
+Ссылка на новый LauncherAuthlib - <a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar">LauncherAuthlib 2</a> (только 1.16.4+)<br>
+При настройке сервера из jar файла ServerWrapper удалите старый authlib и последовательно закиньте сначало все содержимое authlib-clean, а потом все содержимое LauncherAuthlib
+      </p>
+    </sploiler>
     <sploiler><template #header>Сборка Forge/Sponge 1.12.2</template>
       <p>
         Замените launchwrapper на
@@ -31,35 +39,41 @@
         ServerWrapper.jar
       </p>
     </sploiler>
-    <sploiler><template #header>Сборка Spigot</template>
+    <sploiler><template #header>Сборка Mohist 1.13+</template>
+      <p>
+        Для запуска Mohist необходимо использовать Java 11. При этом укажите <codes v-if="version < 50200">-javaagent:НАЗВАНИЕ_ФАЙЛА_ЯДРА.jar</codes> <codes v-if="version >= 50200">-javaagent:ServerWrapper.jar -Dserverwrapper.agentproxy=com.mohistmc.util.JarLoader</codes> в start.sh/start.bat
+      </p>
+      <p>
+        После этого докиньте файлы библиотеки apache lang3 в classpath или
+        ServerWrapper.jar
+      </p>
+    </sploiler>
+    <sploiler><template #header>Сборка Spigot/Paper</template>
       <p>
         Докиньте файлы библиотеки apache lang3 в classpath или
         ServerWrapper.jar, удалив перед этим стандартную authlib из
         minecraft.jar
       </p>
+      <p><i>Если возникает ошибка NoSuchMethodError при установке Paper 1.16.3 и ниже <a href="https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib.jar">скачайте</a> и замените в ServerWrapper.jar authlib версии 1</i></p>
     </sploiler>
-    <sploiler><template #header>Сборка PaperSpigot</template>
+    <sploiler><template #header>Сборка устаревших версий Waterfall/BungeeCord</template>
       <p>
         Вам необходимо пропатчить исходники при сборке патчем из архива Захара
-        (<a
-          href="https://cdn.discordapp.com/attachments/478133900045189122/631184267975589908/srv-patches.7z"
-          >закрепленное сообщение от Захара в канале #offtop нашего дискорд
-          сервера</a
-        >
-        (файл paper.diff)<br />
-        При необходимости докиньте файлы библиотеки apache lang3 в classpath или
-        ServerWrapper.jar
-      </p>
-    </sploiler>
-    <sploiler><template #header>Сборка Waterfall/BungeeCord</template>
-      <p>
-        Вам необходимо пропатчить исходники при сборке патчем из архива Захара
-        (<a
+        <a
           href="https://cdn.discordapp.com/attachments/478133900045189122/631184267975589908/srv-patches.7z"
           >закрепленное сообщение от Захара в канале #offtop нашего дискорд
           сервера</a
         >
         (3 файла, начинающиеся с bungee)
+      </p>
+    </sploiler>
+    <sploiler><template #header>Сборка актуальной версии Waterfall</template>
+      <p>
+        Вам необходимо пропатчить исходники при сборке новым патчем
+        <a
+          href="https://cdn.discordapp.com/attachments/636581601048002582/799353410398060634/0060-UseAuthlib.patch"
+          >закрепленное сообщение от Гравиты в нашем Discord канале</a
+        >
       </p>
     </sploiler>
     <h2>

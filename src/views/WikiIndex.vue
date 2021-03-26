@@ -17,11 +17,48 @@
     <ol>
       <li>
         <sploiler link="start"><template #header>Устанавливаем лаунчсервер </template>
+          <h3 v-if="version >= 50109">Предварительная подготовка</h3>
+          <p  v-if="version >= 50109">
+             Для работы лаунчсервера необходимо установить Java 11, а для работы серверов на 1.12.2 и ниже - Java 8.<br>
+             Это значит на вашем ПК/VDS должно быть установлено 2 Java - 8 и 11 с установленным javafx
+          </p>
+          <h4 v-if="osc == 'Windows'">
+             Установка Java для Windows
+          </h4>
+          <ol v-if="osc == 'Windows'">
+            <li>Скачиваем сборку OpenJDK 11 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 11 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем</li>
+            <li>Если вы выбрали AdoptJDK или любую другую сборку без openjfx скачайте <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку <codes>C:\Program Files\Adopt или Java\ваш_jdk</codes></li>
+            <li>Скачиваем сборку JDK 8 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>, или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
+            <li>Всё!</li>
+          </ol>
+          <h4 v-if="osc == 'Linux'">
+             Установка Java для Linux
+          </h4>
+          <p  v-if="osc == 'Linux'">Вы можете использовать любой другой способ установки Java и openjfx</p>
+          <ol v-if="os == 'Debian'">
+            <li>Выполняем <codes>apt-get install openjdk-11-jdk</codes></li>
+            <li>Устанавливаем jmods командой <codes>wget https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip<br>
+              unzip openjfx-11.0.2_linux-x64_bin-jmods.zip<br>
+              cp javafx-jmods-11.0.2/* /usr/lib/jvm/java-11-openjdk-amd64/jmods<br>
+              rm -r javafx-jmods-11.0.2<br>
+              rm openjfx-11.0.2_linux-x64_bin-jmods.zip</codes></li>
+            <li>Устанавливаем Java 8 командой <codes>wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -<br>
+sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/<br>
+sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
+            <li>Переключаем стандартную Java на Java 11: <codes>update-alternatives --config java</codes></li>
+            <li>Для запуска с Java 8 измените <codes>java</codes> в строке запуска на полный путь(такой как <codes>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</codes>)</li>
+          </ol>
+          <ol v-if="os == 'ArchLinux'">
+            <li>Выполните <codes>pacman -Syu jdk8-openjdk java8-openjfx jdk11-openjdk java11-openjfx</codes></li>
+            <li>Выполните <codes>cp -r /usr/lib/jvm/java-11-openjfx/* java-11-openjdk</codes></li>
+            <li>Выполните <codes>cp -r /usr/lib/jvm/java-8-openjfx/* java-8-openjdk</codes></li>
+          </ol>
           <h3>
             Вариант 1: Скрипт установки
             <gtag type="easy">Самый простой вариант</gtag>
             <gtag type="info">Рекомендуется</gtag>
           </h3>
+          <p v-if="osc == 'Windows'"><b>Предупреждение: Этот способ работает только в Linux или WSL. Не пытайтесь установить лаунчсервер таким способом в консоли Windows или Cygwin</b></p>
           <p>
             Для установки лаунчера версии 5.1.3+ можно воспользоваться скриптом.
             Доступные на данный момент скрипты находятся
@@ -164,15 +201,6 @@
               Если вы запустите два лаунчсервера одновременно - вы можете
               получить странные баги на гране здравого смысла и долго искать
               решение</b
-            >
-          </p>
-          <p>
-            <b
-              >Так как при установке лаунчсервера скриптом вы используете JDK
-              11, а майнкрафт(и сервера в том числе) 1.12.2 и ниже используют
-              Java 8 вам необходимо поставить еще и Java 8 себе на VDS, при этом
-              изменив прямой вызов java в ваших скриптах старта сервера на путь
-              к java 8-ой версии</b
             >
           </p>
           <p></p>

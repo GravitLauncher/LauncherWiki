@@ -103,10 +103,9 @@
     </p>
     <p>
       Скачивание списка файлов в несколько потоков.
-      pro.gravit.launcher.AsyncDownloader в 5.1.0+ и
-      pro.gravit.launcher.downloader.ListDownloader в 5.0.X позволяют скачать
-      список файлов по http в несколько потоков наиболее оптимальным способом с
-      максимальной скоростью
+      pro.gravit.launcher.AsyncDownloader позволяет скачать список файлов по
+      http в несколько потоков наиболее оптимальным способом с максимальной
+      скоростью
     </p>
     <h3>Основные API лаунчсервера</h3>
     <p>
@@ -135,9 +134,9 @@
       WebSocketFrameHandler из netty pipeline и оттуда уже доставать
       информацию). Некоторые ответы на запросы(то что называется RequestEvent)
       могут быть посланы без запроса, для чего в requestUUID необходимо записать
-      "UUID события"(5.1.0+), который находится в RequestEvent.eventUUID. Это
-      позволяет например удаленно авторизировать клиента, который не посылал
-      запрос(пример из модуля UnsafeCommandPack)
+      "UUID события", который находится в RequestEvent.eventUUID. Это позволяет
+      например удаленно авторизировать клиента, который не посылал запрос(пример
+      из модуля UnsafeCommandPack)
     </p>
     <p>
       Сборка лаунчера. pipeline. Сборка лаунчера осуществляется на основе
@@ -173,5 +172,135 @@
       или компонент команды зарегистрируются автоматически, если же этого не
       происходит вызовите launchserver.registerObject
     </p>
+    <p v-if="version >= 50109">
+      WebAPI/Severlet - это механизм обработки http запросов лаунчсервером. Он
+      предлязначен для небольших REST приложений, не требующих шаблонизацию или
+      прямого взаимодействия с пользователем. Для регистрации своего северлета
+      используется метод
+      <codes
+        >NettyWebAPIHandler.addNewSeverlet(String path, SimpleSeverletHandler
+        callback)</codes
+      ><br />
+      После регистрации ваш северлет будет доступен извне по адресу
+      <codes>http(s)://yourdomain(:9274)/webapi/(path)</codes>.
+      <span v-if="version >= 50200"
+        >Вы можете использовать стандартные методы
+        <codes>getParamsFromUri</codes>,
+        <codes>simpleResponse/simpleJsonResponse</codes>,
+        <codes>sendHttpResponse</codes> для упрощения парсинга параметров и
+        отправки ответов</span
+      >
+    </p>
+    <h3>Основные API лаунчера</h3>
+    <p>
+      Лаунчер предоставляет внешние сервисы API в
+      <codes>pro.gravit.launcher.api</codes>, которые доступны извне при
+      включенном proguard
+    </p>
+    <p>
+      <b>LauncherInject</b> используется для вставки параметров при сборке с
+      помощью ASM. Для получения параметра вы должны на соответствующий элемент
+      постаивть аннотацию <codes>@LauncherInject(value="path.to.value")</codes
+      ><br />
+      Стандартные параметры начинаются с <codes>launchercore</codes> или
+      <codes>launcher</codes>, а параметры конфигурации модуля лаунчера
+      формируются по шаблону
+      <codes
+        >modules.название_конфига_модуля_в_lowercase.название_поля_в_lowercase</codes
+      >
+    </p>
+    <p>
+      Для получения возможности конфигурировать модуль из лаунчсервера вы
+      должны:
+    </p>
+    <ol>
+      <li>
+        Создать класс конфига с статическим методом
+        <codes>public static Object getDefault()</codes>, возвращающий конфиг по
+        умолчанию
+      </li>
+      <li>
+        Добавить одно или несколько полей, помеченных аннотацией
+        <codes
+          >@LauncherInject(value="modules.название_конфига_модуля_в_lowercase.название_поля_в_lowercase")</codes
+        >
+      </li>
+      <li>
+        Добавить в манифест помимо Module-Main-Class поля Module-Config-Name(как
+        правило совпадает с названием модуля) и Module-Config-Class(класс
+        конфигурации модуля)
+      </li>
+      <li>
+        <b>Ограничения:</b> Конфиг модуля не может содержать нестандартных
+        классов или дополнительной вложенности. Поддерживаются: int, short,
+        byte, byte[], long, String, List, Map.
+      </li>
+    </ol>
+    <h3 v-if="version >= 50200">Отладка лаунчера</h3>
+    <p v-if="version >= 50200">
+      Для запуска лаунчера в тестовом режиме вы должны указать mainClass
+      <codes>pro.gravit.launcher.debug.DebugMain</codes>
+    </p>
+    <ul v-if="version >= 50200">
+      <li>
+        <codes>-Dlauncherdebug.websocket=ws://localhost:9274/api</codes> -
+        подключение WebSocket
+      </li>
+      <li>
+        <codes>-Dlauncherdebug.projectname=Minecraft</codes> - указание
+        projectName
+      </li>
+      <li>
+        <codes>-Dlauncherdebug.modules=a.b.c,a.b.d</codes> - список классов
+        модулей, разделенных запятыми
+      </li>
+      <li>
+        <codes>-Dlauncherdebug.modulefiles=module1.jar,module2.jar</codes> -
+        список файлов модулей, разделенных запятыми
+      </li>
+      <li>Запуск с помощью Gradle: <codes>./gradlew runDev</codes></li>
+    </ul>
+    <p v-if="version >= 50200">
+      Для отладки рантайма из IDEA укажите следующие параметры:
+    </p>
+    <ul v-if="version >= 50200">
+      <li>Модуль: JavaRuntime.main</li>
+      <li>
+        Аргументы jvm:
+        -Dlauncherdebug.modules=pro.gravit.launcher.client.JavaRuntimeModule
+        (если параметр не отображаются нажмите Modify Options -> Add VM options)
+      </li>
+      <li>Main Class: pro.gravit.launcher.debug.DebugMain</li>
+    </ul>
+    <p v-if="version >= 50200">Ограничения отладочного режима:</p>
+    <ul v-if="version >= 50200">
+      <li>
+        Не будет работать опция "Сохранить пароль", так как ключ шифрования
+        пароля зашивается лаунчсервером
+      </li>
+      <li>
+        Невозможно запустить клиент майнкрафта(при этом все этапы скачивания,
+        проверки, и подготовки к старту работать будут)
+      </li>
+      <li>
+        Лаунчер не будет пытаться обновиться и получить список методов
+        авторизации
+      </li>
+      <li>
+        Может не работать проверка HWID, так как лаунчсервер не будет доверять
+        лаунчеру
+      </li>
+      <li>
+        Отладочный режим невозможно активировать на собранном лаунчере(командой
+        build лаунчсервера)
+      </li>
+    </ul>
   </div>
 </template>
+<script>
+import coremethods from '@/components/core-methods.js'
+export default {
+  mixins: [coremethods],
+  created: function () {}
+}
+</script>

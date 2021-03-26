@@ -2,20 +2,27 @@
   <h2>Сборка клиента на версии 5.1.0+ <gtag type="important">Важно</gtag>
   </h2>
   <p>Для уже готового клиента, скачанного с зеркала выполните:</p>
+  <h3>Для сборки клиентов 1.16.3 и ниже</h3>
   <ul>
     <li>Вам необходимо будет скопировать файл authlib-clean.jar отсюда ( <a
         href="https://github.com/GravitLauncher/Launcher/raw/master/compat/authlib/authlib-clean.jar">master</a> ) в
       папку libraries клиента</li>
     <li>Скопируйте из артефактов сборки файл LauncherAuthlib.jar в папку libraries клиента</li>
   </ul>
-  <p>Для сборки клиента с <b>Forge</b> также выполните следущее:</p>
+  <h3>Для сборки клиента 1.16.4 и выше</h3>
+  <span><i>Клиенты 1.16.4 и выше на зеркале уже содержат authlib 2. Выполнять пункты ниже <b>не нужно</b> если вы скачали готовое</i></span>
   <ul>
-    <li>Скачайте клиентский лаунчвраппер и <b>замените</b> предыдущий лаунчвраппер в папке librares клиента.(<a
-        href="https://mirror.gravit.pro/compat/launchwrapper-1.12-5.1.x-clientonly.jar">ссылка</a> на момент
-      публикации)(<u>только клиент</u>) Так как launchwrapper может постоянно фиксится под 5.1.0 следите за discord
-      сервером</li>
+    <li>Вы должны скачать официальный authlib 2 ( <a
+        href="https://libraries.minecraft.net/com/mojang/authlib/2.0.27/authlib-2.0.27.jar">ссылка</a> ) и удалить оттуда все классы, присутствующие в LauncherAuthlib. После чего скопировать получившийся файл в
+      папку libraries клиента</li>
+    <li>Скачайте LauncherAuthlib 2 с <a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar">зеркала</a> и поместите его в папку libraries</li>
   </ul>
-  <p>Для сборки клиента с <b>Fabric</b> выполните следущее:</p>
+  <h3>Для сборки клиента с <b>Forge 1.12.2 и ниже</b> также выполните следущее:</h3>
+  <ul>
+    <li>Скачайте клиентский лаунчвраппер и <b>замените</b> предыдущий лаунчвраппер в папке librares клиента(<a
+        href="https://mirror.gravit.pro/compat/launchwrapper-1.12-5.1.x-clientonly.jar">ссылка</a>)(<u>только клиент</u>).</li>
+  </ul>
+  <h3>Для сборки клиента с <b>Fabric</b> так же выполните следущее:</h3>
   <ul>
     <li>Добавьте путь к библиотекам guava и jimfs в altClassPath. Например:
       <pre v-highlightjs><code class="json">
