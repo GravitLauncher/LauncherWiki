@@ -1,6 +1,7 @@
 import codes from './codes.vue'
 import gtag from './gtag.vue'
 import sploiler from './sploiler.vue'
+import linki from './linki.vue'
 
 export default {
   computed: {
@@ -27,6 +28,6 @@ export default {
     }
   },
   components: {
-    codes, gtag, sploiler
+    codes, gtag, sploiler, linki
   }
 }

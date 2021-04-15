@@ -3,7 +3,7 @@
     <h2>Поддерживаемые ядра серверов</h2>
     <p>
       Протестированные ядра: Fabric, Sponge, Thermos, KCaldron, UltraMine,
-      Waterfall/BungeeCoed, Spigot/Bukkit, Mohist. Некоторые можно скачать тут:
+      Waterfall/BungeeCord, Spigot/Bukkit, Mohist. Некоторые можно скачать тут:
       <a class="link-animated" href="https://mirror.gravit.pro/servers/"
         >mirror.gravit.pro</a
       ><br />

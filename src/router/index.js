@@ -6,8 +6,9 @@ import WikiAuthHandler from '@/views/WikiAuthHandler'
 import WikiProtection from '@/views/WikiProtection'
 import WikiClientBuild from '@/views/WikiClientBuild'
 import WikiServerBuild from '@/views/WikiServerBuild'
-import WikiDeveloperAPI from '@/views/WikiDeveloperAPI'
 import WikiRuntimeAPI from '@/views/WikiRuntimeAPI'
+import Protection from './protection.js'
+import Developer from './developer.js'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,8 @@ const routes = [
     name: 'WikiProtection',
     component: WikiProtection
   },
+  ...Protection,
+  ...Developer,
   {
     path: '/clientbuild',
     name: 'WikiClientBuild',
@@ -41,11 +44,6 @@ const routes = [
     path: '/serverbuild',
     name: 'WikiServerBuild',
     component: WikiServerBuild
-  },
-  {
-    path: '/developerapi',
-    name: 'WikiDeveloperAPI',
-    component: WikiDeveloperAPI
   },
   {
     path: '/runtimeapi',

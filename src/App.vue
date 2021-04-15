@@ -34,8 +34,11 @@
               >
             </b-nav-item-dropdown>
             <b-nav-item-dropdown text="Разработчикам" right>
-              <b-dropdown-item to="/developerapi"
+              <b-dropdown-item to="/developers/api"
                 >Написание модулей</b-dropdown-item
+              >
+              <b-dropdown-item to="/developers/websocketapi"
+                >WebSocket API</b-dropdown-item
               >
               <b-dropdown-item to="/runtimeapi"
                 >Редактирование runtime</b-dropdown-item
