@@ -43,7 +43,7 @@
     </p>
     <p>
       <b
-        >В базе данных создайте поле permissions типа BIGINT(значение по
+        >В базе данных создайте поле permissions типа TINYINT(значение по
         умолчанию 0)</b
       >
     </p>
@@ -58,9 +58,10 @@
             "username": "launchserver",           // имя пользователя
             "password": "password",               // пароль пользователя
             "database": "db",                     // база данных, при проблемах с timezone используйте "database": "db?serverTimezone=UTC"
+            "timezone": "UTC",                    // установка клиентской таймзоны
             "useHikari": true                     // использовать ли HikariCP
           },
-          "query": "SELECT login, permission FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
+          "query": "SELECT login, permissions FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
           "queryParams": [ "%login%", "%password%" ],                                               // параметры sql запроса
           "usePermission": true,
           "flagsEnabled": false,
@@ -83,7 +84,7 @@
     </p>
     <p>
       <b
-        >В базе данных создайте поле permissions типа bigint(значение по
+        >В базе данных создайте поле permissions типа TINYINT(значение по
         умолчанию 0)</b
       >
     </p>
@@ -97,10 +98,11 @@
             "port": 3306,                         // порт postgresql сервера
             "username": "launchserver",           // имя пользователя
             "password": "password",               // пароль пользователя
-            "database": "db",                     // база данных, при проблемах с timezone используйте "database": "db?serverTimezone=UTC" (?)
+            "database": "db",                     // база данных, при проблемах с timezone используйте "database": "db?serverTimezone=UTC"
+            "timezone": "UTC",                    // установка клиентской таймзоны
             "useHikari": true                     // использовать ли HikariCP
           },
-          "query": "SELECT login, permission FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
+          "query": "SELECT login, permissions FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
           "queryParams": [ "%login%", "%password%" ],                                               // параметры sql запроса
           "usePermission": true,
           "flagsEnabled": false,
