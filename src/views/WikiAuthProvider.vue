@@ -43,7 +43,7 @@
     </p>
     <p>
       <b
-        >В базе данных создайте поле permissions типа TINYINT(значение по
+        >В базе данных создайте поле permissions типа BIGINT(значение по
         умолчанию 0)</b
       >
     </p>
@@ -58,7 +58,6 @@
             "username": "launchserver",           // имя пользователя
             "password": "password",               // пароль пользователя
             "database": "db",                     // база данных, при проблемах с timezone используйте "database": "db?serverTimezone=UTC"
-            "timezone": "UTC",                    // установка клиентской таймзоны
             "useHikari": true                     // использовать ли HikariCP
           },
           "query": "SELECT login, permissions FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
@@ -84,7 +83,7 @@
     </p>
     <p>
       <b
-        >В базе данных создайте поле permissions типа TINYINT(значение по
+        >В базе данных создайте поле permissions типа BIGINT(значение по
         умолчанию 0)</b
       >
     </p>
@@ -99,7 +98,6 @@
             "username": "launchserver",           // имя пользователя
             "password": "password",               // пароль пользователя
             "database": "db",                     // база данных, при проблемах с timezone используйте "database": "db?serverTimezone=UTC"
-            "timezone": "UTC",                    // установка клиентской таймзоны
             "useHikari": true                     // использовать ли HikariCP
           },
           "query": "SELECT login, permissions FROM users WHERE login=? AND password=MD5(?) LIMIT 1", // sql запрос
