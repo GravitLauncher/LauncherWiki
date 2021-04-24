@@ -152,6 +152,9 @@ h1,
 h3 {
   text-align: center;
 }
+.hljs {
+  border-radius: 8px;
+}
 span.codes {
   font-size: 12px;
   font-family: Consolas, monospace, serif;
