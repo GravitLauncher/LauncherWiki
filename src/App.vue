@@ -40,6 +40,9 @@
               <b-dropdown-item to="/developers/websocketapi"
                 >WebSocket API</b-dropdown-item
               >
+              <b-dropdown-item to="/developers/oauth"
+                >OAuth</b-dropdown-item
+              >
               <b-dropdown-item to="/runtimeapi"
                 >Редактирование runtime</b-dropdown-item
               >

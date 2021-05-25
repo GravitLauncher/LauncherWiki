@@ -10,6 +10,11 @@ export default [
     component: () => import('@/views/developers/API')
   },
   {
+    path: '/developers/oauth',
+    name: 'WikiDeveloperOAuth',
+    component: () => import('@/views/developers/OAuth')
+  },
+  {
     path: '/developerapi',
     name: 'WikiDeveloperLAPI',
     component: () => import('@/views/developers/API')
