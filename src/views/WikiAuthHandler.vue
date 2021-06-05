@@ -1,6 +1,10 @@
 <template>
   <div class="wiki">
     <h2>Настройка AuthHandler</h2>
+    <b-alert
+        variant="danger"
+        :show="version >= 50200"
+        >Начиная с <b>5.2.0</b> AuthProvider/AuthHandler являются устаревшими</b-alert>
     <sploiler><template #header><span>Question #1</span></template>
       <p>Answer #1</p>
     </sploiler>

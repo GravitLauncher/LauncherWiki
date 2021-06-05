@@ -3,10 +3,12 @@ import VueRouter from 'vue-router'
 import WikiIndex from '@/views/WikiIndex'
 import WikiAuthProvider from '@/views/WikiAuthProvider'
 import WikiAuthHandler from '@/views/WikiAuthHandler'
+import WikiAuthCoreProvider from '@/views/WikiAuthCoreProvider'
 import WikiProtection from '@/views/WikiProtection'
 import WikiClientBuild from '@/views/WikiClientBuild'
 import WikiServerBuild from '@/views/WikiServerBuild'
 import WikiRuntimeAPI from '@/views/WikiRuntimeAPI'
+import WikiMigration from '@/views/WikiMigration'
 import Protection from './protection.js'
 import Developer from './developer.js'
 
@@ -27,6 +29,16 @@ const routes = [
     path: '/authhandler',
     name: 'WikiAuthHandler',
     component: WikiAuthHandler
+  },
+  {
+    path: '/auth',
+    name: 'WikiAuthCoreProvider',
+    component: WikiAuthCoreProvider
+  },
+  {
+    path: '/migration',
+    name: 'WikiMigration',
+    component: WikiMigration
   },
   {
     path: '/protection',

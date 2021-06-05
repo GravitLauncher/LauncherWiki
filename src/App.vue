@@ -23,6 +23,7 @@
             </b-nav-item-dropdown>
             <b-nav-item-dropdown text="Разделы" right>
               <b-dropdown-item to="/">Главная</b-dropdown-item>
+              <b-dropdown-item to="/auth">Настройка авторизации</b-dropdown-item>
               <b-dropdown-item to="/authprovider">AuthProvider</b-dropdown-item>
               <b-dropdown-item to="/authhandler">AuthHandler</b-dropdown-item>
               <b-dropdown-item to="/protection">Защита</b-dropdown-item>

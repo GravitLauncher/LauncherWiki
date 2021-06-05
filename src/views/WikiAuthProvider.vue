@@ -1,6 +1,10 @@
 <template>
   <div class="wiki">
     <h2>Настройка AuthProvider</h2>
+    <b-alert
+        variant="danger"
+        :show="version >= 50200"
+        >Начиная с <b>5.2.0</b> AuthProvider/AuthHandler являются устаревшими</b-alert>
     <h3>
       Способ accept
       <gtag type="easy">Только для ознакомления</gtag>

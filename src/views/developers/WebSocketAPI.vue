@@ -115,7 +115,7 @@
     </code></pre></div>
     <p>Поля <codes>oauth</codes> и <codes>session</codes> не могут быть заполнены одновременно</p>
     <div><h3>Метод <code>profiles</code> <linki link="profiles"></linki></h3>
-    <p>Этот метод предлязначен для </p>
+    <p>Этот метод предлязначен для получения списка профилей</p>
     <p>Пример запроса:</p>
     <pre v-highlightjs><code class="json">
 {
@@ -132,7 +132,7 @@
 }
     </code></pre></div>
     <div><h3>Метод <code>pingServer</code> <linki link="pingServer"></linki></h3>
-    <p>Этот метод предлязначен для </p>
+    <p>Этот метод предлязначен для просмотра онлайна серверов, использующих плагин интеграции для паередачи информации об онлайне</p>
     <p>Пример запроса:</p>
     <pre v-highlightjs><code class="json">
 {
@@ -160,7 +160,7 @@
 }
     </code></pre></div>
     <div><h3>Метод <code>exit</code> <linki link="exit"></linki></h3>
-    <p>Этот метод предлязначен для </p>
+    <p>Этот метод предлязначен для завершения сессии пользователя</p>
     <p>Пример запроса:</p>
     <pre v-highlightjs><code class="json">
 {
@@ -187,7 +187,7 @@
       <li><codes>NO_EXIT</codes> - выход не требуется</li>
     </ul></div>
     <div><h3>Метод <code>currentUser</code> <linki link="currentUser"></linki></h3>
-    <p>Этот метод предлязначен для </p>
+    <p>Этот метод предлязначен для получения информации о текущем пользователе</p>
     <p>Пример запроса:</p>
     <pre v-highlightjs><code class="json">
 {
