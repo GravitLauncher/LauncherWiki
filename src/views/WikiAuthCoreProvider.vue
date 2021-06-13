@@ -104,7 +104,7 @@ ALTER TABLE `users`
         "passwordVerifier": {                  // Ваш PasswordVerifier
           "algo": "SHA256",
           "type": "digest"
-        }
+        },
         "table": "users",                      // таблица
         "tableHwid": "hwids",
         "uuidColumn": "uuid",                  // название столбца с uuid
