@@ -11,7 +11,7 @@
             <li>Возможность модулям реализовывать авторизацию/регистрацию через соц.сети</li>
             <li>Множество комманд для управления</li>
         </ul>
-        <p>Для использования команд AuthCoreProvider используйте <codes>config auth.ВАШAUTHID КОМАНДА АРГУМЕНТЫ</codes>. Список команд вы можете посмотреть нажав на TAB</p>
+        <p>Для использования команд AuthCoreProvider используйте <codes>config auth.ВАШAUTHID.core КОМАНДА АРГУМЕНТЫ</codes>. Список команд вы можете посмотреть нажав на TAB</p>
         <h3>Конфигурация PasswordVerifier</h3>
         <p>Эта часть является общей для всех способов авторизации</p>
         <p><codes>digest</codes> - хеширует пароль выбранным алгоритмом. Поддерживаются любые алгоритмы, реализованные в Java или BouncyCastle</p>
@@ -89,7 +89,7 @@ ALTER TABLE `users`
     </code></pre>
     <p>Настройте конфигурацию</p>
     <pre v-highlightjs><code class="json">
-    "auth": [
+    "std": {
       "core": {
         "type": "mysql",
         "mySQLHolder": {
@@ -101,6 +101,10 @@ ALTER TABLE `users`
           "timezone": "UTC",                   // установка клиентской таймзоны
           "useHikari": true                    // использовать ли HikariCP
         },
+        "passwordVerifier": {                  // Ваш PasswordVerifier
+          "algo": "SHA256",
+          "type": "digest"
+        }
         "table": "users",                      // таблица
         "tableHwid": "hwids",
         "uuidColumn": "uuid",                  // название столбца с uuid
@@ -109,8 +113,10 @@ ALTER TABLE `users`
         "accessTokenColumn": "accessToken",    // название столбца с accessToken
         "hardwareIdColumn": "hwidId",          // название столбца с ID записи в таблице hwids
         "serverIDColumn": "serverID"           // название столбца с serverID
-      }
-    ]
+      },
+      "isDefault": true,
+      "displayName": "Default"
+    }
     </code></pre>
     <p>Для работы HWID включите опцию <codes>enableHardwareFeature</codes> в protectHandler</p>
     <h2>Метод json</h2>
