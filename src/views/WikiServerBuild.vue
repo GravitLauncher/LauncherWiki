@@ -84,9 +84,9 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
       В 5.0.0 введен новый способ установки ServerWrapper'а - с помощью скрипта
       установки. Для его запуска выполните:
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     java -jar ServerWrapper.jar setup
-</code></pre>
+'/>
     <p>И следуйте инструкции по установке</p>
     <h2>Основы привязки лаунчера к серверу</h2>
     <p>
@@ -116,17 +116,17 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
       будет использоватья для авторизации сервера
     </p>
     <h3>Указание Main-Class в строке запуска</h3>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
 java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.launcher.server.ServerWrapper {ваш MainClass}
-</code></pre>
+'/>
     <h3>Указание Main-Class в конфигурации</h3>
     <p>
       Можно указать Main-Class в ServerWrapperConfig.json , тогда строка запуска
       будет выглядеть так:
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
 java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.launcher.server.ServerWrapper
-</code></pre>
+'/>
     <h2>Конфигурация ServerWrapperConfig.json</h2>
     <p>
       Необходимо скопировать public.key из директории лаунчсервера в директорию
@@ -140,7 +140,7 @@ java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.la
       Для 5.0.10 и ниже аккаунт сервера обязан обладать правом canServer, см
       ниже как прописать права
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
 {
   "title": "Action1.12", //Заголовок профиля, к которому привязывается сервер
   "projectname": "MineCraft", //Название вашего проекта
@@ -163,7 +163,7 @@ java -cp ServerWrapper.jar:{ClassPath вашего сервера} pro.gravit.la
   },
   "env": "STD" //Окружение
 }
-</code></pre>
+'/>
   </div>
 </template>
 <script>

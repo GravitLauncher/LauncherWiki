@@ -47,7 +47,7 @@
           Конфигурация:
           <h3>Для формата PKCS12 (рекомендуется)</h3>
 
-          <pre v-highlightjs><code class="json">
+          <pcode autodetect code='
 "sign": {
     "enabled": false, //Включить/выключить подпись своим сертификатом
     "keyStore": "MyKeyStore.p12",  // Путь к хранилищу ключей
@@ -59,7 +59,7 @@
     "metaInfSfName": "SIGNUMO.SF",
     "signAlgo": "SHA256WITHRSA"        // При использовании ключей на эллиптический криптографии используйте SHA256withECDSA
   }
-</code></pre>
+'/>
           <h4>Как узнать key alias из PKCS12 хранилища</h4>
           Выполните
           <span class="codes"
@@ -74,7 +74,7 @@
           untrusted code sign - ваш key alias, его вы и должны будете указать<br />
           <b>Утилита keystore поставляется вместе с JDK</b>
           <h3>Для JKS(Java KeyStore)</h3>
-          <pre v-highlightjs><code class="json">
+          <pcode autodetect code='
 "sign": {
     "enabled": false, //Включить/выключить подпись своим сертификатом
     "keyStore": "MyKeyStore.p12",  // Путь к хранилищу ключей
@@ -86,7 +86,7 @@
     "metaInfSfName": "SIGNUMO.SF",
     "signAlgo": "SHA256WITHRSA"        // При использовании ключей на эллиптический криптографии используйте SHA256withECDSA
   }
-</code></pre>
+'/>
           <h2>
             Подпись exe
             <gtag type="easy">Это просто</gtag> <a name="signexe" href="#signexe">&#128279;</a>
@@ -133,7 +133,7 @@
             >openssl req -new -key private.key -out cert.csr</span
           ><br />
           И отвечаем на вопросы примерно так:
-          <pre v-highlightjs><code class="json">
+          <pcode autodetect code='
 Country Name (2 letter code) [AU]:RU
 State or Province Name (full name) [Some-State]:Russia
 Locality Name (eg, city) []:Moscow
@@ -143,7 +143,7 @@ Common Name (e.g. server FQDN or YOUR name) []:MyProjectName Code Sign
 Email Address []:admin@myproject.name
 A challenge password []:
 An optional company name []:
-</code></pre>
+'/>
           После чего CSR вы должны отправить тому, кто подпишет вам сертификат
           своим СА<br />
           После получения сертификата (.pem) соберите его с своим приватным

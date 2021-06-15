@@ -43,7 +43,7 @@
         <p><b>Проверка что запрос пришел от лаунчсервера</b>. Лаунчсервер использует Bearer авторизацию для отправки запросов. Токен указывается в поле <codes>bearerToken</codes>. Вы должны проверить его, преджде чем обрабатывать запрос.</p>
         <p>Если вам нужно вернуть <b>null</b> вы должны отдать пустое тело запроса</p>
         <p><b>Блок пользователя</b>(класс <codes>JsonUser</codes>). В дальнейшем будет обозначатся как <codes>[[JsonUser]]</codes></p>
-        <pre v-highlightjs><code class="json">
+        <pcode autodetect code='
 {
   "username": "USERNAME",
   "uuid": "UUID",
@@ -55,18 +55,18 @@
   },
   "password": "PASSWORD HASH"
 }
-    </code></pre>
+    '/>
     <p>Поле <codes>password</codes> является необходимым только если вы хотите использовать passwordVerifer вместо отправки запроса на verifyPasswordUrl</p>
     <p>Поле <codes>accessToken</codes>(minecraftAccessToken) является обязательным для запроса getUserSessionByOAuthAccessTokenUrl</p>
     <p><b>Блок сессии</b>(класс <codes>JsonUserSession</codes>). В дальнейшем будет обозначатся как <codes>[[JsonUserSession]]</codes></p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
 {
   "id": "ANY STRING",
   "user": [[JsonUser]]
 }
-    </code></pre>
+    '/>
     <p><b>Блок AuthReport</b>(класс <codes>JsonAuthReportResponse</codes>). В дальнейшем будет обозначатся как <codes>[[JsonAuthReportResponse]]</codes></p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
 {
   "minecraftAccessToken": "MINECRAFT ACCESS TOKEN",
   "oauthAccessToken": "ACCESS TOKEN",
@@ -74,59 +74,59 @@
   "oauthExpire": 0,
   "session": [[JsonUserSession]]
 }
-    </code></pre>
+    '/>
     <p>Подробное описание запросов</p>
     <ul>
         <li><b>getUserByUsernameUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "username": "USERNAME"
 }
-    </code></pre>
+    '/>
             <p>Ответ: <i>[[JsonUser]]</i></p>
         </li>
         <li><b>getUserByLoginUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "username": "USERNAME"
 }
-    </code></pre>
+    '/>
             <p>Ответ: <i>[[JsonUser]]</i></p>
         </li>
         <li><b>getUserByUUIDUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "uuid": "UUID"
 }
-    </code></pre>
+    '/>
             <p>Ответ: <i>[[JsonUser]]</i></p>
         </li>
         <li><b>getUserSessionByOAuthAccessTokenUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "accessToken": "ACCESS TOKEN"
 }
-    </code></pre>
+    '/>
             <p>Ответ:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "expied": false,
   "session": [[JsonUserSession]]
 }
-    </code></pre>
+    '/>
         </li>
         <li><b>getAuthDetailsUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
 }
-    </code></pre>
+    '/>
             <p>Ответ:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "details": [
     {
@@ -137,21 +137,21 @@
     }
   ]
 }
-    </code></pre>
+    '/>
         </li>
         <li><b>refreshAccessTokenUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "refreshToken": "REFRESH TOKEN",
   "ip": "127.0.0.1"
 }
-    </code></pre>
+    '/>
             <p>Ответ: <i>[[JsonAuthReportResponse]]</i></p>
         </li>
                 <li><b>verifyPasswordUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "username": "USERNAME",
   "uuid": "UUID",
@@ -160,68 +160,68 @@
       "type": "plain"
   }
 }
-    </code></pre>
+    '/>
             <p>Успех:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "success": true
 }
-    </code></pre>
+    '/>
             <p>Пароль неверный:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "success": false
 }
-    </code></pre>
+    '/>
             <p>Нужен 2FA:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "success": false,
   "needMoreFactors": true,
   "factors": [-1]
 }
-    </code></pre>
+    '/>
             <p>Нужен MFA:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "success": false,
   "needMoreFactors": true,
   "factors": [1,2,3,4]
 }
-    </code></pre>
+    '/>
         </li>
         <li><b>createOAuthSessionUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "username": "USERNAME",
   "uuid": "UUID",
   "minecraftAccess": true
 }
-    </code></pre>
+    '/>
             <p>Ответ: <i>[[JsonAuthReportResponse]]</i></p>
             <p>Ошибка:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "error": "User banned"
 }
-    </code></pre>
+    '/>
         </li>
         <li><b>updateServerIdUrl</b>
             <p>Запрос:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "username": "USERNAME",
   "uuid": "UUID",
   "serverId": "SERVER ID"
 }
-    </code></pre>
+    '/>
             <p>Ответ:</p>
-            <pre v-highlightjs><code class="json">
+            <pcode autodetect code='
 {
   "success": true
 }
-    </code></pre>
+    '/>
         </li>
     </ul>
     </div>

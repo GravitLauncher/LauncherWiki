@@ -16,19 +16,19 @@
       UUID получается путем преобразования бинарного представления ника<br />
       Каждому нику будет соответствовать ровно один UUID
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       "handler": {
         "type": "memory"
       }
     ]
-    </code></pre>
+    '/>
     <h3>
       Способ mysql
       <gtag type="easy">Это просто</gtag>
     </h3>
     <p>Для получения UUID лаунчсервер обращается к базе данных mysql</p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       "handler": {
         "type": "mysql",
@@ -48,12 +48,12 @@
         "serverIDColumn": "serverID"           // название столбца с serverID
       }
     ]
-    </code></pre>
+    '/>
     <p>
       Для автоматического создания нужных полей в таблице и созданию UUID можно
       воспользоватся следующими SQL запросами:
     </p>
-    <pre v-highlightjs><code class="sql">
+    <pcode code='
     -- Добавляет недостающие поля в таблицу
     ALTER TABLE users
     ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
@@ -72,13 +72,13 @@
 
     -- Генерирует UUID для уже существующих пользователей
     UPDATE users SET uuid=(SELECT UUID()) WHERE uuid IS NULL;
-    </code></pre>
+    '/>
     <h3>
       Способ postgresql
       <gtag type="medium">Средний уровень</gtag>
     </h3>
     <p>Для получения UUID лаунчсервер обращается к базе данных postgresql</p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       "handler": {
         "type": "postgresql",
@@ -96,19 +96,19 @@
         "usernameColumn": "username",          // название столбца с именами пользователей
         "accessTokenColumn": "accessToken",    // название столбца с accessToken
         "serverIDColumn": "serverID",           // название столбца с serverID
-        "queryByUUIDSQL": "SELECT uuid, username, NULLIF(\"accessToken\", '') as \"accessToken\", NULLIF(\"serverID\", '') as \"serverID\" FROM users WHERE uuid=? LIMIT 1",
-        "queryByUsernameSQL": "SELECT uuid, username, NULLIF(\"accessToken\", '') as \"accessToken\", NULLIF(\"serverID\", '') as \"serverID\" FROM users WHERE username=? LIMIT 1",
+        "queryByUUIDSQL": "SELECT uuid, username, NULLIF(\"accessToken\", &quot;&quot;) as \"accessToken\", NULLIF(\"serverID\", &quot;&quot;) as \"serverID\" FROM users WHERE uuid=? LIMIT 1",
+        "queryByUsernameSQL": "SELECT uuid, username, NULLIF(\"accessToken\", &quot;&quot;) as \"accessToken\", NULLIF(\"serverID\", &quot;&quot;) as \"serverID\" FROM users WHERE username=? LIMIT 1",
         "updateAuthSQL": "UPDATE users SET username=?, \"accessToken\"=?, \"serverID\"=null WHERE uuid=?",
         "updateServerIDSQL": "UPDATE users SET \"serverID\"=? WHERE uuid=?"
       }
     ]
-    </code></pre>
+    '/>
     <h3>
       Способ json
       <gtag type="medium">Средний уровень</gtag>
     </h3>
     <!-- TODO -->
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "handler": {
@@ -120,7 +120,7 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     <h3>
       Способ request
       <gtag type="medium">Средний уровень</gtag>
@@ -131,7 +131,7 @@
       обращается к сайту по протоколу HTTP/HTTPS<br />
       В скобках указаны параметры запроса
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "handler": {
@@ -145,7 +145,7 @@
         }
       }
     ]
-    </code></pre>
+    '/>
   </div>
 </template>
 <script>

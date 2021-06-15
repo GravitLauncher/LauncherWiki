@@ -8,7 +8,7 @@
             Подходит если у вас нет SSL сертификата или его предоставляет вам
             CloudFlare
           </p>
-          <pre v-highlightjs><code class="conf">
+          <pcode code='
 server {
         listen 80;
         server_name projectname.ru;
@@ -28,12 +28,12 @@ server {
                 proxy_set_header X-Real-IP $remote_addr;
         }
 }
-</code></pre>
+'/>
           <p>
             Подходит если у вас есть SSL сертификат(в том числе от Let's
             Encrypt)
           </p>
-          <pre v-highlightjs><code class="conf">
+          <pcode code='
     server {
         listen 80;
         listen 443 ssl;
@@ -56,7 +56,7 @@ server {
                 proxy_set_header X-Real-IP $remote_addr;
         }
 }
-</code></pre>
+'/>
   </div>
 </template>
 <script>

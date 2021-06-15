@@ -10,7 +10,7 @@
       <gtag type="easy">Только для ознакомления</gtag>
     </h3>
     <p>Принимает любые пары логин-пароль</p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "provider": {
@@ -18,13 +18,13 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     <h3>
       Способ reject
       <gtag type="easy">Это просто</gtag>
     </h3>
     <p>Отклоняет любые пары логин-пароль</p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "provider": {
@@ -33,7 +33,7 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     <h3>
       Способ mysql
       <gtag type="easy">Это просто</gtag>
@@ -51,7 +51,7 @@
         умолчанию 0)</b
       >
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "provider": {
@@ -72,7 +72,7 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     <h3>
       Способ postgresql
       <gtag type="medium">Средний уровень</gtag>
@@ -91,7 +91,7 @@
         умолчанию 0)</b
       >
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "provider": {
@@ -112,7 +112,7 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     <h3>
       Способ request
       <gtag type="easy">Это просто</gtag>
@@ -125,7 +125,7 @@
       Ответ сервера должен выглядеть так: OK:Gravit:0, где Gravit - ваш никнейм,
       0 - маска permissions
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "provider": {
@@ -137,7 +137,7 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     <p v-if="version > 50109">
       Некоторые скрипты авторизации не поддерживают передачу permissions и их
       ответ выглядит как OK:Gravit, где Gravit - ваш никнейм<br />
@@ -147,7 +147,7 @@
         permissions</b
       >
       <br/>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "provider": {
@@ -159,7 +159,7 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     </p>
     <h3>
       Способ json
@@ -170,7 +170,7 @@
       HTTP/HTTPS, но в отличии от request делает POST запрос с json данными
       внутри
     </p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     "auth": [
       {
         "provider": {
@@ -180,29 +180,29 @@
         }
       }
     ]
-    </code></pre>
+    '/>
     <p>Запрос:</p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     {
       "username": "admin",
       "password": "password",
       "ip": "127.0.0.1",
       "apiKey": "none"
     }
-    </code></pre>
+    '/>
     <p>Ответ:</p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     {
       "username": "admin",
       "permissions": 0
     }
-    </code></pre>
+    '/>
     <p>Ошибка:</p>
-    <pre v-highlightjs><code class="json">
+    <pcode autodetect code='
     {
       "error": "Неверный логин или пароль"
     }
-    </code></pre>
+    '/>
     <h2>
       Permissions и Flags. Маска
       <gtag type="medium">Средний уровень</gtag>

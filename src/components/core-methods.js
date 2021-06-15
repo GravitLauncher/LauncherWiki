@@ -2,6 +2,7 @@ import codes from './codes.vue'
 import gtag from './gtag.vue'
 import sploiler from './sploiler.vue'
 import linki from './linki.vue'
+import pcode from './highlightjs-copyable.vue'
 
 export default {
   computed: {
@@ -28,6 +29,6 @@ export default {
     }
   },
   components: {
-    codes, gtag, sploiler, linki
+    codes, gtag, sploiler, linki, pcode
   }
 }

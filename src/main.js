@@ -3,11 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { BootstrapVue } from 'bootstrap-vue'
-import VueHighlightJS from 'vue-highlightjs'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import hljs from 'highlight.js';
+import vuePlugin from "@highlightjs/vue-plugin";
 
-Vue.use(VueHighlightJS)
+
+
+Vue.use(vuePlugin);
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 

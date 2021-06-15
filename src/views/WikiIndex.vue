@@ -443,7 +443,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
             пояснения ниже приведены для ознакомления, не пытайтесь копировать
             конфиг или его часть себе
           </p>
-          <pre v-highlightjs><code class="json">
+          <pcode language='json' code='
 {
   "projectName": "GravitTestProject", // Название вашего проекта. Влияет на названия классов в .jar(proguard mapping), папку вашего сервера в AppData, название окна и многое другое
   "mirrors": [ //Один или несколько зеркал, с которых будут скачиваться клиенты командами downloadClient/downloadAsset
@@ -473,7 +473,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
         "type": "accept"
       },
       "links": { //Позволяет использовать нескольким способам авторизации один handler/provider
-        "provider": "myauth" //В качестве AuthProvider для этого способа авторизации использовать AuthProvider способа авторизации "myauth"
+        "provider": "myauth"  //В качестве AuthProvider для этого способа авторизации использовать AuthProvider способа авторизации `myauth`
       }
       "displayName": "Default", //Отобращаемое имя на экране логина лаунчера. Можно менять
       "isDefault": true //Способ авторизации по умолчанию
@@ -567,7 +567,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
   },
   "startScript": "./start.sh" //Скрипт запуска лаунчсервера(используется только в команде restart)
 }
-</code></pre>
+'/>
         </sploiler>
       </li>
       <li>
@@ -638,7 +638,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
 
     <h2>Команды LaunchServer <a name="commands" href="#commands">&#128279;</a></h2>
     <p>Простейшие команды, которые понядобятся в первую очередь:</p>
-    <pre v-highlightjs><code class="ini">
+    <pcode language="ini" code='
     help [command name] - Вывести справку по команде или по всем командам
     stop [nothing] - Остановить LaunchServer
     build [nothing] - Собрать Launcher.jar
@@ -650,9 +650,9 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
     saveprofile [name] - конвертировать профиль старой версии в актуальный формат(profileUUID, ServerProfile, опциональные моды и пр)
     debug [true/false] [true/false] - включает или отключает режим отладки в лаунчсервере
     version [nothing] - версия лаунчсервера если вдруг забыли
-    </code></pre>
+    '/>
     <p>Еще команды:</p>
-    <pre v-highlightjs><code class="ini">
+    <pcode language="ini" code='
     uuidtousername (uuid) (auth_id) - получить ник пользователя по его UUID
     auth (login) (password) (auth_id) - попробывать войти с указанным логином и паролем
     usernametouuid (username) (auth_id) - получить UUID пользователя по нику
@@ -666,16 +666,16 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
     gc [nothing] - запустить Java Garbare Collector
     modules [nothing] - список всех загруженных модулей
     notify [head] [message] - послать уведомление, которое увидят все у кого открыт ваш лаунчер
-    </code></pre>
+    '/>
     <p>Команды DAO(работают только с настроеным Hibernate):</p>
-    <pre v-highlightjs><code class="ini">
+    <pcode language="ini" code='
     setuserpassword [username] [new password] - сменить пароль пользователю
     getuser [username] - информация о пользователе
     getallusers  - информация о всех пользователях
     register [login] [password] - зарегистрировать нового пользователя
-    </code></pre>
+    '/>
     <p>Экспертные команды из стандартной поставки:</p>
-    <pre v-highlightjs><code class="ini">
+    <pcode language="ini" code='
     proguarddictregen [nothing] - перегенерировать словарь proguard
     loadmodule [jar] - загрузить модуль не из папки modules в runtime
     proguardclean [nothing] - сброс конфига proguard
@@ -683,12 +683,12 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
     signjar [path to file] (path to signed file) - подписать JAR файл используя настроеный в sign сертификат(enable в true)
     signdir [path to dir] - подписать все файлы в папке используя настроеный в sign сертификат(enable в true)
     component [action] [component name] [more args] - управление компонентами
-    </code></pre>
+    '/>
     <p>
       Команды ниже настолько же круты, насколько и опасны. Если вы понимаете что
       делаете, эти команды будут крайне полезны:
     </p>
-    <pre v-highlightjs><code class="ini">
+    <pcode language="ini" code='
     setsecuritymanager [allow, logger, system] - Вызов System.setSecurityManager для тестирования(UnsafeCommandsPack)
     sendauth [connectUUID] [username] [auth_id] [client type] (permissions) (client uuid) - ручная отправка события AuthEvent соеденению в обход AuthProvider(UnsafeCommandsPack)
     newdownloadasset [version] [dir] - скачать ассеты прямо с Mojang сайта, любой версии(UnsafeCommandsPack)
@@ -699,7 +699,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
     scriptmappings [nothing] - посмотреть все маппинги классов лаунчсервера в javascript(ServerScriptEngine)
     synclaunchermodules [] - синхронизировать модули лаунчера
     eval [line] - выполнить JavaScript код на стороне лаунчсервера(ServerScriptEngine)
-    </code></pre>
+    '/>
     <h3>Команды лаунчера. Разблокировка консоли</h3>
     <p>
       Начиная с версии 5.0.0 в лаунчере появилась консоль, которую можно открыть

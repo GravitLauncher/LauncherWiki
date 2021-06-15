@@ -25,11 +25,11 @@
   <h3>Для сборки клиента с <b>Fabric</b> так же выполните следущее:</h3>
   <ul>
     <li>Добавьте путь к библиотекам guava и jimfs в altClassPath. Например:
-      <pre v-highlightjs><code class="json">
+      <pcode autodetect code='
 "altClassPath": [
   "libraries/com/google/jimfs/jimfs/1.1/jimfs-1.1.jar",
   "libraries/com/google/guava/guava/21.0/guava-21.0.jar"
-]</code></pre>
+]'/>
       <p>Объяснение: jimfs использует технологию сервисов(ServiceLoader) и требует, что бы он был загружен системным
         загрузчиком классов(SystemClassLoader), в противном случае JVM не сможет правильно зарегистрировать обработчик
         URL'ов jimfs</p>
@@ -88,7 +88,7 @@
   </sploiler>
   <h3>Конфигурация <gtag type="easy">Это просто</gtag>
   </h3>
-  <pre v-highlightjs><code class="json">
+  <pcode autodetect code='
 {
   "version": "1.12.2", //Версия клиента
   "assetIndex": "1.12.2",
@@ -142,12 +142,12 @@
   "securityManagerConfig": "CLIENT", //Используемый SecurityManager для клиента
   "classLoaderConfig": "LAUNCHER" //Используемый тип класслоадера для клиента
 }
-</code></pre>
+'/>
   <h3>Опциональные моды <gtag type="easy">Это просто</gtag>
   </h3>
   <p>Опциональные моды позволяют игроку управлять загрузкой определенных модов/classpath/jvmargs</p>
   <p>Настройка опциональных модов производится для каждого профиля отдельно</p>
-  <pre v-if="version < 50108" v-highlightjs><code class="json">
+  <pcode v-if="version < 50108" code='
 "updateOptional": [
     {
        "type": "FILE", //Тип опционального мода. Может быть FILE, CLIENTARGS, JVMARGS, CLASSPATH
@@ -187,19 +187,19 @@
        "name": "OptiFine HD"
     }
   ],
-</code></pre>
+'/>
 <p v-if="version >= 50108">В новых версиях изменили структуру опциональных модов. Теперь каждый опциональный мод может содержать один или несколько действий - это может быть файл или список файлов, изменение аргументов клиента или JVM, classpath, а так же любые кастомные действия, добавляемые модулями
   Для конвертации старого формата опциональных модов в новый используйте команду saveprofile
 </p>
 <p v-if="version >= 50108">
-  <pre v-highlightjs><code class="json">
+  <pcode autodetect code='
 "updateOptional": [
     {
        "actions": [ //Список действий опционального мода
         { //Первое действие
           "files": {
             "mods/1.7.10/NotEnoughItems-1.7.10-1.0.5.118-universal.jar": "", //Простое добавление файла без переименований
-            "mods/SuperStrangeMod0.jar": "mods/SuperStrangeMod.jar", //Добавление файла с перемещением. на стороне лаунчсервера файл находится по пути 'mods/SuperStrangeMod0.jar', а в клиент он попадет сюда 'mods/SuperStrangeMod.jar'
+            "mods/SuperStrangeMod0.jar": "mods/SuperStrangeMod.jar", //Добавление файла с перемещением. на стороне лаунчсервера файл находится по пути "mods/SuperStrangeMod0.jar", а в клиент он попадет сюда "mods/SuperStrangeMod.jar"
             "mods2/LowStrangeMod2.jar": "mods/LowStrangeMod.jar", //Между папками перемещение тоже работает
             "config2/ic2": "config/ic2" //Перемещение папок с файлами тоже работает
           },
@@ -260,7 +260,7 @@
        "name": "OptiFine HD"
     }
   ],
-</code></pre>
+'/>
 </p>
   <h3>Триггеры в опциональных модах <gtag type="medium">Средний уровень</gtag>
   </h3>
