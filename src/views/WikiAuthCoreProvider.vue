@@ -25,12 +25,12 @@
       "type": "digest"
     }
     '/>
-        <p><codes>doubledigest</codes> - хеширует пароль выбранным алгоритмом дважды. <codes>toHexMode</codes> перед вторым раундом хеширования переведет хеш в HEX формат. Поддерживаются любые алгоритмы, реализованные в Java или BouncyCastle</p>
+        <p><codes>doubleDigest</codes> - хеширует пароль выбранным алгоритмом дважды. <codes>toHexMode</codes> перед вторым раундом хеширования переведет хеш в HEX формат. Поддерживаются любые алгоритмы, реализованные в Java или BouncyCastle</p>
         <pcode autodetect code='
     "passwordVerifier": {
       "algo": "SHA256",
       "toHexMode": true,
-      "type": "digest"
+      "type": "doubleDigest"
     }
     '/>
         <p><codes>bcrypt</codes>(Модуль <codes>AddionalHash</codes>) - проверяет пароль по алгоритму BCrypt(password_verify в PHP)</p>

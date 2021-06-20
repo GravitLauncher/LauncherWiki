@@ -13,5 +13,10 @@ export default [
     path: '/protection/signing',
     name: 'WikiProtectionSigning',
     component: () => import('@/views/protection/Signing')
+  },
+  {
+    path: '/protection/runtimeencrypt',
+    name: 'WikiProtectionRuntimeEncrypt',
+    component: () => import('@/views/protection/RuntimeEncrypt')
   }
 ]

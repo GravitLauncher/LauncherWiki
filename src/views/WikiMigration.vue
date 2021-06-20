@@ -11,7 +11,7 @@
             <li>Обновите лаунчсервер до последней версии, включая библиотеки и модули</li>
             <li>Выполните команду помощи в миграции: <codes>config launchserver migrate</codes></li>
             <li>Добавьте недостающие поля в ваши профили: <codes>saveprofiles ИМЯ_ФАЙЛА_ПРОФИЛЯ</codes></li>
-            <li>Проверьте возможность перейти на <router-link to="/auth">AuthCoreProvider</router-link></li>
+            <li>Проверьте возможность перейти на <router-link to="/auth#">AuthCoreProvider</router-link></li>
         </ul>
         <p>AuthProvider/AuthHandler/DAO <b>будут поддерживаться некоторое время после релиза 5.2.0</b> прежде чем будут удалены</p>
     </div>

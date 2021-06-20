@@ -11,6 +11,9 @@
       <li>
         <h4><router-link to="/protection/signing">Подпись лаунчера и EXE</router-link></h4>
       </li>
+      <li v-if="version >= 50200">
+        <h4><router-link to="/protection/runtimeencrypt">Шифрование рантайма</router-link></h4>
+      </li>
       <li v-if="version >= 50110">
         <sploiler link="certificatepinning"><template #header>Настройка certificatePinning </template>
           <p>

@@ -56,14 +56,14 @@
           </div>
           <div v-if="version >= 50107">
             <h3>Настройка HWIDProvider</h3>
+            <b-alert
+              variant="danger"
+              :show="version >= 50200"
+              >Начиная с <b>5.2.0</b> эту функцию выполняет <router-link to="/auth">AuthCoreProvider</router-link></b-alert>
             <p>
               HWIDProvider является частью advanced protectHandler и позволяет
               выдавать баны по железу, собирать статистику железа пользователя и
               отслеживать мультиакки. Конфигурации:
-            </p>
-            <p>
-              Настройка HWIDHandler для версий ниже 5.1 находится
-              <a href="?r=wiki%2Fpage&page=hwidhandler">тут</a>
             </p>
             <h4>Способ memory</h4>
             <pcode autodetect code='
