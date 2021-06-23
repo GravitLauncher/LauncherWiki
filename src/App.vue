@@ -11,7 +11,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown :text="version" right>
-              <b-dropdown-item @click="setVersion(5,2,0, 'dev')">v5.2.0-dev</b-dropdown-item>
+              <b-dropdown-item @click="setVersion(5,2,0, 'alpha')">v5.2.0-alpha</b-dropdown-item>
               <b-dropdown-item @click="setVersion(5,1,10, 'stable')">v5.1.10-stable</b-dropdown-item>
               <b-dropdown-item @click="setVersion(5,1,7, 'stable')">v5.1.7-stable</b-dropdown-item>
             </b-nav-item-dropdown>
