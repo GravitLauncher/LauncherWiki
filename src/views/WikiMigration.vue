@@ -15,7 +15,7 @@
         <ul>
             <li>Обновите лаунчсервер до последней версии, включая библиотеки и модули</li>
             <li>Создайте компонент ProGuard: <codes>component load proguard proguard</codes></li>
-            <li>Добавьте недостающие поля в ваши профили: <codes>saveprofiles ИМЯ_ФАЙЛА_ПРОФИЛЯ</codes></li>
+            <li>Добавьте недостающие поля в ваши профили: <codes>saveprofiles ИМЯ_ФАЙЛА_ПРОФИЛЯ</codes> ИЛИ пересоздайте профиль командой <codes>makeprofile</codes></li>
             <li>Проверьте возможность перейти на <router-link to="/auth">AuthCoreProvider</router-link>. Вы можете сбросить конфигурацию AuthProvider/AuthHandler с помощью <codes>config launchserver resetauth std</codes></li>
             <li>Сохраните изменения в конфиге <codes>config launchserver save</codes></li>
         </ul>

@@ -8,8 +8,8 @@
     <p>Шифрование рантайма - опция, которая позволяет иметь зашифрованные файлы дизайна(fxml/css/png) для защиты от кражи дизайна другими проектами</p>
     <p>Для её активации:</p>
     <ul>
-      <li>Добавьте в папку launcher-libraries библиотеку EnFS</li>
-      <li>Активируйте опция <codes>encryptedRuntime</codes> в LaunchServer.json</li>
+      <li>Добавьте в папку launcher-libraries библиотеку EnFS(<a href="https://mirror.gravit.pro/compat/EnFS-1.0.0.jar">зеркало</a>)</li>
+      <li>Активируйте опцию <codes>encryptedRuntime</codes> в LaunchServer.json</li>
       <li>Сделайте build</li>
     </ul>
     <p>После чего у вас внутри .jar должно лежать зашифрованное содержимое папки runtime</p>

@@ -12,29 +12,78 @@
   <h3>Для сборки клиента 1.16.4 и выше</h3>
   <span><i>Клиенты 1.16.4 и выше на зеркале уже содержат authlib 2. Выполнять пункты ниже <b>не нужно</b> если вы скачали готовое</i></span>
   <ul>
-    <li>Вы должны скачать официальный authlib 2 ( <a
-        href="https://libraries.minecraft.net/com/mojang/authlib/2.0.27/authlib-2.0.27.jar">ссылка</a> ) и удалить оттуда все классы, присутствующие в LauncherAuthlib. После чего скопировать получившийся файл в
+    <li>Вы должны найти в своем клиенте authlib в папке libraries и удалить оттуда все классы, присутствующие в LauncherAuthlib 2. После чего скопировать получившийся файл в
       папку libraries клиента</li>
     <li>Скачайте LauncherAuthlib 2 с <a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar">зеркала</a> и поместите его в папку libraries</li>
   </ul>
-  <h3>Для сборки клиента с <b>Forge 1.12.2 и ниже</b> также выполните следущее:</h3>
-  <ul>
-    <li>Скачайте клиентский лаунчвраппер и <b>замените</b> предыдущий лаунчвраппер в папке librares клиента(<a
-        href="https://mirror.gravit.pro/compat/launchwrapper-1.12-5.1.x-clientonly.jar">ссылка</a>)(<u>только клиент</u>).</li>
-  </ul>
-  <h3>Для сборки клиента с <b>Fabric</b> так же выполните следущее:</h3>
-  <ul>
-    <li>Добавьте путь к библиотекам guava и jimfs в altClassPath. Например:
-      <pcode autodetect code='
-"altClassPath": [
-  "libraries/com/google/jimfs/jimfs/1.1/jimfs-1.1.jar",
-  "libraries/com/google/guava/guava/21.0/guava-21.0.jar"
-]'/>
-      <p>Объяснение: jimfs использует технологию сервисов(ServiceLoader) и требует, что бы он был загружен системным
-        загрузчиком классов(SystemClassLoader), в противном случае JVM не сможет правильно зарегистрировать обработчик
-        URL'ов jimfs</p>
-    </li>
-  </ul>
+  <sploiler><template #header>Сборка Forge 1.12.2 и ниже</template>
+      <p>
+        Скачайте клиентский лаунчвраппер и <b>замените</b> предыдущий лаунчвраппер в папке librares клиента(<a
+        href="https://mirror.gravit.pro/compat/launchwrapper-1.12-5.1.x-clientonly.jar">ссылка</a>)(<u>только клиент</u>). Обратите внимание - нужно именно заменить - новый лаунчвраппер должен
+        находится по тому же пути и с тем же именем что и стандартный
+      </p>
+  </sploiler>
+  <h3>Сборка клиентов с нуля</h3>
+  <sploiler><template #header>Сборка Vanilla</template>
+      <p>
+        <ul>
+          <li>Установите модуль UnsafeCommandsPack и выполните <codes>newdownloadclient ВЕРСИЯ НАЗВАНИЕ</codes></li>
+          <li>Соберите нативные библиотеки так, что бы для Windows и Linux использовался LWJGL 3.2.2, а для MacOS 3.2.1</li>
+          <li>Замените authlib по соответствующей инструкции</li>
+        </ul>
+      </p>
+  </sploiler>
+  <sploiler><template #header>Сборка Fabric</template>
+      <p v-if="version < 50200">
+        Для сборки Fabric 1.13+ вы должны:
+        <ul>
+          <li>Соберите клиент со всеми библиотеками на оффициальном лаунчере Mojang и перенесите файл minecraft.jar и папку libraries в папку клиента</li>
+          <li>Соберите нативные библиотеки так, что бы для Windows и Linux использовался LWJGL 3.2.2, а для MacOS 3.2.1</li>
+          <li>Замените authlib по соответствующей инструкции</li>
+          <li>Составьте профиль по образцу оффициального лаунчера - MainClass, clientArgs. Добавьте опциональные моды с библиотеками LWJGL. Windows и Linux необходима версия 3.2.2, а MacOS 3.2.1 <b>наличие двух версий одновременно без опционального мода или несоответствие версии jar и нативная библиотеки приведет к крашу</b></li>
+          <li>После создания профиля cкопируйте <a href="https://mirror.gravit.pro/compat/jimfs-register-1.0.jar">этот файл</a> в папку libraries клиента</li>
+        </ul>
+      </p>
+      <p v-if="version >= 50200">
+        Для сборки Fabric 1.13+ вы должны:
+        <ul>
+          <li>Соберите клиент со всеми библиотеками на оффициальном лаунчере Mojang и перенесите файл minecraft.jar и папку libraries в папку клиента</li>
+          <li>Соберите нативные библиотеки так, что бы для Windows и Linux использовался LWJGL 3.2.2, а для MacOS 3.2.1</li>
+          <li>Замените authlib по соответствующей инструкции</li>
+          <li>Выполните <codes>makeprofile НАЗВАНИЕ ВЕРСИЯ ПАПКА_В_UPDATES</codes></li>
+          <li>После генерации профиля cкопируйте <a href="https://mirror.gravit.pro/compat/jimfs-register-1.0.jar">этот файл</a> в папку libraries клиента</li>
+        </ul>
+      </p>
+  </sploiler>
+  <sploiler><template #header>Сборка Forge 1.13 и выше</template>
+      <p><b>По возможности рекомендуется использовать Fabric</b></p>
+      <p v-if="version < 50200">
+        Для сборки Forge 1.13+ вы должны:
+        <ul>
+          <li>Соберите клиент со всеми библиотеками на оффициальном лаунчере Mojang и перенесите файл minecraft.jar и папку libraries в папку клиента</li>
+          <li>Соберите нативные библиотеки так, что бы для Windows и Linux использовался LWJGL 3.2.2, а для MacOS 3.2.1</li>
+          <li>Замените authlib по соответствующей инструкции</li>
+          <li>Составьте профиль по образцу оффициального лаунчера - MainClass, clientArgs. Добавьте опциональные моды с библиотеками LWJGL. Windows и Linux необходима версия 3.2.2, а MacOS 3.2.1 <b>наличие двух версий одновременно без опционального мода или несоответствие версии jar и нативная библиотеки приведет к крашу</b></li>
+          <li>Укажите classLoaderConfig AGENT</li>
+        </ul>
+      </p>
+      <p v-if="version >= 50200">
+        Для сборки Forge 1.13+ вы должны:
+        <ul>
+          <li>Соберите клиент со всеми библиотеками на оффициальном лаунчере Mojang и перенесите файл minecraft.jar и папку libraries в папку клиента</li>
+          <li>Соберите нативные библиотеки так, что бы для Windows и Linux использовался LWJGL 3.2.2, а для MacOS 3.2.1</li>
+          <li>Замените authlib по соответствующей инструкции</li>
+          <li>Выполните <codes>makeprofile НАЗВАНИЕ ВЕРСИЯ ПАПКА_В_UPDATES</codes></li>
+          <li>После регенации профиля выберите один из возможных вариантов classLoaderConfig:
+            <ul>
+              <li><codes>LAUNCHER</codes> - в данный момент не работает с Forge 1.13+</li>
+              <li><codes>AGENT</codes> - может вызывать проблемы с некоторыми сборками Java на Windows с русскими путями к лаунчеру и/или майнкрафту</li>
+              <li><codes>SYSTEM_ARGS</codes> - теоретически может вызвать ошибку с превышением размера аргументов процессу. На практике не встречалась</li>
+            </ul>
+          </li>
+        </ul>
+      </p>
+  </sploiler>
   <sploiler><template #header>Подпись всего клиента <gtag type='hard'>Сложный уровень</gtag></template>
     <h3>Подпись всего клиента <gtag type="hard">Сложный уровень</gtag>
     </h3>

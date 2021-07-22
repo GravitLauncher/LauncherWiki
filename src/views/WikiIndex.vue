@@ -6,7 +6,7 @@
       >
     </p>
     <b-alert variant="danger" show>
-      Команда приняла решение о переходе в <a href="https://discord.gg/b9QG4ygY75">новый Discord сервер</a>. Вся актуальная информация и поддержка теперь будет там
+      Наш <a href="https://discord.gg/b9QG4ygY75">новый Discord сервер</a> где можно задавать вопросы по лаунчеру, а так же читать актуальные новости
     </b-alert>
     <h2>Начало работы <a name="start" href="#start">&#128279;</a></h2>
     <b
@@ -14,8 +14,8 @@
       модулей требует дополнительной конфигурации</b
     ><br />
     Модули, заканчивающиеся на <codes>_module</codes> - для
-    лаунчсервера, на <codes>_lmodule</codes> - для
-    лаунчера, на
+    лаунчсервера(папка <b>modules</b>), на <codes>_lmodule</codes> - для
+    лаунчера(папка <b>launcher-modules</b>), на
     <codes>_swmodule</codes> для ServerWrapper'а<br />
     <ol>
       <li>
@@ -40,14 +40,14 @@
           <p  v-if="osc == 'Linux'">Вы можете использовать любой другой способ установки Java и openjfx</p>
           <ol v-if="os == 'Debian'">
             <li>Выполняем <codes>apt-get install openjdk-11-jdk</codes></li>
-            <li>Устанавливаем jmods командой <codes>wget https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip<br>
-              unzip openjfx-11.0.2_linux-x64_bin-jmods.zip<br>
-              cp javafx-jmods-11.0.2/* /usr/lib/jvm/java-11-openjdk-amd64/jmods<br>
-              rm -r javafx-jmods-11.0.2<br>
-              rm openjfx-11.0.2_linux-x64_bin-jmods.zip</codes></li>
-            <li>Устанавливаем Java 8 командой <codes>wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -<br>
-sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/<br>
-sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
+            <li>Устанавливаем jmods командой <pcode language='sh' code='wget "https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip"
+unzip openjfx-11.0.2_linux-x64_bin-jmods.zip
+cp javafx-jmods-11.0.2/* /usr/lib/jvm/java-11-openjdk-amd64/jmods
+rm -r javafx-jmods-11.0.2
+rm openjfx-11.0.2_linux-x64_bin-jmods.zip'/></li>
+            <li>Устанавливаем Java 8 командой <pcode language='sh' code='wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
+sudo add-apt-repository --yes "https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
+sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
             <li>Переключаем стандартную Java на Java 11: <codes>update-alternatives --config java</codes></li>
             <li>Для запуска с Java 8 измените <codes>java</codes> в строке запуска на полный путь(такой как <codes>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</codes>)</li>
           </ol>
@@ -213,13 +213,16 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
           </h3>
           <p>
             Открываем по ссылке
-            <a
+            <a v-if="this.$store.state.state != 'stable'"
               class="link-animated"
-              href="https://github.com/GravitLauncher/Launcher/actions"
-              >GitHub Actions</a
+              href="https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev"
+              >GitHub Actions (DEV ветка)</a
             ><br />
-            Выбираем ветку нажав на <codes>Branch</codes> и выбрав в
-            открывшемся меню нужную ветку<br />
+            <a v-if="this.$store.state.state == 'stable'"
+              class="link-animated"
+              href="https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Amaster"
+              >GitHub Actions (STABLE ветка)</a
+            ><br />
             Открываем самый последний билд и в разделе Artifacts вы увидите
             архив с готовыми .jar. Скачиваем его, распаковываем LaunchServer.jar
             и librzries.zip<br />
@@ -308,7 +311,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
               >, жмем Clone or Download, и по желанию скачиваем
               <a
                 class="link-animated"
-                href="https://github.com/GravitLauncher/Launcher"
+                href="https://github.com/GravitLauncher/LauncherModules"
                 >модули</a
               >
             </li>
@@ -570,9 +573,12 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
 '/>
         </sploiler>
       </li>
-      <li>
+      <li v-if="version < 50200">
         Настраиваем <router-link to="/authprovider">AuthProvider</router-link> и
         <router-link to="/authhandler"> AuthHandler</router-link>
+      </li>
+      <li v-if="version >= 50200">
+        Настраиваем <router-link to="/auth">AuthCoreProvider</router-link>
       </li>
       <li>Собираем <router-link to="/clientbuild">клиент</router-link></li>
       <li>
@@ -634,6 +640,8 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot</codes></li>
         другой валидный сертификат) и правильно настроить iptables, закрыв
         порты, которые не должны быть открыты в сеть
       </li>
+      <li>Fabric клиент создает скрытую папку <codes>.fabric</codes>, в которой хранит JAR.
+      Рекомендуется эту папку перенести в клиент и добавить в <codes>updateVerify</codes></li>
     </ul>
 
     <h2>Команды LaunchServer <a name="commands" href="#commands">&#128279;</a></h2>
