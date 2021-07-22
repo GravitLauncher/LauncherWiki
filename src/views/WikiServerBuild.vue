@@ -19,6 +19,12 @@ authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib
 При настройке сервера из jar файла ServerWrapper удалите старый authlib и последовательно закиньте сначало все содержимое authlib-clean, а потом все содержимое LauncherAuthlib
       </p>
     </sploiler>
+    <sploiler><template #header>Сборка Forge 1.16.4+</template>
+      <p>
+      Сборка для этой версии аналогична сборке для 1.16.4+, однако нужно выполнить дополнительные действия.<br>
+      Необходимо найти jar файл по пути "libraries/net/minecraft/server/ВЕРСИЯ-ЦИФРЫ/server-ВЕРСИЯ-ЦИФРЫ-extra.jar", и удалить из него "com/mojang/authlib"
+      </p>
+    </sploiler>
     <sploiler><template #header>Сборка Forge/Sponge 1.12.2</template>
       <p>
         Замените launchwrapper на
