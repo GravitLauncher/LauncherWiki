@@ -2,6 +2,19 @@
   <h2>Сборка клиента на версии 5.1.0+ <gtag type="important">Важно</gtag>
   </h2>
   <p>Для уже готового клиента, скачанного с зеркала выполните:</p>
+  <p>Таблица поддержки версий клиентов
+  <table>
+    <tr><th>Версия</th><th>Подддержка версии</th><th>Доступна на зеркале</th><th>Комментарий</th></tr>
+    <tr><td>1.5.2 и ниже</td><td>Частично</td><td>Да*</td><td>Требуется пропатчить <codes>minecraft.jar</codes>. Возможны проблемы со скинами и входом на сервера</td></tr>
+    <tr><td>1.6.4</td><td>Частично</td><td>Да*</td><td>Возможны проблемы со скинами и входом на сервера</td></tr>
+    <tr><td>1.7.10</td><td>Да</td><td>Да</td><td></td></tr>
+    <tr><td>1.12.2</td><td>Да</td><td>Да</td><td>Необходимо обновить Forge и OptiFine</td></tr>
+    <tr><td>1.13 - 1.16.4</td><td>Да</td><td>Нет</td><td></td></tr>
+    <tr><td>1.16.5</td><td>Да</td><td>{{ version >= 50200 ? "Да" : "Отсутствует профиль" }}</td><td>Доступны Vanilla, Fabric, Forge</td></tr>
+    <tr v-if="version >=50200"><td>1.17.X</td><td>Да</td><td>Да</td><td>Доступны Vanilla, Fabric</td></tr>
+    <tr v-if="version >=50200"><td>1.17.X forge</td><td>Нет</td><td>Нет</td><td>В данный момент не поддерживается</td></tr>
+  </table>
+  </p>
   <h3>Для сборки клиентов 1.16.3 и ниже</h3>
   <ul>
     <li>Вам необходимо будет скопировать файл authlib-clean.jar отсюда ( <a
@@ -14,7 +27,7 @@
   <ul>
     <li>Вы должны найти в своем клиенте authlib в папке libraries и удалить оттуда все классы, присутствующие в LauncherAuthlib 2. После чего скопировать получившийся файл в
       папку libraries клиента</li>
-    <li>Скачайте LauncherAuthlib 2 с <a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar">зеркала</a> и поместите его в папку libraries</li>
+    <li>Скачайте LauncherAuthlib 2 с <a v-if="version < 50200" href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar">зеркала (5.1.X)</a><a v-if="version >= 50200" href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar">зеркала (5.2.0)</a> и поместите его в папку libraries</li>
   </ul>
   <sploiler><template #header>Сборка Forge 1.12.2 и ниже</template>
       <p>
