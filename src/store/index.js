@@ -6,8 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     major: 5,
-    minor: 1,
-    patch: 10,
+    minor: 2,
+    patch: 0,
     state: 'stable',
     osClass: 'Linux',
     osType: 'Debian'

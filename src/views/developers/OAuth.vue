@@ -38,17 +38,20 @@
             <li>refreshAccessTokenUrl - [опционально] при использовании OAuth с лимитированым accessToken</li>
             <li>verifyPasswordUrl - [опционально] при отсутствии passwordVerifer является обязательным</li>
             <li>createOAuthSessionUrl - [обязателен]</li>
-            <li>updateServerIdUrl - [обязателен]</li>
+            <li>updateServerIdUrl - [обязателен при отсутствии joinServerUrl и checkServerUrl]</li>
+            <li>joinServerUrl - [обязателен при отсутствии updateServerIdUrl]</li>
+            <li>checkServerUrl - [обязателен при отсутствии updateServerIdUrl]</li>
         </ul>
         <p><b>Проверка что запрос пришел от лаунчсервера</b>. Лаунчсервер использует Bearer авторизацию для отправки запросов. Токен указывается в поле <codes>bearerToken</codes>. Вы должны проверить его, преджде чем обрабатывать запрос.</p>
-        <p>Если вам нужно вернуть <b>null</b> вы должны отдать пустое тело запроса</p>
+        <p>Если вам нужно вернуть <b>null</b> вы должны отдать пустоту в теле ответа</p>
+        <p>При нормальной работе скрипта он должен возвращать только 2XX коды. Любой другой код будет считатся ошибкой на стороне скрипта</p>
         <p><b>Блок пользователя</b>(класс <codes>JsonUser</codes>). В дальнейшем будет обозначатся как <codes>[[JsonUser]]</codes></p>
         <pcode autodetect code='
 {
   "username": "USERNAME",
   "uuid": "UUID",
-  "serverId": "SERVER_ID",
-  "accessToken": "ACCESS_TOKEN",
+  "serverId": "SERVER ID",
+  "accessToken": "MINECRAFT ACCESS TOKEN",
   "permissions": {
       "permissions": 0,
       "flags": 0
@@ -114,7 +117,7 @@
             <p>Ответ:</p>
             <pcode autodetect code='
 {
-  "expied": false,
+  "expired": false,
   "session": [[JsonUserSession]]
 }
     '/>
@@ -213,6 +216,32 @@
 {
   "username": "USERNAME",
   "uuid": "UUID",
+  "serverId": "SERVER ID"
+}
+    '/>
+            <p>Ответ:</p>
+            <pcode autodetect code='
+{
+  "success": true
+}
+    '/>
+        </li>
+        <li><b>checkServerUrl</b>
+            <p>Запрос:</p>
+            <pcode autodetect code='
+{
+  "username": "USERNAME",
+  "serverId": "SERVER ID"
+}
+    '/>
+            <p>Ответ: [[JsonUser]]</p>
+        </li>
+        <li><b>joinServerUrl</b>
+            <p>Запрос:</p>
+            <pcode autodetect code='
+{
+  "username": "USERNAME",
+  "accessToken": "MINECRAFT ACCESS TOKEN",
   "serverId": "SERVER ID"
 }
     '/>
