@@ -16,7 +16,7 @@
         Для работы online-mode на 1.16.4 и выше вам понадобится специальные authlib-clean и LauncherAuthlib<br>
 authlib-clean это <a href="https://libraries.minecraft.net/com/mojang/authlib/2.0.27/authlib-2.0.27.jar">официальный authlib</a>, откуда вы должны будете удалить все те классы что есть в LauncherAuthlib.<br>
 Ссылка на новый LauncherAuthlib - <codes v-if="version < 50200"><a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib.jar">LauncherAuthlib 2</a></codes> <codes v-if="version >= 50200"><a href="https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar">LauncherAuthlib 2</a></codes> (только 1.16.4+)<br>
-При настройке сервера, удалите из jar файла ServerWrapper старый authlib (com\mojang\authlib) и последовательно закиньте: сначало всё содержимое authlib-clean, а после и всё содержимое LauncherAuthlib
+При настройке сервера, удалите из jar файла ServerWrapper старый authlib (com/mojang/authlib) и последовательно закиньте: сначало всё содержимое authlib-clean, а после и всё содержимое LauncherAuthlib
       </p>
     </sploiler>
     <sploiler><template #header>Сборка Forge 1.16.4+</template>
