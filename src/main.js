@@ -5,7 +5,7 @@ import store from './store'
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import hljs from 'highlight.js';
+//import hljs from 'highlight.js';
 import vuePlugin from "@highlightjs/vue-plugin";
 
 
