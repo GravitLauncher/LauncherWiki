@@ -1,12 +1,12 @@
 <template>
     <div>
-        <b-card>
+        <b-card no-body>
         <b-card-header>
             <h4>{{ header ? header : "Код" }} <b-button v-on:click="copyin()" style="float: right;">{{ copytext }}</b-button></h4>
         </b-card-header>
-        <b-card-body>
+        <b-card-text>
             <highlightjs :autodetect="autodetect" :language="language" :code="code" />
-        </b-card-body>
+        </b-card-text>
         </b-card>
     </div>
 </template>

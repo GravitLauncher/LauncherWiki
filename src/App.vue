@@ -2,7 +2,7 @@
   <div id="app">
     <link
       rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css"
     />
     <div>
       <b-navbar toggleable="lg" type="dark" variant="info">
@@ -155,9 +155,6 @@ summary:focus {
 h1,
 h3 {
   text-align: center;
-}
-.hljs {
-  border-radius: 8px;
 }
 span.codes {
   font-size: 12px;
