@@ -40,12 +40,12 @@
           <p  v-if="osc == 'Linux'">Вы можете использовать любой другой способ установки Java и openjfx</p>
           <ol v-if="os == 'Debian'">
             <li>Выполняем <codes>apt-get install openjdk-11-jdk</codes></li>
-            <li>Устанавливаем jmods командой <pcode language='sh' code='wget "https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip"
+            <li>Устанавливаем jmods командой <pcode code='wget "https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip"
 unzip openjfx-11.0.2_linux-x64_bin-jmods.zip
 cp javafx-jmods-11.0.2/* /usr/lib/jvm/java-11-openjdk-amd64/jmods
 rm -r javafx-jmods-11.0.2
 rm openjfx-11.0.2_linux-x64_bin-jmods.zip'/></li>
-            <li>Устанавливаем Java 8 командой <pcode language='sh' code='wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
+            <li>Устанавливаем Java 8 командой <pcode code='wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
 sudo add-apt-repository --yes "https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
 sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
             <li>Переключаем стандартную Java на Java 11: <codes>update-alternatives --config java</codes></li>
@@ -446,7 +446,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
             пояснения ниже приведены для ознакомления, не пытайтесь копировать
             конфиг или его часть себе
           </p>
-          <pcode language='json' code='
+          <pcode code='
 {
   "projectName": "GravitTestProject", // Название вашего проекта. Влияет на названия классов в .jar(proguard mapping), папку вашего сервера в AppData, название окна и многое другое
   "mirrors": [ //Один или несколько зеркал, с которых будут скачиваться клиенты командами downloadClient/downloadAsset
@@ -646,7 +646,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
 
     <h2>Команды LaunchServer <a name="commands" href="#commands">&#128279;</a></h2>
     <p>Простейшие команды, которые понядобятся в первую очередь:</p>
-    <pcode language="ini" code='
+    <pcode code='
     help [command name] - Вывести справку по команде или по всем командам
     stop [nothing] - Остановить LaunchServer
     build [nothing] - Собрать Launcher.jar
@@ -660,7 +660,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     version [nothing] - версия лаунчсервера если вдруг забыли
     '/>
     <p>Еще команды:</p>
-    <pcode language="ini" code='
+    <pcode code='
     uuidtousername (uuid) (auth_id) - получить ник пользователя по его UUID
     auth (login) (password) (auth_id) - попробывать войти с указанным логином и паролем
     usernametouuid (username) (auth_id) - получить UUID пользователя по нику
@@ -676,14 +676,14 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     notify [head] [message] - послать уведомление, которое увидят все у кого открыт ваш лаунчер
     '/>
     <p>Команды DAO(работают только с настроеным Hibernate):</p>
-    <pcode language="ini" code='
+    <pcode code='
     setuserpassword [username] [new password] - сменить пароль пользователю
     getuser [username] - информация о пользователе
     getallusers  - информация о всех пользователях
     register [login] [password] - зарегистрировать нового пользователя
     '/>
     <p>Экспертные команды из стандартной поставки:</p>
-    <pcode language="ini" code='
+    <pcode code='
     proguarddictregen [nothing] - перегенерировать словарь proguard
     loadmodule [jar] - загрузить модуль не из папки modules в runtime
     proguardclean [nothing] - сброс конфига proguard
@@ -696,7 +696,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
       Команды ниже настолько же круты, насколько и опасны. Если вы понимаете что
       делаете, эти команды будут крайне полезны:
     </p>
-    <pcode language="ini" code='
+    <pcode code='
     setsecuritymanager [allow, logger, system] - Вызов System.setSecurityManager для тестирования(UnsafeCommandsPack)
     sendauth [connectUUID] [username] [auth_id] [client type] (permissions) (client uuid) - ручная отправка события AuthEvent соеденению в обход AuthProvider(UnsafeCommandsPack)
     newdownloadasset [version] [dir] - скачать ассеты прямо с Mojang сайта, любой версии(UnsafeCommandsPack)
