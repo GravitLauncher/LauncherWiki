@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page padding>
     <doc-header name="authcoreprovider">Настройка авторизации</doc-header>
     <p>
       <b>AuthCoreProvider</b> является заменой тройке

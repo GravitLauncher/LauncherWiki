@@ -16,7 +16,7 @@
         лаунчсервера
       </li>
       <li>
-        При сборке лаунчсервера из исходников прямо на машине может побребоватся
+        При сборке лаунчсервера из исходников прямо на машине может потребоваться
         до 1 Гб свободной оперативной памяти для работы Gradle
       </li>
       <li>
@@ -49,7 +49,7 @@
     </ul>
     <p>
       Если вы хотите установить лаунчсервер на Windows для локального
-      тестирования следуйте <a href="/">этой</a> инструкции.
+      тестирования следуйте <a href="/install#windows">этой</a> инструкции.
     </p>
     <doc-header name="hostconfigure">Настройка хостинга</doc-header>
     <p>
@@ -237,6 +237,37 @@ server {
     <a>
         Каждый проект должен сам решить - нужно ли отправлять файлы лаунчера в Microsoft для проверки или нет. При достижении определенного числа скачиваний проблема уйдет "сама собой", а некоторые пользователи могут её вовсе не заменить
     </a>
+    <doc-header name="windows">Установка на Windows для тестирования</doc-header>
+    <p>Настройте окружение:</p>
+    <ul>
+      <li>Скачиваем сборку OpenJDK 11 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 11 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем на свой локальный компьютер. <b>Запомните или запишите путь к установленной JDK</b></li>
+      <li>Если вы установили AdoptJDK или любую другую сборку OpenJDK без OpenJFX скачайте <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку установки JDK, полученную на первом этапе</li>
+      <li>Скачиваем сборку JDK 8 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>, или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
+      <li>Всё!</li>
+    </ul>
+    <p>Далее вам необходимо установить сам лаунчсервер вручную, без использования скрипта установки</p>
+    <ul>
+      <li>На странице <a href='https://github.com/GravitLauncher/Launcher/releases'>Launcher releases</a> найдите последний релиз и скачайте его</li>
+      <li>Распакуйте библиотеки и LaunchServer.jar из архива</li>
+      <li>Создайте start.bat с таким содержимым: <doc-code language='bat' code='@ECHO OFF
+"ПУТЬ_ДО_JDK_11/bin/java.exe" -javaagent:LaunchServer.jar -jar LaunchServer.jar
+PAUSE' /></li>
+      <li>Запустите <q-badge>start.bat</q-badge> и при первом запуске укажите свой projectName и localhost в качестве адреса</li>
+      <li>Скачайте рантайм для вашей версии лаунчера тут: <a href='https://github.com/GravitLauncher/LauncherRuntime/releases'>LauncherRuntime releases</a></li>
+      <li>Скопируйте папку runtime в папку с установленным лаунчсервером, а .jar файл модуля в папку launcher-modules</li>
+      <li>Запустите лаунчсервер и выполните команду build для запуска сборки. По её завершению готовый лаунчер появится в папке <q-badge>updates</q-badge></li>
+    </ul>
+    <doc-header name="dev">Установка dev версий лаунчсервера</doc-header>
+    <a>
+      DEV версии лаунчсервера содержат самые последние фитчи и исправления, которые еще не попали в релиз. Они могут быть нестабильны, вызывать проблемы, иметь расхождение с оффициальной вики. Настоятельно рекомендуется проверять работоспособность dev версий в тестовом окружении прежде чем обновлять production.
+    </a>
+    <ul>
+      <li><b>Первый способ: Установка через GitHub Actions. </b> <ul>
+        <li>Зарегистрируйтесь или войдите на <a href='https://github.com'></a></li>
+        <li>Скачайте архивы с <a href='https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev'>лаунчером</a> и <a href='https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev'>рантаймом</a> с GitHub Actions.</li>
+        <li>Действуйте аналогично установке <a href='/install#windows'>stable версии</a> на Windows</li>, используя архивы, скачанные на предыдущем этапе</ul></li>
+      <li><b>Второй способ: Установка скриптом.</b> Следуйте <a href='/install#launchserver'>этой</a> инструкции, используя скрипт установки DEV версии: <q-badge>https://mirror.gravit.pro/scripts/setup-dev.sh</q-badge></li>
+    </ul>
   </q-page>
 </template>
 

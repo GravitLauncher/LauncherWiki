@@ -52,6 +52,20 @@
                 <q-item to="/auth#mysql">Способ mysql</q-item>
               </q-list>
             </q-expansion-item>
+            <q-expansion-item
+              expand-separator
+              label="Настройка клиента"
+              :header-inset-level="0.5"
+              :content-inset-level="1"
+            >
+              <q-list>
+                <q-item to="/clientbuild#compatibility">Совместимость</q-item>
+                <q-item to="/clientbuild#authlib1">Сборка Authlib 1</q-item>
+                <q-item to="/clientbuild#authlib2">Сборка Authlib 2</q-item>
+                <q-item to="/clientbuild#profile">Настройка профиля</q-item>
+                <q-item to="/clientbuild#optionals">Опциональные моды</q-item>
+              </q-list>
+            </q-expansion-item>
           </q-list>
         </q-expansion-item>
       </q-list>
