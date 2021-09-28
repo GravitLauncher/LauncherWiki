@@ -6,12 +6,11 @@
       >
     </p>
     <b-alert variant="danger" show>
-      Наш <a href="https://discord.gg/b9QG4ygY75">новый Discord сервер</a> где можно задавать вопросы по лаунчеру, а так же читать актуальные новости
+      Наш <a href="https://discord.gg/b9QG4ygY75">новый Discord сервер</a>, где можно задавать вопросы по лаунчеру, а так же читать актуальные новости
     </b-alert>
     <h2>Начало работы <a name="start" href="#start">&#128279;</a></h2>
     <b
-      >Ставьте только те модули, что вам действительно необходимы. Большинство
-      модулей требует дополнительной конфигурации</b
+      >Большинство модулей требует дополнительной конфигурации</b
     ><br />
     Модули, заканчивающиеся на <codes>_module</codes> - для
     лаунчсервера(папка <b>modules</b>), на <codes>_lmodule</codes> - для
@@ -23,7 +22,7 @@
           <h3 v-if="version >= 50109">Предварительная подготовка</h3>
           <p  v-if="version >= 50109">
              Для работы лаунчсервера необходимо установить Java 11, а для работы серверов на 1.12.2 и ниже - Java 8.<br>
-             Это значит на вашем ПК/VDS должно быть установлено 2 Java - 8 и 11 с установленным javafx
+             Это значит, что если на вашем сервере стоят сервера 1.12.2 и ниже, вы должны установить 2 Java - 8 и 11 (с JavaFX)
           </p>
           <h4 v-if="osc == 'Windows'">
              Установка Java для Windows
@@ -387,7 +386,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
             найдена"
           </p>
           <p>
-            Это происходит потому, что начиная с 5.1.0 рантайм(GUI часть
+            Это происходит потому, что рантайм (GUI часть
             лаунчера) отделена от самого лаунчера и находится в отдельном
             репозитории.<br />
             <b>Ссылка на репозиторий рантайма</b>:
@@ -595,7 +594,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     </p>
     <hr />
     <h2>
-      Рекомендуемые настройки безопасности для проектов
+      Рекомендации по безопасности
       <gtag type="important">Важно</gtag>
       <gtag type="info">Знать всем</gtag> <a name="security" href="#security">&#128279;</a>
     </h2>
@@ -606,7 +605,7 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
       </li>
       <li>
         Права на папку должны быть <b>755</b>, на private.key, LaunchServer.json
-        и прочие конфигурации <b>640</b> или <b>600</b>
+        и прочие конфигурации <b>640</b> или <b>600</b>, <b>ничему не давать права 777</b>
       </li>
       <li>
         Рекомендуется использовать <codes>screen</codes> для
@@ -617,27 +616,20 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
         контроля за потреблением памяти и автозапуска при перезапуске VDS
       </li>
       <li>
-        Прописывать какому либо из файлов лаунчера или библиотек права 777
-        строго запрещается
-      </li>
-      <li>
         Крайне аккуратно пользуйтесь параметром <b>updateExclusions</b>. Если вы
-        пишите что то вида <codes>"mods/railcraft"</codes> то это
-        означает "игнорировать всё что начинается с railcraft в папке mods, в
-        том числе railcraft_SuperMegaCheat.jar". Для игнорирования папки
-        railcraft в mods вы должны прописать "mods/railcraft/"(при этом событие
-        создания папки всё равно будет "mods/railcraft", следовательно вам нужно
-        на сервере в папке вашего клиента самим создать папку railcraft).<b
-          >Единственное оправданное приминение updateExclusions - это если в
-          папке находятся динамично изменяющиеся <u>неисполняемые</u> данные,
-          так к примеру поступает VoxelMap</b
+        пишите <codes>"mods/railcraft"</codes>, то это
+        означает "игнорировать ВСЁ что начинается с railcraft в папке mods, включая
+ railcraft_SuperMegaCheat.jar". Для игнорирования папки
+        railcraft в mods вы должны прописать "mods/railcraft/" (вам нужно в папке вашего клиента заранее создать папку railcraft).<b
+          >Единственное оправданное использование updateExclusions - когда в
+          папке находятся изменяющиеся <u>неисполняемые</u> данные,
+          к примеру, так поступает VoxelMap</b
         >. Наличие в игнорируемых папках любых .jar файлов недопустимо с точки
         зрения безопасности
       </li>
       <li>
         Крайне рекомендуется использовать проксирование nginx с SSL
-        сертификатом(можно от CloudFlare, можно от Let's Encrypt или любой
-        другой валидный сертификат) и правильно настроить iptables, закрыв
+        сертификатом (CloudFlare, Let's Encrypt и так далее) и правильно настроить iptables, закрыв
         порты, которые не должны быть открыты в сеть
       </li>
       <li>Fabric клиент создает скрытую папку <codes>.fabric</codes>, в которой хранит JAR.
@@ -662,10 +654,10 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     <p>Еще команды:</p>
     <pcode language="ini" code='
     uuidtousername (uuid) (auth_id) - получить ник пользователя по его UUID
-    auth (login) (password) (auth_id) - попробывать войти с указанным логином и паролем
+    auth (login) (password) (auth_id) - тестовый вход с указанным логином и паролем
     usernametouuid (username) (auth_id) - получить UUID пользователя по нику
     serverstatus [nothing] - информация о лаунчсервере
-    config [name] [action] [more args] - мультикоманда по управлению компонентами(provider/handler), жмите TAB что бы узнать о доступных компонентах и их командах
+    config [name] [action] [more args] - мультикоманда по управлению компонентами (provider/handler), жмите TAB, чтобы узнать о доступных компонентах и их командах
     unindexasset [dir] [index] [output-dir] - преобразовать индексированные ассеты(с хешами в имени) в обычные для удобства редактирования (1.7.10+)
     indexasset [dir] [index] [output-dir] - соответственно обратная операция (1.7.10+)
     clients [nothing] - список всех подключенных клиентов
@@ -689,35 +681,34 @@ sudo apt-get update && sudo apt-get install adoptopenjdk-8-hotspot'/></li>
     proguardclean [nothing] - сброс конфига proguard
     proguardmappingsremove [nothing] - удалить маппинги proguard
     signjar [path to file] (path to signed file) - подписать JAR файл используя настроеный в sign сертификат(enable в true)
-    signdir [path to dir] - подписать все файлы в папке используя настроеный в sign сертификат(enable в true)
+    signdir [path to dir] - подписать все файлы в папке, используя настроеный в sign сертификат (enable в true)
     component [action] [component name] [more args] - управление компонентами
     '/>
     <p>
-      Команды ниже настолько же круты, насколько и опасны. Если вы понимаете что
+      Команды ниже настолько же круты, насколько и опасны. Если вы понимаете, что
       делаете, эти команды будут крайне полезны:
     </p>
     <pcode language="ini" code='
-    setsecuritymanager [allow, logger, system] - Вызов System.setSecurityManager для тестирования(UnsafeCommandsPack)
-    sendauth [connectUUID] [username] [auth_id] [client type] (permissions) (client uuid) - ручная отправка события AuthEvent соеденению в обход AuthProvider(UnsafeCommandsPack)
-    newdownloadasset [version] [dir] - скачать ассеты прямо с Mojang сайта, любой версии(UnsafeCommandsPack)
+    setsecuritymanager [allow, logger, system] - Вызов System.setSecurityManager для тестирования (UnsafeCommandsPack)
+    sendauth [connectUUID] [username] [auth_id] [client type] (permissions) (client uuid) - ручная отправка события AuthEvent соеденению в обход AuthProvider (UnsafeCommandsPack)
+    newdownloadasset [version] [dir] - скачать ассеты прямо с Mojang сайта, любой версии (UnsafeCommandsPack)
     newdownloadclient [version] [dir] - скачать клиент прямо с Mojang сайта, любой версии. Профиль придется создать самостоятельно(UnsafeCommandsPack)
-    patcher [patcher name or class] [path] [test mode(true/false)] (other args) - Запутсить патчер на основе ASM. Позволяет искать пакетхаки в модах(findPacketHack), RAT(findRemote/findDefineClass), UnsafeSunAPI(findSun), поиск и замена любых вызовов по опкоду INVOKESTATIC (pro.gravit.launchermodules.unsafecommands.patcher.StaticReplacerPatcher) (UnsafeCommandsPack)
-    loadjar [jarfile] - добавить в SystemClassLoader любой JAR(используя javaagent)(UnsafeCommandsPack)
+    patcher [patcher name or class] [path] [test mode(true/false)] (other args) - Запустить патчер на основе ASM. Позволяет искать пакетхаки в модах(findPacketHack), RAT(findRemote/findDefineClass), UnsafeSunAPI(findSun), поиск и замена любых вызовов по опкоду INVOKESTATIC (pro.gravit.launchermodules.unsafecommands.patcher.StaticReplacerPatcher) (UnsafeCommandsPack)
+    loadjar [jarfile] - добавить в SystemClassLoader любой JAR, используя javaagent (UnsafeCommandsPack)
     registercomponent [name] [classname] - зарегистрировать компонент по классу(UnsafeCommandsPack)
-    scriptmappings [nothing] - посмотреть все маппинги классов лаунчсервера в javascript(ServerScriptEngine)
+    scriptmappings [nothing] - посмотреть все маппинги классов лаунчсервера в JavaScript (ServerScriptEngine)
     synclaunchermodules [] - синхронизировать модули лаунчера
-    eval [line] - выполнить JavaScript код на стороне лаунчсервера(ServerScriptEngine)
+    eval [line] - выполнить JavaScript код на стороне лаунчсервера (ServerScriptEngine)
     '/>
     <h3>Команды лаунчера. Разблокировка консоли</h3>
     <p>
-      Начиная с версии 5.0.0 в лаунчере появилась консоль, которую можно открыть
+      Консоль можно открыть
       после авторизации, нажав справа на значок консоли.<br />
       В этой консоли можно выполнять команды, недоступные из GUI. По умолчанию
       консоль заблокирована. Для её разблокировки используется команда
       <span>unlock [key]</span><br />
       Ключ находится в RuntimeLaunchServerConfig.json, поле oemUnlockKey<br />
-      После разблокировки консоли, вы получите доступ к тестовым и утилитарным командам, недоступным
-      ранее<br />
+      После разблокировки консоли, вы получите доступ к тестовым и утилитарным командам<br />
       <!-- TODO commands list -->
     </p>
 

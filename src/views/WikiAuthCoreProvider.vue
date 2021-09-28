@@ -89,7 +89,7 @@ ALTER TABLE `hwids`
 ALTER TABLE `hwids`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`)
+  ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
     '/>
     <p>Настройте конфигурацию</p>
     <pcode autodetect code='
