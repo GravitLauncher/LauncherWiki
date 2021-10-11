@@ -28,6 +28,13 @@ const routes = [
       { path: '', component: () => import('src/pages/wiki/Client.vue') }
     ]
   },
+  {
+    path: '/runtime',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('src/pages/wiki/Runtime.vue') }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

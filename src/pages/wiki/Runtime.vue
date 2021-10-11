@@ -9,6 +9,28 @@
       <li><a href='https://gluonhq.com/products/scene-builder/'>Scene Builder</a> - Редактор fxml файлов</li>
       <li><a href='https://openjfx.io/javadoc/17/'>OpenJFX API Docs</a> - Документация JavaFX API</li>
     </ul>
+    <doc-header name="settings">Настройка рантайма</doc-header>
+    <a>В этом разделе вы найдете полезные функции, входящие в рантайм "из коробки", но не включенные по умолчанию</a>
+    <h4>Шифрование рантайма</h4>
+    <ul>
+      <li>Скачайте библиотеку <a href='https://mirror.gravit.pro/compat/EnFS-1.0.0.jar'>EnFS</a> и положите её в папку launcher-libraries</li>
+      <li>Включите опцию <q-badge>runtimeEncrypt</q-badge> в конфигурации лаунчсервера и сделайте build</li>
+      <li>Проверьте правильность работы</li>
+    </ul>
+    <h4>Скачивание своей Java</h4>
+    <ul>
+      <li>Скачайте <b>архивы</b> с JRE/JDK с оффициального сайта Oracle или другого поставщика сборок OpenJDK</li>
+      <li>Распакуйте архивы в папку updates и дайте им понятные названия: <q-badge>java17-windows-64</q-badge>, <q-badge>java17-windows-32</q-badge> и т.д.</li>
+      <li>По желанию удалите из сборок JRE/JDK необязательные компоненты для уменьшения объема скачиваемых данных</li>
+      <li>Откройте файл <q-badge>config/JavaRuntime/Config.json</q-badge> в текстовом редакторе, найдите строку <q-badge>"javaList": {}</q-badge> и приведите её к такому виду:</li>
+      <doc-code language="json" code='"javaList": {
+    "java17-windows-64": "Java 17 b53 mustdie x64 javafx true",
+    "java17-windows-32": "Java 17 b53 mustdie x32 javafx true"
+  }' /><i>Формат записи: <q-badge>Java {номер версии} b{номер сборки} {mustdie/linux/macos} x{разрядность} javafx {наличие javafx}</q-badge></i>
+      <li>Добавьте папки с вашими сборками JRE/JDK в allowUpdates конфиге лаунчсервера: <q-badge>"allowUpdates": ["java17-windows-64", "java17-windows-32"],</q-badge></li>
+      <li>Выполните syncup и build</li>
+      <li>Проверьте правильность работы</li>
+    </ul>
     <doc-header name="structure">Структура рантайма</doc-header>
     <p>Файловая структура:</p>
     <ul>
@@ -142,8 +164,10 @@
 </template>
 
 <script>
+import DocCode from "src/components/DocCode.vue";
 import { defineComponent } from "vue";
 export default defineComponent({
+  components: { DocCode },
   name: "PageDefault",
   data: function () {
     return {
