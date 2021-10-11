@@ -1,5 +1,14 @@
 <template>
   <q-page padding>
+    <doc-header name="overiew">Описание рантайма</doc-header>
+    <p>
+      Рантайм в лаунчере - это модуль для лаунчера и набор ресурсов(fxml/css/png), отвечающие за взаимодействие с пользователем. Рантайм
+      использует <a href='https://openjfx.io/'>JavaFX</a> для взаимодействия с пользователем. Полезные ссылки:
+    </p>
+    <ul>
+      <li><a href='https://gluonhq.com/products/scene-builder/'>Scene Builder</a> - Редактор fxml файлов</li>
+      <li><a href='https://openjfx.io/javadoc/17/'>OpenJFX API Docs</a> - Документация JavaFX API</li>
+    </ul>
     <doc-header name="structure">Структура рантайма</doc-header>
     <p>Файловая структура:</p>
     <ul>
@@ -95,6 +104,40 @@
       .fxml файле
     </p>
     <doc-header name="debug">Отладка рантайма</doc-header>
+    <p>
+      Для отладки рантайма из IDEA укажите следующие параметры:
+    </p>
+    <ul>
+      <li>Модуль: JavaRuntime.main</li>
+      <li>
+        Аргументы jvm:
+        -Dlauncherdebug.modules=pro.gravit.launcher.client.JavaRuntimeModule
+        (если параметр не отображаются нажмите Modify Options -> Add VM options)
+      </li>
+      <li>Main Class: pro.gravit.launcher.debug.DebugMain</li>
+    </ul>
+    <p>Ограничения отладочного режима:</p>
+    <ul>
+      <li>
+        Не будет работать опция "Сохранить пароль", так как ключ шифрования
+        пароля зашивается лаунчсервером
+      </li>
+      <li>
+        Невозможно запустить клиент майнкрафта(при этом все этапы скачивания,
+        проверки, и подготовки к старту работать будут)
+      </li>
+      <li>
+        Лаунчер не будет пытаться обновиться и получить список методов
+        авторизации
+      </li>
+      <li>
+        Может не работать проверка HWID, так как лаунчсервер не будет доверять
+        лаунчеру
+      </li>
+      <li>
+        Отладочный режим невозможно активировать на уже собранном лаунчере
+      </li>
+    </ul>
   </q-page>
 </template>
 

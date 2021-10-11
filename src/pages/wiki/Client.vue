@@ -21,9 +21,26 @@
     <p>
       Для сборки authlib 2 для версий майнкрафта 1.16.4 и выше следуйте инструкции:
     </p>
-    <ul>
-      <li>Скачайте файл <a href='https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar'>LauncherAuthlib 2</a>, переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку "libraries/com/mojang/authlib/2.3.31/" вашего клиента</li>
-    </ul>
+    <q-tabs v-model='authlib2Select'>
+        <q-tab name='rename' label='Переименование' />
+        <q-tab name='build' label='Сборка' />
+    </q-tabs>
+    <q-separator />
+    <q-tab-panels v-model='authlib2Select'>
+        <q-tab-panel name='rename'>
+          <ul>
+            <li>Скачайте файл <a href='https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar'>LauncherAuthlib 2</a></li>
+            <li>Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку "libraries/com/mojang/authlib/ВЕРСИЯ/" вашего клиента</li>
+          </ul>
+        </q-tab-panel>
+        <q-tab-panel name='build'>
+          <ul>
+            <li>Скачайте файл <a href='https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar'>LauncherAuthlib 2</a></li>
+            <li>Откройте его архиватором и распакуйте папку com в отдельную папку</li>
+            <li>Откройте вашу authlib по пути "libraries/com/mojang/authlib/ВЕРСИЯ/" архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе</li>
+          </ul>
+        </q-tab-panel>
+    </q-tab-panels>
     <doc-header name="profile">Настройка профиля</doc-header>
     <p>
       Список параметров профиля с пояснениями:
@@ -193,6 +210,7 @@ export default defineComponent({
   name: "PageClient",
   data: function () {
     return {
+      authlib2Select: "rename",
     };
   },
 });

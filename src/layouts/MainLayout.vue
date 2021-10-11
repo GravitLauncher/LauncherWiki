@@ -66,6 +66,30 @@
                 <q-item to="/clientbuild#optionals">Опциональные моды</q-item>
               </q-list>
             </q-expansion-item>
+            <q-expansion-item
+              expand-separator
+              label="Привязка сервера Minecraft"
+              :header-inset-level="0.5"
+              :content-inset-level="1"
+            >
+              <q-list>
+                <q-item to="/server#compatibility">Совместимость</q-item>
+                <q-item to="/server#serverwrapper">Установка ServerWrapper</q-item>
+              </q-list>
+            </q-expansion-item>
+            <q-expansion-item
+              expand-separator
+              label="Настройка рантайма"
+              :header-inset-level="0.5"
+              :content-inset-level="1"
+            >
+              <q-list>
+                <q-item to="/runtime#overiew">Обзор рантайма</q-item>
+                <q-item to="/runtime#structure">Структура рантайма</q-item>
+                <q-item to="/runtime#entities">Основные сущности</q-item>
+                <q-item to="/runtime#debug">Отладка рантайма</q-item>
+              </q-list>
+            </q-expansion-item>
           </q-list>
         </q-expansion-item>
       </q-list>
