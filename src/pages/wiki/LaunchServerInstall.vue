@@ -258,9 +258,9 @@ server {
     <doc-header name="windows">Установка на Windows для тестирования</doc-header>
     <p>Настройте окружение:</p>
     <ul>
-      <li>Скачиваем сборку OpenJDK 17 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 17 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем на свой локальный компьютер. <b>Запомните или запишите путь к установленной JDK</b></li>
+      <li>Скачиваем сборку OpenJDK 17 от <a href="https://adoptium.net/">AdoptJDK</a>(JDK 17 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем на свой локальный компьютер. <b>Запомните или запишите путь к установленной JDK</b></li>
       <li>Если вы установили AdoptJDK или любую другую сборку OpenJDK без OpenJFX скачайте <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку установки JDK, полученную на первом этапе</li>
-      <li>Скачиваем сборку JDK 8 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>, или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
+      <li>Скачиваем сборку JDK 8 от <a href="https://adoptium.net/">AdoptJDK</a>(JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>, или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
       <li>Всё!</li>
     </ul>
     <p>Далее вам необходимо установить сам лаунчсервер вручную, без использования скрипта установки</p>

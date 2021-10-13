@@ -24,6 +24,22 @@
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-grey-1">
       <q-list>
         <q-item-label header class="text-grey-8"> Меню сайта </q-item-label>
+        <q-expansion-item expand-separator icon="link" label="Ссылки">
+          <q-list>
+            <q-item clickable tag='a' href='https://discord.gg/b9QG4ygY75'>
+              <q-item-section avatar>
+                <q-icon color="primary" name="link"></q-icon>
+              </q-item-section>
+              <q-item-section>Discord</q-item-section>
+            </q-item>
+            <q-item clickable tag='a' href='https://github.com/GravitLauncher/Launcher'>
+              <q-item-section avatar>
+                <q-icon color="primary" name="link"></q-icon>
+              </q-item-section>
+              <q-item-section>GitHub</q-item-section>
+            </q-item>
+          </q-list>
+        </q-expansion-item>
         <q-expansion-item expand-separator default-opened icon="home" label="Разделы">
           <q-list>
             <q-expansion-item
