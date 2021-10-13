@@ -68,7 +68,7 @@
     "mods"
   ],
   "updateOptional": [], // Список опциональных модов и дополнительных аргументов
-  "jvmArgs": [ // Аргументы JVM
+  "jvmArgs": [ // Аргументы JVM (подберите под свою сборку)
     "-XX:+DisableAttachMechanism",
     "-XX:+UseG1GC",
     "-XX:+UnlockExperimentalVMOptions",
@@ -85,7 +85,7 @@
     "forge.jar",
     "liteloader.jar"
   ],
-  "altClassPath": [], Список файлов и библиотек, загружаемых при запуске системным загрузчиком классов
+  "altClassPath": [], // Список файлов и библиотек, загружаемых при запуске системным загрузчиком классов
   "clientArgs": [], // Дополнительные аргументы клиента
   "compatClasses": [], // Список дополнительных MainClass, которые будут выполнены перед основным
   "properties": {}, // Кастомная информация о профиле
@@ -110,6 +110,7 @@
     "fullScreen": false
   },
   "updateFastCheck": true, // Быстрая проверка файлов
+  "limited": false, // Ограничен permissions
   "mainClass": "net.minecraft.client.main.Main" // MainClass клиента
 }
     ' />
@@ -130,6 +131,7 @@
        "info": "Мод, показывающий рецепты", //Описание
        "visible": true, //Видимость
        "mark": true, //Включен по умолчанию
+       "limited": false, //Ограничен permissions
        "permissions": 0, //Маска привилегий. 0 - мод для всех, 1 - только для админов.
        "name": "NotEnoughItems" //Имя
     },

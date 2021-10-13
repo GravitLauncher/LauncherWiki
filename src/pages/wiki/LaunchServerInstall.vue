@@ -53,10 +53,10 @@
     </p>
     <doc-header name="hostconfigure">Настройка хостинга</doc-header>
     <p>
-        Первым шагом необходимо подготовить окружение - создать пользователя, установить firewall, Java 8 и Java 11
+        Первым шагом необходимо подготовить окружение - создать пользователя, установить firewall, Java 8 и Java 17
     </p>
     <p>
-      Для запуска LaunchServer необходима <b>Java 11</b>, а для запуска
+      Для запуска LaunchServer необходима <b>Java 17</b>, а для запуска
       майнкрафт сервера 1.12.2 и ниже - <b>Java 8</b>. Необходимо установить их
       обе, если вы собираетесь держать лаунчсервер и сервера на одной машине.
     </p>
@@ -73,30 +73,47 @@
       language="bash"
       code='
 apt-get update && apt-get upgrade
-apt-get install apt curl wget nftables openjdk-11-jdk 
+apt-get install apt curl wget nftables openjdk-17-jdk 
 useradd -m -G www-data launcher
-wget "https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-jmods.zip"
-unzip openjfx-11.0.2_linux-x64_bin-jmods.zip
-cp javafx-jmods-11.0.2/* /usr/lib/jvm/java-11-openjdk-amd64/jmods
-rm -r javafx-jmods-11.0.2
-rm openjfx-11.0.2_linux-x64_bin-jmods.zip
+wget "https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_linux-x64_bin-jmods.zip"
+unzip openjfx-17.0.0.1_linux-x64_bin-jmods.zip
+cp openjfx-17.0.0.1_linux-x64_bin-jmods/* /usr/lib/jvm/java-17-openjdk-amd64/jmods
+rm -r openjfx-17.0.0.1_linux-x64_bin-jmods
+rm openjfx-17.0.0.1_linux-x64_bin-jmods.zip
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
 add-apt-repository --yes "https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
 apt-get update && apt-get install adoptopenjdk-8-hotspot
 update-alternatives --config java
 ' />
 <p>
-    <b>*</b> С помощью update-alternatives выберите по умолчанию java 11. Тогда путь к java для серверов 1.12.2 и ниже будет таким: <q-badge>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</q-badge>
+    <b>*</b> С помощью update-alternatives выберите по умолчанию java 17. Тогда путь к java для серверов 1.12.2 и ниже будет таким: <q-badge>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</q-badge>
 </p>
+        </q-tab-panel>
+        <q-tab-panel name='centos'>
+            <doc-code
+      header="Подготовка CentOS"
+      language="bash"
+      code='
+echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
+[BellSoft]
+name=BellSoft Repository
+baseurl=https://yum.bell-sw.com
+enabled=1
+gpgcheck=1
+gpgkey=https://download.bell-sw.com/pki/GPG-KEY-bellsoft
+priority=1
+EOF
+yum update
+yum install bellsoft-java17-full
+alternatives --config java
+' />
         </q-tab-panel>
         <q-tab-panel name='archlinux'>
             <doc-code
       header="Подготовка ArchLinux"
       language="bash"
       code='
-pacman -Syu jdk8-openjdk java8-openjfx jdk11-openjdk java11-openjfx
-cp -r /usr/lib/jvm/java-11-openjfx/* java-11-openjdk
-cp -r /usr/lib/jvm/java-8-openjfx/* java-8-openjdk
+pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
 ' />
         </q-tab-panel>
     </q-tab-panels>
@@ -223,7 +240,8 @@ server {
     <ul>
         <li>Можно сгенерировать самому себе самоподписанный сертификат с помощью модуля <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/GenerateCertificate_module'>GenerateCertificateModule</a></li>
         <li>Можно создать себе самоподписанные сертификаты с помощью утилиты <a href='https://github.com/chris2511/xca/releases'>XCA</a></li>
-        <li>Можно купить настоящий сертификат подписи кода(дорого)</li>
+        <li>Можно купить полноценный сертификат подписи кода(дорого)</li>
+        <li>Можно отдать сборки лаунчера другому человеку, который подпишет .exe файлы за денежное вознаграждение</li>
     </ul>
     <p>Для всех проектов(кроме достаточно крупных) рекомендуется первый вариант. По ссылке вы можете найти инструкцию по установке модуля и генерации сертификата. Вне зависимости от вашего выбора способа получения сертификата теперь нужно установить модуль <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module'>OSSLCodeSignModule</a> для подписи EXE файла</p>
     <p>
@@ -240,8 +258,8 @@ server {
     <doc-header name="windows">Установка на Windows для тестирования</doc-header>
     <p>Настройте окружение:</p>
     <ul>
-      <li>Скачиваем сборку OpenJDK 11 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 11 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем на свой локальный компьютер. <b>Запомните или запишите путь к установленной JDK</b></li>
-      <li>Если вы установили AdoptJDK или любую другую сборку OpenJDK без OpenJFX скачайте <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку установки JDK, полученную на первом этапе</li>
+      <li>Скачиваем сборку OpenJDK 17 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 17 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем на свой локальный компьютер. <b>Запомните или запишите путь к установленной JDK</b></li>
+      <li>Если вы установили AdoptJDK или любую другую сборку OpenJDK без OpenJFX скачайте <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку установки JDK, полученную на первом этапе</li>
       <li>Скачиваем сборку JDK 8 от <a href="https://adoptopenjdk.net/">AdoptJDK</a>(JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>, или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
       <li>Всё!</li>
     </ul>
@@ -250,7 +268,7 @@ server {
       <li>На странице <a href='https://github.com/GravitLauncher/Launcher/releases'>Launcher releases</a> найдите последний релиз и скачайте его</li>
       <li>Распакуйте библиотеки и LaunchServer.jar из архива</li>
       <li>Создайте start.bat с таким содержимым: <doc-code language='bat' code='@ECHO OFF
-"ПУТЬ_ДО_JDK_11/bin/java.exe" -javaagent:LaunchServer.jar -jar LaunchServer.jar
+"ПУТЬ_ДО_JDK_17/bin/java.exe" -javaagent:LaunchServer.jar -jar LaunchServer.jar
 PAUSE' /></li>
       <li>Запустите <q-badge>start.bat</q-badge> и при первом запуске укажите свой projectName и localhost в качестве адреса</li>
       <li>Скачайте рантайм для вашей версии лаунчера тут: <a href='https://github.com/GravitLauncher/LauncherRuntime/releases'>LauncherRuntime releases</a></li>
@@ -263,7 +281,7 @@ PAUSE' /></li>
     </a>
     <ul>
       <li><b>Первый способ: Установка через GitHub Actions. </b> <ul>
-        <li>Зарегистрируйтесь или войдите на <a href='https://github.com'></a></li>
+        <li>Зарегистрируйтесь или войдите на <a href='https://github.com'>GitHub</a></li>
         <li>Скачайте архивы с <a href='https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev'>лаунчером</a> и <a href='https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev'>рантаймом</a> с GitHub Actions.</li>
         <li>Действуйте аналогично установке <a href='/install#windows'>stable версии</a> на Windows</li>, используя архивы, скачанные на предыдущем этапе</ul></li>
       <li><b>Второй способ: Установка скриптом.</b> Следуйте <a href='/install#launchserver'>этой</a> инструкции, используя скрипт установки DEV версии: <q-badge>https://mirror.gravit.pro/scripts/setup-dev.sh</q-badge></li>

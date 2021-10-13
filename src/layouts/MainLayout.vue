@@ -49,6 +49,7 @@
               <q-list>
                 <q-item to="/auth#authcoreprovider">Обзор AuthCoreProvider</q-item>
                 <q-item to="/auth#passwordverifier">Настройка PasswordVerifier</q-item>
+                <q-item to="/auth#permissions">Привилегии</q-item>
                 <q-item to="/auth#mysql">Способ mysql</q-item>
               </q-list>
             </q-expansion-item>
@@ -85,6 +86,7 @@
             >
               <q-list>
                 <q-item to="/runtime#overiew">Обзор рантайма</q-item>
+                <q-item to="/runtime#settings">Настройка рантайма</q-item>
                 <q-item to="/runtime#structure">Структура рантайма</q-item>
                 <q-item to="/runtime#entities">Основные сущности</q-item>
                 <q-item to="/runtime#debug">Отладка рантайма</q-item>
