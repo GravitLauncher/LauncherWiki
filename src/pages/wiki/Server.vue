@@ -3,10 +3,10 @@
     <doc-header name="compatibility">Совместимость</doc-header>
     <p>В настоящий момент поддерживаются:</p>
     <ul>
-      <li>Все оригинальные ядра vanilla, forge, fabric, bukkit</li>
-      <li>Форки на их основе: Sponge, Spigot, Paper и другие</li>
-      <li>Связки Bukkit+Forge, Bukkit+Fabric если их авторы не внесли дополнительных ошибок, мешающих работе запуска</li>
-      <li>Прокси серверы: Waterfall, Velocity</li>
+      <li>Все оригинальные ядра — Vanilla, Forge, Fabric, Bukkit</li>
+      <li>Их форки: Sponge, Spigot, Paper и другие</li>
+      <li>Связки Bukkit+Forge, Bukkit+Fabric, если их авторы не внесли дополнительных ошибок, мешающих работе запуска</li>
+      <li>Прокси—серверы: BungeeCord, Waterfall (форк BungeeCord), Velocity</li>
     </ul>
     <doc-header name="serverwrapper">Использование ServerWrapper</doc-header>
     <p>Для привязки ServerWrapper к вашему серверу выполните следующие действия:</p>
@@ -29,11 +29,11 @@
         <p>Скачайте <a href='https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar'>этот</a> файл и поместите его рядом с ServerWrapper.jar. Далее откройте ServerWrapper.jar любым архиватором и удалите из него всё содерджимое папки com/mojang. После чего откройте ваш скрипт запуска и перед ServerWrapper.jar допишите <q-badge>LauncherAuthlib.jar:</q-badge></p>
       </q-tab-panel>
       <q-tab-panel name="proxy">
-        <p>Прокси серверы напрямую обращаются к серверам Mojang минуя authlib, поэтому вы должны пропатчить их</p>
+        <p>Прокси серверы напрямую обращаются к серверам Mojang, минуя authlib, поэтому вы должны пропатчить их</p>
         <ul>
-          <li><b>Waterfall</b> - Скачайте <a href='https://mirror.gravit.pro/compat/patch/Waterfall.patch'>патч</a>, переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. После чего соберите waterfall командой <q-badge>./waterfall build</q-badge></li>
-          <li><b>BungeeCord</b> - Скачайте <a href='https://mirror.gravit.pro/compat/patch/BungeeCord.patch'>патч</a>, скопируйте его в папку с репозиторием, примените его командой <q-badge>git am BungeeCord.patch</q-badge>. После чего соберите bungeecord командой <q-badge>mvn package -Dcheckstyle.skip</q-badge></li>
-          <li><b>Velocity</b> (рекомендуется) - Скачайте <a href='https://mirror.gravit.pro/compat/patch/Velocity.patch'>патч</a>, скопируйте его в папку с репозиторием, примените его командой <q-badge>git am Velocity.patch</q-badge>. После чего соберите velocity командой <q-badge>./gradlew assemble</q-badge></li>
+          <li><b>Waterfall</b> - Скачайте <a href='https://mirror.gravit.pro/compat/patch/Waterfall.patch'>патч</a>, переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой <q-badge>./waterfall build</q-badge></li>
+          <li><b>BungeeCord</b> - Скачайте <a href='https://mirror.gravit.pro/compat/patch/BungeeCord.patch'>патч</a>, скопируйте его в папку с репозиторием, примените его командой <q-badge>git am BungeeCord.patch</q-badge>. Соберите bungeecord командой <q-badge>mvn package -Dcheckstyle.skip</q-badge></li>
+          <li><b>Velocity</b> (рекомендуется) - Скачайте <a href='https://mirror.gravit.pro/compat/patch/Velocity.patch'>патч</a>, скопируйте его в папку с репозиторием, примените его командой <q-badge>git am Velocity.patch</q-badge>. Соберите velocity командой <q-badge>./gradlew assemble</q-badge></li>
         </ul>
       </q-tab-panel>
     </q-tab-panels>

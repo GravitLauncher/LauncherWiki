@@ -3,40 +3,43 @@
     <doc-header name="hostselect">Выбор хостинга</doc-header>
     <p>
       Для работы лаунчсервера необходим <b>виртуальный (VDS/VPS)</b> или
-      <b>выделенный (Dedicated)</b> сервер на дистрибутиве Linux. А так же:
+      <b>выделенный (Dedicated)</b> сервер на дистрибутиве Linux (Для <a href="/install#windows">Windows</a>) , а так же:
     </p>
     <ul>
       <li>
         Один из актуальных дистрибутивов: Ubuntu 21.04, Debian 11, CentOS 8,
         ArchLinux и другие
       </li>
-      <li>Веб сервер <b>Nginx</b> для раздачи статического контента</li>
+      <li>Веб—сервер <b>Nginx</b> для раздачи статического контента</li>
       <li>
-        Не менее 300Мб свободной оперативной памяти для постоянной работы
+        Минимум <b>300Мб свободной оперативной памяти</b> для работы
         лаунчсервера
       </li>
       <li>
         При сборке лаунчсервера из исходников прямо на машине может потребоваться
         до 1 Гб свободной оперативной памяти для работы Gradle
       </li>
+    </ul>
+    <p>
+      Опционально:
+    </p>
+    <ul>
       <li>
         Веб-сайт, CMS или личный кабинет с поддерживаемым алгоритмом хеширования
-        <q-badge color="orange" text-color="black">опционально</q-badge>
       </li>
       <li>
         База данных <b>MySQL/MariaDB</b> или <b>PostgreSQL</b>
-        <q-badge color="orange" text-color="black">опционально</q-badge>
       </li>
     </ul>
-    <p>Важно помнить, что:</p>
+    <p>Рекомендации:</p>
     <ul>
       <li>
-        Распологать сайт на shared хостинге не рекомендуется, так как это может
+        Не размещайте сайт на shared хостинге, так как это может
         привести к проблемам с подключением к базе данных, производительностью и
         стабильностью работы
       </li>
       <li>
-        Хостинги предоставляющие VDS/VPS на основе виртуализации OpenVZ не
+        Хостинги, предоставляющие VDS/VPS на основе виртуализации OpenVZ не
         позволяют использовать некоторые программы и нагружать процессор выше
         определенного уровня длительное время
       </li>
@@ -53,7 +56,7 @@
     </p>
     <doc-header name="hostconfigure">Настройка хостинга</doc-header>
     <p>
-        Первым шагом необходимо подготовить окружение - создать пользователя, установить firewall, Java 8 и Java 17
+        Первым шагом необходимо подготовить окружение - создать пользователя, установить firewall, Java
     </p>
     <p>
       Для запуска LaunchServer необходима <b>Java 17</b>, а для запуска
@@ -74,7 +77,6 @@
       code='
 apt-get update && apt-get upgrade
 apt-get install apt curl wget nftables openjdk-17-jdk 
-useradd -m -G www-data launcher
 wget "https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_linux-x64_bin-jmods.zip"
 unzip openjfx-17.0.0.1_linux-x64_bin-jmods.zip
 cp openjfx-17.0.0.1_linux-x64_bin-jmods/* /usr/lib/jvm/java-17-openjdk-amd64/jmods
@@ -84,6 +86,7 @@ wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sud
 add-apt-repository --yes "https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
 apt-get update && apt-get install adoptopenjdk-8-hotspot
 update-alternatives --config java
+useradd -m -G www-data launcher
 ' />
 <p>
     <b>*</b> С помощью update-alternatives выберите по умолчанию java 17. Тогда путь к java для серверов 1.12.2 и ниже будет таким: <q-badge>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</q-badge>
@@ -106,6 +109,7 @@ EOF
 yum update
 yum install bellsoft-java17-full
 alternatives --config java
+useradd -m -G www-data launcher
 ' />
         </q-tab-panel>
         <q-tab-panel name='archlinux'>
@@ -114,6 +118,7 @@ alternatives --config java
       language="bash"
       code='
 pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
+useradd -m -G www-data launcher
 ' />
         </q-tab-panel>
     </q-tab-panels>
@@ -134,9 +139,9 @@ pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
         Укажите название вашего проекта, которое будет отображатся в лаунчере и
         в папке AppData
       </li>
-      <li>Укажите ваш поддомен, на котором будет работать лаунчсервер</li>
+      <li>Укажите ваш домен, на котором будет работать лаунчсервер</li>
       <li>
-        После успешного первого запуска закройте лаунчсервер командой
+        После первого запуска закройте лаунчсервер командой
         <q-badge>stop</q-badge>
       </li>
     </ul>
@@ -148,7 +153,7 @@ pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
       </li>
       <li>
         <b>compat/</b> - дополнительные важные файлы: библиотека авторизации,
-        ServerWrapper, модули для лаунчера и лаунчсервера и другое
+        ServerWrapper, модули для лаунчера и лаунчсервера и т.д.
       </li>
     </ul>
     <p>Готовые скрипты, созданные установщиком:</p>
@@ -159,23 +164,23 @@ pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
       </li>
       <li>
         <b>./startscreen.sh</b> - запуск лаунчсервера на постоянной основе с
-        помощью screen. Не запускайте два лаунчсервера одновременно!
+        помощью утилиты screen. Не запускайте два лаунчсервера одновременно!
       </li>
       <li>
         <b>./update.sh</b> - обновляет лаунчсервер, лаунчер и рантайм до
         последней релизной версии
       </li>
     </ul>
-    <p>Список папок лаунчсервера с пояснениями:</p>
+    <p>Список папок лаунчсервера:</p>
     <ul>
       <li><b>libraries/</b> - библиотеки для лаунчсервера</li>
       <li>
         <b>modules/</b> - модули для лаунчсервера (оканчивающиеся на
         _module.jar)
       </li>
-      <li><b>profiles/</b> - папка профилей для запуска майнкрафт</li>
+      <li><b>profiles/</b> - папка профилей для запуска MineCraft</li>
       <li><b>updates/</b> - папка обновлений</li>
-      <li><b>logs/</b> - папка с логами лаунчсервера</li>
+      <li><b>logs/</b> - папка с логами (журналом) лаунчсервера</li>
       <li><b>runtime/</b> - папка с дизайном лаунчера</li>
       <li>
         <b>launcher-modules/</b> - модули для лаунчера (оканчивающиеся на
@@ -192,8 +197,7 @@ pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
     </ul>
     <doc-header name="nginx">Настройка Nginx</doc-header>
     <p>
-      Для достижения оптимальной производительности отдачи файлов нужно
-      обязательно настроить Nginx
+      Для достижения оптимальной производительности отдачи файлов нужно настроить Nginx
     </p>
     <doc-code
       header="Конфигурация Nginx"
@@ -201,69 +205,71 @@ pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
       code="
 server {
         listen 80 http2;
-        server_name launcher.ВАШДОМЕН.ru;
+        server_name ВАШДОМЕН.ru;
         location / {
                 root /путь/до/updates;
         }
         location /api {
-                proxy_pass http://localhost:9274/api;
+                proxy_pass http://127.0.0.1:9274/api;
                 proxy_set_header Host $host;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
         location /webapi/ {
-                proxy_pass http://localhost:9274/webapi/;
+                proxy_pass http://127.0.0.1:9274/webapi/;
                 proxy_set_header Host $host;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
 }
 "
     />
     <p>
-        Примечание: Если у nginx не хватает прав доступа для чтения папки необходимо выдать соответствующие права: <q-badge>chmod +x /home/launcher && chmod -R 755 /home/launcher/updates</q-badge>
+        Примечание: Если у nginx нет прав для чтения папки, выдайте: <q-badge>chmod +x /home/launcher && chmod -R 755 /home/launcher/updates</q-badge>
     </p>
     <doc-header name="safety">Настройка безопасного подключения</doc-header>
     <p>
-        Для обеспечения безопасности передаваемых паролей, защиты от внедрения в процесс обмена данными нужно подключить к своему домену SSL сертификат. На данный момент его можно купить или получить бесплатно(Lets Encrypt/Cloudflare). Каким бы вы способом его не получали, вы должны будуте установить его на домен <q-badge>launcher.ВАШДОМЕН.ru</q-badge> и немного изменить конфиугацию лаунчсервера:
+        Для обеспечения безопасности передаваемых паролей, защиты от внедрения в процесс обмена данными нужно подключить к своему домену SSL сертификат. На данный момент его можно купить или получить бесплатно (Let's Encrypt/Cloudflare). Вы должны будете установить его на домен с лаунчсервером <q-badge>ВАШДОМЕН.ru</q-badge> и немного изменить настройки лаунчсервера:
     </p>
     <ul>
         <li>Откройте файл LaunchServer.json и найдите там секцию netty</li>
-        <li>Измените ссылки формата <q-badge>http://ДОМЕН ИЛИ IP:9274/ЧТО ТО</q-badge> на <q-badge>https://launcher.ВАШДОМЕН.ru/ЧТО ТО</q-badge></li>
-        <li>Измените ссылку на websocket лаунчера с <q-badge>ws://ДОМЕН ИЛИ IP:9274/api</q-badge> на <q-badge>wss://launcher.ВАШДОМЕН.ru/api</q-badge></li>
-        <li>Соберите лаунчер командой <q-badge>build</q-badge> и проверье работоспособность</li>
-        <li>Закройте порт 9274 (если он был открыт), так как теперь лаунчсервер будет передавать данные через nginx по портам 80 и 443</li>
+        <li>Измените ссылки формата <q-badge>http://ДОМЕН ИЛИ IP:9274/ЧТО ТО</q-badge> на <q-badge>https://ВАШДОМЕН.ru/ЧТО ТО</q-badge></li>
+        <li>Измените ссылку на websocket лаунчера с <q-badge>ws://ДОМЕН ИЛИ IP:9274/api</q-badge> на <q-badge>wss://ВАШДОМЕН.ru/api</q-badge></li>
+        <li>Соберите лаунчер командой <q-badge>build</q-badge> и проверьте работоспособность</li>
+        <li>Закройте порт 9274 (если он был открыт), так как теперь лаунчсервер будет получать и передавать данные через nginx по портам 80 и 443</li>
     </ul>
     <p>
-        В качестве дополнительных мер безопасности можно настроить сертификат подписи кода (CodeSign), который помогает уменьшить ложноположительные срабатывания антивирусов на launch4j обертку. <b>Это не обязательно</b>. Получить его можно несколькими способами:
+        В качестве дополнительных мер безопасности можно настроить сертификат подписи кода (CodeSign), который помогает уменьшить ложноположительные срабатывания антивирусов на Launch4J обертку (для .exe файла). Установите модуль <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module'>OSSLCodeSignModule</a> для подписи. Получить сертификат подписи кода можно несколькими способами:
     </p>
     <ul>
-        <li>Можно сгенерировать самому себе самоподписанный сертификат с помощью модуля <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/GenerateCertificate_module'>GenerateCertificateModule</a></li>
-        <li>Можно создать себе самоподписанные сертификаты с помощью утилиты <a href='https://github.com/chris2511/xca/releases'>XCA</a></li>
-        <li>Можно купить полноценный сертификат подписи кода(дорого)</li>
-        <li>Можно отдать сборки лаунчера другому человеку, который подпишет .exe файлы за денежное вознаграждение</li>
+        <li>Сгенерировать самоподписанный сертификат с помощью модуля <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/GenerateCertificate_module'>GenerateCertificateModule</a></li>
+        <li>Создать себе самоподписанные сертификаты с помощью утилиты <a href='https://github.com/chris2511/xca/releases'>XCA</a></li>
+        <li>Купить полноценный сертификат подписи кода (дорого)</li>
+        <li>Отдать сборки лаунчера другому человеку, который подпишет .exe файлы за денежное вознаграждение</li>
     </ul>
-    <p>Для всех проектов(кроме достаточно крупных) рекомендуется первый вариант. По ссылке вы можете найти инструкцию по установке модуля и генерации сертификата. Вне зависимости от вашего выбора способа получения сертификата теперь нужно установить модуль <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module'>OSSLCodeSignModule</a> для подписи EXE файла</p>
+    <p>Для большинства проектов (кроме достаточно крупных) рекомендуется первый вариант. По ссылке вы можете найти инструкцию по установке модуля и генерации сертификата.
     <p>
-        Если вы не крупный проект, то скорее всего столкнетесь с защитником <a href='https://docs.microsoft.com/ru-ru/windows/security/threat-protection/microsoft-defender-smartscreen/microsoft-defender-smartscreen-overview'>SmartScreen</a>, который ведет статистику скачиваний и на файлы с низким числом скачиваний выдает предупреждение. Что бы его не было вам необходимо сделать следующие действия:
+        Если вы не крупный проект, то скорее всего столкнетесь с защитником <a href='https://docs.microsoft.com/ru-ru/windows/security/threat-protection/microsoft-defender-smartscreen/microsoft-defender-smartscreen-overview'>SmartScreen</a>, который ведет статистику скачиваний и на файлы с низким числом скачиваний выдает предупреждение. Чтобы его не было, вам необходимо отправить файл на проверку:
     </p>
     <ul>
         <li>Зарегистрируйтесь или войдите в аккаунт Microsoft</li>
-        <li>Отправьте файл на проверку заполнив <a href='https://www.microsoft.com/en-us/wdsi/filesubmission/'>эту форму</a></li>
-        <li>Ждете результата</li>
+        <li>Отправьте файл на проверку, заполнив <a href='https://www.microsoft.com/en-us/wdsi/filesubmission/'>эту форму</a></li>
+        <li>Ждите результата</li>
     </ul>
     <a>
-        Каждый проект должен сам решить - нужно ли отправлять файлы лаунчера в Microsoft для проверки или нет. При достижении определенного числа скачиваний проблема уйдет "сама собой", а некоторые пользователи могут её вовсе не заметить
+        При достижении определенного числа скачиваний проблема уйдет "сама собой", а некоторые пользователи могут её вовсе не заметить.
     </a>
-    <doc-header name="windows">Установка на Windows для тестирования</doc-header>
+    <doc-header name="windows">Установка на Windows (ТОЛЬКО ДЛЯ ТЕСТИРОВАНИЯ)</doc-header>
     <p>Настройте окружение:</p>
     <ul>
-      <li>Скачиваем сборку OpenJDK 17 от <a href="https://adoptium.net/">AdoptJDK</a>(JDK 17 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> и устанавливаем на свой локальный компьютер. <b>Запомните или запишите путь к установленной JDK</b></li>
-      <li>Если вы установили AdoptJDK или любую другую сборку OpenJDK без OpenJFX скачайте <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку установки JDK, полученную на первом этапе</li>
-      <li>Скачиваем сборку JDK 8 от <a href="https://adoptium.net/">AdoptJDK</a>(JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>, или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
+      <li>Скачиваем и устанавливаем сборку OpenJDK 17 от <a href="https://adoptium.net/">AdoptJDK</a> (JDK 17 Windows x64 Hotspot) или <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a>. <b>Запомните или запишите путь к установленной JDK</b></li>
+      <li>Если вы установили AdoptJDK или любую другую сборку OpenJDK без OpenJFX, скачайте <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-jmods.zip">jmods</a> и <a href="https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-sdk.zip">sdk</a> и скопируйте содержимое архивов <b>с заменой</b> в папку установки JDK, полученную на первом этапе</li>
+      <li>Скачиваем сборку JDK 8 от <a href="https://adoptium.net/">AdoptJDK</a> (JDK 8 Windows x64 Hotspot), <a href="https://libericajdk.ru/pages/liberica-jdk/">LibericaJDK</a> или <a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle</a> и устанавливаем</li>
       <li>Всё!</li>
     </ul>
-    <p>Далее вам необходимо установить сам лаунчсервер вручную, без использования скрипта установки</p>
+    <p>Далее вам необходимо установить лаунчсервер ВРУЧНУЮ, без использования скрипта установки</p>
     <ul>
       <li>На странице <a href='https://github.com/GravitLauncher/Launcher/releases'>Launcher releases</a> найдите последний релиз и скачайте его</li>
       <li>Распакуйте библиотеки и LaunchServer.jar из архива</li>
@@ -271,20 +277,20 @@ server {
 "ПУТЬ_ДО_JDK_17/bin/java.exe" -javaagent:LaunchServer.jar -jar LaunchServer.jar
 PAUSE' /></li>
       <li>Запустите <q-badge>start.bat</q-badge> и при первом запуске укажите свой projectName и localhost в качестве адреса</li>
-      <li>Скачайте рантайм для вашей версии лаунчера тут: <a href='https://github.com/GravitLauncher/LauncherRuntime/releases'>LauncherRuntime releases</a></li>
+      <li>Скачайте рантайм для вашей версии лаунчера: <a href='https://github.com/GravitLauncher/LauncherRuntime/releases'>LauncherRuntime releases</a></li>
       <li>Скопируйте папку runtime в папку с установленным лаунчсервером, а .jar файл модуля в папку launcher-modules</li>
-      <li>Запустите лаунчсервер и выполните команду build для запуска сборки. По её завершению готовый лаунчер появится в папке <q-badge>updates</q-badge></li>
+      <li>Запустите лаунчсервер и выполните команду build для запуска сборки. После окончания готовый лаунчер появится в папке <q-badge>updates</q-badge></li>
     </ul>
     <doc-header name="dev">Установка dev версий лаунчсервера</doc-header>
     <a>
-      DEV версии лаунчсервера содержат самые последние фитчи и исправления, которые еще не попали в релиз. Они могут быть нестабильны, вызывать проблемы, иметь расхождение с оффициальной вики. Настоятельно рекомендуется проверять работоспособность dev версий в тестовом окружении прежде чем обновлять production.
+      DEV версии лаунчсервера содержат самый новый функционал и исправления, которые ещё не попали в релиз. Они могут быть нестабильны( вызывать проблемы), иметь расхождение с официальной вики. Настоятельно рекомендуется проверять работоспособность dev версий в тестовом окружении, прежде чем давать игрокам.
     </a>
     <ul>
-      <li><b>Первый способ: Установка через GitHub Actions. </b> <ul>
+      <li><b>Первый способ: Установка скриптом.</b> Следуйте <a href='/install#launchserver'>этой</a> инструкции, используя скрипт установки DEV версии: <q-badge>https://mirror.gravit.pro/scripts/setup-dev.sh</q-badge></li>
+      <li><b>Второй способ: Установка через GitHub Actions.</b><ul>
         <li>Зарегистрируйтесь или войдите на <a href='https://github.com'>GitHub</a></li>
         <li>Скачайте архивы с <a href='https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev'>лаунчером</a> и <a href='https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev'>рантаймом</a> с GitHub Actions.</li>
-        <li>Действуйте аналогично установке <a href='/install#windows'>stable версии</a> на Windows</li>, используя архивы, скачанные на предыдущем этапе</ul></li>
-      <li><b>Второй способ: Установка скриптом.</b> Следуйте <a href='/install#launchserver'>этой</a> инструкции, используя скрипт установки DEV версии: <q-badge>https://mirror.gravit.pro/scripts/setup-dev.sh</q-badge></li>
+        <li>Действуйте аналогично установке <a href='/install#windows'>stable версии</a> на Windows, используя архивы, скачанные на предыдущем этапе</ul></li>
     </ul>
   </q-page>
 </template>
