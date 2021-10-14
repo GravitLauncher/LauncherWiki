@@ -24,7 +24,7 @@
     <p>
       Для использования команд AuthCoreProvider используйте
       <codes>config auth.ВАШAUTHID.core КОМАНДА АРГУМЕНТЫ</codes>. Список команд
-      вы можете посмотреть нажав на TAB
+      вы можете посмотреть, нажав на TAB
     </p>
     <doc-header name="passwordverifier"
       >Конфигурация PasswordVerifier</doc-header
@@ -40,8 +40,8 @@
       <q-tab-panel name="doubledigest">
         <p>
           Алгоритм doubleDigest <b>дважды</b> хеширует пароль одним алгоритмом
-          без соли. Опция toHexMode определяет будут ли хешироватся бинарные
-          данные(false) или HEX строка(true)
+          без соли. Опция toHexMode определяет будут ли хешироваться бинарные
+          данные (false) или HEX строка (true)
         </p>
         <doc-code
           autodetect
@@ -109,32 +109,32 @@
     </q-tab-panels>
     <doc-header name="permissions">Привилегии</doc-header>
     <p>
-      Лаунчер предоставляет систему привилегий для определения каким пользователям можно совершать то или иное действие. Примеры permissions(<b>к сожалению в данный момент новая
+      Лаунчер предоставляет систему привилегий для определения того, какие действия может совершить пользователь. Примеры permissions (<b>К сожалению, в данный момент новая
         система permissions недоступна в способе MySQL</b>)
     </p>
     <ul>
       <li><q-badge>*</q-badge> - все привилегии</li>
       <li><q-badge>launchserver.*</q-badge> - все привилегии, проверяемые на стороне лаунчсервера</li>
       <li><q-badge>launcher.*</q-badge> - все привилегии, проверяемые на стороне лаунчера</li>
-      <li><q-badge>launchserver.profiles.hitech.*</q-badge> - разрешает показ в лаунчере и вход в профиль hitech(в нижнем регистре)</li>
+      <li><q-badge>launchserver.profiles.hitech.*</q-badge> - разрешает показ в лаунчере и вход в профиль hitech (в нижнем регистре)</li>
       <li><q-badge>launcher.runtime.optionals.hitech.*</q-badge> - разрешает управлять всеми опциональными модами в профиле hitech</li>
     </ul>
     <p>
       Примечания:
     </p>
     <ul>
-      <li>Все профили по умолчанию доступны всем вне зависимости от permissions. Установите в профиле поле <q-badge>limited</q-badge> в true что бы ограничить доступ к профилю по permissions</li>
-      <li>Все опциональные моды по умолчанию доступны всем вне зависимости от permissions. Установите в опциональном моде поле <q-badge>limited</q-badge> в true что бы ограничить доступ к профилю по permissions</li>
-      <li>Профиль может записываться как title в нижнем регистре(hitech) или как UUID (f210e1f0-c24e-41b6-9214-cee9a9139823). Второй вариант записи предпочительней, так как не зависит от языка и не содержит спец символов</li>
+      <li>Все профили по умолчанию доступны всем, вне зависимости от permissions. Установите в профиле поле <q-badge>limited</q-badge> в true, чтобы ограничить доступ к профилю по permissions</li>
+      <li>Все опциональные моды по умолчанию доступны всем, вне зависимости от permissions. Установите в опциональном моде поле <q-badge>limited</q-badge> в true, чтобы ограничить доступ к профилю по permissions</li>
+      <li>Профиль может записываться с помощью title в нижнем регистре (hitech) или с помощью его UUID (f210e1f0-c24e-41b6-9214-cee9a9139823). Второй вариант записи предпочительней, так как не зависит от языка и не содержит спец. символов</li>
     </ul>
     <doc-header name="mysql">Способ MySQL</doc-header>
     <p>
-      Этот способ подходит если:
+      Этот способ подходит, если:
     </p>
     <ul>
-      <li>У вас есть сайт или сервис с БД MySQL/MariaDB, через который пользователи могут зарегистрироватся</li>
-      <li>У машины лаунчсервера есть прямой доступ к БД</li>
-      <li>В БД пароли хранятся в одном столбце в таблице пользователей</li>
+      <li>У вас есть сайт или сервис с БД MySQL/MariaDB, через который пользователи могут зарегистрироваться</li>
+      <li>У лаунчсервера есть прямой доступ к БД</li>
+      <li>В БД пароли хранятся в одном столбце, в таблице пользователей</li>
     </ul>
     <p>
       Выполните следующие SQL запросы для создания таблицы с HWID и необходимых
@@ -183,10 +183,10 @@ ALTER TABLE `hwids`
 ALTER TABLE `hwids`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`)
+  ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
     '
     />
-    <p>Настройте конфигурацию</p>
+    <p>Настройте лаунчсервер</p>
     <doc-code
       autodetect
       code='
@@ -198,9 +198,9 @@ ALTER TABLE `users`
           "port": 3306,                        // порт mysql сервера
           "username": "launchserver",          // имя пользователя
           "password": "password",              // пароль пользователя
-          "database": "db?serverTimezone=UTC", // база данных (до ?), после находится установка серверной таймзоны
-          "timezone": "UTC",                   // установка клиентской таймзоны
-          "useHikari": true                    // использовать ли HikariCP
+          "database": "db?serverTimezone=UTC", // база данных (до ?), после — параметры базы данных, в этом примере — установка серверного часового пояса
+          "timezone": "UTC",                   // установка клиентского часового пояса
+          "useHikari": true                    // Использовать HikariCP
         },
         "passwordVerifier": {                  // Ваш PasswordVerifier
           "algo": "SHA256",
