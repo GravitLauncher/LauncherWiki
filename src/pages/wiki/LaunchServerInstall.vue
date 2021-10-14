@@ -249,7 +249,7 @@ server {
         <li>Купить полноценный сертификат подписи кода (дорого)</li>
         <li>Отдать сборки лаунчера другому человеку, который подпишет .exe файлы за денежное вознаграждение</li>
     </ul>
-    <p>Для большинства проектов (кроме достаточно крупных) рекомендуется первый вариант. По ссылке вы можете найти инструкцию по установке модуля и генерации сертификата.
+    <p>Для большинства проектов (кроме достаточно крупных) рекомендуется первый вариант. По ссылке вы можете найти инструкцию по установке модуля и генерации сертификата.</p>
     <p>
         Если вы не крупный проект, то скорее всего столкнетесь с защитником <a href='https://docs.microsoft.com/ru-ru/windows/security/threat-protection/microsoft-defender-smartscreen/microsoft-defender-smartscreen-overview'>SmartScreen</a>, который ведет статистику скачиваний и на файлы с низким числом скачиваний выдает предупреждение. Чтобы его не было, вам необходимо отправить файл на проверку:
     </p>
@@ -287,10 +287,11 @@ PAUSE' /></li>
     </a>
     <ul>
       <li><b>Первый способ: Установка скриптом.</b> Следуйте <a href='/install#launchserver'>этой</a> инструкции, используя скрипт установки DEV версии: <q-badge>https://mirror.gravit.pro/scripts/setup-dev.sh</q-badge></li>
-      <li><b>Второй способ: Установка через GitHub Actions.</b><ul>
+      <li><b>Второй способ: Установка через GitHub Actions.</b></li><ul>
         <li>Зарегистрируйтесь или войдите на <a href='https://github.com'>GitHub</a></li>
         <li>Скачайте архивы с <a href='https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev'>лаунчером</a> и <a href='https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev'>рантаймом</a> с GitHub Actions.</li>
-        <li>Действуйте аналогично установке <a href='/install#windows'>stable версии</a> на Windows, используя архивы, скачанные на предыдущем этапе</ul></li>
+        <li>Действуйте аналогично установке <a href='/install#windows'>stable версии</a> на Windows, используя архивы, скачанные на предыдущем этапе</li>
+      </ul>
     </ul>
   </q-page>
 </template>
