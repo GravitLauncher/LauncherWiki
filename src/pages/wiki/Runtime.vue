@@ -8,6 +8,7 @@
     <ul>
       <li><a href='https://gluonhq.com/products/scene-builder/'>Scene Builder</a> - Редактор fxml файлов</li>
       <li><a href='https://openjfx.io/javadoc/17/'>OpenJFX API Docs</a> - Документация JavaFX API</li>
+      <li><a href='https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/doc-files/cssref.html'>JavaFX CSS Reference Guide</a> - Документация JavaFX CSS</li>
     </ul>
     <doc-header name="settings">Настройка рантайма</doc-header>
     <a>В этом разделе вы найдете полезные функции, входящие в рантайм "из коробки", но не включенные по умолчанию</a>
