@@ -19,7 +19,7 @@
     <q-tabs v-model="serverType">
       <q-tab name="forge1.12" label="Forge/Sponge 1.12.2" />
       <q-tab name="authlib2" label="1.16.4+" />
-      <q-tab name="waterfall" label="Waterfall" />
+      <q-tab name="proxy" label="Waterfall/BungeeCord/Velocity" />
     </q-tabs>
     <q-tab-panels v-model="serverType">
       <q-tab-panel name="forge1.12">
@@ -28,8 +28,13 @@
       <q-tab-panel name="authlib2">
         <p>Скачайте <a href='https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar'>этот</a> файл и поместите его рядом с ServerWrapper.jar. Далее откройте ServerWrapper.jar любым архиватором и удалите из него всё содерджимое папки com/mojang. После чего откройте ваш скрипт запуска и перед ServerWrapper.jar допишите <q-badge>LauncherAuthlib.jar:</q-badge></p>
       </q-tab-panel>
-      <q-tab-panel name="waterfall">
-        <p>Вам необходимо <b>собрать из исходников</b> Waterfall c <a href='https://mirror.gravit.pro/compat/patch/0060-Waterfall-UseAuthlib.patch'>этим</a> патчем</p>
+      <q-tab-panel name="proxy">
+        <p>Прокси серверы напрямую обращаются к серверам Mojang минуя authlib, поэтому вы должны пропатчить их</p>
+        <ul>
+          <li><b>Waterfall</b> - Скачайте <a href='https://mirror.gravit.pro/compat/patch/Waterfall.patch'>патч</a>, переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. После чего соберите waterfall командой <q-badge>./waterfall build</q-badge></li>
+          <li><b>BungeeCord</b> - Скачайте <a href='https://mirror.gravit.pro/compat/patch/BungeeCord.patch'>патч</a>, скопируйте его в папку с репозиторием, примените его командой <q-badge>git am BungeeCord.patch</q-badge>. После чего соберите bungeecord командой <q-badge>mvn package -Dcheckstyle.skip</q-badge></li>
+          <li><b>Velocity</b> (рекомендуется) - Скачайте <a href='https://mirror.gravit.pro/compat/patch/Velocity.patch'>патч</a>, скопируйте его в папку с репозиторием, примените его командой <q-badge>git am Velocity.patch</q-badge>. После чего соберите velocity командой <q-badge>./gradlew assemble</q-badge></li>
+        </ul>
       </q-tab-panel>
     </q-tab-panels>
     <p>Конфигурация ServerWrapper:</p>
