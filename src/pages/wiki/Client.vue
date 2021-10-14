@@ -14,7 +14,7 @@
       Для сборки authlib 1 для версий майнкрафта до 1.16.4 следуйте инструкции:
     </p>
     <ul>
-      <li>Скопируйте файл <a href=''>authlib-clean</a> в папку libraries вашего клиента</li>
+      <li>Скопируйте файл <a href='https://github.com/GravitLauncher/Launcher/blob/master/compat/authlib/authlib-clean.jar'>authlib-clean</a> в папку libraries вашего клиента</li>
       <li>Скопируйте файл LauncherAuthlib в папку libraries вашего клиента</li>
     </ul>
     <doc-header name="authlib2">Сборка Authlib 2</doc-header>

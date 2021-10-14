@@ -2,6 +2,12 @@
   <q-page padding>
     <doc-header name="compatibility">Совместимость</doc-header>
     <p>В настоящий момент поддерживаются:</p>
+    <ul>
+      <li>Все оригинальные ядра vanilla, forge, fabric, bukkit</li>
+      <li>Форки на их основе: Sponge, Spigot, Paper и другие</li>
+      <li>Связки Bukkit+Forge, Bukkit+Fabric если их авторы не внесли дополнительных ошибок, мешающих работе запуска</li>
+      <li>Прокси серверы: Waterfall, Velocity</li>
+    </ul>
     <doc-header name="serverwrapper">Использование ServerWrapper</doc-header>
     <p>Для привязки ServerWrapper к вашему серверу выполните следующие действия:</p>
     <ul>
@@ -26,7 +32,23 @@
         <p>Вам необходимо <b>собрать из исходников</b> Waterfall c <a href='https://mirror.gravit.pro/compat/patch/0060-Waterfall-UseAuthlib.patch'>этим</a> патчем</p>
       </q-tab-panel>
     </q-tab-panels>
-    <p></p>
+    <p>Конфигурация ServerWrapper:</p>
+    <doc-code language='json' code='
+{
+  "projectname": "MineCraft", // Название проекта
+  "address": "ws://ADDRESS/api", // Адрес лаунчсервера
+  "serverName": "Vanilla1.17.1", // Название сервера в профиле
+  "autoloadLibraries": false, // Автозагрузка библиотек из папки libraries
+  "classpath": [], // Дополнительный classpath
+  "mainclass": "io.papermc.paperclip.Paperclip", // Main-Class вашего ядра сервера
+  "args": ["nogui"], // Аргументы запуска
+  "oauthExpireTime": 0,
+  "extendedTokens": { // Токены доступа
+    "checkServer": "TOKEN"
+  },
+  "env": "STD"
+}
+' />
   </q-page>
 </template>
 
