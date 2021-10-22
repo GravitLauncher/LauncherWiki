@@ -46,6 +46,14 @@ const routes = [
       { path: '', component: () => import('src/pages/wiki/Runtime.vue') }
     ]
   },
+  {
+    path: '/developers',
+    alias: ['/developers/oauth'],
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('src/pages/wiki/Developers.vue') }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

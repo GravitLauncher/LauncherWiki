@@ -227,7 +227,7 @@ ALTER TABLE `users`
     <h2>Метод json</h2>
     <p>
       Следуйте инструкции к вашему скрипту или обратитесь к
-      <router-link to="/developers/oauth">этой</router-link> инструкции для
+      <router-link to="/developers#oauth">этой</router-link> инструкции для
       создания собственного скрипта
     </p>
     <h2>Метод fileauthsystem</h2>

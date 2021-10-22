@@ -108,6 +108,20 @@
                 <q-item to="/runtime#debug">Отладка рантайма</q-item>
               </q-list>
             </q-expansion-item>
+            <q-expansion-item
+              expand-separator
+              label="Разработчикам"
+              :header-inset-level="0.5"
+              :content-inset-level="1"
+            >
+              <q-list>
+                <q-item to="/developers#maven">Подключение зависимостей Gradle</q-item>
+                <q-item to="/developers#modules">Написание модуля</q-item>
+                <q-item to="/developers#external">Внешние API</q-item>
+                <q-item to="/developers#auth">Написание AuthCoreProvider</q-item>
+                <q-item to="/developers#oauth">Реализация OAuth</q-item>
+              </q-list>
+            </q-expansion-item>
           </q-list>
         </q-expansion-item>
       </q-list>
