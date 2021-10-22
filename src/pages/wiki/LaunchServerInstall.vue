@@ -79,8 +79,8 @@ apt-get update && apt-get upgrade
 apt-get install apt curl wget nftables openjdk-17-jdk 
 wget "https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_linux-x64_bin-jmods.zip"
 unzip openjfx-17.0.0.1_linux-x64_bin-jmods.zip
-cp openjfx-17.0.0.1_linux-x64_bin-jmods/* /usr/lib/jvm/java-17-openjdk-amd64/jmods
-rm -r openjfx-17.0.0.1_linux-x64_bin-jmods
+cp javafx-jmods-17.0.0.1/* /usr/lib/jvm/java-17-openjdk-amd64/jmods
+rm -r javafx-jmods-17.0.0.1
 rm openjfx-17.0.0.1_linux-x64_bin-jmods.zip
 wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
 add-apt-repository --yes "https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
