@@ -10,7 +10,7 @@
         "skinURL": "http://example.com/skins/%username%.png",
         "cloakURL": "http://example.com/cloaks/%username%.png",
         "type": "request"
-      },' />
+      },' /></li>
       <li><b>request</b> - прямое получение скина по локальному пути
       <doc-code language="json" code='
       "textureProvider": {
