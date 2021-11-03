@@ -1,9 +1,29 @@
 <template>
   <q-layout view="lHh Lpr lFf">
 
+    <q-header reveal elevated>
+      <q-toolbar>
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
+        <q-toolbar-title> GravitLauncher Wiki </q-toolbar-title>
+
+        <q-tabs v-model="tab" v-if="false" shrink>
+          <q-route-tab name="tab1" label="Начало работы"></q-route-tab>
+          <q-route-tab name="tab2" label="Tab 2"></q-route-tab>
+          <q-route-tab name="tab3" label="Tab 3"></q-route-tab>
+        </q-tabs>
+      </q-toolbar>
+    </q-header>
+
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="bg-grey-1">
       <q-list>
-        <q-item-label header class="text-grey-8"> GravitLauncher Wiki </q-item-label>
+        <q-item-label header class="text-grey-8"> Меню сайта </q-item-label>
         <q-expansion-item expand-separator icon="link" label="Ссылки">
           <q-list>
             <q-item clickable tag='a' href='https://discord.gg/b9QG4ygY75'>
