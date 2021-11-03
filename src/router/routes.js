@@ -27,7 +27,7 @@ const routes = [
     alias: ['/textureprovider'],
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('src/pages/wiki/LaunchServerAuth.vue') }
+      { path: '', component: () => import('src/pages/wiki/LaunchServerOther.vue') }
     ]
   },
   {

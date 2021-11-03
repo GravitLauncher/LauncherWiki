@@ -96,7 +96,7 @@
               :content-inset-level="1"
             >
               <q-list>
-                <q-item to="/othersettiongs#textureprovider">Настройка TextureProvider</q-item>
+                <q-item to="/othersettings#textureprovider">Настройка TextureProvider</q-item>
               </q-list>
             </q-expansion-item>
             <q-expansion-item
