@@ -9,6 +9,16 @@
       <li>Любой Forge версии с 1.7.10 до 1.16.5</li>
       <li>Любой Fabric версии с 1.13 до 1.17.1</li>
     </ul>
+    <doc-header name="downloadclient">Скачивание клиента с зеркала</doc-header>
+    <p>Список клиентов, доступных на зеркале можно посмотреть тут: <a href='https://mirror.gravit.pro/clients/'>клиенты</a> и <a href='https://mirror.gravit.pro/assets/'>ассеты</a></p>
+    <p>Выполните команду <q-badge>downloadclient ВЕРСИЯ НАЗВАНИЕ</q-badge> для скачки клиента</p>
+    <p>Выполните команду <q-badge>downloadassets ВЕРСИЯ НАЗВАНИЕ</q-badge> для скачки ассетов</p>
+    <p>Примечания:</p>
+    <ul>
+      <li>Для скачки клиента с стороннего зеркала вместе с профилем вам нужно использовать такую команду: <q-badge>downloadclient ВЕРСИЯ НАЗВАНИЕ mirror</q-badge></li>
+      <li>Название папки ассетов как правило записывается в виде <q-badge>assetВЕРСИЯ</q-badge>, например: <b>asset1.7.10</b>, <b>asset1.17.1</b></li>
+      <li>Версии клиента 1.12.2 и ниже включают в себя Forge по умолчанию</li>
+    </ul>
     <doc-header name="authlib1">Сборка Authlib (MineCraft до 1.16.4)</doc-header>
     <p>
       Для сборки Authlib следуйте инструкции:

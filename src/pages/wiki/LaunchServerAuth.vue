@@ -43,6 +43,7 @@
           без соли. Опция toHexMode определяет будут ли хешироваться бинарные
           данные (false) или HEX строка (true)
         </p>
+        <p>Список доступных алгоритмов аналогичен способу digest</p>
         <doc-code
           autodetect
           code='
@@ -63,6 +64,7 @@
           Алгоритм digest <b>один раз</b> хеширует пароль одним алгоритмом без
           соли
         </p>
+        <p>Метод поддерживает любые алгоритмы хеширования, реализованные в вашей JDK или библиотеки BouncyCastle. Самые распространенные из них: MD5, SHA1, SHA256, SHA512</p>
         <doc-code
           autodetect
           code='
@@ -90,6 +92,7 @@
         Большинство современных CMS использует именно этот тип хеширования
         пароля
       </p>
+      <p><b>Требуется установка модуля <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module'>AddionalHash</a></b></p>
       </q-tab-panel>
       <q-tab-panel name="phpass">
         <p>
@@ -105,6 +108,7 @@
     '
         />
       <p>Используется в WordPress</p>
+      <p><b>Требуется установка модуля <a href='https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module'>AddionalHash</a></b></p>
       </q-tab-panel>
     </q-tab-panels>
     <doc-header name="permissions">Привилегии</doc-header>
