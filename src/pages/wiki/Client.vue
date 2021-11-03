@@ -21,7 +21,7 @@
     <p>
       Для сборки Authlib следуйте инструкции:
     </p>
-    <q-tabs v-model='authlib2select'>
+    <q-tabs v-model='authlib2Select'>
         <q-tab name='rename' label='Переименование' />
         <q-tab name='build' label='Сборка' />
     </q-tabs>

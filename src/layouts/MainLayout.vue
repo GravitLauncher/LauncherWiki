@@ -110,6 +110,16 @@
             </q-expansion-item>
             <q-expansion-item
               expand-separator
+              label="Другие настройки"
+              :header-inset-level="0.5"
+              :content-inset-level="1"
+            >
+              <q-list>
+                <q-item to="/othersettiongs#textureprovider">Настройка TextureProvider</q-item>
+              </q-list>
+            </q-expansion-item>
+            <q-expansion-item
+              expand-separator
               label="Разработчикам"
               :header-inset-level="0.5"
               :content-inset-level="1"

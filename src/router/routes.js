@@ -23,6 +23,14 @@ const routes = [
     ]
   },
   {
+    path: '/othersettings',
+    alias: ['/textureprovider'],
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('src/pages/wiki/LaunchServerAuth.vue') }
+    ]
+  },
+  {
     path: '/client',
     alias: ['/clientbuild'],
     component: () => import('layouts/MainLayout.vue'),
