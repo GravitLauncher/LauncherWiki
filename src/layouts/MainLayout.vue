@@ -66,6 +66,7 @@
                 <q-item to="/auth#authcoreprovider">Обзор AuthCoreProvider</q-item>
                 <q-item to="/auth#passwordverifier">Настройка PasswordVerifier</q-item>
                 <q-item to="/auth#permissions">Привилегии</q-item>
+                <q-item to="/auth#memory">Способ memory</q-item>
                 <q-item to="/auth#mysql">Способ mysql</q-item>
               </q-list>
             </q-expansion-item>

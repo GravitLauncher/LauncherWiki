@@ -131,6 +131,16 @@
       <li>Все опциональные моды по умолчанию доступны всем, вне зависимости от permissions. Установите в опциональном моде поле <q-badge>limited</q-badge> в true, чтобы ограничить доступ к профилю по permissions</li>
       <li>Профиль может записываться с помощью title в нижнем регистре (hitech) или с помощью его UUID (f210e1f0-c24e-41b6-9214-cee9a9139823). Второй вариант записи предпочительней, так как не зависит от языка и не содержит спец. символов</li>
     </ul>
+    <doc-header name="memory">Способ Memory</doc-header>
+    <p>
+      Не требует пароль для входа и не проверяет serverId/accessToken
+    </p>
+    <doc-code code='
+    "memory": {
+      "core": {
+        "type": "memory"
+      }
+    }' />
     <doc-header name="mysql">Способ MySQL</doc-header>
     <p>
       Этот способ подходит, если:
@@ -228,7 +238,7 @@ ALTER TABLE `users`
       Для работы HWID включите опцию <codes>enableHardwareFeature</codes> в
       protectHandler
     </p>
-    <h2>Метод json</h2>
+    <h2>Метод http</h2>
     <p>
       Следуйте инструкции к вашему скрипту или обратитесь к
       <router-link to="/developers#oauth">этой</router-link> инструкции для
@@ -246,8 +256,10 @@ ALTER TABLE `users`
 </template>
 
 <script>
+import DocCode from "src/components/DocCode.vue";
 import { defineComponent } from "vue";
 export default defineComponent({
+  components: { DocCode },
   name: "PageAuth",
   data: function () {
     return {

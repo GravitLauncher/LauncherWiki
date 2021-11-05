@@ -123,33 +123,23 @@
       Для работы с OAuth вам необходимо реализовать соответствующие методы
       <codes>getUserSessionByOAuthAccessToken</codes>,
       <codes>refreshAccessToken</codes>, а в методе
-      <codes>createOAuthSession</codes> вернуть результат с данными OAuth
+      <codes>authorize</codes> вернуть результат с данными OAuth
     </p>
     <h4>Порядок авторизации с OAuth</h4>
     <ul>
       <li>
-        Первым шагом идет получение объекта User с помощью метода
-        <codes>getUserByLogin</codes>, который по умолчанию вызывает метод
-        <codes>getUserByUsername</codes>
-      </li>
-      <li>
-        Вторым шагом вызывается <codes>verifyAuth</codes>. В этом методе вы
+        Первым шагом вызывается <codes>verifyAuth</codes>. В этом методе вы
         должны проверить допустима ли авторизация для этого соеденения и бросить
-        исключение <codes>AuthException</codes> если это не так
+        исключение <codes>AuthException</codes> если это не так. 
       </li>
       <li>
-        Третьим шагом выполняется проверка пароля с помощью метода
-        <codes>verifyPassword</codes>. Вы <b>не должны</b> кидать исключения в
-        этом методе
-      </li>
-      <li>
-        Четвертым шагом выполняется создание сессии и получение accessToken
-        майнкрафта с помощью метода <codes>createOAuthSession</codes>. Если
-        пользователь забанен, не активирован или с ним еще какие то проблемы вам
-        нужно кинуть исключение <codes>AuthException</codes> с текстом ошибки.
-        Вы должны отдать minecraftAccessToken только если параметр
-        <codes>minecraftAccess</codes> true. В противном случае вы должны отдать
-        null.
+        Вторым шагом выполняется авторизация с помощью метода
+        <codes>authorize</codes>. Вы должны:<ul>
+          <li>Проверить, аргументы login и password на null и тип</li>
+          <li>Если context равен null то это означает, что вам не требуется проверять пароль(если это возможно).
+            Это позволяет администратору с помощью команды 'sendAuth' авторизировать пользователя без пароля. Вы вправе не поддерживать данный режим работы и всегда требовать пароль</li>
+          <li>Создайте объект UserSession, содержащий информацию о пользователе, а так же токены accessToken и refreshToken при необходимости</li>
+        </ul>
       </li>
       <li>Авторизация завершена</li>
     </ul>
@@ -168,32 +158,152 @@
       вашей системе сессий нет ID - то он должен генерироватся при создании
       объекта UserSession.
     </p>
-    <h4>Особые случаи</h4>
+    <h4>Написание скрипта авторизации</h4>
+    <p>
+      Настройте тип авторизации 'http'. Примеры:
+    </p>
     <ul>
       <li>
-        Иногда невозможно определить логин пользователя на стадии авторизации.
-        Например так будет при авторизации через WebView(сайт). В этом случае
-        порядок авторизации немного изменится
-        <ul>
-          <li>
-            Метод <codes>getUserByLogin</codes> не будет вызван. Первый шаг
-            пропускается
-          </li>
-          <li>
-            Третьим шагом будет вызван метод <codes>verifyPassword</codes> с
-            параметром user равным null. В ответ вы должны вернуть объект
-            собственного класса, наследующегося от PasswordVerifyReport, куда
-            сохранить необходимые данные
-          </li>
-          <li>
-            Четвертым шагом будет вызван метод
-            <codes>createOAuthSession</codes> с параметром user равным null и
-            объектом report, полученным на предыдущем этапе. В ответ вы
-            <b>обязаны</b> вернуть сессию с заполненным полем user, иначе
-            получите ошибку
-          </li>
-        </ul>
+        OAuth без checkServer/joinServer:
+        <doc-code code='
+          {
+            "getUserByUsernameUrl": "https://example.com/user/name/%username%",
+            "getUserByUUIDUrl": "https://example.com/user/uuid/%uuid%",
+            "getUserByTokenUrl": "https://example.com/auth/current",
+            "refreshTokenUrl": "https://example.com/auth/refresh",
+            "authorizeUrl": "https://example.com/auth/authorize",
+            "updateServerIdUrl": "https://example.com/auth/updateServerId",
+            "bearerToken": "TOKEN",
+            "type": "http"
+          }' />
       </li>
+      <li>
+        OAuth c checkServer/joinServer:
+        <doc-code code='
+          {
+            "getUserByUsernameUrl": "https://example.com/user/name/%username%",
+            "getUserByUUIDUrl": "https://example.com/user/uuid/%uuid%",
+            "getUserByTokenUrl": "https://example.com/auth/current",
+            "refreshTokenUrl": "https://example.com/auth/refresh",
+            "authorizeUrl": "https://example.com/auth/authorize",
+            "joinServerUrl": "https://example.com/auth/joinServer",
+            "checkServerUrl": "https://example.com/auth/checkServer",
+            "bearerToken": "TOKEN",
+            "type": "http"
+          }' />
+      </li>
+      <li>
+        OAuth c checkServer/joinServer, login и details:
+        <doc-code code='
+          {
+            "getUserByUsernameUrl": "https://example.com/user/name/%username%",
+            "getUserByLoginUrl": "https://example.com/user/login/%login%",
+            "getUserByUUIDUrl": "https://example.com/user/uuid/%uuid%",
+            "getUserByTokenUrl": "https://example.com/auth/current",
+            "getAuthDetailsUrl": "https://example.com/auth/details",
+            "refreshTokenUrl": "https://example.com/auth/refresh",
+            "authorizeUrl": "https://example.com/auth/authorize",
+            "joinServerUrl": "https://example.com/auth/joinServer",
+            "checkServerUrl": "https://example.com/auth/checkServer",
+            "bearerToken": "TOKEN",
+            "type": "http"
+          }' />
+      </li>
+    </ul>
+    <p>
+      Запросы  getUserByUsernameUrl,getUserByLoginUrl,getUserByUUIDUrl,getUserByTokenUrl,getAuthDetailsUrl используют метод GET, все остальные - POST.
+      При успешном выполнении вы должны вернуть код 200 и ответ в виде JSON. При отсутствии пользователя вы должны вернуть код 404
+    </p>
+    <p>Ответы:</p>
+    <ul>
+    <li>Методы getUserByUsernameUrl,getUserByLoginUrl,getUserByUUIDUrl,checkServerUrl ожидают ответ типа HttpUser:
+      <doc-code code='
+      {
+        "username": "Gravita",
+        "uuid": "UUID",
+        "permissions": {
+          "perms": ["launchserver.*", "launcher.*"],
+          "roles": ["ADMIN"]
+        },
+        "skin": {
+          "url": "http://example.com/skins/Gravita.png",
+          "digest": "",
+          "metadata": {
+            "model": "slim"
+          }
+        },
+        "cloak": {
+          "url": "http://example.com/cloaks/Gravita.png",
+          "digest": ""
+        }
+      }' />
+    </li>
+    <li>Метод getUserByTokenUrl ожидает ответ типа HttpUserSession: <doc-code code='
+    {
+      "id": "RANDOM ID",
+      "user": (( HttpUser )),
+      "expireIn": 0
+    }' /></li>
+    <li>Методы authorizeUrl,refreshTokenUrl ожидают ответ типа AuthReport: <doc-code code='
+    {
+      "minecraftAccessToken": "MINECRAFT ACCESS TOKEN",
+      "oauthAccessToken": "ACCESS TOKEN",
+      "oauthRefreshToken": "REFRESH TOKEN",
+      "oauthExpire": 0,
+      "session": (( HttpUserSession ))
+    }' /></li>
+    <li>
+      Метод getAuthDetailsUrl ожидает ответ: <doc-code code='
+      {
+        "details": [
+        {
+          "type": "password"
+        },
+        {
+          "type": "totp"
+        }
+        ]
+      }' />
+    </li>
+    <li>Методы joinServerUrl,updateServerIdUrl ожидают ответ 200 в случае успеха</li>
+    </ul>
+    <p>Запросы:</p>
+    <ul>
+      <li>authorizeUrl: <doc-code code='
+      {
+        "login": "Gravita",
+        "context": {
+          "ip": "127.0.0.1"
+        },
+        "password": {
+          "password": "qwerty",
+          "type": "plain"
+        },
+        "minecraftAccess": true
+      }' /></li>
+      <li>refreshTokenUrl: <doc-code code='
+      {
+        "refreshToken": "REFRESH TOKEN",
+        "context": {
+          "ip": "127.0.0.1"
+        }
+      }' /></li>
+      <li>joinServerUrl: <doc-code code='
+      {
+        "username": "Gravita",
+        "accessToken": "MINECRAFT ACCESS TOKEN",
+        "serverId": "SERVER ID",
+      }' /></li>
+      <li>checkServerUrl: <doc-code code='
+      {
+        "username": "Gravita",
+        "serverId": "SERVER ID",
+      }' /></li>
+      <li>updateServerIdUrl: <doc-code code='
+      {
+        "username": "Gravita",
+        "serverId": "SERVER ID",
+      }' /></li>
     </ul>
   </q-page>
 </template>
