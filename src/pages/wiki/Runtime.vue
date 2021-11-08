@@ -125,6 +125,22 @@
       параметры объектов и вообще любые свойства, которые вы можете указать в
       .fxml файле
     </p>
+    <h3>Кастомные serverButton</h3>
+    <p>
+      Вы можете использовать под каждый профиль, собственные serverButton. 
+      Для этого, в папке <q-badge>components</q-badge> создайте папку <q-badge>serverButton</q-badge> (регистр важен)<br />
+      Cкопируйте туда файл <q-badge>serverButton.fxml</q-badge>, переименовав его в <q-badge>PROFILE_UUID.fxml</q-badge>, 
+      где <b>PROFILE_UUID</b> - <b>UUID</b> вашего профиля, для которого вы делаете <b>serverButton</b>
+    </p>
+    <p>
+      <b>Обратите внимание</b> - так как папка теперь не <q-badge>components</q-badge>, а <q-badge>components/serverButton</q-badge>, в вашем fxml, необходимо
+      изменить пути<br /> 
+      к некоторым файлам/папкам:<br /> 
+      <q-badge>"@../../images/servers/example.png"</q-badge> вместо <q-badge>"@../images/servers/example.png"</q-badge> (где example.png - изображение на serverButton)<br /> 
+      <q-badge>"../@components.css"</q-badge> вместо <q-badge>"@components.css"</q-badge><br /> 
+      <q-badge>"@../../styles/global.css"</q-badge> вместо <q-badge>"@../styles/variables.css"</q-badge><br /> 
+      <q-badge>"@../../styles/variables.css"</q-badge> вместо <q-badge>"@../styles/variables.css"</q-badge>
+    </p>
     <doc-header name="debug">Отладка рантайма</doc-header>
     <p>
       Для отладки рантайма из IDEA укажите следующие параметры:
