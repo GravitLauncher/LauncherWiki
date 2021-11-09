@@ -137,7 +137,7 @@
       изменить пути<br /> 
       к некоторым файлам/папкам:<br /> 
       <q-badge>"@../../images/servers/example.png"</q-badge> вместо <q-badge>"@../images/servers/example.png"</q-badge> (где example.png - изображение на serverButton)<br /> 
-      <q-badge>"../@components.css"</q-badge> вместо <q-badge>"@components.css"</q-badge><br /> 
+      <q-badge>"@../components.css"</q-badge> вместо <q-badge>"@components.css"</q-badge><br /> 
       <q-badge>"@../../styles/global.css"</q-badge> вместо <q-badge>"@../styles/variables.css"</q-badge><br /> 
       <q-badge>"@../../styles/variables.css"</q-badge> вместо <q-badge>"@../styles/variables.css"</q-badge>
     </p>
