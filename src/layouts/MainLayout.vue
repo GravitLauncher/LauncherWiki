@@ -68,6 +68,7 @@
                 <q-item to="/auth#permissions">Привилегии</q-item>
                 <q-item to="/auth#memory">Способ memory</q-item>
                 <q-item to="/auth#mysql">Способ mysql</q-item>
+                <q-item to="/auth#postgresql">Способ postgresql</q-item>
               </q-list>
             </q-expansion-item>
             <q-expansion-item
@@ -81,6 +82,7 @@
                 <q-item to="/clientbuild#downloadclient">Скачивание клиента</q-item>
                 <q-item to="/clientbuild#authlib1">Сборка Authlib 1</q-item>
                 <q-item to="/clientbuild#authlib2">Сборка Authlib 2</q-item>
+                <q-item to="/clientbuild#authlib3">Сборка Authlib 3</q-item>
                 <q-item to="/clientbuild#profile">Настройка профиля</q-item>
                 <q-item to="/clientbuild#optionals">Опциональные моды</q-item>
               </q-list>

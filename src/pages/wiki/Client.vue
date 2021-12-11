@@ -5,9 +5,9 @@
       На текущий момент поддерживается запуск:
     </p>
     <ul>
-      <li>Любой Vanilla версии с 1.7.10 до 1.17.1</li>
+      <li>Любой Vanilla версии с 1.7.10 до 1.18.1</li>
       <li>Любой Forge версии с 1.7.10 до 1.16.5</li>
-      <li>Любой Fabric версии с 1.13 до 1.17.1</li>
+      <li>Любой Fabric версии с 1.13 до 1.18.1</li>
     </ul>
     <doc-header name="downloadclient">Скачивание клиента с зеркала</doc-header>
     <p>Список клиентов, доступных на зеркале можно посмотреть тут: <a href='https://mirror.gravit.pro/clients/'>клиенты</a> и <a href='https://mirror.gravit.pro/assets/'>ассеты</a></p>
@@ -27,7 +27,7 @@
       <li>Скопируйте файл <a href='https://github.com/GravitLauncher/Launcher/blob/master/compat/authlib/authlib-clean.jar'>authlib-clean</a> в папку libraries вашего клиента</li>
       <li>Скопируйте из артефактов сборки файл LauncherAuthlib в папку libraries вашего клиента</li>
     </ul>
-    <doc-header name="authlib2">Сборка Authlib (MineCraft с 1.16.5 и выше)</doc-header>
+    <doc-header name="authlib2">Сборка Authlib (MineCraft с 1.16.5-1.17.1)</doc-header>
     <p>
       Для сборки Authlib следуйте инструкции:
     </p>
@@ -46,6 +46,30 @@
         <q-tab-panel name='build'>
           <ul>
             <li>Скачайте файл <a href='https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar'>LauncherAuthlib</a></li>
+            <li>Откройте его архиватором и распакуйте папку com в отдельную папку</li>
+            <li>Откройте вашу authlib по пути "libraries/com/mojang/authlib/ВЕРСИЯ/" архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе</li>
+          </ul>
+        </q-tab-panel>
+    </q-tab-panels>
+    <doc-header name="authlib3">Сборка Authlib (MineCraft с 1.18 и выше)</doc-header>
+    <p>
+      Для сборки Authlib следуйте инструкции:
+    </p>
+    <q-tabs v-model='authlib3Select'>
+        <q-tab name='rename' label='Переименование' />
+        <q-tab name='build' label='Сборка' />
+    </q-tabs>
+    <q-separator />
+    <q-tab-panels v-model='authlib3Select'>
+        <q-tab-panel name='rename'>
+          <ul>
+            <li>Скачайте файл <a href='https://mirror.gravit.pro/compat/authlib/3/LauncherAuthlib3.jar'>LauncherAuthlib</a></li>
+            <li>Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку "libraries/com/mojang/authlib/ВЕРСИЯ/" вашего клиента</li>
+          </ul>
+        </q-tab-panel>
+        <q-tab-panel name='build'>
+          <ul>
+            <li>Скачайте файл <a href='https://mirror.gravit.pro/compat/authlib/3/LauncherAuthlib3.jar'>LauncherAuthlib</a></li>
             <li>Откройте его архиватором и распакуйте папку com в отдельную папку</li>
             <li>Откройте вашу authlib по пути "libraries/com/mojang/authlib/ВЕРСИЯ/" архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе</li>
           </ul>
@@ -229,6 +253,7 @@ export default defineComponent({
   data: function () {
     return {
       authlib2Select: "rename",
+      authlib3Select: "rename",
     };
   },
 });

@@ -241,6 +241,59 @@ ALTER TABLE `users`
       Для работы HWID включите опцию <codes>enableHardwareFeature</codes> в
       protectHandler
     </p>
+    <doc-header name='postgresql'>PostgreSQL</doc-header>
+    <p>Метод postgresql не работает HWID на момент 5.2.7</p>
+    <p>Выполните следующий SQL код для добавления новых полей и триггера:</p>
+    <doc-code language='sql' code='-- Добавляет недостающие поля в таблицу
+ALTER TABLE users
+ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
+ADD COLUMN accessToken CHAR(32) DEFAULT NULL,
+ADD COLUMN serverID VARCHAR(41) DEFAULT NULL;
+
+-- Добавляет расширение для генерации UUID
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- Добавляет триггер для генерации UUID
+CREATE OR REPLACE FUNCTION public.users_uuid_trigger_func()
+    RETURNS trigger
+    LANGUAGE plpgsql
+AS $function$
+    BEGIN
+        new.uuid = (SELECT uuid_generate_v4());
+        return new;
+    END;
+$function$
+CREATE trigger users_uuid_trigger
+    BEFORE INSERT ON users
+    FOR EACH ROW
+    EXECUTE PROCEDURE users_uuid_trigger_func();
+
+-- Генерирует UUID для уже существующих пользователей
+UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;' />
+    <p>Пример конфигурации:</p>
+    <doc-code language='json' code='    "std": {
+      "core": {
+        "type": "postgresql",
+        "postgresSQLHolder": {
+          "addresses": ["localhost"],
+          "ports": [5432],
+          "username": "user",
+          "password": "pass",
+          "database": "db",
+          "timezone": "UTC",
+          "useHikari": true
+        },
+        "passwordVerifier": {
+          "algo": "SHA256",
+          "type": "digest"
+        },
+        "table": "users",
+        "tableHwid": "hwids",
+        "uuidColumn": "uuid",
+        "usernameColumn": "username", 
+        "passwordColumn": "password",
+        "accessTokenColumn": "accessToken",
+        "serverIDColumn": "serverID"
+      },' />
     <h2>Метод http</h2>
     <p>
       Следуйте инструкции к вашему скрипту или обратитесь к
