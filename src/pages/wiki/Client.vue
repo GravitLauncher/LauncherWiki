@@ -124,6 +124,12 @@
   "mainClass": "net.minecraft.client.main.Main" // MainClass клиента
 }
     ' />
+    <p>
+      Примечания:
+    </p>
+    <ul>
+      <li><q-badge>limited</q-badge> так-же должен быть <q-badge>true</q-badge>, для работы <q-badge>profileWhitelist</q-badge></li>
+    </ul>
     <doc-header name="optionals">Опциональные моды</doc-header>
     <doc-code code='"updateOptional": [
     {
