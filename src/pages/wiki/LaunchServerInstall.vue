@@ -59,37 +59,38 @@
         Первым шагом необходимо подготовить окружение - создать пользователя, установить firewall, Java
     </p>
     <p>
-      Для запуска LaunchServer необходима <b>Java 17</b>, а для запуска
-      майнкрафт сервера 1.12.2 и ниже - <b>Java 8</b>. Необходимо установить их
-      обе, если вы собираетесь держать лаунчсервер и сервера на одной машине.
+      Для запуска LaunchServer необходима <b>Java 17</b>. Она так же подходит для
+      запуска майнкрафт сервера 1.18
+      <br>
+      Для запуска майнкрафт сервера 1.17.x необходима - <b>Java 16</b>.
+      <br>
+      Для запуска майнкрафт сервера 1.16.5 и ниже - <b>Java 8</b>. 
+      <br></br>
+      Необходимо установить их все, если вы собираетесь держать лаунчсервер и сервера на одной машине.
     </p>
     <q-tabs v-model='baseInstall'>
-        <q-tab name='debian' label='Debian' />
+        <q-tab name='debian&ubuntu' label='Debian / Ubuntu' />
         <q-tab name='centos' label='CentOS' />
         <q-tab name='archlinux' label='ArchLinux' />
     </q-tabs>
     <q-separator />
     <q-tab-panels v-model='baseInstall'>
-        <q-tab-panel name='debian'>
+        <q-tab-panel name='debian&ubuntu'>
             <doc-code
-      header="Подготовка Debian"
+      header="Подготовка Debian / Ubuntu"
       language="bash"
       code='
-apt-get update && apt-get upgrade
-apt-get install apt curl wget nftables openjdk-17-jdk 
-wget "https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_linux-x64_bin-jmods.zip"
-unzip openjfx-17.0.0.1_linux-x64_bin-jmods.zip
-cp javafx-jmods-17.0.0.1/* /usr/lib/jvm/java-17-openjdk-amd64/jmods
-rm -r javafx-jmods-17.0.0.1
-rm openjfx-17.0.0.1_linux-x64_bin-jmods.zip
-wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | sudo apt-key add -
-add-apt-repository --yes "https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/"
-apt-get update && apt-get install adoptopenjdk-8-hotspot
-update-alternatives --config java
-useradd -m -G www-data launcher
+wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | apt-key add -
+echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | tee /etc/apt/sources.list.d/bellsoft.list
+apt-get update && apt-get install bellsoft-java17-full -y
+sudo update-alternatives --config java
 ' />
 <p>
-    <b>*</b> С помощью update-alternatives выберите по умолчанию java 17. Тогда путь к java для серверов 1.12.2 и ниже будет таким: <q-badge>/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java</q-badge>
+    <b>*</b> С помощью update-alternatives выберите по умолчанию java 17.
+    <br>
+    Путь к java для серверов 1.16.5 и ниже будет таким: <q-badge>/usr/lib/jvm/bellsoft-java8-full-amd64/bin/java</q-badge>
+    <br>
+    Путь к java для серверов 1.17.x будет таким: <q-badge>/usr/lib/jvm/bellsoft-java16-full-amd64/bin/java</q-badge>
 </p>
         </q-tab-panel>
         <q-tab-panel name='centos'>
