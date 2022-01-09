@@ -12,7 +12,7 @@
     <doc-header name="downloadclient">Скачивание клиента с зеркала</doc-header>
     <p>Список клиентов, доступных на зеркале можно посмотреть тут: <a href='https://mirror.gravit.pro/clients/'>клиенты</a> и <a href='https://mirror.gravit.pro/assets/'>ассеты</a></p>
     <p>Выполните команду <q-badge>downloadclient ВЕРСИЯ НАЗВАНИЕ</q-badge> для скачки клиента</p>
-    <p>Выполните команду <q-badge>downloadassets ВЕРСИЯ НАЗВАНИЕ</q-badge> для скачки ассетов</p>
+    <p>Выполните команду <q-badge>downloadasset ВЕРСИЯ НАЗВАНИЕ</q-badge> для скачки ассетов</p>
     <p>Примечания:</p>
     <ul>
       <li>Для скачки клиента с стороннего зеркала вместе с профилем вам нужно использовать такую команду: <q-badge>downloadclient ВЕРСИЯ НАЗВАНИЕ mirror</q-badge></li>
