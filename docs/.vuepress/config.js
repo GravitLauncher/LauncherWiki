@@ -11,7 +11,7 @@ module.exports = {
   themeConfig: {
     repo: 'GravitLauncher/Launcher',
     docsRepo: 'https://github.com/GravitLauncher/LauncherWiki',
-    docsBranch: 'master', //Гравита тут впеши название ветки где будет лежать эта вики (потом сотри)
+    docsBranch: 'main',
     docsDir: 'docs',
     editLinkPattern: ':repo/edit/:branch/:path',
     locales: {
