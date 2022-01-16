@@ -1,0 +1,227 @@
+# Установка LaunchServer
+
+## Выбор хостинга
+
+Для работы лаунчсервера необходим  **виртуальный (VDS/VPS)**  или  **выделенный (Dedicated)**  сервер на дистрибутиве Linux (Для  [Windows](http://launcher.gravit.pro/install#windows)) , а так же:
+
+-   Один из актуальных дистрибутивов: **Ubuntu 21.04**, **Debian 11**, **CentOS 8**, **ArchLinux** и другие
+-   Веб-сервер  **Nginx**  для раздачи статического контента
+-   Минимум  **300Мб свободной оперативной памяти**  для работы лаунчсервера
+-   При сборке лаунчсервера из исходников прямо на машине может потребоваться до 1 Гб свободной оперативной памяти для работы Gradle
+
+*Опционально:*
+
+-   Веб-сайт, CMS или личный кабинет с поддерживаемым алгоритмом хеширования
+-   База данных  **MySQL/MariaDB**  или  **PostgreSQL**
+
+*Рекомендации:*
+
+-   Не размещайте сайт на shared хостинге, так как это может привести к проблемам с подключением к базе данных, производительностью и стабильностью работы
+-   Хостинги, предоставляющие VDS/VPS на основе виртуализации OpenVZ не позволяют использовать некоторые программы и нагружать процессор выше определенного уровня длительное время
+-   Старые версии дистрибутивов могут содержать уязвимости или слишком старые версии ПО с большим колличеством багов. В таком случае рекомендуется обновиться до последней версии или сменить хостинг провайдера
+
+Если вы хотите установить лаунчсервер на Windows для локального тестирования следуйте  [этой](http://launcher.gravit.pro/install#windows)  инструкции.
+
+## Настройка хостинга
+
+Первым шагом необходимо подготовить окружение - создать пользователя, установить firewall, Java
+
+Для запуска LaunchServer необходима Java 17. Она так же подходит для запуска майнкрафт сервера 1.18
+Для запуска майнкрафт сервера 1.17.x необходима - Java 16.
+Для запуска майнкрафт сервера 1.16.5 и ниже - Java 8.
+Необходимо установить их все, если вы собираетесь держать лаунчсервер и сервера на одной машине.
+
+<CodeGroup>
+  <CodeGroupItem title="DEBIAN / UBUNTU" active>
+
+```bash
+wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | apt-key add -
+echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | tee /etc/apt/sources.list.d/bellsoft.list
+apt-get update && apt-get install bellsoft-java17-full -y
+sudo update-alternatives --config java
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="CENTOS">
+
+```bash
+echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
+[BellSoft]
+name=BellSoft Repository
+baseurl=https://yum.bell-sw.com
+enabled=1
+gpgcheck=1
+gpgkey=https://download.bell-sw.com/pki/GPG-KEY-bellsoft
+priority=1
+EOF
+yum update
+yum install bellsoft-java17-full
+alternatives --config java
+useradd -m -G www-data launcher
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="ARCHLINUX">
+
+```bash
+pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
+useradd -m -G www-data launcher
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+## Установка LaunchServer
+
+Перейдите в пользователя launcher командой
+
+```bash
+su - launcher
+```
+
+и выполните
+
+```bash
+curl -o setup.sh https://mirror.gravit.pro/scripts/setup-master.sh && chmod +x setup.sh && ./setup.sh
+```
+
+**После завершения установки запустите лаунчсервер для начальной настройки:**
+
+```bash
+./start.sh
+```
+
+-   Укажите название вашего проекта, которое будет отображатся в лаунчере и в папке AppData
+-   Укажите ваш домен, на котором будет работать лаунчсервер
+-   После первого запуска закройте лаунчсервер командой
+
+```bash
+stop
+```
+
+Список папок, созданных установщиком :
+
+-   **src/**  - исходный код лаунчера и лаунчсервера
+-   **srcRuntime/**  - исходный код графической части лаунчера (рантайм)
+-   **compat/**  - дополнительные важные файлы: библиотека авторизации, ServerWrapper, модули для лаунчера и лаунчсервера и т.д.
+
+Готовые скрипты, созданные установщиком:
+
+-   **./start.sh**  - запуск лаунчсервера для тестирования и начальной настройки
+-   **./startscreen.sh**  - запуск лаунчсервера на постоянной основе с помощью утилиты screen. Не запускайте два лаунчсервера одновременно!
+-   **./update.sh**  - обновляет лаунчсервер, лаунчер и рантайм до последней релизной версии
+
+Список папок лаунчсервера:
+
+-   **libraries/**  - библиотеки для лаунчсервера
+-   **modules/**  - модули для лаунчсервера (оканчивающиеся на _module.jar)
+-   **profiles/**  - папка профилей для запуска MineCraft
+-   **updates/**  - папка обновлений
+-   **logs/**  - папка с логами (журналом) лаунчсервера
+-   **runtime/**  - папка с дизайном лаунчера
+-   **launcher-modules/**  - модули для лаунчера (оканчивающиеся на _lmodule.jar)
+-   **launcher-libraries/**  - библиотеки для лаунчера
+-   **launcher-compile-libraries/**  - вспомогательные библиотеки для лаунчера
+-   **config/**  - настройка конфигурации модулей
+-   **proguard/**  - настройки Proguard (обфускация кода)
+-   **guard/**  - нативная защита (по умолчанию отсутствует)
+
+## Настройка Nginx
+
+Для достижения оптимальной производительности отдачи файлов нужно настроить Nginx
+
+```nginx
+server {
+        listen 80 http2;
+        server_name ВАШДОМЕН.ru;
+        location / {
+                root /путь/до/updates;
+        }
+        location /api {
+                proxy_pass http://127.0.0.1:9274/api;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        location /webapi/ {
+                proxy_pass http://127.0.0.1:9274/webapi/;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+}
+```
+::: tip Примечание:
+Если у nginx нет прав для чтения папки, выдайте:
+```bash
+chmod +x /home/launcher && chmod -R 755 /home/launcher/updates
+```
+:::
+
+## Настройка безопасного подключения
+
+Для обеспечения безопасности передаваемых паролей, защиты от внедрения в процесс обмена данными нужно подключить к своему домену SSL сертификат. На данный момент его можно купить или получить бесплатно (Let's Encrypt/Cloudflare). Вы должны будете установить его на домен с лаунчсервером ```ВАШДОМЕН.ru``` и немного изменить настройки лаунчсервера:
+
+-   Откройте файл LaunchServer.json и найдите там секцию netty
+-   Измените ссылки формата ```http://ДОМЕН ИЛИ IP:9274/ЧТО-ТО``` на ```https://ВАШДОМЕН.ru/ЧТО-ТО```
+-   Измените ссылку на websocket лаунчера с ```ws://ДОМЕН ИЛИ IP:9274/api``` на ```wss://ВАШДОМЕН.ru/api```
+-   Соберите лаунчер командой ```build``` и проверьте работоспособность
+-   Закройте порт 9274 (если он был открыт), так как теперь лаунчсервер будет получать и передавать данные через nginx по портам 80 и 443
+
+В качестве дополнительных мер безопасности можно настроить сертификат подписи кода (CodeSign), который помогает уменьшить ложноположительные срабатывания антивирусов на Launch4J обертку (для .exe файла). Установите модуль  [OSSLCodeSignModule](https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module)  для подписи. Получить сертификат подписи кода можно несколькими способами:
+
+-   Сгенерировать самоподписанный сертификат с помощью модуля  [GenerateCertificateModule](https://github.com/GravitLauncher/LauncherModules/tree/master/GenerateCertificate_module)
+-   Создать себе самоподписанные сертификаты с помощью утилиты  [XCA](https://github.com/chris2511/xca/releases)
+-   Купить полноценный сертификат подписи кода (дорого)
+-   Отдать сборки лаунчера другому человеку, который подпишет .exe файлы за денежное вознаграждение
+
+Для большинства проектов (кроме достаточно крупных) рекомендуется первый вариант. По ссылке вы можете найти инструкцию по установке модуля и генерации сертификата.
+
+Если вы не крупный проект, то скорее всего столкнетесь с защитником  [SmartScreen](https://docs.microsoft.com/ru-ru/windows/security/threat-protection/microsoft-defender-smartscreen/microsoft-defender-smartscreen-overview), который ведет статистику скачиваний и на файлы с низким числом скачиваний выдает предупреждение. Чтобы его не было, вам необходимо отправить файл на проверку:
+
+-   Зарегистрируйтесь или войдите в аккаунт Microsoft
+-   Отправьте файл на проверку, заполнив  [эту форму](https://www.microsoft.com/en-us/wdsi/filesubmission/)
+-   Ждите результата
+
+При достижении определенного числа скачиваний проблема уйдет "сама собой", а некоторые пользователи могут её вовсе не заметить.
+
+
+## Установка на Windows (ТОЛЬКО ДЛЯ ТЕСТИРОВАНИЯ)
+
+Настройте окружение:
+
+-   Скачиваем и устанавливаем сборку OpenJDK 17 от  [AdoptJDK](https://adoptium.net/)  (JDK 17 Windows x64 Hotspot) или  [LibericaJDK](https://libericajdk.ru/pages/liberica-jdk/).  **Запомните или запишите путь к установленной JDK**
+-   Если вы установили AdoptJDK или любую другую сборку OpenJDK без OpenJFX, скачайте  [jmods](https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-jmods.zip)  и  [sdk](https://download2.gluonhq.com/openjfx/17.0.0.1/openjfx-17.0.0.1_windows-x64_bin-sdk.zip)  и скопируйте содержимое архивов  **с заменой**  в папку установки JDK, полученную на первом этапе
+-   Скачиваем сборку JDK 8 от  [AdoptJDK](https://adoptium.net/)  (JDK 8 Windows x64 Hotspot),  [LibericaJDK](https://libericajdk.ru/pages/liberica-jdk/)  или  [Oracle](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)  и устанавливаем
+-   Всё!
+
+Далее вам необходимо установить лаунчсервер ВРУЧНУЮ, без использования скрипта установки
+
+-   На странице  [Launcher releases](https://github.com/GravitLauncher/Launcher/releases)  найдите последний релиз и скачайте его
+-   Распакуйте библиотеки и LaunchServer.jar из архива
+-   Создайте ```start.bat``` с таким содержимым:
+
+    ```bash
+    @ECHO OFF
+    "ПУТЬ_ДО_JDK_17/bin/java.exe" -javaagent:LaunchServer.jar -jar LaunchServer.jar
+    PAUSE
+    ```
+
+-   Запустите ```start.bat``` и при первом запуске укажите свой projectName и localhost в качестве адреса
+-   Скачайте рантайм для вашей версии лаунчера:  [LauncherRuntime releases](https://github.com/GravitLauncher/LauncherRuntime/releases)
+-   Скопируйте папку runtime в папку с установленным лаунчсервером, а .jar файл модуля в папку launcher-modules
+-   Запустите лаунчсервер и выполните команду build для запуска сборки. После окончания готовый лаунчер появится в папке ```updates```
+
+## Установка dev версий лаунчсервера
+
+DEV версии лаунчсервера содержат самый новый функционал и исправления, которые ещё не попали в релиз. Они могут быть нестабильны( вызывать проблемы), иметь расхождение с официальной вики. Настоятельно рекомендуется проверять работоспособность dev версий в тестовом окружении, прежде чем давать игрокам.
+
+-   **Первый способ: Установка скриптом.**  Следуйте  [этой](http://launcher.gravit.pro/install#launchserver)  инструкции, используя скрипт установки DEV версии: ```https://mirror.gravit.pro/scripts/setup-dev.sh```
+-   **Второй способ: Установка через GitHub Actions.**
+    -   Зарегистрируйтесь или войдите на  [GitHub](https://github.com/)
+    -   Скачайте архивы с  [лаунчером](https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev)  и  [рантаймом](https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev)  с GitHub Actions.
+    -   Действуйте аналогично установке  [stable версии](http://launcher.gravit.pro/install#windows)  на Windows, используя архивы, скачанные на предыдущем этапе
