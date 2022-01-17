@@ -17,6 +17,16 @@ module.exports = {
         locales: {
             '/': {
                 editLinkText: 'Измените эту страницу на GitHub',
+                lastUpdatedText: "Последнее обновление",
+                "notFound": [
+                    "Здесь ничего нет.",
+                    "Как мы тут оказались?",
+                    "Похоже, у нас есть несколько неработающих ссылок."
+                ],
+                "backToHome": "Вернуться на главную",
+                "openInNewWindow": "открыть в новом окне",
+                "toggleDarkMode": "переключить темный режим",
+                "toggleSidebar": "переключить боковую панель"
             },
         },
         logo: 'images/hero.png',
