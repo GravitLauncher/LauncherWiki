@@ -18,21 +18,21 @@ module.exports = {
             '/': {
                 editLinkText: 'Измените эту страницу на GitHub',
                 lastUpdatedText: "Последнее обновление",
-                "notFound": [
+                notFound: [
                     "Здесь ничего нет.",
                     "Как мы тут оказались?",
                     "Похоже, у нас есть несколько неработающих ссылок."
                 ],
-                "backToHome": "Вернуться на главную",
-                "openInNewWindow": "открыть в новом окне",
-                "toggleDarkMode": "переключить темный режим",
-                "toggleSidebar": "переключить боковую панель"
+                backToHome: "Вернуться на главную",
+                openInNewWindow: "открыть в новом окне",
+                toggleDarkMode: "переключить темный режим",
+                toggleSidebar: "переключить боковую панель"
             },
         },
         logo: 'images/hero.png',
         navbar: [
             {
-                text: 'Launcher',
+                text: 'Руководство',
                 children: [{
                     text: 'Установка LaunchServer',
                     link: '/install/',
@@ -68,15 +68,38 @@ module.exports = {
                 link: '/https://discord.gg/b9QG4ygY75',
             },
         ],
-        sidebar: [
+        sidebar: {
+            '/': [
+                {
+                    text: 'Руководство',
+                    collapsible: false,
+                    children: [
+                        '/install/README.md',
+                        '/auth/README.md',
+                        '/clientbuild/README.md',
+                        '/servers/README.md',
+                        '/runtime/README.md',
+                        '/other/README.md',
+                        '/dev/README.md',
+                    ],
+                },
+            ],
+        },
+        /*sidebar: [
             {
             text: 'Установка LaunchServer',
             link: '/install/#установка-launchserver',
-            children: [{
-                text: 'Выбор хостинга',
-                link: '/install/#выбор-хостинга',
-                children: [],
-            },
+            children: [
+                {
+                    text: 'Выбор хостинга2',
+                    link: '/install/hosting-choice.md',
+                    children: [],
+                },
+                {
+                    text: 'Выбор хостинга',
+                    link: '/install/#выбор-хостинга',
+                    children: [],
+                },
                 {
                     text: 'Настройка хостинга',
                     link: '/install/#настроика-хостинга',
@@ -260,7 +283,7 @@ module.exports = {
                     },
                 ],
             },
-        ],
+        ],*/
     },
     plugins: [
         [
