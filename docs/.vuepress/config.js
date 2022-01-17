@@ -1,11 +1,11 @@
 module.exports = {
     head: [
-        ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: `/images/icons/favicon-16x16.png`, }],
-        ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: `/images/icons/favicon-32x32.png`, }],
+        ['link', {rel: 'icon', type: 'image/png', sizes: '16x16', href: `/images/icons/favicon-16x16.png`,}],
+        ['link', {rel: 'icon', type: 'image/png', sizes: '32x32', href: `/images/icons/favicon-32x32.png`,}],
     ],
     lang: 'ru_RU',
     title: 'GravitLauncher Wiki',
-    description: 'GravtiLauncher Wiki',
+    description: 'GravitLauncher Wiki',
     theme: '@vuepress/theme-default',
     port: '8080', //Порт на котором запускается VuePress
     themeConfig: {
@@ -20,12 +20,13 @@ module.exports = {
             },
         },
         logo: 'images/hero.png',
-        navbar: [{
+        navbar: [
+            {
                 text: 'Launcher',
                 children: [{
-                        text: 'Установка LaunchServer',
-                        link: '/install/',
-                    },
+                    text: 'Установка LaunchServer',
+                    link: '/install/',
+                },
                     {
                         text: 'Настройка авторизации',
                         link: '/auth/',
@@ -57,49 +58,50 @@ module.exports = {
                 link: '/https://discord.gg/b9QG4ygY75',
             },
         ],
-        sidebar: [{
-                text: 'Установка LaunchServer',
-                link: '/install/#установка-launchserver',
-                children: [{
-                        text: 'Выбор хостинга',
-                        link: '/install/#выбор-хостинга',
-                        children: [],
-                    },
-                    {
-                        text: 'Настройка хостинга',
-                        link: '/install/#настроика-хостинга',
-                        children: [],
-                    },
-                    {
-                        text: 'Установка LaunchServer',
-                        link: '/install/#установка-launchserver-1',
-                        children: [],
-                    },
-                    {
-                        text: 'Настройка Nginx',
-                        link: '/install/#настроика-nginx',
-                        children: [],
-                    },
-                    {
-                        text: 'Настройка безопасного подключения',
-                        link: '/install/#настроика-безопасного-подключения',
-                        children: [],
-                    },
-                    {
-                        text: 'Установка на Windows (только для тестирования)',
-                        link: '/install/#установка-на-windows-только-для-тестирования',
-                        children: [],
-                    },
-                ],
+        sidebar: [
+            {
+            text: 'Установка LaunchServer',
+            link: '/install/#установка-launchserver',
+            children: [{
+                text: 'Выбор хостинга',
+                link: '/install/#выбор-хостинга',
+                children: [],
             },
+                {
+                    text: 'Настройка хостинга',
+                    link: '/install/#настроика-хостинга',
+                    children: [],
+                },
+                {
+                    text: 'Установка LaunchServer',
+                    link: '/install/#установка-launchserver-1',
+                    children: [],
+                },
+                {
+                    text: 'Настройка Nginx',
+                    link: '/install/#настроика-nginx',
+                    children: [],
+                },
+                {
+                    text: 'Настройка безопасного подключения',
+                    link: '/install/#настроика-безопасного-подключения',
+                    children: [],
+                },
+                {
+                    text: 'Установка на Windows (только для тестирования)',
+                    link: '/install/#установка-на-windows-только-для-тестирования',
+                    children: [],
+                },
+            ],
+        },
             {
                 text: 'Настройка авторизации',
                 link: '/auth/#настроика-авторизации',
                 children: [{
-                        text: 'Обзор AuthCodeProvider',
-                        link: '/auth/#настроика-авторизации',
-                        children: [],
-                    },
+                    text: 'Обзор AuthCodeProvider',
+                    link: '/auth/#настроика-авторизации',
+                    children: [],
+                },
                     {
                         text: 'Настройка PasswordVerifier',
                         link: '/auth/#конфигурация-passwordverifier',
@@ -141,10 +143,10 @@ module.exports = {
                 text: 'Настройка клиента',
                 link: '/clientbuild/#настроика-клиента',
                 children: [{
-                        text: 'Совместимость',
-                        link: '/clientbuild/#совместимость',
-                        children: [],
-                    },
+                    text: 'Совместимость',
+                    link: '/clientbuild/#совместимость',
+                    children: [],
+                },
                     {
                         text: 'Скачивание клиента',
                         link: '/clientbuild/#скачивание-клиента-с-зеркала',
@@ -181,9 +183,9 @@ module.exports = {
                 text: 'Привязка сервера Minecraft',
                 link: '/servers/',
                 children: [{
-                        text: 'Совместимость',
-                        link: '/servers/#совместимость',
-                    },
+                    text: 'Совместимость',
+                    link: '/servers/#совместимость',
+                },
                     {
                         text: 'Установка ServerWrapper',
                         link: '/servers/#использование-serverwrapper',
@@ -194,9 +196,9 @@ module.exports = {
                 text: 'Настройка рантайма',
                 link: '/runtime/',
                 children: [{
-                        text: 'Обзор рантайма',
-                        link: '/runtime/#описание-рантаима',
-                    },
+                    text: 'Обзор рантайма',
+                    link: '/runtime/#описание-рантаима',
+                },
                     {
                         text: 'Настройка рантайма',
                         link: '/runtime/#настроика-рантаима-1',
@@ -221,15 +223,15 @@ module.exports = {
                 children: [{
                     text: 'Настройка TextureProvider',
                     link: '/other/#textureprovider',
-                }, ],
+                },],
             },
             {
                 text: 'Разработчикам',
                 link: '/dev/',
                 children: [{
-                        text: 'Подключение зависимостей Gradle',
-                        link: '/dev/#подключение-зависимостеи-gradle',
-                    },
+                    text: 'Подключение зависимостей Gradle',
+                    link: '/dev/#подключение-зависимостеи-gradle',
+                },
                     {
                         text: 'Написание модуля',
                         link: '/dev/#написание-модуля',
@@ -261,5 +263,5 @@ module.exports = {
                 },
             },
         ],
-    ],
+    ]
 }
