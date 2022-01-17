@@ -43,14 +43,14 @@ TextureProvider нужен при отсутствии поддержки ски
 {
   "skin": {
     "url": "http://example.com/skins/Gravita.png",
-    "digest": "",
+    "digest": "BASE64 ENCODED MD5 HASH",
     "metadata": {
       "model": "slim"
     }
   },
   "cloak": {
     "url": "http://example.com/cloaks/Gravita.png",
-    "digest": ""
+    "digest": "BASE64 ENCODED MD5 HASH"
   }
 }
 ```
