@@ -47,7 +47,7 @@ module.exports = {
             },
             {
                 text: 'Discord',
-                link: '/https://discord.gg/b9QG4ygY75',
+                link: 'https://discord.gg/b9QG4ygY75',
             },
         ],
         sidebar: {
