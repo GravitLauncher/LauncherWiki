@@ -51,7 +51,7 @@ implementation "pro.gravit.launcher:launcher-client-api:5.2.3"
 
 ## Написание AuthCoreProvider
 
-Для интеграции собственных CMS и сайтов с лаунчером рекомендуется написать свой AuthCoreProvider. Для этого Создайте класс наследник AuthCoreProvider и реализуйте обязательные методы  [oauth](http://launcher.gravit.pro/developers#oauth)  после чего реализуйте необходимые вам расширения:
+Для интеграции собственных CMS и сайтов с лаунчером рекомендуется написать свой AuthCoreProvider. Для этого Создайте класс наследник AuthCoreProvider и реализуйте обязательные методы  [oauth](../dev/#реализация-oauth)  после чего реализуйте необходимые вам расширения:
 
 Расширения класса AuthCoreProvider
 
