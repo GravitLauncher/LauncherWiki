@@ -8,27 +8,55 @@
 -   Любой Forge версии с 1.7.10 до 1.16.5
 -   Любой Fabric версии с 1.13 до 1.18.1
 
+## Рекомендации
+
+- При создании проекта используйте самую новую версию Minecraft, доступную для ключевых модов в вашей сборке
+- Используйте **Fabric** вместо Forge для проектов на minecraft 1.16.5 и выше
+- Используйте [Sodium](https://github.com/CaffeineMC/sodium-fabric) и [Iris](https://github.com/IrisShaders/Iris) вместо Optifine начиная с Minecraft 1.16.5  
+Избегайте использования Optifabric - он создает в корне клиента скрытую папку с .jar внутри, которая не будет проверятся лаунчером
+- Избегайте использования модов из непроверенных источников. Скачивайте моды с [Curseforge](https://www.curseforge.com/minecraft/mc-mods?filter-sort=5) или напрямую с GitHub разработчика
+
 ## Скачивание клиента с зеркала
 
-Список клиентов, доступных на зеркале можно посмотреть тут:  [клиенты](https://mirror.gravit.pro/clients/)  и  [ассеты](https://mirror.gravit.pro/assets/)
+Список клиентов, доступных на зеркале можно посмотреть тут:  [клиенты](https://mirror.gravit.pro/5.2.x/clients/)  и  [ассеты](https://mirror.gravit.pro/5.2.x/assets/)
 
 Выполните команду ```downloadclient ВЕРСИЯ НАЗВАНИЕ``` для скачки клиента
 Выполните команду ```downloadasset ВЕРСИЯ НАЗВАНИЕ``` для скачки ассетов
 
 ::: tip Примечания:
 
+-   Для скачивания версии c Forge/Fabric допишите в конец версии `-forge`/`-fabric`, например `1.16.5-fabric`
 -   Для скачки клиента с стороннего зеркала вместе с профилем вам нужно использовать такую команду: ```downloadclient ВЕРСИЯ НАЗВАНИЕ mirror```   
 -   Название папки ассетов как правило записывается в виде ```assetВЕРСИЯ```, например:  **asset1.7.10**,  **asset1.17.1**
--   Версии клиента 1.12.2 и ниже включают в себя Forge по умолчанию
-
+-   По умолчанию все клиенты содержат в себе пропатченую authlib. 
 :::
 
 ## Сборка Authlib (MineCraft до 1.16.4)
 
 Для сборки Authlib следуйте инструкции:
 
--   Скопируйте файл  [authlib-clean](https://github.com/GravitLauncher/Launcher/blob/master/compat/authlib/authlib-clean.jar)  в папку libraries вашего клиента
--   Скопируйте из артефактов сборки файл LauncherAuthlib в папку libraries вашего клиента
+<CodeGroup>
+  <CodeGroupItem title="Переименование" active>
+
+::: tip Информация:
+
+-   Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib)
+-   Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Сборка" active>
+
+::: tip Информация:
+
+-   Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib.jar)
+-   Откройте его архиватором и распакуйте папку com в отдельную папку
+-   Откройте вашу authlib по пути ```libraries/com/mojang/authlib/ВЕРСИЯ/``` архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе
+
+:::
+  </CodeGroupItem>
+</CodeGroup>
 
 ## Сборка Authlib (MineCraft с 1.16.5-1.17.1)
 
