@@ -40,7 +40,7 @@
 
 ::: tip Информация:
 
--   Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib)
+-   Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib.jar)
 -   Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
 
 :::
