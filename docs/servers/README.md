@@ -42,7 +42,7 @@
 
 ::: tip Информация:
 
-Скачайте [этот](https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar) файл и поместите его рядом с ServerWrapper.jar. Далее откройте ServerWrapper.jar любым архиватором и удалите из него всё содерджимое папки com/mojang. После чего откройте ваш скрипт запуска и перед ServerWrapper.jar допишите ```LauncherAuthlib.jar:```
+Скачайте [этот](https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar) файл и поместите его рядом с ServerWrapper.jar. Далее откройте ServerWrapper.jar любым архиватором и удалите из него всё содержимое папки com/mojang. После чего откройте ваш скрипт запуска и перед ServerWrapper.jar допишите ```LauncherAuthlib.jar:```
 
 :::
   </CodeGroupItem>
