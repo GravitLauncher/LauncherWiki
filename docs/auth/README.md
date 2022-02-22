@@ -60,7 +60,7 @@
   Проверяет пароль аналогично функции ```password_verify``` в языке PHP
 
   Большинство современных CMS использует именно этот тип хеширования пароля
-  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
+  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)** (документация модуля по указанной ссылке устарела, используйте код указанный выше)
 
   </CodeGroupItem>
 
@@ -75,7 +75,7 @@
   Проверяет пароль аналогично библиотеки ```PHPHASH``` в WordPress
 
   Используется в WordPress
-  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
+  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)** (документация модуля по указанной ссылке устарела, используйте код указанный выше)
 
   </CodeGroupItem>
 
