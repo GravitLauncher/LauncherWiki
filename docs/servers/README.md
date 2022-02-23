@@ -26,29 +26,17 @@
 -   Перейдите в папку с вашим сервером, скопируйте туда ServerWrapper.jar из артефактов сборки и выполните команду ```java -jar ServerWrapper.jar setup```  
 -   Укажите название jar файла вашего серверного ядра, название сервера, адрес лаунчсервера и токен, полученный на первом этапе
 
+-   Обязательно включите ```online-mode=true``` в вашем ```server.properties```
+
 Дальнейшие действия зависят от вашего серверного ядра
 
-<CodeGroup>
-  <CodeGroupItem title="Forge/Sponge 1.12.2" active>
+::: tip Примечание:
 
-::: tip Информация:
-
-Скопируйте [этот](https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
+До 5.1.9-dev ServerWrapper.jar содержит в себе authlib первой версии. Удалите папку ```com/mojang``` из ```ServerWrapper.jar``` что бы следовать инструкциям ниже
 
 :::
 
-  </CodeGroupItem>
-  <CodeGroupItem title="1.16.4+" active>
-
-::: tip Информация:
-
-Скачайте [этот](https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar) файл и поместите его рядом с ServerWrapper.jar. Далее откройте ServerWrapper.jar любым архиватором и удалите из него всё содержимое папки com/mojang. После чего откройте ваш скрипт запуска и перед ServerWrapper.jar допишите ```LauncherAuthlib.jar:```
-
-:::
-  </CodeGroupItem>
-  <CodeGroupItem title="Waterfall/BungeeCord/Velocity" active>
-
-::: tip Информация:
+## Привязка прокси
 
 Прокси серверы напрямую обращаются к серверам Mojang, минуя authlib, поэтому вы должны пропатчить их
 
@@ -56,11 +44,76 @@
 -   **BungeeCord**  - Скачайте  [патч](https://mirror.gravit.pro/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
 -   **Velocity**  (рекомендуется) - Скачайте  [патч](https://mirror.gravit.pro/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
 
+## Замена authlib
+
+Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Каждое ядро реализует процесс своего старта по своему, поэтому если одна инструкция не подходит, попробуйте другую.
+
+<CodeGroup>
+  <CodeGroupItem title="Classpath" active>
+
+::: tip Информация:
+
+Скопируйте authlib в папку с ServerWrapper'ом и измените ваш setup.sh: ```-cp ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper``` замените на ```-cp authlib-XXXX.jar:ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper```
+
+**Примеры ядер:** Forge 1.7.10, Vanilla до 1.18
+
 :::
+
   </CodeGroupItem>
+  <CodeGroupItem title="Jar" active>
+
+::: tip Информация:
+
+Распакуйте содержимое authlib клиента в временную папку. Откройте ```jar``` файл вашего ядра или сервера minecraft(если разделены) архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
+
+**Примеры ядер:** Forge/Sponge до 1.16.5, Fabric/Vanilla до 1.18
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Library" active>
+
+::: tip Информация:
+
+Скопируйте файл вашего authlib по пути ```libraries/com/mojang/ВЕРСИЯ/authlib-ВЕРСИЯ.jar``` с заменой
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="MinecraftExtra" active>
+
+::: tip Информация:
+
+Распакуйте содержимое authlib клиента в временную папку. Откройте файл ```libraries/net/minecraft/server/ВЕРСИЯ/server-ВЕРСИЯ-extra.jar``` архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
+
+**Примеры ядер:** Forge 1.16.5
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Pack" active>
+
+::: tip Информация:
+
+Откройте файл вашего сервера и скопируйте ```authlib-ВЕРСИЯ.jar``` **целиком** в ```META-INF/libraries/com/mojang/authlib/ВЕРСИЯ``` с заменой
+
+**Примеры ядер:** Vanilla 1.18+
+
+:::
+
+  </CodeGroupItem>
+
+
+
 </CodeGroup>
 
-Конфигурация ServerWrapper:
+::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
+
+Скопируйте [этот](https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
+
+:::
+
+## Конфигурация ServerWrapper
 
 ```json
 {
@@ -68,7 +121,7 @@
   "address": "ws://ADDRESS/api", // Адрес лаунчсервера
   "serverName": "Vanilla1.17.1", // Название сервера в профиле
   "autoloadLibraries": false, // Автозагрузка библиотек из папки libraries
-  "classpath": [], // Дополнительный classpath
+  "classpath": [], // Дополнительный classpath (1.18+)
   "mainclass": "io.papermc.paperclip.Paperclip", // Main-Class вашего ядра сервера
   "args": ["nogui"], // Аргументы запуска
   "oauthExpireTime": 0,
