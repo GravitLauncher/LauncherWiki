@@ -12,6 +12,15 @@
 -   Множество комманд для управления
 
 Для использования команд AuthCoreProvider используйте  config auth.ВАШAUTHID.core КОМАНДА АРГУМЕНТЫ. Список команд вы можете посмотреть, нажав на TAB
+AUTHID это 
+```json
+"std": { //то что здесь написано в данном случае std
+  "core": {  },
+  "isDefault": true,
+  "displayName": "Default"
+}
+```
+В данном случае команды будут выклядеть так: config auth.std.core КОМАНДА АРГУМЕНТЫ
 
 ## Конфигурация PasswordVerifier
 
