@@ -291,9 +291,10 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 
 Установите модуль  [FileAuthSystem](https://github.com/GravitLauncher/LauncherModules/tree/master/FileAuthSystem_module)
 
-## Несколько авторизаций
+## Несколько методов авторизации
 
-**ВНИМАНИЕ, ЕСЛИ КОПИРУЕТЕ С МОЕГО ГАЙДА ТО УБЕРИТЕ ВСЕ КОММЕНТАРИИ** - Это ```//текст```
+**ВНИМАНИЕ, УБЕРИТЕ ВСЕ КОММЕНТАРИИ** - Это ```//вот такой текст```
+
 Чтобы сделать несколько типов авторизаций, например Site, Microsoft вы должны:
 Сделать несколько версий authCoreProvider
 **И делать по гайду.**
@@ -308,7 +309,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
   "Microsoft" // Название вашего второго типа(Не отображается в лаунчере)
     "core": {Ваш второй AuthCore},
     "isDefault": false, // Должно быть ТОЛЬКО одно true
-    "Microsoft" // Имя отображаемое в лаунчере
+    "displayName": "Microsoft" // Имя отображаемое в лаунчере
   }, // Если надо добавить еще варианты то пишем запятую и повторяем действия, если не то закрываем
 }, // Это закрытие скобки "auth" 
 ```
