@@ -13,6 +13,16 @@
 
 Для использования команд AuthCoreProvider используйте  config auth.ВАШAUTHID.core КОМАНДА АРГУМЕНТЫ. Список команд вы можете посмотреть, нажав на TAB
 
+AUTHID это
+
+"std": { //то что здесь написано в данном случае std
+  "core": {  },
+  "isDefault": true,
+  "displayName": "Default"
+}
+
+В данном случае команды будут выклядеть так: config auth.std.core КОМАНДА АРГУМЕНТЫ
+
 ## Конфигурация PasswordVerifier
 
 Для настройки большинства способов авторизации через БД вам необходимо указать passwordVerifier, соответствующий вашей CMS на сайте. (секцию passwordVerifier можно будет встретить при конфигурировании метода [mysql](#метод-mysql) либо [postgresql](#метод-postgresql))
@@ -56,11 +66,11 @@
       "type": "bcrypt"
     }
 ```
-
+ 
+ **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
   Проверяет пароль аналогично функции ```password_verify``` в языке PHP
 
   Большинство современных CMS использует именно этот тип хеширования пароля
-  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
 
   </CodeGroupItem>
 
@@ -72,10 +82,10 @@
     }
 ```
 
+      **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
   Проверяет пароль аналогично библиотеки ```PHPHASH``` в WordPress
 
   Используется в WordPress
-  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
 
   </CodeGroupItem>
 
@@ -127,6 +137,7 @@
 -   В БД пароли хранятся в одном столбце, в таблице пользователей
 
 Выполните следующие SQL запросы для создания таблицы с HWID и необходимых полей:
+**ВНИМАНИЕ, ИЗМЕНИТЕ users На название своей таблицы с пользователями**
 
 ```sql
 -- Добавляет недостающие поля в таблицу
@@ -279,3 +290,26 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 ## Метод fileauthsystem
 
 Установите модуль  [FileAuthSystem](https://github.com/GravitLauncher/LauncherModules/tree/master/FileAuthSystem_module)
+
+## Несколько авторизаций
+
+**ВНИМАНИЕ, ЕСЛИ КОПИРУЕТЕ С МОЕГО ГАЙДА ТО УБЕРИТЕ ВСЕ КОММЕНТАРИИ** - Это ```//текст```
+Чтобы сделать несколько типов авторизаций, например Site, Microsoft вы должны:
+Сделать несколько версий authCoreProvider
+**И делать по гайду.**
+```json
+"auth": {
+  "std": {
+    "core": {Ваш настроенный ОДИН из AuthCore},
+    //Здесь можно написать TextureProvider - https://launcher.gravit.pro/other/#textureprovider если вы хотите использовать свою систему скинов и плащей
+    "isDefault": true, // Основной ли это способ авторизации?
+    "displayName": "Default" // Имя отображаемое в лаунчере
+  }, // Не забудьте запятую
+  "Microsoft" // Название вашего второго типа(Не отображается в лаунчере)
+    "core": {Ваш второй AuthCore},
+    "isDefault": false, // Должно быть ТОЛЬКО одно true
+    "Microsoft" // Имя отображаемое в лаунчере
+  }, // Если надо добавить еще варианты то пишем запятую и повторяем действия, если не то закрываем
+}, // Это закрытие скобки "auth" 
+```
+
