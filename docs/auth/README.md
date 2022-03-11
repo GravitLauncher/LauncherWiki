@@ -56,11 +56,11 @@
       "type": "bcrypt"
     }
 ```
-
+  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
   Проверяет пароль аналогично функции ```password_verify``` в языке PHP
 
   Большинство современных CMS использует именно этот тип хеширования пароля
-  **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
+
 
   </CodeGroupItem>
 
