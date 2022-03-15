@@ -297,7 +297,6 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 
 Чтобы сделать несколько типов авторизаций, например Site, Microsoft вы должны:
 Сделать несколько версий authCoreProvider
-**И делать по гайду.**
 
 Core - Вписываем один из AuthCore, второй напишем во второй тип и т.д.
 TextureProvider обязателен если вам нужны скины, подробнее о настройке прочитайте [тут](https://launcher.gravit.pro/other/#textureprovider)
@@ -314,7 +313,7 @@ DisplayName - С каким названием будет отображатьс
 },
     "isDefault": true, 
     "displayName": "Default" 
-  }, // Не забудьте запятую
+  },
   "Microsoft"
     "core": {},
     "isDefault": false,
