@@ -212,28 +212,39 @@ HttpUser:
       "ADMIN"
     ]
   },
-  "skin": {
-    "url": "https://example.com/skins/Gravita.png",
-    "digest": "",//base64(md5(Bytes))
-    "metadata": {//ничего, если скин типа стив
-      "model": "slim"
+  "assets": {
+    "SKIN": {
+      "url": "https://example.com/skins/Gravita.png",
+      "digest": "",//base64(md5(Bytes))
+      "metadata": {//ничего, если скин типа стив
+        "model": "slim"
+      }
+    },
+    "CAPE": {//ничего, если не используется
+      "url": "https://example.com/capes/Gravita.png",
+      "digest": ""
     }
   },
-  "cloak": {//ничего, если не используется
-    "url": "https://example.com/cloaks/Gravita.png",
-    "digest": ""
+  "properties": {
+    "key": "value"
   }
 }
 ```
+::: tip Properties
+
+Properties - **публичные** параметры, ассоциированные с игроком(например параметры персонажа, выставляемые в личном кабинете). Получить их в моде/плагине можно из объекта ```GameProfile``` authlib. Вы не должны передавать ```textures``` как properties, так как это нарушит правильную работу скинов и плащей. Для работы properties требуется обновление authlib на стороне клиента и сервера
+
+:::
+
 
 HttpUserSession:
 ```json lines
     {
   "id": "RANDOM ID",
-  //ID сессии в вашей системе, либо случайная строка или число, если такой системы нет
+  // ID сессии в вашей системе, либо случайная строка или число, если такой системы нет
   "user": (( HttpUser )),
   "expireIn": 0
-  //время в секундах, 0 - если токен будет вечным (В таком члучае метод refreshToken не будет вызван)
+  // Срок окончания действия сессии, 0 - если сессия вечная. Не используется
 }
 ```
 
@@ -241,11 +252,11 @@ AuthReport:
 ```json lines
     {
   "minecraftAccessToken": "MINECRAFT ACCESS TOKEN",
-  //При желании, может совпадать с "oauthAccessToken"
+  // При желании, может совпадать с "oauthAccessToken"
   "oauthAccessToken": "ACCESS TOKEN",
   "oauthRefreshToken": "REFRESH TOKEN",
   "oauthExpire": 0,
-  //аналогично expireIn в HttpUserSession
+  // Длительность действия accessToken в мс, 0 - если токен будет вечным (В таком случае метод refreshToken не будет вызван)
   "session": (( HttpUserSession ))
 }
 ```

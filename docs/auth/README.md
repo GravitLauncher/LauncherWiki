@@ -202,6 +202,7 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
       "algo": "SHA256",
       "type": "digest"
     },
+    "expireSeconds": 3600,                 // Время действия accessToken в секундах
     "table": "users",                      // таблица
     "tableHwid": "hwids",
     "uuidColumn": "uuid",                  // название столбца с uuid
@@ -216,7 +217,13 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 }
 ```
 
-Для работы HWID включите опцию enableHardwareFeature в protectHandler
+Для работы HWID включите опцию ```enableHardwareFeature``` в ```protectHandler``` и измените его ```type``` на ```advanced```
+
+::: tip Важно
+
+Начиная с 5.2.9 метод MySQL генерирует access и refresh токены. Refresh токен генерируется на основе имени пользователя, хеша пароля и секретной соли(legacySalt). После смены пароля access токен продолжит действовать в течении определенного в конфигурации времени и только после потребуется повторный вход. Если вы потеряете файлы в папке ```.keys``` лаунчсервера игроки будут вынуждены перелогинится.
+
+:::
 
 ## Метод PostgreSQL
 
@@ -271,6 +278,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
       "algo": "SHA256",
       "type": "digest"
     },
+    "expireSeconds": 3600,
     "table": "users",
     "tableHwid": "hwids",
     "uuidColumn": "uuid",
@@ -281,6 +289,12 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
   },
 
 ```
+
+::: tip Важно
+
+Начиная с 5.2.9 метод PostgreSQL генерирует access и refresh токены. Refresh токен генерируется на основе имени пользователя, хеша пароля и секретной соли(legacySalt). После смены пароля access токен продолжит действовать в течении определенного в конфигурации времени и только после потребуется повторный вход. Если вы потеряете файлы в папке ```.keys``` лаунчсервера игроки будут вынуждены перелогинится.
+
+:::
 
 ## Метод http
 
