@@ -1,22 +1,88 @@
 # Разработчикам
 
-## Подключение зависимостей Gradle
+## Подключение зависимостей
 
 Для написания модулей для лаунчсервера вам нужно подключить следующие библиотеки:
 
+<CodeGroup>
+  <CodeGroupItem title="Gradle (Short)" active>
+
+```properties
+implementation "pro.gravit.launcher:launcher-core:5.2.9"
+implementation "pro.gravit.launcher:launcher-ws-api:5.2.9"
+implementation "pro.gravit.launcher:launchserver-api:5.2.9"
 ```
-implementation "pro.gravit.launcher:launcher-core:5.2.3"
-implementation "pro.gravit.launcher:launcher-ws-api:5.2.3"
-implementation "pro.gravit.launcher:launchserver-api:5.2.3"
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Maven" active>
+
+```xml
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launcher-core</artifactId>
+    <version>5.2.9</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launcher-ws-api</artifactId>
+    <version>5.2.9</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launchserver-api</artifactId>
+    <version>5.2.9</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 Для написания модулей для лаунчера вам нужно подключить следующие библиотеки:
 
+<CodeGroup>
+  <CodeGroupItem title="Gradle (Short)" active>
+
+```properties
+implementation "pro.gravit.launcher:launcher-core:5.2.9"
+implementation "pro.gravit.launcher:launcher-ws-api:5.2.9"
+implementation "pro.gravit.launcher:launcher-client-api:5.2.9"
 ```
-implementation "pro.gravit.launcher:launcher-core:5.2.3"
-implementation "pro.gravit.launcher:launcher-ws-api:5.2.3"
-implementation "pro.gravit.launcher:launcher-client-api:5.2.3"
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Maven" active>
+
+```xml
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launcher-core</artifactId>
+    <version>5.2.9</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launcher-ws-api</artifactId>
+    <version>5.2.9</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launcher-client-api</artifactId>
+    <version>5.2.9</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ## Написание модуля
 
