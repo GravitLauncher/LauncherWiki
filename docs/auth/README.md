@@ -1,6 +1,6 @@
 # Настройка авторизации
 
-**AuthCoreProvider**  является заменой тройке  AuthProvider,  AuthHandler,  HWIDHandler, выполняя все их функции в едином, связанном интерфейсе
+**AuthCoreProvider** является заменой тройке AuthProvider, AuthHandler, HWIDHandler, выполняя все их функции в едином, связанном интерфейсе
 
 Преимущества AuthCoreProvider:
 
@@ -16,7 +16,7 @@
 Auth-id это:
 ```json
 "std": { 
-  "core": {  },
+  "core": {},
   "isDefault": true,
   "displayName": "Default"
 }
@@ -39,7 +39,7 @@ Auth-id это:
     }
 ```
 
-  Алгоритм doubleDigest  **дважды**  хеширует пароль одним алгоритмом без соли. Опция toHexMode определяет будут ли хешироваться бинарные данные (false) или HEX строка (true)
+  Алгоритм doubleDigest **дважды** хеширует пароль одним алгоритмом без соли. Опция toHexMode определяет будут ли хешироваться бинарные данные (false) или HEX строка (true)
   Список доступных алгоритмов аналогичен способу digest
 
   Применяется в старых версиях DLE (алгоритм MD5) и в некоторых других CMS
@@ -55,7 +55,7 @@ Auth-id это:
     }
 ```
 
-  Алгоритм digest  **один раз**  хеширует пароль одним алгоритмом без соли
+  Алгоритм digest **один раз** хеширует пароль одним алгоритмом без соли
   Метод поддерживает любые алгоритмы хеширования, реализованные в вашей JDK или библиотеки BouncyCastle. Самые распространенные из них: MD5, SHA1, SHA256, SHA512
 
   </CodeGroupItem>
@@ -67,7 +67,7 @@ Auth-id это:
       "type": "bcrypt"
     }
 ```
- **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
+ **Требуется установка модуля [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
   Проверяет пароль аналогично функции ```password_verify``` в языке PHP
 
   Большинство современных CMS использует именно этот тип хеширования пароля
@@ -81,14 +81,12 @@ Auth-id это:
       "type": "phpass"
     }
 ```
-      **Требуется установка модуля  [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
+ **Требуется установка модуля [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
   Проверяет пароль аналогично библиотеки ```PHPHASH``` в WordPress
 
   Используется в WordPress
 
   </CodeGroupItem>
-
-
 </CodeGroup>
 
 
@@ -298,41 +296,37 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 
 ## Метод http
 
-Следуйте инструкции к вашему скрипту или обратитесь к  [этой](../dev/#реализация-oauth)  инструкции для создания собственного скрипта
+Следуйте инструкции к вашему скрипту или обратитесь к [этой](../dev/#реализация-oauth)  инструкции для создания собственного скрипта
 
 ## Метод fileauthsystem
 
-Установите модуль  [FileAuthSystem](https://github.com/GravitLauncher/LauncherModules/tree/master/FileAuthSystem_module)
-Позволит вам создать файловую систему хранения логинов и паролей если нету СУБД
+Установите модуль [FileAuthSystem](https://github.com/GravitLauncher/LauncherModules/tree/master/FileAuthSystem_module)<br>
+Он позволит вам создать файловую систему хранения логинов и паролей без СУБД
 
 ## Несколько методов авторизации
 
-**ВНИМАНИЕ, УБЕРИТЕ ВСЕ КОММЕНТАРИИ** - Это ```//вот такой текст```
+Методы авторизации для core вы можете увидеть выше<br>
+TextureProvider обязателен если вам нужны скины, подробнее о настройке прочитайте [тут](../other/#textureprovider)
 
-Чтобы сделать несколько типов авторизаций, например Site, Microsoft вы должны:
-Сделать несколько версий authCoreProvider
+Закрываем метод std и **обязательно** ставим запятую<br>
+Далее выполняем настройку столько раз, сколько типов авторизаций необходимо
 
-Core - Вписываем один из AuthCore, второй напишем во второй тип и т.д.
-TextureProvider обязателен если вам нужны скины, подробнее о настройке прочитайте [тут](https://launcher.gravit.pro/other/#textureprovider)
-IsDefault - Будет ли данный способ авторизации по умолчанию, возможен **только один**!
-DisplayName - С каким названием будет отображаться способ авторизации в лаунчере
-Закрываем std метод и **ОБЯЗАТЕЛЬНО** ставим запятую.
-Далее выполняем настройку столько раз, сколько типов авторизаций необходимо.
+Пример нескольких методов авторизаций:
 ```json
 "auth": {
   "std": {
     "core": {},
-"textureProvider": {
-  "type": "void"
-},
-    "isDefault": true, 
-    "displayName": "Default" 
+	"textureProvider": {
+	  "type": "void"
+	},
+    "isDefault": true, // Будет ли данный способ авторизации выбран по умолчанию
+    "displayName": "Default" // Название метода авторизации в лаунчере
   },
-  "Microsoft"
+  "Microsoft": {
     "core": {},
-    "isDefault": false,
-    "displayName": "Microsoft"
-  },
-},
+    "isDefault": false, // Возможен только один блок с положением true
+    "displayName": "Microsoft" // Название метода авторизации в лаунчере
+  }
+}
 ```
-
+**При копировании данного примера не забудте убрать все коментарии!**
