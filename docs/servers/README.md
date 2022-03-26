@@ -18,6 +18,51 @@
 - Убедитесь что в вашем ядре установлена защита от уязвимости Log4J
 - Если ваш сервер находится за прокси(напр. velocity) его всё равно необходимо привязать к ServerWrapper с заменой authlib, так как в противном случае могут быть проблемы с скинами и плащами
 
+## Рекомендуемые ядра
+
+<CodeGroup>
+  <CodeGroupItem title="1.7.10" active>
+
+::: tip Информация:
+
+- [Crucible](https://github.com/CrucibleMC/Crucible)
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="1.12.2" active>
+
+::: tip Информация:
+
+- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
+- [CatServer](https://catmc.org/)
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="1.16.5" active>
+
+::: tip Информация:
+
+- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
+- [LoliServer](https://github.com/Loli-Server/LoliServer)
+- [Fabric](https://fabricmc.net/)
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="1.17+" active>
+
+::: tip Информация:
+
+- [Fabric](https://fabricmc.net/)
+
+:::
+
+  </CodeGroupItem>
+
+</CodeGroup>
+
 ## Использование ServerWrapper
 
 Для привязки ServerWrapper к вашему серверу выполните следующие действия:
@@ -40,9 +85,9 @@
 
 Прокси серверы напрямую обращаются к серверам Mojang, минуя authlib, поэтому вы должны пропатчить их
 
--   **Waterfall**  - Скачайте  [патч](https://mirror.gravit.pro/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой ```./waterfall build```
--   **BungeeCord**  - Скачайте  [патч](https://mirror.gravit.pro/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
--   **Velocity**  (рекомендуется) - Скачайте  [патч](https://mirror.gravit.pro/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
+-   **Waterfall**  - Скачайте [патч](https://mirror.gravit.pro/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой ```./waterfall build```
+-   **BungeeCord**  - Скачайте [патч](https://mirror.gravit.pro/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
+-   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravit.pro/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
 
 ## Замена authlib
 
