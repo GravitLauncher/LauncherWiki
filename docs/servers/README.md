@@ -18,6 +18,51 @@
 - Убедитесь что в вашем ядре установлена защита от уязвимости Log4J
 - Если ваш сервер находится за прокси(напр. velocity) его всё равно необходимо привязать к ServerWrapper с заменой authlib, так как в противном случае могут быть проблемы с скинами и плащами
 
+## Рекомендуемые ядра
+
+<CodeGroup>
+  <CodeGroupItem title="1.7.10" active>
+
+::: tip Информация:
+
+- [Crucible](https://github.com/CrucibleMC/Crucible)
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="1.12.2" active>
+
+::: tip Информация:
+
+- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
+- [CatServer](https://catmc.org/)
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="1.16.5" active>
+
+::: tip Информация:
+
+- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
+- [LoliServer](https://github.com/Loli-Server/LoliServer)
+- [Fabric](https://fabricmc.net/)
+
+:::
+
+  </CodeGroupItem>
+  <CodeGroupItem title="1.17+" active>
+
+::: tip Информация:
+
+- [Fabric](https://fabricmc.net/)
+
+:::
+
+  </CodeGroupItem>
+
+</CodeGroup>
+
 ## Использование ServerWrapper
 
 Для привязки ServerWrapper к вашему серверу выполните следующие действия:
