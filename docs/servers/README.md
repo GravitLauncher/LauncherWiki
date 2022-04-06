@@ -34,8 +34,9 @@
 
 ::: tip Информация:
 
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/README_RU.md)
+- [Mohist](https://mohistmc.com/download)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
-- [CatServer](https://catmc.org/)
 
 :::
 
@@ -44,9 +45,12 @@
 
 ::: tip Информация:
 
-- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
+- [Fabric](https://fabricmc.net/) 
 - [LoliServer](https://github.com/Loli-Server/LoliServer)
-- [Fabric](https://fabricmc.net/)
+- [Mohist](https://mohistmc.com/download)
+- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
+
+
 
 :::
 
@@ -67,7 +71,7 @@
 
 Для привязки ServerWrapper к вашему серверу выполните следующие действия:
 
--   Откройте лаунчсервер и введите команду ```token server HiTech```, где HiTech - название вашего сервера. Скопируйте получившийся токен
+-   Откройте лаунчсервер и введите команду ```token server HiTech```, где HiTech - название вашего сервера. Скопируйте получившийся токен. <Badge type="warning" text="ВАЖНО" vertical="middle" /> При обновлении лаунчсервера, без копирования ключей ```.keys```, перевыдайте token для вашего сервера
 -   Перейдите в папку с вашим сервером, скопируйте туда ServerWrapper.jar из артефактов сборки и выполните команду ```java -jar ServerWrapper.jar setup```  
 -   Укажите название jar файла вашего серверного ядра, название сервера, адрес лаунчсервера и токен, полученный на первом этапе
 
@@ -155,7 +159,10 @@
 ::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 
 Скопируйте [этот](https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
-
+::: details Установка командой Wget
+```sh
+wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar
+```
 :::
 
 ## Конфигурация ServerWrapper
@@ -167,6 +174,7 @@
   "serverName": "Vanilla1.17.1", // Название сервера в профиле
   "autoloadLibraries": false, // Автозагрузка библиотек из папки libraries
   "classpath": [], // Дополнительный classpath (1.18+)
+  "classLoaderConfig": "SYSTEM_ARGS", // Системные аргументы запуска
   "mainclass": "io.papermc.paperclip.Paperclip", // Main-Class вашего ядра сервера
   "args": ["nogui"], // Аргументы запуска
   "oauthExpireTime": 0,
