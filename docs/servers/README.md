@@ -23,25 +23,16 @@
 <CodeGroup>
   <CodeGroupItem title="1.7.10" active>
 
-::: tip Информация: <!--Don't add Mohist!-->
+::: tip Информация:
 
 - [Crucible](https://github.com/CrucibleMC/Crucible)
 
 :::
 
   </CodeGroupItem>
-  <CodeGroupItem title="1.10.2" active>
-
-::: tip Информация:
-
-- [Svarka](https://github.com/juanmuscaria/Svarka)
-
-:::
-
-  </CodeGroupItem>
   <CodeGroupItem title="1.12.2" active>
 
-::: tip Информация: <!--Don't add Mohist!-->
+::: tip Информация:
 
 - [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/README_RU.md)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
@@ -49,29 +40,9 @@
 :::
 
   </CodeGroupItem>
-  <CodeGroupItem title="1.14.4" active>
-
-::: tip Информация:
-
-- [Fabric](https://fabricmc.net/) 
-- [ArcLight](https://github.com/IzzelAliz/Arclight)
-
-:::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="1.15.2" active>
-
-::: tip Информация:
-
-- [Fabric](https://fabricmc.net/) 
-- [ArcLight](https://github.com/IzzelAliz/Arclight)
-
-:::
-
-  </CodeGroupItem>
   <CodeGroupItem title="1.16.5" active>
 
-::: tip Информация: <!--Don't add Mohist!-->
+::: tip Информация:
 
 - [Fabric](https://fabricmc.net/) 
 - [LoliServer](https://github.com/Loli-Server/LoliServer)
@@ -92,7 +63,7 @@
   
   <CodeGroupItem title="1.18.2" active>
 
-::: tip Информация: <!--Don't add Mohist!-->
+::: tip Информация:
 
 - [Fabric](https://fabricmc.net/)
 - [FoxServer](https://github.com/Luohuayu/FoxServer/)
