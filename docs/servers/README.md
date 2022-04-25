@@ -34,7 +34,7 @@
 
 ::: tip Информация:
 
-- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/README_RU.md)
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/docs/README_RU.md)
 - [Mohist](https://mohistmc.com/download)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
 
