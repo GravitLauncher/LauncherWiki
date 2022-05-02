@@ -34,7 +34,7 @@
 
 ::: tip Информация:
 
-- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/README_RU.md)
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/docs/README_RU.md)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
 
 :::
@@ -45,7 +45,7 @@
 ::: tip Информация:
 
 - [Fabric](https://fabricmc.net/) 
-- [LoliServer](https://github.com/Loli-Server/LoliServer)
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.16.5/docs/README_EN.md)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
 
 :::
@@ -66,17 +66,13 @@
 ::: tip Информация:
 
 - [Fabric](https://fabricmc.net/)
-- [FoxServer](https://github.com/Luohuayu/FoxServer/)
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.18.2/docs/README.md)
 
 :::
 
   </CodeGroupItem>
 
 </CodeGroup>
-
-::: warning Внимание!
-Не используйте ядро [Mohist](https://mohistmc.com) - это самое отвратительное по производительности ядро, по сравнению с вышеприведенными ядрами!
-:::
 
 ## Использование ServerWrapper
 
