@@ -39,6 +39,7 @@ wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | apt-key add -
 echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | tee /etc/apt/sources.list.d/bellsoft.list
 apt-get update && apt-get install bellsoft-java17-full -y
 sudo update-alternatives --config java
+useradd -m -G www-data launcher
 ```
 
   </CodeGroupItem>
