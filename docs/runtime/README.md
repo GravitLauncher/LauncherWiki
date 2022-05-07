@@ -38,7 +38,7 @@
 
 ::: warning Формат записи:
 ```
-Java {номер версии} b{номер сборки} {mustdie (это windows)/linux/macos} x{разрядность} javafx {наличие javafx}
+Java {номер версии} b{номер сборки} {mustdie (это windows)/linux/macosx} x{разрядность} javafx {наличие javafx}
 ```
 :::
 
