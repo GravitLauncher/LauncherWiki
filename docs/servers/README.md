@@ -35,7 +35,6 @@
 ::: tip Информация:
 
 - [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/docs/README_RU.md)
-- [Mohist](https://mohistmc.com/download)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
 
 :::
@@ -46,20 +45,28 @@
 ::: tip Информация:
 
 - [Fabric](https://fabricmc.net/) 
-- [LoliServer](https://github.com/Loli-Server/LoliServer)
-- [Mohist](https://mohistmc.com/download)
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.16.5/docs/README_EN.md)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
-
-
 
 :::
 
   </CodeGroupItem>
-  <CodeGroupItem title="1.17+" active>
+  <CodeGroupItem title="1.17.X" active>
 
 ::: tip Информация:
 
 - [Fabric](https://fabricmc.net/)
+
+:::
+
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="1.18.2" active>
+
+::: tip Информация:
+
+- [Fabric](https://fabricmc.net/)
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.18.2/docs/README.md)
 
 :::
 
