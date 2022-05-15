@@ -205,9 +205,15 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
     "hardwareIdColumn": "hwidId",          // название столбца с ID записи в таблице hwids
     "serverIDColumn": "serverID"           // название столбца с serverID
   },
+  "textureProvider": {
+    "skinURL": "https://enchald.com/sources/skins/%username%.png",
+    "cloakURL": "https://enchald.com/sources/cloaks/%username%.png",
+    "type": "request"
+  },
   "isDefault": true,
   "displayName": "Default"
 }
+
 ```
 
 Для работы HWID включите опцию ```enableHardwareFeature``` в ```protectHandler``` и измените его ```type``` на ```advanced```
@@ -280,6 +286,13 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
     "accessTokenColumn": "accessToken",
     "serverIDColumn": "serverID"
   },
+  "textureProvider": {
+    "skinURL": "https://enchald.com/sources/skins/%username%.png",
+    "cloakURL": "https://enchald.com/sources/cloaks/%username%.png",
+    "type": "request"
+  },
+  "isDefault": true,
+  "displayName": "Default"
 }
 ```
 
