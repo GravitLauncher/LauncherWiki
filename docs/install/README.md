@@ -4,7 +4,7 @@
 
 Для работы лаунчсервера необходим  **виртуальный (VDS/VPS)**  или  **выделенный (Dedicated)**  сервер на дистрибутиве Linux (Для [Windows](../install/#установка-на-windows-только-для-тестирования)) , а так же:
 
--   Один из актуальных дистрибутивов: **Ubuntu 21.04**, **Debian 11**, **CentOS 8**, **ArchLinux** и другие
+-   Один из актуальных дистрибутивов: **Ubuntu 22.04**, **Debian 11**, **CentOS 8**, **ArchLinux** и другие
 -   Веб-сервер  **Nginx**  для раздачи статического контента
 -   Минимум  **300Мб свободной оперативной памяти**  для работы лаунчсервера
 -   При сборке лаунчсервера из исходников прямо на машине может потребоваться до 1 Гб свободной оперативной памяти для работы Gradle
@@ -30,21 +30,29 @@
 Для запуска майнкрафт сервера 1.17.x необходима - Java 16.
 Для запуска майнкрафт сервера 1.16.5 и ниже - Java 8.
 Необходимо установить их все, если вы собираетесь держать лаунчсервер и сервера на одной машине.
-
-<CodeGroup>
-  <CodeGroupItem title="DEBIAN / UBUNTU" active>
-
+::::: code-group
+:::: code-group-item DEBIAN / UBUNTU
 ```bash
-wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | apt-key add -
-echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | tee /etc/apt/sources.list.d/bellsoft.list
-apt-get update && apt-get install bellsoft-java17-full -y
+sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y
+wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - 
+echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list
+sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full
 sudo update-alternatives --config java
 ```
-
-  </CodeGroupItem>
-
-  <CodeGroupItem title="CENTOS">
-
+::: details Команда одной строкой:
+```bash
+sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y ; wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ; echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ; sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full ; sudo update-alternatives --config java
+```
+:::
+::: warning Примечание:
+Если amd64 не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
+Список возможных архитектур:
+```bash
+amd64, i386, arm64
+```
+:::
+::::
+:::: code-group-item CENTOS
 ```bash
 echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
 [BellSoft]
@@ -58,68 +66,75 @@ EOF
 yum update
 yum install bellsoft-java17-full
 alternatives --config java
-useradd -m -G www-data launcher
 ```
+::::
+:::: code-group-item OTHER
+Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.3/e)
+::::
+:::::
 
-  </CodeGroupItem>
-
-  <CodeGroupItem title="ARCHLINUX">
-
+## Создание пользователя launcher
+Создание пользователя **launcher**:
+(Актуально для Ubuntu, Debian, CentOS, ArchLinux)
 ```bash
-pacman -Syu jdk8-openjdk java8-openjfx jdk-openjdk java-openjfx
-useradd -m -G www-data launcher
+sudo useradd -m -G www-data -s /bin/bash launcher
 ```
-
-  </CodeGroupItem>
-</CodeGroup>
+:::: details Инструкции по работе с su:
+::: tip Выполнение команд от имени пользователя launcher и переход в домашнюю папку:
+```bash
+su - launcher
+```
+:::
+::: tip Выполнение команд от имени пользователя launcher без смены каталога:
+```bash
+su launcher
+```
+:::
+::: tip Выход обратно в root:
+```bash
+exit
+```
+:::
+::::
 
 ## Установка LaunchServer
-
-Перейдите в пользователя launcher командой
+Перейдите в пользователя **launcher**:
 
 ```bash
 su - launcher
 ```
-
-и выполните
+Выполнить установку **LaunchServer**'a скриптом:
 
 ```bash
-curl -o setup.sh https://mirror.gravit.pro/scripts/setup-master.sh && chmod +x setup.sh && ./setup.sh
+wget -O - https://mirror.gravit.pro/scripts/setup-master.sh | bash <(cat) </dev/tty
 ```
-
 **После завершения установки запустите лаунчсервер для начальной настройки:**
-
 ```bash
 ./start.sh
 ```
-
+-   Укажите ваш ДОМЕН или IP, на котором будет работать лаунчсервер
 -   Укажите название вашего проекта, которое будет отображаться в лаунчере и в папке AppData
--   Укажите ваш домен, на котором будет работать лаунчсервер
--   После первого запуска закройте лаунчсервер командой
+-   После первого запуска закройте лаунчсервер командой **stop**
 
 ```bash
 stop
 ```
-
-Список папок, созданных установщиком :
-
--   **src/**  - исходный код лаунчера и лаунчсервера.
+:::: details Описание папок и файлов установленных скриптом
+::: tip Список папок SRC и git:
+-   **src/**  - исходный код лаунчсервера, API, модулей, лаунчера
 -   **srcRuntime/**  - исходный код графической части лаунчера (рантайм)
 -   **compat/**  - дополнительные важные файлы: библиотека авторизации, ServerWrapper, модули для лаунчера и лаунчсервера и т.д.
-
-Установщик так же собирает все модули, готовые модули можно найти по путям:
-
+:::
+::: tip Установщик так же собирает все модули, готовые модули можно найти по путям:
 -   **src/modules/<НазваниеМодуля>_module/build/libs/<НазваниеМодуля>_module.jar** - собранный модуль для лаунчсервера.
 -   **src/modules/<НазваниеМодуля>_lmodule/build/libs/<НазваниеМодуля>_lmodule.jar** - собранный модуль для лаунчера.
-
-Готовые скрипты, созданные установщиком:
-
+:::
+::: tip Готовые скрипты, созданные установщиком:
 -   **./start.sh**  - запуск лаунчсервера для тестирования и начальной настройки
 -   **./startscreen.sh**  - запуск лаунчсервера на постоянной основе с помощью утилиты screen. Не запускайте два лаунчсервера одновременно!
 -   **./update.sh**  - обновляет лаунчсервер, лаунчер и рантайм до последней релизной версии
-
-Список папок лаунчсервера:
-
+:::
+::: tip Список папок лаунчсервера:
 -   **libraries/**  - библиотеки для лаунчсервера
 -   **modules/**  - модули для лаунчсервера (оканчивающиеся на _module.jar)
 -   **profiles/**  - папка профилей для запуска MineCraft
@@ -132,38 +147,120 @@ stop
 -   **config/**  - настройка конфигурации модулей
 -   **proguard/**  - настройки Proguard (обфускация кода)
 -   **guard/**  - нативная защита (по умолчанию отсутствует)
+:::
+::::
 
 ## Настройка Nginx
 
 Для достижения оптимальной производительности отдачи файлов нужно настроить Nginx
 
+- Посетите сайт [\[NGINX\]](https://nginx.org/en/linux_packages.html) и установите Nginx в соответствии с вашей системой
+
+- Создайте в пространстве имён своего домена **A** запись, вида `launcher.ДОМЕН.ru`, с вашим **IP** машины с лаунчсервером
+::: details Путь к конфигурации Nginx:
+Предпочтительно создавать отдельный файл конфигурации для каждого домена отдельно:
+(Воспользуйтесь SFTP клиентом)
+```
+/etc/nginx/conf.d/launcher.ДОМЕН.ru.conf
+```
+Если у вас на машине будет только одна настройка, можете отредактировать конфигурацию по умолчанию:
+```bash
+nano /etc/nginx/conf.d/default.conf
+```
+:::
+:::: code-group
+::: code-group-item На DNS имени
 ```nginx
 server {
-        listen 80 http2;
-        server_name ВАШДОМЕН.ru;
-        location / {
-                root /путь/до/updates;
-        }
-        location /api {
-                proxy_pass http://127.0.0.1:9274/api;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
-        location /webapi/ {
-                proxy_pass http://127.0.0.1:9274/webapi/;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
+    listen 80 http2;
+    server_name launcher.ВАШДОМЕН.ru;
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log main;
+    #error_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.error.log notice;
+    location / {
+        root /путь/до/updates;
+    }
+    location /api {
+        proxy_pass http://127.0.0.1:9274/api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
 }
 ```
-::: tip Примечание:
-Если у nginx нет прав для чтения папки, выдайте:
+:::
+::: code-group-item На IP
+```nginx
+server {
+    listen 80 http2;
+
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.access.log main;
+    #error_log  /var/log/nginx/launcher.error.log notice;
+    location / {
+        root /путь/до/updates;
+    }
+    location /api {
+        proxy_pass http://127.0.0.1:9274/api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+:::
+::::
+
+::: tip Проверить конфигурацию и перезагрузить Nginx:
+
+```bash
+nginx -t
+```
+Должны увидеть:
+```log
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+Перезагрузка сервиса:
+```bash
+service nginx restart
+```
+:::
+
+::: warning
+ - Без доменного имени перенос лаунчера на другую машину привёдёт к отказу самообновления.
+ - Так же SSL сертификат невозможно выдать на IP. В последствии соединение будет незащищённым и может быть скомпрометировано.
+:::
+::: details Заметки по правам:
+Если у nginx нет прав для чтения директорий, выдайте:
 ```bash
 chmod +x /home/launcher && chmod -R 755 /home/launcher/updates
+```
+Изменить группу и пользователя на всё содержимое домашней директории **launcher**:
+```bash
+chown -R launcher:launcher /home/launcher
 ```
 :::
 
