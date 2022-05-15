@@ -233,7 +233,7 @@ server {
 :::
 ::::
 
-::: tip Проверить конфигурацию и перезагрузить Nginx:
+::::: tip Проверить конфигурацию и перезагрузить Nginx:
 
 ```bash
 nginx -t
@@ -243,11 +243,24 @@ nginx -t
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
+Включить Nginx как службу Systemd:
+```bash
+systemctl enable nginx
+```
 Перезагрузка сервиса:
+:::: code-group
+::: code-group-item Systemd
+```bash
+systemctl restart nginx
+```
+:::
+::: code-group-item init.d
 ```bash
 service nginx restart
 ```
 :::
+::::
+:::::
 
 ::: warning
  - Без доменного имени перенос лаунчера на другую машину привёдёт к отказу самообновления.
