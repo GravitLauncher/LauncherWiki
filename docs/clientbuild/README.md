@@ -31,91 +31,66 @@
 -   По умолчанию все клиенты содержат в себе пропатченую authlib.
 :::
 
-## Сборка Authlib (MineCraft до 1.16.4)
+## Сборка Authlib
 
 Для сборки Authlib следуйте инструкции:
-
-<CodeGroup>
-  <CodeGroupItem title="Переименование" active>
-
+:::::: code-group
+::::: code-group-item [ MineCraft до 1.16.4 ]
+:::: code-group
+::: code-group-item [ Переименование ]
 ::: tip Информация:
-
--   Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib1.jar)
--   Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
-
+-  Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib1.jar)
+-  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="Сборка" active>
-
+:::
+::: code-group-item [ Сборка ]
 ::: tip Информация:
-
--   Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib1.jar)
--   Откройте его архиватором и распакуйте папку com в отдельную папку
--   Откройте вашу authlib по пути ```libraries/com/mojang/authlib/ВЕРСИЯ/``` архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе
-
+-  Скачайте файл  [LauncherAuthlib 1](https://mirror.gravit.pro/compat/authlib/1/LauncherAuthlib1.jar)
+-  Откройте его архиватором и распакуйте папку com в отдельную папку
+-  Откройте вашу authlib по пути ```libraries/com/mojang/authlib/ВЕРСИЯ/``` архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе
 :::
-  </CodeGroupItem>
-</CodeGroup>
-
-## Сборка Authlib (MineCraft с 1.16.5-1.17.1)
-
-Для сборки Authlib следуйте инструкции:
-
-<CodeGroup>
-  <CodeGroupItem title="Переименование" active>
-
+:::
+::::
+:::::
+::::: code-group-item [ MineCraft с 1.16.5-1.17.x ]
+:::: code-group
+::: code-group-item [ Переименование ]
 ::: tip Информация:
-
--   Скачайте файл  [LauncherAuthlib 2](https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar)
--   Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
-
+-  Скачайте файл  [LauncherAuthlib 2](https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar)
+-  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="Сборка" active>
-
+:::
+::: code-group-item [ Сборка ]
 ::: tip Информация:
-
--   Скачайте файл  [LauncherAuthlib 2](https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar)
--   Откройте его архиватором и распакуйте папку com в отдельную папку
--   Откройте вашу authlib по пути ```libraries/com/mojang/authlib/ВЕРСИЯ/``` архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе
-
+-  Скачайте файл  [LauncherAuthlib 2](https://mirror.gravit.pro/compat/authlib/2/LauncherAuthlib2-5.2.0.jar)
+-  Откройте его архиватором и распакуйте папку com в отдельную папку
+-  Откройте вашу authlib по пути ```libraries/com/mojang/authlib/ВЕРСИЯ/``` архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе
 :::
-  </CodeGroupItem>
-</CodeGroup>
-
-## Сборка Authlib (MineCraft с 1.18 и выше)
-
-Для сборки Authlib следуйте инструкции:
-
-<CodeGroup>
-  <CodeGroupItem title="Переименование" active>
-
+:::
+::::
+:::::
+::::: code-group-item [ MineCraft с 1.18.x и выше ]
+:::: code-group
+::: code-group-item [ Переименование ]
 ::: tip Информация:
-
--   Скачайте файл  [LauncherAuthlib 3](https://mirror.gravit.pro/compat/authlib/3/LauncherAuthlib3.jar)
--   Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
-
+-  Скачайте файл  [LauncherAuthlib 3](https://mirror.gravit.pro/compat/authlib/3/LauncherAuthlib3.jar)
+-  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/ВЕРСИЯ/``` вашего клиента
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="Сборка" active>
-
+:::
+::: code-group-item [ Сборка ]
 ::: tip Информация:
-
--   Скачайте файл  [LauncherAuthlib 3](https://mirror.gravit.pro/compat/authlib/3/LauncherAuthlib3.jar)
--   Откройте его архиватором и распакуйте папку com в отдельную папку
--   Откройте вашу authlib по пути ```libraries/com/mojang/authlib/ВЕРСИЯ/``` архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе
-
+-  Скачайте файл  [LauncherAuthlib 3](https://mirror.gravit.pro/compat/authlib/3/LauncherAuthlib3.jar)
+-  Откройте его архиватором и распакуйте папку com в отдельную папку
+-  Откройте вашу authlib по пути ```libraries/com/mojang/authlib/ВЕРСИЯ/``` архиватором и вставьте с заменой файлы, распакованные на предыдущем этапе
 :::
-  </CodeGroupItem>
-</CodeGroup>
+:::
+::::
+:::::
+::::::
 
 ## Настройка профиля
 
 Список параметров профиля с пояснениями:
-
 ```json
 {
   "title": "Vanilla1.17", // Заголовок профиля
@@ -264,9 +239,8 @@
 ```
 Триггеры - возможность включать опциональный мод при выполнении некоторых условий
 
-<CodeGroup>
-  <CodeGroupItem title="Тип OS" active>
-
+:::: code-group
+::: code-group-item [ Тип OS ]
 ```json
 "triggersList": [
 {
@@ -277,9 +251,8 @@
 }
 ],
 ```
-  </CodeGroupItem>
-  <CodeGroupItem title="Тип Java" active>
-
+:::
+::: code-group-item [ Тип Java ]
 ```json  
 "triggersList": [
 {
@@ -291,5 +264,5 @@
   }
 ],
 ```
-  </CodeGroupItem>
-</CodeGroup>
+:::
+::::
