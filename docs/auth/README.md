@@ -206,8 +206,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
     "serverIDColumn": "serverID"           // название столбца с serverID
   },
   "textureProvider": {
-    "skinURL": "https://enchald.com/sources/skins/%username%.png",
-    "cloakURL": "https://enchald.com/sources/cloaks/%username%.png",
+    "skinURL": "https://example.com/skins/%username%.png",
+    "cloakURL": "https://example.com/cloaks/%username%.png",
     "type": "request"
   },
   "isDefault": true,
@@ -287,8 +287,8 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
     "serverIDColumn": "serverID"
   },
   "textureProvider": {
-    "skinURL": "https://enchald.com/sources/skins/%username%.png",
-    "cloakURL": "https://enchald.com/sources/cloaks/%username%.png",
+    "skinURL": "https://example.com/skins/%username%.png",
+    "cloakURL": "https://example.com/cloaks/%username%.png",
     "type": "request"
   },
   "isDefault": true,
