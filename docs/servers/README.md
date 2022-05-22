@@ -20,59 +20,37 @@
 
 ## Рекомендуемые ядра
 
-<CodeGroup>
-  <CodeGroupItem title="1.7.10" active>
-
-::: tip Информация:
-
+:::: code-group
+::: code-group-item [ 1.7.10 ]
+::: tip Список:
 - [Crucible](https://github.com/CrucibleMC/Crucible)
-
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="1.12.2" active>
-
-::: tip Информация:
-
+:::
+::: code-group-item [ 1.12.2]
+::: tip Список:
 - [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/docs/README_RU.md)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
-
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="1.16.5" active>
-
-::: tip Информация:
-
+:::
+::: code-group-item [ 1.16.5 ]
+::: tip Список:
 - [Fabric](https://fabricmc.net/) 
 - [CatServer](https://github.com/Luohuayu/CatServer/blob/1.16.5/docs/README_EN.md)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
-
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="1.17.X" active>
-
-::: tip Информация:
-
+:::
+::: code-group-item [ 1.17.X ]
+::: tip Список:
 - [Fabric](https://fabricmc.net/)
-
 :::
-
-  </CodeGroupItem>
-  
-  <CodeGroupItem title="1.18.2" active>
-
-::: tip Информация:
-
+:::
+::: code-group-item [ 1.18.2 ]
+::: tip Список:
 - [Fabric](https://fabricmc.net/)
 - [CatServer](https://github.com/Luohuayu/CatServer/blob/1.18.2/docs/README.md)
-
 :::
-
-  </CodeGroupItem>
-
-</CodeGroup>
+:::
+::::
 
 ## Использование ServerWrapper
 
@@ -100,77 +78,54 @@
 -   **BungeeCord**  - Скачайте [патч](https://mirror.gravit.pro/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
 -   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravit.pro/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
 
-## Замена authlib
+## Замена AuthLib
 
 Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Каждое ядро реализует процесс своего старта по своему, поэтому если одна инструкция не подходит, попробуйте другую.
 
-<CodeGroup>
-  <CodeGroupItem title="Classpath" active>
-
+:::: code-group
+::: code-group-item [ Classpath ]
 ::: tip Информация:
-
 Скопируйте authlib в папку с ServerWrapper'ом и измените ваш setup.sh: ```-cp ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper``` замените на ```-cp authlib-XXXX.jar:ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper```
 
 **Примеры ядер:** Forge 1.7.10, Vanilla до 1.18
-
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="Jar" active>
-
+:::
+::: code-group-item [ Jar ]
 ::: tip Информация:
-
 Распакуйте содержимое authlib клиента в временную папку. Откройте ```jar``` файл вашего ядра или сервера minecraft(если разделены) архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
 
 **Примеры ядер:** Forge/Sponge до 1.16.5, Fabric/Vanilla до 1.18
-
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="Library" active>
-
+:::
+::: code-group-item [ Library ]
 ::: tip Информация:
-
 Скопируйте файл вашего authlib по пути ```libraries/com/mojang/ВЕРСИЯ/authlib-ВЕРСИЯ.jar``` с заменой
-
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="MinecraftExtra" active>
-
+:::
+::: code-group-item [ MinecraftExtra ]
 ::: tip Информация:
-
 Распакуйте содержимое authlib клиента в временную папку. Откройте файл ```libraries/net/minecraft/server/ВЕРСИЯ/server-ВЕРСИЯ-extra.jar``` архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
 
 **Примеры ядер:** Forge 1.16.5
-
 :::
-
-  </CodeGroupItem>
-  <CodeGroupItem title="Pack" active>
-
+:::
+::: code-group-item [ Pack ]
 ::: tip Информация:
-
 Откройте файл вашего сервера и скопируйте ```authlib-ВЕРСИЯ.jar``` **целиком** в ```META-INF/libraries/com/mojang/authlib/ВЕРСИЯ``` с заменой
 
 **Примеры ядер:** Vanilla 1.18+
-
 :::
+:::
+::::
 
-  </CodeGroupItem>
-
-
-
-</CodeGroup>
-
-::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
-
+:::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 Скопируйте [этот](https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
 ::: details Установка командой Wget
 ```sh
 wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
 :::
+::::
 
 ## Конфигурация ServerWrapper
 
