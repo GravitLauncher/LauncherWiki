@@ -1,5 +1,7 @@
 # Настройка авторизации
 
+## Введение
+
 **AuthCoreProvider** является заменой тройке AuthProvider, AuthHandler, HWIDHandler, выполняя все их функции в едином, связанном интерфейсе
 
 Преимущества AuthCoreProvider:
@@ -41,13 +43,18 @@ AUTH ID это название блока авторизации, наприм�
 Не требует пароль для входа. Подходит для тестирования и серверов в локальной сети.
 
 ```json
-"std": {
-  "core": {
-    "type": "memory"
-  },
-  "isDefault": true,
-  "displayName": "Default"
-}
+    "std": {
+      "core": {
+        "type": "memory"
+      },
+      "textureProvider": {
+        "skinURL": "http://example.com/skins/%username%.png",
+        "cloakURL": "http://example.com/cloaks/%username%.png",
+        "type": "request"
+      },
+      "isDefault": true,
+      "displayName": "Default"
+    }
 ```
 
 ::: warning Важно:
@@ -200,8 +207,8 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
 :::
 ::: code-group-item [ Пример с описанием ]
 ```json
-    "std": { // Имя Provider'а. При настройке нескольких авторизаций одновременно, имя должно отличаться
-      "core": { // Тип AuthCoreProvider'а
+    "std": { // AUTH ID. При настройке нескольких авторизаций одновременно, имя должно отличаться
+      "core": { // Раздел конфигурации AuthCoreProvider
         "type": "mysql", // Метод авторизации AuthCoreProvider'а
         "mySQLHolder": {
           "address": "example.com", // Адрес mysql сервера
@@ -237,7 +244,7 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
 ```
 :::
 ::::
-::: tip Настройте следующие конфигурации
+::: tip Настройте следующие конфигурации:
 - [\[ PasswordVerifier \]](#конфигурация-passwordverifier)
 - [\[ TextureProvider \]](../other/#textureprovider)
 :::
