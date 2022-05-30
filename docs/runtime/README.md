@@ -27,13 +27,13 @@
 -   Скачайте  **архивы**  с JRE/JDK с официального сайта Oracle или другого поставщика сборок OpenJDK
 -   Распакуйте архивы в папку updates и дайте им понятные названия: ```java17-windows-64```, ```java17-windows-32``` и т.д.
 -   По желанию удалите из сборок JRE/JDK необязательные компоненты для уменьшения объема скачиваемых данных
--   Откройте файл ```config/JavaRuntime/Config.json``` в текстовом редакторе, найдите строку ```"javaList": {}``` и приведите её к такому виду:
+-   Откройте файл ```config/JavaRuntime/Config.json``` в текстовом редакторе, найдите строку **"javaList": {}** и приведите её к такому виду:
 
 ```json
-"javaList": {
+  "javaList": {
     "java17-windows-64": "Java 17 b53 mustdie x64 javafx true",
     "java17-windows-32": "Java 17 b53 mustdie x32 javafx true"
-  }
+  },
 ```
 
 ::: warning Формат записи:
@@ -42,7 +42,10 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
 ```
 :::
 
--   Добавьте папки с вашими сборками JRE/JDK в allowUpdates конфиге лаунчсервера: ```"allowUpdates": ["java17-windows-64", "java17-windows-32"],```
+-   Добавьте названия ваших папок с JRE/JDK в **"protectHandler": {}** конфигурации лаунчсервера LaunchServer.json
+```json
+    "allowUpdates": ["java17-windows-64", "java17-windows-32"],
+```
 -   Выполните ```syncup``` и ```build```
 -   Проверьте правильность работы
 
