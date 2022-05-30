@@ -423,6 +423,12 @@ cp ./src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar ./mo
 :::
 :::::
 ::::::
+::: details Комьюнити реализации, метод JSON:
+[\[PHP\] microwin7/GravitLauncher-PasswordVerifier](https://github.com/microwin7/GravitLauncher-PasswordVerifier)
+- Bcrypt
+- PHPass
+- PBKDF2
+:::
 
 ## Несколько методов авторизации
 
