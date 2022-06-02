@@ -26,7 +26,7 @@
 
 Первым шагом необходимо подготовить окружение - создать пользователя, установить firewall, Java
 
-Для запуска LaunchServer необходима Java 17. Она так же подходит для запуска майнкрафт сервера 1.18
+Для запуска LaunchServer необходима Java 17. Она также подходит для запуска майнкрафт сервера 1.18
 Для запуска майнкрафт сервера 1.17.x необходима - Java 16.
 Для запуска майнкрафт сервера 1.16.5 и ниже - Java 8.
 Необходимо установить их все, если вы собираетесь держать лаунчсервер и сервера на одной машине.
@@ -339,5 +339,5 @@ DEV версии лаунчсервера содержат самый новый
 -   **Первый способ: Установка скриптом.**  Следуйте  [этой](../install/#установка-launchserver-1)  инструкции, используя скрипт установки DEV версии: ```https://mirror.gravit.pro/scripts/setup-dev.sh```
 -   **Второй способ: Установка через GitHub Actions.**
     -   Зарегистрируйтесь или войдите на  [GitHub](https://github.com/)
-    -   Скачайте архивы с  [лаунчером](https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev)  и  [рантаймом](https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev)  с GitHub Actions.
+    -   Скачайте архив с  [лаунчером](https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev)  и  [рантаймом](https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev)  с GitHub Actions.
     -   Действуйте аналогично установке  [stable версии](../install/#установка-на-windows-только-для-тестирования) на Windows, используя архивы, скачанные на предыдущем этапе
