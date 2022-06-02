@@ -66,7 +66,7 @@
 
 ::: tip Примечание:
 
-До 5.1.9-dev ServerWrapper.jar содержит в себе authlib первой версии. Удалите папку ```com/mojang``` из ```ServerWrapper.jar``` что бы следовать инструкциям ниже
+До 5.1.9-dev ServerWrapper.jar содержит в себе authlib первой версии. Удалите папку ```com/mojang``` из ```ServerWrapper.jar``` чтобы следовать инструкциям ниже
 
 :::
 
