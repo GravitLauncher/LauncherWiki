@@ -123,7 +123,7 @@
 
 ## Применение патчей Fabric-Loader
 
-Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravit.pro/compat/patch/FabricLoader.patch)  
+Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravit.pro/compat/FabricLoader.patch)  
 Клиенты зеркала **уже содержат в себе патченый fabric-loader**
 
 ## Настройка профиля
