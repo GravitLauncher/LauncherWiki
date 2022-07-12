@@ -4,9 +4,9 @@
 
 На текущий момент поддерживается запуск:
 
--   Любой Vanilla версии с 1.7.10 до 1.18.1
+-   Любой Vanilla версии с 1.7.10 до 1.19
 -   Любой Forge версии с 1.7.10 до 1.16.5
--   Любой Fabric версии с 1.13 до 1.18.1
+-   Любой Fabric версии с 1.13 до 1.19
 
 ## Рекомендации
 
@@ -77,7 +77,7 @@
 -  Если вы воспользовались методом сборки, при замене файлов `.class`, остальные файлы не трогайте
 ::::
 :::::
-::::: code-group-item [ MineCraft с 1.18.x и выше ]
+::::: code-group-item [ MineCraft 1.18.x ]
 :::: code-group
 ::: code-group-item [ Сборка ]
 ::: tip Информация:
@@ -98,7 +98,33 @@
 -  Если вы воспользовались методом сборки, при замене файлов `.class`, остальные файлы не трогайте
 ::::
 :::::
+::::: code-group-item [ MineCraft с 1.19 ]
+:::: code-group
+::: code-group-item [ Сборка ]
+::: tip Информация:
+-  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravit.pro/compat/authlib/5.2.9/3/LauncherAuthlib3-1.19.jar)
+-  Откройте его архиватором и распакуйте папку com в отдельную папку
+-  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/3.x.xx/authlib-3.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
+:::
+:::
+::: code-group-item [ Переименование ]
+::: tip Информация:
+-  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravit.pro/compat/authlib/5.2.9/3/LauncherAuthlib3-1.19.jar)
+-  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/3.x.xx/``` вашего клиента
+:::
+:::
+::::
+:::: details Примечания:
+-  В файле [LauncherAuthlib3.jar](https://mirror.gravit.pro/compat/authlib/5.2.9/3/LauncherAuthlib3.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  Если вы воспользовались методом сборки, при замене файлов `.class`, остальные файлы не трогайте
+::::
+:::::
 ::::::
+
+## Применение патчей Fabric-Loader
+
+Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravit.pro/compat/patch/FabricLoader.patch)  
+Клиенты зеркала **уже содержат в себе патченый fabric-loader**
 
 ## Настройка профиля
 

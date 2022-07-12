@@ -56,7 +56,7 @@
 
 Для привязки ServerWrapper к вашему серверу выполните следующие действия:
 
--   Откройте лаунчсервер и введите команду ```token server HiTech```, где HiTech - название вашего сервера. Скопируйте получившийся токен. <Badge type="warning" text="ВАЖНО" vertical="middle" /> При обновлении лаунчсервера, без копирования ключей ```.keys```, перевыдайте token для вашего сервера
+-   Откройте лаунчсервер и введите команду ```token server HiTech```, где HiTech - название вашего сервера. Скопируйте получившийся токен.
 -   Перейдите в папку с вашим сервером, скопируйте туда ServerWrapper.jar из артефактов сборки и выполните команду ```java -jar ServerWrapper.jar setup```  
 -   Укажите название jar файла вашего серверного ядра, название сервера, адрес лаунчсервера и токен, полученный на первом этапе
 
@@ -64,9 +64,13 @@
 
 Дальнейшие действия зависят от вашего серверного ядра
 
-::: tip Примечание:
+::: tip Примечания:
 
-До 5.1.9-dev ServerWrapper.jar содержит в себе authlib первой версии. Удалите папку ```com/mojang``` из ```ServerWrapper.jar``` что бы следовать инструкциям ниже
+- До 5.1.9-dev ServerWrapper.jar содержит в себе authlib первой версии. Удалите папку ```com/mojang``` из ```ServerWrapper.jar``` что бы следовать инструкциям ниже  
+- Для привязки сервера с fabric-loader 0.14.X и выше не забудьте пропатчить или взять с клиента библиотеку fabric-loader
+- Правильно указывайте имя сервера при установке ServerWrapper. Имя сервера это название сервера в поле `servers` вашего полфиля. По умолчанию название первого сервера совпадает с `title` профиля
+- Привязка нескольких серверов по одному токену возможна только если эти сервера относятся к одному профилю
+- При смене ключей лаунчсервера(например при настройке заново на новом хостинге) или `authId` вам необходимо **обязательно** пересоздать токен сервера
 
 :::
 
@@ -78,7 +82,45 @@
 -   **BungeeCord**  - Скачайте [патч](https://mirror.gravit.pro/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
 -   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravit.pro/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
 
-## Замена AuthLib
+## Использование installAuthlib
+
+Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Начиная с версии 5.2.13 вы можете привязать authlib к серверу одной командой:
+
+:::: code-group
+::: code-group-item [ Локально ]
+::: tip Информация:
+
+Скопируйте authlib с клиента в любое удобное для вас место и пропишите команду `java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib`
+
+:::
+:::
+::: code-group-item [ По ссылке ]
+::: tip Информация:
+
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду `java -jar ServerWrapper.jar installAuthlib СсылкаНаLauncherAuthlib`  
+  
+Например для установки на сервер Minecraft 1.19: `java -jar ServerWrapper.jar installAuthlib https://mirror.gravit.pro/compat/authlib/5.2.9/3/LauncherAuthlib3-1.19.jar`
+
+:::
+:::
+::::
+
+::: tip Примечание:
+
+Рекомендуется перед привязкой запустить сервер хотя бы 1 раз
+
+:::
+
+:::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
+Скопируйте [этот](https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
+::: details Установка командой Wget
+```sh
+wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar
+```
+:::
+::::
+
+## Ручная установка AuthLib
 
 Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Каждое ядро реализует процесс своего старта по своему, поэтому если одна инструкция не подходит, попробуйте другую.
 
