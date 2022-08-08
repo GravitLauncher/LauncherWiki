@@ -78,9 +78,9 @@
 
 Прокси серверы напрямую обращаются к серверам Mojang, минуя authlib, поэтому вы должны пропатчить их
 
--   **Waterfall**  - Скачайте [патч](https://mirror.gravit.pro/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой ```./waterfall build```
--   **BungeeCord**  - Скачайте [патч](https://mirror.gravit.pro/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
--   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravit.pro/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
+-   **Waterfall**  - Скачайте [патч](https://mirror.gravit.pro/5.2.x/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой ```./waterfall build```
+-   **BungeeCord**  - Скачайте [патч](https://mirror.gravit.pro/5.2.x/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
+-   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravit.pro/5.2.x/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
 
 ## Использование installAuthlib
 
@@ -99,7 +99,7 @@
 
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду `java -jar ServerWrapper.jar installAuthlib СсылкаНаLauncherAuthlib`  
   
-Например для установки на сервер Minecraft 1.19: `java -jar ServerWrapper.jar installAuthlib https://mirror.gravit.pro/compat/authlib/5.2.9/3/LauncherAuthlib3-1.19.jar`
+Например для установки на сервер Minecraft 1.19: `java -jar ServerWrapper.jar installAuthlib https://mirror.gravit.pro/5.2.x/compat/authlib/3/LauncherAuthlib3-1.19.jar`
 
 :::
 :::
@@ -112,10 +112,10 @@
 :::
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
-Скопируйте [этот](https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
+Скопируйте [этот](https://mirror.gravit.pro/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
 ::: details Установка командой Wget
 ```sh
-wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar
+wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravit.pro/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
 :::
 ::::
@@ -161,10 +161,10 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 ::::
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
-Скопируйте [этот](https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
+Скопируйте [этот](https://mirror.gravit.pro/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
 ::: details Установка командой Wget
 ```sh
-wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravit.pro/compat/launchwrapper-1.12-5.0.x-fixed.jar
+wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravit.pro/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
 :::
 ::::

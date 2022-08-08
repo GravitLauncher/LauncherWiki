@@ -18,7 +18,7 @@
 
 ## Шифрование рантайма
 
--   Скачайте библиотеку  [EnFS](https://mirror.gravit.pro/compat/EnFS-1.0.0.jar)  и положите её в папку launcher-libraries
+-   Скачайте библиотеку  [EnFS](https://mirror.gravit.pro/5.2.x/compat/EnFS-1.0.0.jar)  и положите её в папку launcher-libraries
 -   Включите опцию ```runtimeEncrypt``` в конфигурации лаунчсервера и сделайте ```build```
 -   Проверьте правильность работы
 
