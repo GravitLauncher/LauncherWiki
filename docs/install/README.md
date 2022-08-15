@@ -44,7 +44,7 @@ sudo update-alternatives --config java
 sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y ; wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ; echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ; sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full ; sudo update-alternatives --config java
 ```
 :::
-::: Смена Java по умолчанию:
+::: details Смена Java по умолчанию:
 ```bash
 sudo update-alternatives --config java
 ```
@@ -72,7 +72,7 @@ yum update
 yum install bellsoft-java17-full
 alternatives --config java
 ```
-::: Смена Java по умолчанию:
+::: details Смена Java по умолчанию:
 ```bash
 sudo alternatives --config java
 ```
