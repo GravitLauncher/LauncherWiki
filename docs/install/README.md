@@ -44,6 +44,11 @@ sudo update-alternatives --config java
 sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y ; wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ; echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ; sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full ; sudo update-alternatives --config java
 ```
 :::
+::: details Смена Java по умолчанию:
+```bash
+sudo update-alternatives --config java
+```
+:::
 ::: warning Примечание:
 Если amd64 не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
 Список возможных архитектур:
@@ -67,6 +72,11 @@ yum update
 yum install bellsoft-java17-full
 alternatives --config java
 ```
+::: details Смена Java по умолчанию:
+```bash
+sudo alternatives --config java
+```
+:::
 ::::
 :::: code-group-item OTHER
 Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.3/e)
