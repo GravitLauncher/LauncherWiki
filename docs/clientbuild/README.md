@@ -204,7 +204,6 @@
     "autoEnter": false, //Авто—вход, может крашиться
     "fullScreen": false // Полноэкранный режим
   },
-  "updateFastCheck": true, // Быстрая проверка файлов
   "limited": false, // Ограничен permissions
   "mainClass": "net.minecraft.client.main.Main" // MainClass клиента
 }
@@ -234,7 +233,6 @@
        "visible": true, //Видимость
        "mark": true, //Включен по умолчанию
        "limited": false, //Ограничен permissions
-       "permissions": 0, //Маска привилегий. 0 - мод для всех, 1 - только для админов.
        "name": "NotEnoughItems" //Имя
     },
     {
@@ -248,7 +246,6 @@
       ],
        "info": "Мод, показывающий дополнительную информацию при наведении на блок",
        "name": "Walia",
-       "permissions": 0,
        "visible": true,
        "dependenciesFile": [{"name":"NotEnoughItems"/* Имя зависимого мода */}],
        "conflictFile": [{"name":"ClientFixer"/* Имя конфликтующего мода */}],
@@ -280,7 +277,6 @@
         }
       ],
        "info": "Улучшение производительности",
-       "permissions": 0,
        "visible": true,
        "name": "OptiFine HD"
     }
@@ -310,6 +306,21 @@
     "maxVersion": 11, //Максимальная версия Java для срабатывания триггера
     "required": true, //Показывает, что без этого триггера включение опционального мода не имеет смысла
     "inverted": false //Инвертировать триггер
+  }
+],
+```
+:::
+::::
+
+:::
+::: code-group-item [ Тип Arch ]
+```json  
+"triggersList": [
+{
+    "type": "arch",
+    "arch": "X86_64", //Архитектура для срабатывания триггера
+    "required": true,
+    "inverted": false
   }
 ],
 ```
