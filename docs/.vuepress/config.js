@@ -1,4 +1,7 @@
-module.exports = {
+import { defineUserConfig } from 'vuepress'
+import { defaultTheme } from '@vuepress/theme-default'
+
+export default defineUserConfig({
     head: [
         ['link', {rel: 'icon', type: 'image/png', sizes: '16x16', href: `/images/icons/favicon-16x16.png`,}],
         ['link', {rel: 'icon', type: 'image/png', sizes: '32x32', href: `/images/icons/favicon-32x32.png`,}],
@@ -6,9 +9,8 @@ module.exports = {
     lang: 'ru_RU',
     title: 'GravitLauncher Wiki',
     description: 'GravitLauncher Wiki',
-    theme: '@vuepress/theme-default',
     port: '8080', //Порт на котором запускается VuePress
-    themeConfig: {
+    theme: defaultTheme({
         repo: 'GravitLauncher/Launcher',
         docsRepo: 'https://github.com/GravitLauncher/LauncherWiki',
         docsBranch: 'main',
@@ -67,17 +69,9 @@ module.exports = {
                 },
             ],
         },
-    },
+    }),
     plugins: [
         [
-            '@vuepress/plugin-search',
-            {
-                locales: {
-                    '/': {
-                        placeholder: 'Поиск...',
-                    },
-                },
-            },
         ],
     ]
-}
+})
