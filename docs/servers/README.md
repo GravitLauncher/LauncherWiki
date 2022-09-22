@@ -71,6 +71,7 @@
 - Правильно указывайте имя сервера при установке ServerWrapper. Имя сервера это название сервера в поле `servers` вашего полфиля. По умолчанию название первого сервера совпадает с `title` профиля
 - Привязка нескольких серверов по одному токену возможна только если эти сервера относятся к одному профилю
 - При смене ключей лаунчсервера(например при настройке заново на новом хостинге) или `authId` вам необходимо **обязательно** пересоздать токен сервера
+- Для запуска сервера 1.19.1 и выше нужно установить параметр `enforce-secure-profile` в `false` в файле `server.properties`
 
 :::
 
@@ -81,6 +82,7 @@
 -   **Waterfall**  - Скачайте [патч](https://mirror.gravit.pro/5.2.x/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой ```./waterfall build```
 -   **BungeeCord**  - Скачайте [патч](https://mirror.gravit.pro/5.2.x/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
 -   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravit.pro/5.2.x/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
+
 
 ## Использование installAuthlib
 
