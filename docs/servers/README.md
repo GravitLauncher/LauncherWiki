@@ -175,7 +175,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 {
   "projectname": "MineCraft", // Название проекта
   "address": "ws://ADDRESS/api", // Адрес лаунчсервера
-  "serverName": "Vanilla1.17.1", // Название сервера в профиле
+  "serverName": "Vanilla1.19.2", // Название сервера в профиле
   "autoloadLibraries": false, // Автозагрузка библиотек из папки libraries
   "classpath": [], // Дополнительный classpath (1.18+)
   "classLoaderConfig": "SYSTEM_ARGS", // Системные аргументы запуска
