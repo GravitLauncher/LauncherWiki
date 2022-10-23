@@ -6,3 +6,4 @@ docs/.vuepress/dist
 .vuepress/dist
 .yarnrc.yml
 .editorconfig
+docs/v6

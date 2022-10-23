@@ -374,20 +374,6 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
    "type": "bcrypt"
 }
 ```
-:::: warning Обязательная установка модуля
-Несколько вариантов, где можно взять модуль:
-::: tip Из релиза:
-- [GitHub Release](https://github.com/GravitLauncher/Launcher/releases)
-- В архиве [LaunchServerModules.zip](https://github.com/GravitLauncher/Launcher/releases/latest/download/LaunchServerModules.zip)
-:::
-::: tip Из своих исходников, после установки скриптом:
-Местонахождение: **`./src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar`**
-Скопировать командой:
-```bash
-cp ./src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar ./modules/
-```
-:::
- **Исходники [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
 
 ::::
 ::: tip Примечания:
