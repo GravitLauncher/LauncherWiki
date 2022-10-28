@@ -39,19 +39,22 @@ echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt
 sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full
 sudo update-alternatives --config java
 ```
-:::: details Выбор подходящей архитектуры: <Badge type="warning" text="Важно" vertical="top" />
-::: warning Предлагаемые архитектуры:
-Если amd64 не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
+:::: details Целевые архитектуры процессоров: <Badge type="warning" text="Важно" vertical="top" />
+::: warning Описание:
+- **amd64** является более распространённой архитектурой на текущее время
+- Если **amd64** не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
+
 Список возможных архитектур:
 ```bash
 amd64, i386, arm64, armhf
 ```
-- amd64 - x86 (64 бит)
-- i386 - x86 (32 бит)
-- arm64 - aarch64
+- Сопоставление:
+  - **amd64** - x86 (64 бит)
+  - **i386** - x86 (32 бит)
+  - **arm64** - aarch64
 :::
 ::: warning Примечание:
-- Такие архитектуры как **arm64** и **armhf** не поддерживают сборку EXE бинарного файла лаунчера, через launch4j
+- Такие архитектуры как **arm64** и **armhf** не поддерживают сборку EXE - бинарного файла лаунчера, через launch4j
 ---
 - Если ваша архитектура **amd64** или **i386**, включите сборку EXE в конфигурации `LaunchServer.json`:
   - launch4j: 
