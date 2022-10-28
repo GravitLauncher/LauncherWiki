@@ -30,9 +30,18 @@
 Для запуска майнкрафт сервера 1.17.x необходима - Java 16.
 Для запуска майнкрафт сервера 1.16.5 и ниже - Java 8.
 Необходимо установить их все, если вы собираетесь держать лаунчсервер и сервера на одной машине.
+:::::: code-group
+::::: code-group-item DEBIAN / UBUNTU
+```bash
+sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y
+wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - 
+echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list
+sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full
+sudo update-alternatives --config java
+```
 :::: details Выбор подходящей архитектуры: <Badge type="warning" text="Важно" vertical="top" />
 ::: warning Предлагаемые архитектуры:
-Если amd64 не является целевой архитектурой, замените его в скрипте в поле **[arch=amd64]**
+Если amd64 не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
 Список возможных архитектур:
 ```bash
 amd64, i386, arm64, armhf
@@ -58,35 +67,27 @@ uname -m | awk '{print(substr($0,0,3))}'
 getconf LONG_BIT
 ```
 :::
-::::
-::::: code-group
-:::: code-group-item DEBIAN / UBUNTU
-```bash
-sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y
-wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - 
-echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list
-sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full
-sudo update-alternatives --config java
-```
-::: details Команда одной строкой:
-```bash
-sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y ; wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ; echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ; sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full ; sudo update-alternatives --config java
-```
-:::
-::: details Смена Java по умолчанию:
-```bash
-sudo update-alternatives --config java
-```
-:::
-::: details Удалить из sources.list
-- Необходимо, если ошибочно установили неправильно архитектуру
+::: tip Удалить из sources.list
+- Необходимо, если ошибочно добавили неправильную архитектуру
+  - Ошибка в консоли: `E: Unable to locate package bellsoft-java17-full`
 ```bash
 rm -f /etc/apt/sources.list.d/bellsoft.list
 ```
-Измените архитектуру в скрипте и повторите добавление и установку
+- Измените архитектуру в скрипте и повторите добавление и установку
 :::
 ::::
-:::: code-group-item CENTOS
+:::: details Команда одной строкой:
+```bash
+sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y ; wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ; echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ; sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full ; sudo update-alternatives --config java
+```
+::::
+:::: details Смена Java по умолчанию:
+```bash
+sudo update-alternatives --config java
+```
+::::
+:::::
+::::: code-group-item CENTOS
 ```bash
 echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
 [BellSoft]
@@ -101,16 +102,16 @@ yum update
 yum install bellsoft-java17-full
 alternatives --config java
 ```
-::: details Смена Java по умолчанию:
+:::: details Смена Java по умолчанию:
 ```bash
 sudo alternatives --config java
 ```
-:::
-::::
-:::: code-group-item OTHER
-Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.3/e)
 ::::
 :::::
+::::: code-group-item OTHER
+Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.5/)
+:::::
+::::::
 
 ## Создание пользователя launcher
 
