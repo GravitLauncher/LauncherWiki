@@ -30,8 +30,8 @@
 Для запуска майнкрафт сервера 1.17.x необходима - Java 16.
 Для запуска майнкрафт сервера 1.16.5 и ниже - Java 8.
 Необходимо установить их все, если вы собираетесь держать лаунчсервер и сервера на одной машине.
-::::: code-group
-:::: code-group-item DEBIAN / UBUNTU
+:::::: code-group
+::::: code-group-item DEBIAN / UBUNTU
 ```bash
 sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y
 wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - 
@@ -39,25 +39,58 @@ echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt
 sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full
 sudo update-alternatives --config java
 ```
-::: details Команда одной строкой:
+:::: details Целевые архитектуры процессоров: <Badge type="warning" text="Важно" vertical="top" />
+::: warning Описание:
+- **amd64** является более распространённой архитектурой на текущее время
+- Если **amd64** не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
+
+Список возможных архитектур:
+```bash
+amd64, i386, arm64, armhf
+```
+- Сопоставление:
+  - **amd64** - x86 (64 бит)
+  - **i386** - x86 (32 бит)
+  - **arm64** - aarch64
+:::
+::: warning Примечание:
+- Такие архитектуры как **arm64** и **armhf** не поддерживают сборку EXE - бинарного файла лаунчера, через launch4j
+---
+- Если ваша архитектура **amd64** или **i386**, включите сборку EXE в конфигурации `LaunchServer.json`:
+  - launch4j: 
+    - enabled: true
+:::
+::: tip Узнать архитектуру ядра:
+```bash
+uname -m | awk '{print(substr($0,0,3))}'
+```
+:::
+::: tip Узнать битность ядра:
+```bash
+getconf LONG_BIT
+```
+:::
+::: tip Удалить из sources.list
+- Необходимо, если ошибочно добавили неправильную архитектуру
+  - Ошибка в консоли: `E: Unable to locate package bellsoft-java17-full`
+```bash
+rm -f /etc/apt/sources.list.d/bellsoft.list
+```
+- Измените архитектуру в скрипте и повторите добавление и установку
+:::
+::::
+:::: details Команда одной строкой:
 ```bash
 sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y ; wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ; echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ; sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full ; sudo update-alternatives --config java
 ```
-:::
-::: details Смена Java по умолчанию:
+::::
+:::: details Смена Java по умолчанию:
 ```bash
 sudo update-alternatives --config java
 ```
-:::
-::: warning Примечание:
-Если amd64 не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
-Список возможных архитектур:
-```bash
-amd64, i386, arm64
-```
-:::
 ::::
-:::: code-group-item CENTOS
+:::::
+::::: code-group-item CENTOS
 ```bash
 echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
 [BellSoft]
@@ -72,16 +105,16 @@ yum update
 yum install bellsoft-java17-full
 alternatives --config java
 ```
-::: details Смена Java по умолчанию:
+:::: details Смена Java по умолчанию:
 ```bash
 sudo alternatives --config java
 ```
-:::
-::::
-:::: code-group-item OTHER
-Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.3/e)
 ::::
 :::::
+::::: code-group-item OTHER
+Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.5/)
+:::::
+::::::
 
 ## Создание пользователя launcher
 
