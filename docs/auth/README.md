@@ -274,7 +274,9 @@ CREATE OR REPLACE FUNCTION public.users_uuid_trigger_func()
     LANGUAGE plpgsql
 AS $function$
     BEGIN
-        new.uuid = (SELECT uuid_generate_v4());
+        IF (new.uuid IS NULL) THEN
+		new.uuid = (SELECT uuid_generate_v4());
+	END IF;
         return new;
     END;
 $function$
