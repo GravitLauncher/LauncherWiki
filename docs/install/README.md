@@ -217,13 +217,15 @@ nano /etc/nginx/conf.d/default.conf
 ::: code-group-item На DNS имени
 ```nginx
 server {
-    listen 80 http2;
+    listen 80;
     server_name launcher.ВАШДОМЕН.ru;
     charset utf-8;
     #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log main;
     #error_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.error.log notice;
+    
+    root /путь/до/updates;
+    
     location / {
-        root /путь/до/updates;
     }
     location /api {
         proxy_pass http://127.0.0.1:9274/api;
@@ -248,13 +250,15 @@ server {
 ::: code-group-item На IP
 ```nginx
 server {
-    listen 80 http2;
+    listen 80;
 
     charset utf-8;
     #access_log  /var/log/nginx/launcher.access.log main;
     #error_log  /var/log/nginx/launcher.error.log notice;
+    
+    root /путь/до/updates;
+    
     location / {
-        root /путь/до/updates;
     }
     location /api {
         proxy_pass http://127.0.0.1:9274/api;
