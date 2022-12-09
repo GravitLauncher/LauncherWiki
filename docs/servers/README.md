@@ -83,6 +83,14 @@
 -   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravit.pro/5.3.x/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
 
 
+## Привязка дополнительных средств
+
+-   **CloudNet** - Скачайте [патч](https://mirror.gravit.pro/5.3.x/compat/patch/CloudNet.patch), скопируйте его в папку с репозиторием, примените его командой ```git apply CloudNet.patch```. Соберите CloudNet командой ```./gradlew assemble```. Для привязки сервера выполните:
+    -  Скопируйте ServerWrapper.jar в папку с сервером/прокси
+    -  Привяжите с помощью ServerWrapper как обычно
+    -  Удалите mainclass из конфигурации ServerWrapper
+
+
 ## Использование installAuthlib
 
 Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Начиная с версии 5.2.13 вы можете привязать authlib к серверу одной командой:
