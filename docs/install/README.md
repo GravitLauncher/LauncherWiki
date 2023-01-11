@@ -151,7 +151,7 @@ su - launcher
 Выполнить установку **LaunchServer**'a скриптом:
 
 ```bash
-wget -O - https://mirror.gravit.pro/scripts/setup-master.sh | bash <(cat) </dev/tty
+wget -O - https://mirror.gravitlauncher.com/scripts/setup-master.sh | bash <(cat) </dev/tty
 ```
 **После завершения установки запустите лаунчсервер для начальной настройки:**
 ```bash
@@ -384,7 +384,7 @@ chown -R launcher:launcher /home/launcher
 
 DEV версии лаунчсервера содержат самый новый функционал и исправления, которые ещё не попали в релиз. Они могут быть нестабильны( вызывать проблемы), иметь расхождение с официальной вики. Настоятельно рекомендуется проверять работоспособность dev версий в тестовом окружении, прежде чем давать игрокам.
 
--   **Первый способ: Установка скриптом.**  Следуйте  [этой](../install/#установка-launchserver-1)  инструкции, используя скрипт установки DEV версии: ```https://mirror.gravit.pro/scripts/setup-dev.sh```
+-   **Первый способ: Установка скриптом.**  Следуйте  [этой](../install/#установка-launchserver-1)  инструкции, используя скрипт установки DEV версии: ```https://mirror.gravitlauncher.com/scripts/setup-dev.sh```
 -   **Второй способ: Установка через GitHub Actions.**
     -   Зарегистрируйтесь или войдите на  [GitHub](https://github.com/)
     -   Скачайте архивы с  [лаунчером](https://github.com/GravitLauncher/Launcher/actions?query=event%3Apush+branch%3Adev)  и  [рантаймом](https://github.com/GravitLauncher/LauncherRuntime/actions?query=event%3Apush+branch%3Adev)  с GitHub Actions.
