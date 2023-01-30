@@ -118,11 +118,12 @@ sudo alternatives --config java
 
 ## Создание пользователя launcher
 
-Создание пользователя **launcher**:
-(Актуально для Ubuntu, Debian, CentOS, ArchLinux)
+::: warning Создание пользователя:
+- (Актуально для Ubuntu, Debian, CentOS, ArchLinux)
 ```bash
-sudo useradd -m -G www-data -s /bin/bash launcher
+sudo useradd -m -s /bin/bash launcher
 ```
+:::
 :::: details Инструкции по работе с su:
 ::: tip Выполнение команд от имени пользователя launcher и переход в домашнюю папку:
 ```bash
@@ -203,6 +204,14 @@ stop
 - Посетите сайт [\[NGINX\]](https://nginx.org/en/linux_packages.html) и установите Nginx в соответствии с вашей системой
 
 - Создайте в пространстве имён своего домена **A** запись, вида `launcher.ДОМЕН.ru`, с вашим **IP** машины с лаунчсервером
+
+::: warning Добавление группы launcher в дополниетельные группы пользователя nginx:
+- Для исключения ошибки 403 Forbidden (13: Permission denied)
+(Актуально для Ubuntu, Debian, CentOS, ArchLinux)
+```bash
+sudo usermod -aG launcher nginx
+```
+:::
 ::: details Путь к конфигурации Nginx:
 Предпочтительно создавать отдельный файл конфигурации для каждого домена отдельно:
 (Воспользуйтесь SFTP клиентом)
