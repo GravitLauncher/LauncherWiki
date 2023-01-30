@@ -121,7 +121,7 @@ sudo alternatives --config java
 Создание пользователя **launcher**:
 (Актуально для Ubuntu, Debian, CentOS, ArchLinux)
 ```bash
-sudo useradd -m -G www-data -s /bin/bash launcher
+sudo useradd -m -s /bin/bash launcher
 ```
 :::: details Инструкции по работе с su:
 ::: tip Выполнение команд от имени пользователя launcher и переход в домашнюю папку:
@@ -316,10 +316,12 @@ service nginx restart
  - Без доменного имени перенос лаунчера на другую машину привёдёт к отказу самообновления.
  - Так же SSL сертификат невозможно выдать на IP. В последствии соединение будет незащищённым и может быть скомпрометировано.
 :::
-::: details Заметки по правам:
+::: details Заметки по правам: <Badge type="warning" text="Важно" vertical="top" />
 Если у nginx нет прав для чтения директорий, выдайте:
 ```bash
-chmod +x /home/launcher && chmod -R 755 /home/launcher/updates
+chmod +x /home/launcher &&
+find /home/launcher/updates -type d -exec chmod 755 {} \; &&
+find /home/launcher/updates -type f -exec chmod 644 {} \;
 ```
 Изменить группу и пользователя на всё содержимое домашней директории **launcher**:
 ```bash
