@@ -48,6 +48,10 @@ export default defineUserConfig({
                 ],
             },
             {
+                text: 'Зеркало',
+                link: 'https://mirror.gravitlauncher.com/',
+            },
+            {
                 text: 'Discord',
                 link: 'https://discord.gg/b9QG4ygY75',
             },
