@@ -7,7 +7,7 @@
 -   Все оригинальные ядра: `Vanilla`, `Forge`, `Fabric`, `Bukkit`, `Sponge`
 -   Их форки: `Spigot`, `Paper` и другие
 -   Связки: `Bukkit+Forge`, `Bukkit+Fabric`, если их авторы не внесли дополнительных ошибок, мешающих работе запуска
--   Прокси-сервера: `BungeeCord`, `Waterfall` *(форк BungeeCord)*, `Velocity`
+-   Прокси-сервера: `Velocity`
 
 ## Рекомендации
 

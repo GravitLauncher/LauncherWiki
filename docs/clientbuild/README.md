@@ -4,9 +4,15 @@
 
 На текущий момент поддерживается запуск:
 
--   Любой Vanilla версии с 1.7.10 до 1.19.2
+-   Любой Vanilla версии с 1.7.10 до 1.19.4
 -   Любой Forge версии с 1.7.10 до 1.16.5
--   Любой Fabric версии с 1.13 до 1.19.2
+-   Любой Fabric версии с 1.13 до 1.19.4
+
+В экспериментальном режиме так же имеется поддержка
+
+- Quilt 1.19.4 (сборка осуществляется через модуль MirrorHelper)
+- Forge 1.18.2/1.19.4 (сборка осуществляется по гайду в нашем Discord сервере)
+- Промежуточные и snapshot версии ванильного и Fabric клиента (сборка осуществляется через модуль MirrorHelper)
 
 ## Рекомендации
 
@@ -14,7 +20,7 @@
 - Используйте **Fabric** вместо Forge для проектов на minecraft 1.16.5 и выше
 - Используйте [Sodium](https://github.com/CaffeineMC/sodium-fabric) и [Iris](https://github.com/IrisShaders/Iris) вместо Optifine начиная с Minecraft 1.16.5  
 Избегайте использования Optifabric - он создает в корне клиента скрытую папку с .jar внутри, которая не будет проверяться лаунчером
-- Избегайте использования модов из непроверенных источников. Скачивайте моды с [Curseforge](https://www.curseforge.com/minecraft/mc-mods?filter-sort=5) или напрямую с GitHub разработчика
+- Избегайте использования модов из непроверенных источников. Скачивайте моды с [Curseforge](https://www.curseforge.com/minecraft/mc-mods?filter-sort=5)/[Modrinth](https://modrinth.com/) или напрямую с GitHub разработчика
 
 ## Скачивание ассетов
 
@@ -48,20 +54,20 @@
 :::: code-group
 ::: code-group-item [ Сборка ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/1/LauncherAuthlib1.jar)
+-  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib1.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/1.x.xx/authlib-1.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 :::
 ::: code-group-item [ Переименование ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/1/LauncherAuthlib1.jar)
+-  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib1.jar)
 -  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/1.x.xx/``` вашего клиента
 :::
 :::
 ::::
 :::: details Примечания:
--  В файле [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/1/LauncherAuthlib1.jar) содержаться изменённые классы оригинальной **AuthLib** 1.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib1.jar) содержаться изменённые классы оригинальной **AuthLib** 1.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  Если вы воспользовались методом сборки, при замене файлов `.class`, остальные файлы не трогайте
 ::::
 :::::
@@ -69,20 +75,20 @@
 :::: code-group
 ::: code-group-item [ Сборка ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/2/LauncherAuthlib2.jar)
+-  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib2.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/2.x.xx/authlib-2.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 :::
 ::: code-group-item [ Переименование ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/2/LauncherAuthlib2.jar)
+-  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib2.jar)
 -  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/2.x.xx/``` вашего клиента
 :::
 :::
 ::::
 :::: details Примечания:
--  В файле [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/2/LauncherAuthlib2.jar) содержаться изменённые классы оригинальной **AuthLib** 2.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib2.jar) содержаться изменённые классы оригинальной **AuthLib** 2.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  Если вы воспользовались методом сборки, при замене файлов `.class`, остальные файлы не трогайте
 ::::
 :::::
@@ -90,20 +96,20 @@
 :::: code-group
 ::: code-group-item [ Сборка ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/3/LauncherAuthlib3.jar)
+-  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/3.x.xx/authlib-3.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 :::
 ::: code-group-item [ Переименование ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/3/LauncherAuthlib3.jar)
+-  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar)
 -  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/3.x.xx/``` вашего клиента
 :::
 :::
 ::::
 :::: details Примечания:
--  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/3/LauncherAuthlib3.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  Если вы воспользовались методом сборки, при замене файлов `.class`, остальные файлы не трогайте
 ::::
 :::::
@@ -111,20 +117,20 @@
 :::: code-group
 ::: code-group-item [ Сборка ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/3/LauncherAuthlib3-1.19.jar)
+-  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/3.x.xx/authlib-3.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 :::
 ::: code-group-item [ Переименование ]
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/3/LauncherAuthlib3-1.19.jar)
+-  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.jar)
 -  Переименуйте его в "0-launcher-authlib.jar" и скопируйте его в папку ```libraries/com/mojang/authlib/3.x.xx/``` вашего клиента
 :::
 :::
 ::::
 :::: details Примечания:
--  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.3.x/compat/authlib/3/LauncherAuthlib3.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  Если вы воспользовались методом сборки, при замене файлов `.class`, остальные файлы не трогайте
 ::::
 :::::
