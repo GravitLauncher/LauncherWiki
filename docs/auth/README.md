@@ -21,13 +21,52 @@ AUTH ID это название блока авторизации, наприм�
 
 ## Привилегии
 
-Лаунчер предоставляет систему привилегий для определения того, какие действия может совершить пользователь. Примеры permissions (**К сожалению, в данный момент новая система permissions недоступна в способе MySQL**)
+Лаунчер предоставляет систему привилегий для определения того, какие действия может совершить пользователь. Примеры permissions
 
 - ```*``` - все привилегии
 - ```launchserver.*``` - все привилегии, проверяемые на стороне лаунчсервера
 - ```launcher.*``` - все привилегии, проверяемые на стороне лаунчера
 - ```launchserver.profile.hitech.*``` - разрешает показ в лаунчере и вход в профиль hitech (в нижнем регистре)
 - ```launcher.runtime.optionals.hitech.*``` - разрешает управлять всеми опциональными модами в профиле hitech
+
+Для работы permissions требуется создать две таблицы ```user_permissions``` и ```user_roles```
+```sql
+CREATE TABLE user_permissions (
+    uuid varchar(100) NOT NULL,
+    name varchar(100) NOT NULL
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4;
+CREATE INDEX user_permissions_uuid_IDX USING BTREE ON user_permissions (uuid);
+
+CREATE TABLE user_roles (
+    uuid varchar(100) NOT NULL,
+    name varchar(100) NOT NULL
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4;
+CREATE INDEX user_roles_uuid_IDX USING BTREE ON user_roles (uuid);
+```
+::: warning Важно: 
+Без ролей пользователя у вас ничего работать не будет!
+:::
+После создания таблиц, добавьте в конфигурацию AuthCoreProvider следующие строки:
+```json
+            "permissionsTable": "user_permissions",
+            "permissionsPermissionColumn": "name",
+       	    "permissionsUUIDColumn": "uuid",
+            "rolesTable": "user_roles",
+            "rolesNameColumn": "name",
+       	    "rolesUUIDColumn": "uuid"
+```
+
+:::: code-group
+::: code-group-item [ПРИМЕР ВЫДАЧИ ПРАВ]
+```sql
+INSERT INTO user_permissions (uuid, name)
+SELECT uuid, 'launchserver.profile.hitech.*'
+FROM users WHERE name = '<ник>';
+```
 
 ::: details Примечания:
 
