@@ -171,12 +171,12 @@
     "-XX:+DisableAttachMechanism",
     "-XX:+UseG1GC",
     "-XX:+UnlockExperimentalVMOptions",
-    "-XX:G1NewSizePercent\u003d20",
-    "-XX:MaxGCPauseMillis\u003d50",
-    "-XX:G1HeapRegionSize\u003d32M",
-    "-Djava.library.path\u003dnatives",
-    "-Dfml.ignorePatchDiscrepancies\u003dtrue",
-    "-Dfml.ignoreInvalidMinecraftCertificates\u003dtrue"
+    "-XX:G1NewSizePercent=20",
+    "-XX:MaxGCPauseMillis=50",
+    "-XX:G1HeapRegionSize=32M",
+    "-Djava.library.path=natives",
+    "-Dfml.ignorePatchDiscrepancies=true",
+    "-Dfml.ignoreInvalidMinecraftCertificates=true"
   ],
   "classPath": [ // Список файлов и библиотек, загружаемых при запуске выбранным загрузчиком классов
     "libraries",
@@ -313,9 +313,6 @@
   }
 ],
 ```
-:::
-::::
-
 :::
 ::: code-group-item [ Тип Arch ]
 ```json  
