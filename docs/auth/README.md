@@ -30,7 +30,7 @@ AUTH ID это название блока авторизации, наприм�
 - ```launcher.runtime.optionals.hitech.*``` - разрешает управлять всеми опциональными модами в профиле hitech
 
 Для работы permissions требуется создать таблицу ```user_permissions```
-```sql
+```sql:no-line-numbers
 CREATE TABLE user_permissions (
     uuid varchar(100) NOT NULL,
     name varchar(100) NOT NULL
@@ -40,15 +40,15 @@ DEFAULT CHARSET=utf8mb4;
 CREATE INDEX user_permissions_uuid_IDX USING BTREE ON user_permissions (uuid);
 ```
 После создания таблицы, добавьте в конфигурацию AuthCoreProvider следующие строки:
-```json
+```json:no-line-numbers
             "permissionsTable": "user_permissions",
             "permissionsPermissionColumn": "name",
        	    "permissionsUUIDColumn": "uuid"
 ```
 
 :::: code-group
-::: code-group-item [ПРИМЕР ВЫДАЧИ ПРАВ]
-```sql
+::: code-group-item [ ПРИМЕР ВЫДАЧИ ПРАВ ]
+```sql:no-line-numbers
 INSERT INTO user_permissions (uuid, name)
 SELECT uuid, 'launchserver.profile.hitech.*'
 FROM users WHERE name = '<ник>';
@@ -193,7 +193,7 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
 Поместите в раздел **"auth": {}** в LaunchServer.json
 :::: code-group
 ::: code-group-item [ Для вставки ]
-```json
+```json{5,7-9,14-15,18,20-25,28}
     "std": {
       "core": {
         "type": "mysql",
@@ -231,7 +231,7 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
 ```
 :::
 ::: code-group-item [ Пример с описанием ]
-```json
+```json{5,7-9,14-15,18,20-25,28}
     "std": { // AUTH ID. При настройке нескольких авторизаций одновременно, имя должно отличаться
       "core": { // Раздел конфигурации AuthCoreProvider
         "type": "mysql", // Метод авторизации AuthCoreProvider'а
@@ -284,7 +284,7 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
 
 Выполните следующий SQL код для добавления новых полей и триггера:
 
-```sql
+```sql:no-line-numbers
 -- Добавляет недостающие поля в таблицу
 ALTER TABLE users
 ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
@@ -317,7 +317,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 
 Пример конфигурации:
 
-```json
+```json{5,7-9,14-15,18,20-24,27-29}
     "std": {
       "core": {
         "type": "postgresql",
@@ -368,7 +368,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 ## Объеденение разных способов авторизации
 Если ваш сервер должен быть доступен с лицензионных клиентов и с вашеё базы данных вам нужно настроить `merge` способ авторизации. Вы должны настроить минимум 2 способа авторизации прежде чем настраивать этот
 
-```json
+```json:no-line-numbers
 "merged": {
     "core": {
       "list": ["std", "microsoft"]
@@ -391,7 +391,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 
 :::::: code-group
 ::::: code-group-item [ DOUBLE DIGESET ]
-```json
+```json:no-line-numbers
 "passwordVerifier": {
    "algo": "SHA256",
    "toHexMode": true,
@@ -405,7 +405,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 :::
 :::::
 ::::: code-group-item [ DIGEST ]
-```json
+```json:no-line-numbers
 "passwordVerifier": {
    "algo": "SHA256",
    "type": "digest"
@@ -417,7 +417,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 :::
 :::::
 ::::: code-group-item [ PHP BCRYPT ]
-```json
+```json:no-line-numbers
 "passwordVerifier": {
    "type": "bcrypt"
 }
@@ -430,7 +430,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 :::
 :::::
 ::::: code-group-item [ WORDPRESS PHPASS ]
-```json
+```json:no-line-numbers
 "passwordVerifier": {
    "type": "phpass"
 }
@@ -444,8 +444,9 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 ::: tip Из своих исходников, после установки скриптом:
 Местонахождение: **`./src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar`**
 Скопировать командой:
-```bash
-cp ./src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar ./modules/
+```bash:no-line-numbers
+cd modules
+ln -s ../src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar
 ```
 :::
  **Исходники [AddionalHash](https://github.com/GravitLauncher/LauncherModules/tree/master/AdditionalHash_module)**
