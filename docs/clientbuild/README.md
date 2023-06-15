@@ -236,11 +236,11 @@
       "serverAddress": "localhost", // Адрес сервера
       "serverPort": 25535, // Порт сервера
       "isDefault": true, // По умолчанию
+      "protocol": -1, // Версия протокола сервера
       "socketPing": true // Прямой пинг для получения онлайна
     }
   ],
   "classLoaderConfig": "LAUNCHER", // Тип загрузчика классов (LAUNCHER, AGENT, SYSTEM_ARGS)
-  "runtimeInClientConfig": "NONE", // Запуск GUI рантайма при старте клиента (NONE, BASIC, FULL)
   "recommendJavaVersion": 16, // Рекомендуемая версия Java
   "minJavaVersion": 16, // Минимальная версия Java
   "maxJavaVersion": 999, // Максимальная версия Java

@@ -7,7 +7,7 @@
 <CodeGroup>
   <CodeGroupItem title="Gradle (Short)" active>
 
-```properties
+```properties:no-line-numbers
 implementation "pro.gravit.launcher:launcher-core:5.4.0"
 implementation "pro.gravit.launcher:launcher-ws-api:5.4.0"
 implementation "pro.gravit.launcher:launchserver-api:5.4.0"
@@ -16,7 +16,7 @@ implementation "pro.gravit.launcher:launchserver-api:5.4.0"
   </CodeGroupItem>
   <CodeGroupItem title="Maven" active>
 
-```xml
+```xml:no-line-numbers
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launcher-core</artifactId>
@@ -48,7 +48,7 @@ implementation "pro.gravit.launcher:launchserver-api:5.4.0"
 <CodeGroup>
   <CodeGroupItem title="Gradle (Short)" active>
 
-```properties
+```properties:no-line-numbers
 implementation "pro.gravit.launcher:launcher-core:5.4.0"
 implementation "pro.gravit.launcher:launcher-ws-api:5.4.0"
 implementation "pro.gravit.launcher:launcher-client-api:5.4.0"
@@ -57,7 +57,7 @@ implementation "pro.gravit.launcher:launcher-client-api:5.4.0"
   </CodeGroupItem>
   <CodeGroupItem title="Maven" active>
 
-```xml
+```xml:no-line-numbers
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launcher-core</artifactId>
@@ -220,7 +220,7 @@ UDP: метод `getUserByTokenUrl` работает сейчас немного
 Из последних 3-х методов вам необходимо реализовать либо `updateServerIdUrl`, либо `joinServerUrl` и `checkServerUrl`
 
 Пример рекомендованного конфига, реализующего OAuth:
-```json
+```json:no-line-numbers
 {
   "getUserByUsernameUrl": "https://example.com/user/name/%username%",
   "getUserByLoginUrl": "https://example.com/user/login/%login%",
@@ -238,11 +238,11 @@ UDP: метод `getUserByTokenUrl` работает сейчас немного
 
 Успешный ответ предполагает код 200 и тело в виде JSON.
 
-###Обработка ошибок
+### Обработка ошибок
 
 Вы можете возвращать некоторые ошибки. Все ошибки лаунчер ожидает в виде JSON ответа:
 
-```json lines
+```json:no-line-numbers
 {
   "error": "тип ошибки (ниже)"
 }
@@ -263,8 +263,8 @@ UDP: метод `getUserByTokenUrl` работает сейчас немного
 
 Список объектов, которые будут возвращать методы:
 
-HttpUser:
-```json lines
+::: tip (( HttpUser ))
+```json:no-line-numbers
 {
   "username": "Gravita",
   "uuid": "UUID",
@@ -296,6 +296,7 @@ HttpUser:
   }
 }
 ```
+:::
 ::: tip Properties
 
 Properties - **публичные** параметры, ассоциированные с игроком(например параметры персонажа, выставляемые в личном кабинете). Получить их в моде/плагине можно из объекта ```GameProfile``` authlib. Вы не должны передавать ```textures``` как properties, так как это нарушит правильную работу скинов и плащей. Для работы properties требуется обновление authlib на стороне клиента и сервера
@@ -303,9 +304,9 @@ Properties - **публичные** параметры, ассоциирован
 :::
 
 
-HttpUserSession:
-```json lines
-    {
+::: tip (( HttpUserSession ))
+```json:no-line-numbers
+{
   "id": "RANDOM ID",
   // ID сессии в вашей системе, либо случайная строка или число, если такой системы нет
   "user": (( HttpUser )),
@@ -313,10 +314,11 @@ HttpUserSession:
   // Срок окончания действия сессии, 0 - если сессия вечная. Не используется
 }
 ```
+:::
 
-AuthReport:
-```json lines
-    {
+::: tip (( AuthReport ))
+```json:no-line-numbers
+{
   "minecraftAccessToken": "MINECRAFT ACCESS TOKEN",
   // При желании, может совпадать с "oauthAccessToken"
   "oauthAccessToken": "ACCESS TOKEN",
@@ -326,6 +328,7 @@ AuthReport:
   "session": (( HttpUserSession ))
 }
 ```
+:::
 
 ### Основные сведения о методах
 
@@ -341,9 +344,9 @@ AuthReport:
 
 Метод вызывается при авторизации пользователя. Тут вы должны проверить логин, пароль.
 
-Запрос:
-```json lines
-      {
+::: tip Запрос authorizeUrl:
+```json:no-line-numbers
+{
   "login": "Gravita",
   "context": {
     "ip": "127.0.0.1"
@@ -356,8 +359,8 @@ AuthReport:
   //если false, то в AuthReport возвращать minecraftAccessToken не требуется
 }
 ```
-
-Ответ: ((AuthReport))
+Ответ: (( AuthReport ))
+:::
 
 Если "context" равно null, вы можете не делать проверку на факторы и сразу разрешить авторизацию. Тогда вы позволите
 авторизировать пользователей через консольную команду. Вы в праве не делать этого, если не хотите.
@@ -367,8 +370,8 @@ AuthReport:
 В этом методе вы должны обновить accessToken, если используете не вечные токены. Если ваши токены вечные, вы можете не
 реализовывать данный метод
 
-Запрос:
-```json
+::: tip Запрос refreshTokenUrl:
+```json:no-line-numbers
 {
   "refreshToken": "REFRESH TOKEN",
   "context": {
@@ -376,15 +379,16 @@ AuthReport:
   }
 }
 ```
-Ответ: ((AuthReport))
+Ответ: (( AuthReport ))
+:::
 
 ### Метод `joinServerUrl`
 
 Используется, когда пользователь заходит на сервер. Вы должны присвоить serverId пользователю в вашей системе, а позже, в
 методе checkServer сверить serverId.
 
-Запрос:
-```json
+::: tip Запрос joinServerUrl:
+```json:no-line-numbers
 {
   "username": "Gravita",
   "accessToken": "MINECRAFT ACCESS TOKEN",
@@ -392,40 +396,43 @@ AuthReport:
 }
 ```
 Ответ: любой JSON с кодом 200
+:::
 
 ### Метод `checkServerUrl`
 
 В этом методе вы должны проверить serverId с тем что лежит в базе (Было положено в `joinServerUrl`)
 
-Запрос:
-```json
+::: tip Запрос checkServerUrl:
+```json:no-line-numbers
 {
   "username": "Gravita",
   "serverId": "SERVER ID"
 }
 ```
-Ответ: ((HttpUser))
+Ответ: (( HttpUser ))
+:::
 
 ### Метод `updateServerIdUrl`
 
 В этом методе вы должны присвоить пользователю полученный serverId
 
-Запрос:
-```json
+::: tip Запрос updateServerIdUrl:
+```json:no-line-numbers
 {
   "username": "Gravita",
   "serverId": "SERVER ID"
 }
 ```
 Ответ: любой JSON с кодом 200
+:::
 
 ### Метод `getAuthDetailsUrl`
 
 Необязательный метод, который используется для указания всех возможных способов авторизации. Используется, только при
 реализации 2FA \ MFA
 
-Ответ:
-```json
+::: tip Ответ getAuthDetailsUrl:
+```json:no-line-numbers
 {
   "details": [
     {
@@ -437,6 +444,7 @@ AuthReport:
   ]
 }
 ```
+:::
 
 ### Подключение 2FA
 
@@ -447,8 +455,8 @@ AuthReport:
 
 Когда вы вернёте необходимость 2FA, пользователю будет предложено ввести второй фактор. Следом метод `authorizeUrl` будет вызван ещё раз, однако запрос будет выглядеть немного иначе:
 
-```json lines
-      {
+```json:no-line-numbers
+{
   "login": "Gravita",
   "context": {
     "ip": "127.0.0.1"

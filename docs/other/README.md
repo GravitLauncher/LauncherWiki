@@ -12,7 +12,7 @@ TextureProvider нужен при отсутствии поддержки ски
 ### Метод Request
 ::::: code-group
 :::: code-group-item [ REMOTE ]
-```json
+```json:no-line-numbers
       "textureProvider": {
         "skinURL": "http://example.com/skins/%username%.png",
         "cloakURL": "http://example.com/cloaks/%username%.png",
@@ -25,7 +25,7 @@ TextureProvider нужен при отсутствии поддержки ски
 :::
 ::::
 :::: code-group-item [ LOCAL ]
-```json
+```json:no-line-numbers
       "textureProvider": {
         "skinURL": "http://example.com/skins/%username%.png",
         "cloakURL": "http://example.com/cloaks/%username%.png",
@@ -42,7 +42,7 @@ TextureProvider нужен при отсутствии поддержки ски
 :::::
 
 ### Метод JSON
-```json
+```json:no-line-numbers
       "textureProvider": {
         "url": "http://example.com/getskin.php?username=%username%",
         "type": "json"
@@ -56,7 +56,7 @@ TextureProvider нужен при отсутствии поддержки ски
 :::
 
 Пример ответа:
-```json
+```json:no-line-numbers
 {
   "SKIN": {
     "url": "http://example.com/skins/Gravita.png",
@@ -77,7 +77,7 @@ TextureProvider нужен при отсутствии поддержки ски
 :::
 
 ### Метод Void
-```json
+```json:no-line-numbers
       "textureProvider": {
         "type": "void"
       },
@@ -108,7 +108,7 @@ TextureProvider нужен при отсутствии поддержки ски
 ### Получение алиаса из файла .p12/.pfx
 
 Для получения алиаса(поле `keyAlias`) нам понадобится утилита `keytool` из состава JDK. Выполните эту команду:
-```bash
+```bash:no-line-numbers
 keytool -storepass PASSWORD -keystore PATH_TO_PFX_OR_P12 -list
 ```
 
@@ -127,7 +127,7 @@ beautiful codesign, Jan 16, 2023, PrivateKeyEntry,
 
 Пример настройки:
 
-```json
+```json:no-line-numbers
   "sign": {
     "enabled": true,
     "keyStore": "PATH_TO_PFX_OR_P12",
