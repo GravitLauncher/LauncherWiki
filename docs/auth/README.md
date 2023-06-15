@@ -53,6 +53,8 @@ INSERT INTO user_permissions (uuid, name)
 SELECT uuid, 'launchserver.profile.hitech.*'
 FROM users WHERE name = '<ник>';
 ```
+:::
+::::
 
 ::: details Примечания:
 
