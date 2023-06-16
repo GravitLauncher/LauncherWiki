@@ -192,7 +192,7 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
 Поместите в раздел **"auth": {}** в LaunchServer.json
 :::: code-group
 ::: code-group-item [ Для вставки ]
-```json{5,7-9,14-15,18,20-22,28}:no-line-numbers
+```json{5,7-9,14-15,18,20-22,28-30}:no-line-numbers
     "std": {
       "core": {
         "type": "mysql",
@@ -230,7 +230,7 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
 ```
 :::
 ::: code-group-item [ Пример с описанием ]
-```json{5,7-9,14-15,18,20-23,28}:no-line-numbers
+```json{5,7-9,14-15,18,20-22,28-30}:no-line-numbers
     "std": { // AUTH ID. При настройке нескольких авторизаций одновременно, имя должно отличаться
       "core": { // Раздел конфигурации AuthCoreProvider
         "type": "mysql", // Метод авторизации AuthCoreProvider'а

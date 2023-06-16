@@ -56,7 +56,17 @@
 
 Для привязки ServerWrapper к вашему серверу выполните следующие действия:
 
+::: tip Создание токена для сервера
 -   Откройте лаунчсервер и введите команду ```token server HiTech```, где HiTech - название вашего сервера. Скопируйте получившийся токен.
+```bash:no-line-numbers
+token server <profile-title> [auth-id]
+```
+```bash
+Options:
+      <profile-title> Title имя профиля клиента [default: null]
+      [auth-id] Опциональное значение Auth ID [default: (Первый AuthId)]
+```
+:::
 -   Перейдите в папку с вашим сервером, скопируйте туда ServerWrapper.jar из артефактов сборки и выполните команду ```java -jar ServerWrapper.jar setup```  
 -   Укажите название jar файла вашего серверного ядра, название сервера, адрес лаунчсервера и токен, полученный на первом этапе
 
@@ -98,7 +108,7 @@
 :::::: code-group
 ::::: code-group-item [ По ссылке ]
 :::: code-group
-::: code-group-item [ 1.7.10 - 1.16.4 ]
+::: code-group-item [ 1.7.10 - 1.16.3 ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
@@ -106,7 +116,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4
 ```
 :::
 :::
-::: code-group-item [ 1.16.5 - 1.17.x ]
+::: code-group-item [ 1.16.4 - 1.17.x ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers

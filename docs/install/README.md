@@ -61,13 +61,6 @@ amd64, i386, arm64, armhf
   - **i386** - x86 (32 бит)
   - **arm64** - aarch64
 :::
-::: warning Примечание:
-- Такие архитектуры как **arm64** и **armhf** не поддерживают сборку EXE - бинарного файла лаунчера, через launch4j
----
-- Если ваша архитектура **amd64** или **i386**, включите сборку EXE в конфигурации `LaunchServer.json`:
-  - launch4j: 
-    - enabled: true
-:::
 ::: tip Узнать архитектуру ядра:
 ```bash:no-line-numbers
 uname -m | awk '{print(substr($0,0,3))}'
@@ -142,6 +135,14 @@ refreshenv
 :::
 :::::
 ::::::
+
+::: warning Примечание:
+- Такие архитектуры как **arm64** и **armhf** не поддерживают сборку EXE - бинарного файла лаунчера, через launch4j
+---
+- Если ваша архитектура **amd64** или **i386**, включите сборку EXE в конфигурации `LaunchServer.json`:
+  - launch4j: 
+    - enabled: true
+:::
 
 ## Создание пользователя launcher
 
@@ -229,12 +230,12 @@ stop
 
 - Посетите сайт [\[NGINX\]](https://nginx.org/en/linux_packages.html) и установите Nginx в соответствии с вашей системой
 
-- Создайте в пространстве имён своего домена **A** запись, вида `launcher.ДОМЕН.ru`, с вашим **IP** машины с лаунчсервером
+- Создайте в пространстве имён своего домена **A** запись, вида `launcher.ИМЯ_ВАШЕГО_ДОМЕНА.ru`, с вашим **IP** машины с лаунчсервером
 ::: details Путь к конфигурации Nginx:
 Предпочтительно создавать отдельный файл конфигурации для каждого домена отдельно:
 (Воспользуйтесь SFTP клиентом)
 ```
-/etc/nginx/conf.d/launcher.ДОМЕН.ru.conf
+/etc/nginx/conf.d/launcher.ВАШ_ДОМЕН.conf
 ```
 Если у вас на машине будет только одна настройка, можете отредактировать конфигурацию по умолчанию:
 ```bash:no-line-numbers
@@ -242,7 +243,7 @@ nano /etc/nginx/conf.d/default.conf
 ```
 :::
 :::: code-group
-::: code-group-item На DNS имени
+::: code-group-item [ На DNS имени ]
 ```nginx{10,12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
@@ -253,12 +254,12 @@ map $http_upgrade $connection_upgrade {
 }
 server {
     listen 80;
-    server_name launcher.ВАШДОМЕН.ru;
+    server_name launcher.ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА;
     charset utf-8;
-    #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log;
-    #error_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.error.log notice;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
     
-    root /путь/до/updates;
+    root /путь/до/updates; # Example: /home/launcher/updates
     
     location / {
     }
@@ -284,7 +285,7 @@ server {
 }
 ```
 :::
-::: code-group-item На IP
+::: code-group-item [ На IP ]
 ```nginx{12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
@@ -300,6 +301,54 @@ server {
     #access_log  /var/log/nginx/launcher.access.log;
     #error_log  /var/log/nginx/launcher.error.log notice;
     
+    root /путь/до/updates; # Example: /home/launcher/updates
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+:::
+::: code-group-item [ Под Docker ]
+::: tip Для главного nginx, не в контейнере
+- Получить IPAddress контейнера. Где `<container id>` это UUID контейнера
+```bash:no-line-numbers
+docker inspect <container id> | grep "IPAddress"
+```
+- Заменить `127.0.0.1` адрес на локальный IP от вашего интерфейса для Docker, полученный выше
+```nginx{2,10,12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+    server_name ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА;
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
+    
     root /путь/до/updates;
     
     location / {
@@ -325,6 +374,7 @@ server {
     }
 }
 ```
+:::
 :::
 ::::
 
@@ -376,11 +426,18 @@ chown -R launcher:launcher /home/launcher
 
 ## Настройка безопасного подключения
 
-Для обеспечения безопасности передаваемых паролей, защиты от внедрения в процесс обмена данными нужно подключить к своему домену SSL сертификат. На данный момент его можно купить или получить бесплатно (Let's Encrypt/Cloudflare). Вы должны будете установить его на домен с лаунчсервером ```ВАШДОМЕН.ru``` и немного изменить настройки лаунчсервера:
+Для обеспечения безопасности передаваемых паролей, защиты от внедрения в процесс обмена данными нужно подключить к своему домену SSL сертификат. На данный момент его можно купить или получить бесплатно (Let's Encrypt/Cloudflare). Вы должны будете установить его на домен с лаунчсервером ```ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА``` это ```launcher.ИМЯ_ВАШЕГО_ДОМЕНА.ru``` и немного изменить настройки лаунчсервера:
 
 -   Откройте файл LaunchServer.json и найдите там секцию netty
--   Измените ссылки формата ```http://ДОМЕН ИЛИ IP:9274/ЧТО-ТО``` на ```https://ВАШДОМЕН.ru/ЧТО-ТО```
--   Измените ссылку на websocket лаунчера с ```ws://ДОМЕН ИЛИ IP:9274/api``` на ```wss://ВАШДОМЕН.ru/api```
+-   Измените ссылки формата:
+    - ```http://ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА ИЛИ IP:9274/ЧТО-ТО```
+    - на:
+    - ```https://ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА/ЧТО-ТО```
+-   Измените ссылку на websocket лаунчера с:
+    - ```ws://ДОМЕН ИЛИ IP:9274/api```
+    - на:
+    - ```wss://ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА/api```
+-   Если создавали поддомен, должно быть указано в формате ```launcher.ВАШ_ДОМЕН```
 -   Соберите лаунчер командой ```build``` и проверьте работоспособность
 -   Закройте порт 9274 (если он был открыт), так как теперь лаунчсервер будет получать и передавать данные через nginx по портам 80 и 443
 
