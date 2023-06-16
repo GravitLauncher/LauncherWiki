@@ -230,12 +230,12 @@ stop
 
 - Посетите сайт [\[NGINX\]](https://nginx.org/en/linux_packages.html) и установите Nginx в соответствии с вашей системой
 
-- Создайте в пространстве имён своего домена **A** запись, вида `launcher.ДОМЕН.ru`, с вашим **IP** машины с лаунчсервером
+- Создайте в пространстве имён своего домена **A** запись, вида `launcher.ИМЯ_ВАШЕГО_ДОМЕНА.ru`, с вашим **IP** машины с лаунчсервером
 ::: details Путь к конфигурации Nginx:
 Предпочтительно создавать отдельный файл конфигурации для каждого домена отдельно:
 (Воспользуйтесь SFTP клиентом)
 ```
-/etc/nginx/conf.d/launcher.ДОМЕН.ru.conf
+/etc/nginx/conf.d/launcher.ВАШ_ДОМЕН.conf
 ```
 Если у вас на машине будет только одна настройка, можете отредактировать конфигурацию по умолчанию:
 ```bash:no-line-numbers
@@ -254,10 +254,10 @@ map $http_upgrade $connection_upgrade {
 }
 server {
     listen 80;
-    server_name launcher.ВАШДОМЕН.ru;
+    server_name launcher.ВАШ_ДОМЕН;
     charset utf-8;
-    #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log;
-    #error_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.error.log notice;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
     
     root /путь/до/updates;
     
@@ -344,10 +344,10 @@ map $http_upgrade $connection_upgrade {
 }
 server {
     listen 80;
-    server_name launcher.ВАШДОМЕН.ru;
+    server_name launcher.ВАШ_ДОМЕН;
     charset utf-8;
-    #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log;
-    #error_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.error.log notice;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
     
     root /путь/до/updates;
     
@@ -426,11 +426,12 @@ chown -R launcher:launcher /home/launcher
 
 ## Настройка безопасного подключения
 
-Для обеспечения безопасности передаваемых паролей, защиты от внедрения в процесс обмена данными нужно подключить к своему домену SSL сертификат. На данный момент его можно купить или получить бесплатно (Let's Encrypt/Cloudflare). Вы должны будете установить его на домен с лаунчсервером ```ВАШДОМЕН.ru``` и немного изменить настройки лаунчсервера:
+Для обеспечения безопасности передаваемых паролей, защиты от внедрения в процесс обмена данными нужно подключить к своему домену SSL сертификат. На данный момент его можно купить или получить бесплатно (Let's Encrypt/Cloudflare). Вы должны будете установить его на домен с лаунчсервером ```launcher.ВАШ_ДОМЕН ``` это ```launcher.ИМЯ_ВАШЕГО_ДОМЕНА.ru``` и немного изменить настройки лаунчсервера:
 
 -   Откройте файл LaunchServer.json и найдите там секцию netty
--   Измените ссылки формата ```http://ДОМЕН ИЛИ IP:9274/ЧТО-ТО``` на ```https://ВАШДОМЕН.ru/ЧТО-ТО```
--   Измените ссылку на websocket лаунчера с ```ws://ДОМЕН ИЛИ IP:9274/api``` на ```wss://ВАШДОМЕН.ru/api```
+-   Измените ссылки формата ```http://ДОМЕН ИЛИ IP:9274/ЧТО-ТО``` на ```https://ВАШ_ДОМЕН.ru/ЧТО-ТО```
+-   Измените ссылку на websocket лаунчера с ```ws://ДОМЕН ИЛИ IP:9274/api``` на ```wss://ВАШ_ДОМЕН.ru/api```
+-   Если создавали поддомен, должно быть указано в формате ```launcher.ВАШ_ДОМЕН```
 -   Соберите лаунчер командой ```build``` и проверьте работоспособность
 -   Закройте порт 9274 (если он был открыт), так как теперь лаунчсервер будет получать и передавать данные через nginx по портам 80 и 443
 
