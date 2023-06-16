@@ -32,20 +32,24 @@
 Необходимо установить их все, если вы собираетесь держать лаунчсервер и сервера на одной машине.
 :::::: code-group
 ::::: code-group-item DEBIAN / UBUNTU
-```bash
-sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y
-wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - 
-echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list
-sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full
+::: tip Копировать и вставлять целиком
+```bash:no-line-numbers
+sudo apt-get update ;
+sudo apt-get install gnupg2 wget apt-transport-https -y ;
+wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ;
+echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ;
+sudo apt-get update ;
+sudo apt-get install -y bellsoft-java17-full ;
 sudo update-alternatives --config java
 ```
+:::
 :::: details Целевые архитектуры процессоров: <Badge type="warning" text="Важно" vertical="top" />
 ::: warning Описание:
 - **amd64** является более распространённой архитектурой на текущее время
 - Если **amd64** не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
 
 Список возможных архитектур:
-```bash
+```bash:no-line-numbers
 amd64, i386, arm64, armhf
 ```
 - Сопоставление:
@@ -61,37 +65,32 @@ amd64, i386, arm64, armhf
     - enabled: true
 :::
 ::: tip Узнать архитектуру ядра:
-```bash
+```bash:no-line-numbers
 uname -m | awk '{print(substr($0,0,3))}'
 ```
 :::
 ::: tip Узнать битность ядра:
-```bash
+```bash:no-line-numbers
 getconf LONG_BIT
 ```
 :::
 ::: tip Удалить из sources.list
 - Необходимо, если ошибочно добавили неправильную архитектуру
   - Ошибка в консоли: `E: Unable to locate package bellsoft-java17-full`
-```bash
+```bash:no-line-numbers
 rm -f /etc/apt/sources.list.d/bellsoft.list
 ```
 - Измените архитектуру в скрипте и повторите добавление и установку
 :::
 ::::
-:::: details Команда одной строкой:
-```bash
-sudo apt-get update ; sudo apt-get install gnupg2 wget apt-transport-https -y ; wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ; echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ; sudo apt-get update ; sudo apt-get install -y bellsoft-java17-full ; sudo update-alternatives --config java
-```
-::::
 :::: details Смена Java по умолчанию:
-```bash
+```bash:no-line-numbers
 sudo update-alternatives --config java
 ```
 ::::
 :::::
 ::::: code-group-item CENTOS
-```bash
+```bash:no-line-numbers
 echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
 [BellSoft]
 name=BellSoft Repository
@@ -106,13 +105,31 @@ yum install bellsoft-java17-full
 alternatives --config java
 ```
 :::: details Смена Java по умолчанию:
-```bash
+```bash:no-line-numbers
 sudo alternatives --config java
 ```
 ::::
 :::::
+::::: code-group-item Windows
+::: tip Откройте PowerShell (От имени Администратора)
+- Снимите проверку подписи, для правильной работы дальнейшего скрипта:
+```bash:no-line-numbers
+Set-ExecutionPolicy remotesigned
+```
+- Установите **Chocolatey**
+```bash:no-line-numbers
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+```
+- Установите пакет **JDK 17 FULL** содержащий **JavaFX**
+```bash:no-line-numbers
+choco install liberica17jdkfull
+```
+:::
+:::::
 ::::: code-group-item OTHER
-Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.5/)
+::: tip Перейти по ссылке и ознакомится с гайдом
+Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.7/)
+:::
 :::::
 ::::::
 
@@ -120,22 +137,22 @@ sudo alternatives --config java
 
 Создание пользователя **launcher**:
 (Актуально для Ubuntu, Debian, CentOS, ArchLinux)
-```bash
+```bash:no-line-numbers
 sudo useradd -m -s /bin/bash launcher
 ```
 :::: details Инструкции по работе с su:
 ::: tip Выполнение команд от имени пользователя launcher и переход в домашнюю папку:
-```bash
+```bash:no-line-numbers
 su - launcher
 ```
 :::
 ::: tip Выполнение команд от имени пользователя launcher без смены каталога:
-```bash
+```bash:no-line-numbers
 su launcher
 ```
 :::
 ::: tip Выход обратно в root:
-```bash
+```bash:no-line-numbers
 exit
 ```
 :::
@@ -145,23 +162,23 @@ exit
 
 Перейдите в пользователя **launcher**:
 
-```bash
+```bash:no-line-numbers
 su - launcher
 ```
 Выполнить установку **LaunchServer**'a скриптом:
 
-```bash
+```bash:no-line-numbers
 wget -O - https://mirror.gravitlauncher.com/scripts/setup-master.sh | bash <(cat) </dev/tty
 ```
 **После завершения установки запустите лаунчсервер для начальной настройки:**
-```bash
+```bash:no-line-numbers
 ./start.sh
 ```
 -   Укажите ваш ДОМЕН или IP, на котором будет работать лаунчсервер
 -   Укажите название вашего проекта, которое будет отображаться в лаунчере и в папке AppData
 -   После первого запуска закройте лаунчсервер командой **stop**
 
-```bash
+```bash:no-line-numbers
 stop
 ```
 :::: details Описание папок и файлов установленных скриптом
@@ -210,13 +227,13 @@ stop
 /etc/nginx/conf.d/launcher.ДОМЕН.ru.conf
 ```
 Если у вас на машине будет только одна настройка, можете отредактировать конфигурацию по умолчанию:
-```bash
+```bash:no-line-numbers
 nano /etc/nginx/conf.d/default.conf
 ```
 :::
 :::: code-group
 ::: code-group-item На DNS имени
-```nginx
+```nginx{10,12-13,15}
 upstream gravitlauncher {
     server 127.0.0.1:9274;
 }
@@ -258,7 +275,7 @@ server {
 ```
 :::
 ::: code-group-item На IP
-```nginx
+```nginx{12-13,15}
 upstream gravitlauncher {
     server 127.0.0.1:9274;
 }
@@ -303,7 +320,7 @@ server {
 
 ::::: tip Проверить конфигурацию и перезагрузить Nginx:
 
-```bash
+```bash:no-line-numbers
 nginx -t
 ```
 Должны увидеть:
@@ -312,18 +329,18 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 Включить Nginx как службу Systemd:
-```bash
+```bash:no-line-numbers
 systemctl enable nginx
 ```
 Перезагрузка сервиса:
 :::: code-group
 ::: code-group-item Systemd
-```bash
+```bash:no-line-numbers
 systemctl restart nginx
 ```
 :::
 ::: code-group-item init.d
-```bash
+```bash:no-line-numbers
 service nginx restart
 ```
 :::
@@ -336,13 +353,13 @@ service nginx restart
 :::
 ::: details Заметки по правам: <Badge type="warning" text="Важно" vertical="top" />
 Если у nginx нет прав для чтения директорий, выдайте:
-```bash
+```bash:no-line-numbers
 chmod +x /home/launcher &&
 find /home/launcher/updates -type d -exec chmod 755 {} \; &&
 find /home/launcher/updates -type f -exec chmod 644 {} \;
 ```
 Изменить группу и пользователя на всё содержимое домашней директории **launcher**:
-```bash
+```bash:no-line-numbers
 chown -R launcher:launcher /home/launcher
 ```
 :::
@@ -389,7 +406,7 @@ chown -R launcher:launcher /home/launcher
 -   Распакуйте библиотеки и LaunchServer.jar из архива
 -   Создайте ```start.bat``` с таким содержимым:
 
-    ```bash
+    ```bash:no-line-numbers
     @ECHO OFF
     "ПУТЬ_ДО_JDK_17/bin/java.exe" -javaagent:LaunchServer.jar -jar LaunchServer.jar
     PAUSE

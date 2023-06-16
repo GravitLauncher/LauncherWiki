@@ -95,35 +95,77 @@
 
 Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Начиная с версии 5.2.13 вы можете привязать authlib к серверу одной командой:
 
+:::::: code-group
+::::: code-group-item [ По ссылке ]
 :::: code-group
-::: code-group-item [ Локально ]
+::: code-group-item [ 1.7.10 - 1.16.4 ]
 ::: tip Информация:
-
-Скопируйте authlib с клиента в любое удобное для вас место и пропишите команду `java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib`
-
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib1.jar
+```
 :::
 :::
-::: code-group-item [ По ссылке ]
+::: code-group-item [ 1.16.5 - 1.17.x ]
 ::: tip Информация:
-
-Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду `java -jar ServerWrapper.jar installAuthlib СсылкаНаLauncherAuthlib`  
-  
-Например для установки на сервер Minecraft 1.19: `java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.2.x/compat/authlib/3/LauncherAuthlib3-1.19.jar`
-
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib2.jar
+```
+:::
+:::
+::: code-group-item [ 1.18.x ]
+::: tip Информация:
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar
+```
+:::
+:::
+::: code-group-item [ 1.19 ]
+::: tip Информация:
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.jar
+```
+:::
+:::
+::: code-group-item [ 1.19.1 - 1.19.4 ]
+::: tip Информация:
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.1.jar
+```
+:::
+:::
+::: code-group-item [ 1.20.x ]
+::: tip Информация:
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib4.jar
+```
 :::
 :::
 ::::
+:::::
+::::: code-group-item [ Локально ]
+::: tip Информация:
+Скопируйте authlib с клиента в любое удобное для вас место и пропишите команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib
+```
+:::
+:::::
+::::::
 
-::: tip Примечание:
-
-Рекомендуется перед привязкой запустить сервер хотя бы 1 раз
-
+::: warning Примечание:
+Перед привязкой запустить чистый сервер 1 раз и остановить
 :::
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
 ::: details Установка командой Wget
-```sh
+```bash{1}:no-line-numbers
 wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
 :::
@@ -172,7 +214,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
 ::: details Установка командой Wget
-```sh
+```bash{1}:no-line-numbers
 wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
 :::

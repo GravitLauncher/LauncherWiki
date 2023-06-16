@@ -29,15 +29,38 @@
 -   По желанию удалите из сборок JRE/JDK необязательные компоненты для уменьшения объема скачиваемых данных
 -   Откройте файл ```config/JavaRuntime/Config.json``` в текстовом редакторе, найдите строку **"javaList": {}** и приведите её к такому виду:
 
-```json
+::: tip Пример для JRE Standart 8, 11, 17 версии от BellSoft 
+```json:no-line-numbers
   "javaList": {
-    "java17-windows-x86-64": "Java 17 b53 mustdie X86_64 javafx true",
-    "java17-windows-x86": "Java 17 b53 mustdie X86 javafx true"
+    "java8-windows-x86": "Java 8 b362 mustdie X86 javafx false",
+    "java8-windows-x86-64": "Java 8 b362 mustdie X86_64 javafx false",
+    "java8-linux-64": "Java 8 b362 linux X86_64 javafx false",
+    "java8-linux-arm-64": "Java 8 b362 linux ARM64 javafx false",
+    "java8-macosx-64": "Java 8 b362 macosx X86_64 javafx false",
+    "java8-macosx-arm-64": "Java 8 b362 macosx ARM64 javafx false",
+    "java11-windows-x86": "Java 11 b18 mustdie X86 javafx false",
+    "java11-windows-x86-64": "Java 11 b18 mustdie X86_64 javafx false",
+    "java11-windows-arm-64": "Java 11 b18 mustdie ARM64 javafx false",
+    "java11-linux-x86": "Java 11 b18 linux X86 javafx false",
+    "java11-linux-x86-64": "Java 11 b18 linux X86_64 javafx false",
+    "java11-linux-arm-64": "Java 11 b18 linux ARM64 javafx false",
+    "java11-macosx-64": "Java 11 b18 macosx X86_64 javafx false",
+    "java11-macosx-arm-64": "Java 11 b18 macosx ARM64 javafx false",
+    "java17-windows-x86": "Java 17 b6 mustdie X86 javafx false",
+    "java17-windows-x86-64": "Java 17 b6 mustdie X86_64 javafx false",
+    "java17-windows-arm-64": "Java 17 b6 mustdie ARM64 javafx false",
+    "java17-linux-x86": "Java 17 b6 linux X86 javafx false",
+    "java17-linux-x86-64": "Java 17 b6 linux X86_64 javafx false",
+    "java17-linux-arm-64": "Java 17 b6 linux ARM64 javafx false",
+    "java17-macosx-64": "Java 17 b6 macosx X86_64 javafx false",
+    "java17-macosx-arm-64": "Java 17 b6 macosx ARM64 javafx false"
   },
 ```
+- `"forceDownloadJava": true,` для скачивания принудительно только с вашего лаунчсервера
+:::
 
 ::: warning Формат записи:
-```
+```:no-line-numbers
 Java {номер версии} b{номер сборки} {mustdie (это windows)/linux/macosx} {архитектура} javafx {наличие javafx}
 ```
 Архитектуры:
@@ -48,9 +71,40 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
 :::
 
 -   Добавьте названия ваших папок с JRE/JDK в **"protectHandler": {}** конфигурации лаунчсервера LaunchServer.json
-```json
-    "allowUpdates": ["java17-windows-64", "java17-windows-32"],
+```json:no-line-numbers
+    "allowUpdates": [
+      "java8-windows-x86", "java8-windows-x86-64",
+      "java8-linux-64", "java8-linux-arm-64",
+      "java8-macosx-64", "java8-macosx-arm-64",
+      "java11-windows-x86", "java11-windows-x86-64", "java11-windows-arm-64",
+      "java11-linux-x86", "java11-linux-x86-64", "java11-linux-arm-64",
+      "java11-macosx-64", "java11-macosx-arm-64",
+      "java17-windows-x86", "java17-windows-x86-64", "java17-windows-arm-64",
+      "java17-linux-x86", "java17-linux-x86-64", "java17-linux-arm-64",
+      "java17-macosx-64", "java17-macosx-arm-64"
+      ],
 ```
+
+::: tip Инструкция с предподготовленными сборками джав
+- Джавы не содержат JavaFX, являются минимальными для клиентов
+- Если у вас уже есть с другой версией джавы, удалите их в `updates`
+- Разделы выше сделаны как пример и подходят для данных сборок 
+```bash:no-line-numbers
+cd updates
+```
+```bash:no-line-numbers
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-8u362%2B9.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-11.0.18%2B10.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-17.0.6%2B10.zip ;
+
+unzip jre-standart-8u362+9.zip ;
+rm -f jre-standart-8u362+9.zip ;
+unzip jre-standart-11.0.18+10.zip ;
+rm -f jre-standart-11.0.18+10.zip ;
+unzip jre-standart-17.0.6+10.zip ;
+rm -f jre-standart-17.0.6+10.zip
+```
+:::
 -   Выполните ```syncup``` и ```build```
 -   Проверьте правильность работы
 
