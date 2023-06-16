@@ -80,7 +80,7 @@
 
 -   **Waterfall**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой ```./waterfall build```
 -   **BungeeCord**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
--   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravitlauncher.com/5.3.x/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
+-   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravitlauncher.com/5.4.x/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
 
 
 ## Привязка дополнительных средств

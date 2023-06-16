@@ -441,7 +441,7 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 ::: tip Из своих исходников, после установки скриптом:
 Местонахождение: **`./src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar`**
 Скопировать командой:
-```bash:no-line-numbers
+```bash
 cd modules
 ln -s ../src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar
 ```
