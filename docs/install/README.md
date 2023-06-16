@@ -39,7 +39,11 @@ sudo apt-get install gnupg2 wget apt-transport-https -y ;
 wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ;
 echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ;
 sudo apt-get update ;
-sudo apt-get install -y bellsoft-java17-full ;
+sudo apt-get install -y bellsoft-java17-full
+```
+:::
+::: tip Смена Java по умолчанию
+```bash:no-line-numbers
 sudo update-alternatives --config java
 ```
 :::
@@ -83,13 +87,9 @@ rm -f /etc/apt/sources.list.d/bellsoft.list
 - Измените архитектуру в скрипте и повторите добавление и установку
 :::
 ::::
-:::: details Смена Java по умолчанию:
-```bash:no-line-numbers
-sudo update-alternatives --config java
-```
-::::
 :::::
 ::::: code-group-item CENTOS
+::: tip Добавить репозиторий BellSoft и установить
 ```bash:no-line-numbers
 echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
 [BellSoft]
@@ -100,11 +100,14 @@ gpgcheck=1
 gpgkey=https://download.bell-sw.com/pki/GPG-KEY-bellsoft
 priority=1
 EOF
+```
+```bash
 yum update
 yum install bellsoft-java17-full
 alternatives --config java
 ```
-:::: details Смена Java по умолчанию:
+:::
+:::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
 sudo alternatives --config java
 ```
@@ -125,6 +128,13 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 choco install liberica17jdkfull
 ```
 :::
+:::: details Обновление ENV запущенного терминала
+- Для быстрой смены Переменных среды
+- Возможность предоставляется только при установке **Chocolatey**
+```bash:no-line-numbers
+refreshenv
+```
+::::
 :::::
 ::::: code-group-item OTHER
 ::: tip Перейти по ссылке и ознакомится с гайдом
@@ -233,7 +243,7 @@ nano /etc/nginx/conf.d/default.conf
 :::
 :::: code-group
 ::: code-group-item На DNS имени
-```nginx{10,12-13,15}
+```nginx{10,12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
 }
@@ -245,7 +255,7 @@ server {
     listen 80;
     server_name launcher.ВАШДОМЕН.ru;
     charset utf-8;
-    #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log main;
+    #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log;
     #error_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.error.log notice;
     
     root /путь/до/updates;
@@ -275,7 +285,7 @@ server {
 ```
 :::
 ::: code-group-item На IP
-```nginx{12-13,15}
+```nginx{12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
 }
@@ -287,7 +297,7 @@ server {
     listen 80;
 
     charset utf-8;
-    #access_log  /var/log/nginx/launcher.access.log main;
+    #access_log  /var/log/nginx/launcher.access.log;
     #error_log  /var/log/nginx/launcher.error.log notice;
     
     root /путь/до/updates;
