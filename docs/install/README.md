@@ -259,7 +259,7 @@ server {
     #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
     #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
     
-    root /путь/до/updates;
+    root /путь/до/updates; # Example: /home/launcher/updates
     
     location / {
     }
@@ -301,7 +301,7 @@ server {
     #access_log  /var/log/nginx/launcher.access.log;
     #error_log  /var/log/nginx/launcher.error.log notice;
     
-    root /путь/до/updates;
+    root /путь/до/updates; # Example: /home/launcher/updates
     
     location / {
     }
