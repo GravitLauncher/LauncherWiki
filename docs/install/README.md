@@ -243,7 +243,7 @@ nano /etc/nginx/conf.d/default.conf
 ```
 :::
 :::: code-group
-::: code-group-item На DNS имени
+::: code-group-item [ На DNS имени ]
 ```nginx{10,12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
@@ -285,7 +285,7 @@ server {
 }
 ```
 :::
-::: code-group-item На IP
+::: code-group-item [ На IP ]
 ```nginx{12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
@@ -326,6 +326,55 @@ server {
     }
 }
 ```
+:::
+::: code-group-item [ Под Docker ]
+::: tip Для главного nginx, не в контейнере
+- Получить IPAddress контейнера. Где `<container id>` это UUID контейнера
+```bash:no-line-numbers
+docker inspect <container id> | grep "IPAddress"
+```
+- Заменить `127.0.0.1` адрес на локальный IP от вашего интерфейса для Docker, полученный выше
+```nginx{2,10,12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+    server_name launcher.ВАШДОМЕН.ru;
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШДОМЕН.ru.error.log notice;
+    
+    root /путь/до/updates;
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+:::
 :::
 ::::
 
