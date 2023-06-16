@@ -98,7 +98,7 @@
 :::::: code-group
 ::::: code-group-item [ По ссылке ]
 :::: code-group
-::: code-group-item [ 1.7.10 - 1.16.4 ]
+::: code-group-item [ 1.7.10 - 1.16.3 ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
@@ -106,7 +106,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4
 ```
 :::
 :::
-::: code-group-item [ 1.16.5 - 1.17.x ]
+::: code-group-item [ 1.16.4 - 1.17.x ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
