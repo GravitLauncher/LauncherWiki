@@ -65,6 +65,10 @@
 
 ## Сборка AuthLib
 
+::: warning
+- Все клиенты с [Зеркала](https://mirror.gravitlauncher.com/5.4.x/) уже содержат в себе патч AuthLib
+:::
+
 Для сборки **AuthLib** следуйте инструкции:
 ::::: code-group
 :::: code-group-item [ 1.7.10 - 1.16.3 ]
