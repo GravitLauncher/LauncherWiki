@@ -275,7 +275,7 @@ ADD CONSTRAINT `xf_user_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`)
     }
 ```
 :::
-::: code-group-item [ Пример с описанием ]
+::: code-group-item [ Описание ]
 ```json{5,7-9,14-15,18,20-22,28-30}:no-line-numbers
     "std": { // AUTH ID. При настройке нескольких авторизаций одновременно, имя должно отличаться
       "core": { // Раздел конфигурации AuthCoreProvider
