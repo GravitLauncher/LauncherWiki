@@ -142,7 +142,7 @@ ALTER TABLE `users`
 ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 ```
 :::
-::: code-group-item [ ПРИМЕР ДЛЯ DLE ]
+::: code-group-item [ DLE ]
 ```sql{2,3,10,19,41,42}:no-line-numbers
 -- Добавляет недостающие поля в таблицу
 ALTER TABLE dle_users
@@ -188,6 +188,52 @@ ALTER TABLE `dle_users`
 ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 ```
 :::
+::: code-group-item [ XenForo ]
+```sql{2,3,10,19,41,42}:no-line-numbers
+-- Добавляет недостающие поля в таблицу
+ALTER TABLE xf_user
+ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
+ADD COLUMN accessToken CHAR(32) DEFAULT NULL,
+ADD COLUMN serverID VARCHAR(41) DEFAULT NULL,
+ADD COLUMN hwidId BIGINT DEFAULT NULL;
+
+-- Создаёт триггер на генерацию UUID для новых пользователей
+DELIMITER //
+CREATE TRIGGER setUUID BEFORE INSERT ON xf_user
+FOR EACH ROW BEGIN
+IF NEW.uuid IS NULL THEN
+SET NEW.uuid = UUID();
+END IF;
+END; //
+DELIMITER ;
+
+-- Генерирует UUID для уже существующих пользователей
+UPDATE xf_user SET uuid=(SELECT UUID()) WHERE uuid IS NULL;
+
+CREATE TABLE `hwids` (
+`id` bigint(20) NOT NULL,
+`publickey` blob,
+`hwDiskId` varchar(255) DEFAULT NULL,
+`baseboardSerialNumber` varchar(255) DEFAULT NULL,
+`graphicCard` varchar(255) DEFAULT NULL,
+`displayId` blob,
+`bitness` int(11) DEFAULT NULL,
+`totalMemory` bigint(20) DEFAULT NULL,
+`logicalProcessors` int(11) DEFAULT NULL,
+`physicalProcessors` int(11) DEFAULT NULL,
+`processorMaxFreq` bigint(11) DEFAULT NULL,
+`battery` tinyint(1) NOT NULL DEFAULT "0",
+`banned` tinyint(1) NOT NULL DEFAULT "0"
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `hwids`
+ADD PRIMARY KEY (`id`),
+ADD UNIQUE KEY `publickey` (`publickey`(255));
+ALTER TABLE `hwids`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `xf_user`
+ADD CONSTRAINT `xf_user_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
+```
+:::
 ::::
 Поместите в раздел **"auth": {}** в LaunchServer.json
 :::: code-group
@@ -229,7 +275,7 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
     }
 ```
 :::
-::: code-group-item [ Пример с описанием ]
+::: code-group-item [ Описание ]
 ```json{5,7-9,14-15,18,20-22,28-30}:no-line-numbers
     "std": { // AUTH ID. При настройке нескольких авторизаций одновременно, имя должно отличаться
       "core": { // Раздел конфигурации AuthCoreProvider
@@ -264,6 +310,45 @@ ADD CONSTRAINT `dle_users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id
       },
       "isDefault": true, // Использование способа авторизации по умолчанию. При наличии нескольких, у остальных должно быть false
       "displayName": "Default" // Название метода авторизации в лаунчере
+    }
+```
+:::
+::: code-group-item [ XenForo ]
+```json{5,7-9,29-31}:no-line-numbers
+    "std": {
+      "core": {
+        "type": "mysql",
+        "mySQLHolder": {
+          "address": "localhost",
+          "port": 3306,
+          "username": "launchserver",
+          "password": "password",
+          "database": "db",
+          "timezone": "UTC",
+          "useHikari": true
+        },
+        "passwordVerifier": {
+          "type": "bcrypt"
+        },
+        "expireSeconds": 3600,
+        "table": "xf_user",
+        "tableHwid": "hwids",
+        "uuidColumn": "uuid",
+        "usernameColumn": "username",
+        "passwordColumn": "password",
+        "accessTokenColumn": "accessToken",
+        "hardwareIdColumn": "hwidId",
+        "serverIDColumn": "serverID",
+        "customQueryByUsernameSQL": "SELECT `uuid`, `username`, `accessToken`, `serverID`, SUBSTRING(XF_USERS_AUTH.data, 23, 60) AS `password`, `hwidId` FROM `xf_user` AS XF_USERS RIGHT JOIN `xf_user_authenticate` AS XF_USERS_AUTH ON XF_USERS.user_id = XF_USERS_AUTH.user_id WHERE `username` = ?",
+        "customQueryByUUIDSQL": "SELECT `uuid`, `username`, `accessToken`, `serverID`, SUBSTRING(XF_USERS_AUTH.data, 23, 60) AS `password`, `hwidId` FROM `xf_user` AS XF_USERS RIGHT JOIN `xf_user_authenticate` AS XF_USERS_AUTH ON XF_USERS.user_id = XF_USERS_AUTH.user_id WHERE `uuid` = ?"
+      },
+      "textureProvider": {
+        "skinURL": "http://example.com/skins/%username%.png",
+        "cloakURL": "http://example.com/cloaks/%username%.png",
+        "type": "request"
+      },
+      "isDefault": true,
+      "displayName": "Default"
     }
 ```
 :::
