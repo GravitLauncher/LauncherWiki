@@ -90,7 +90,7 @@ Options:
 
 - ~~Информация нужнается в дополнении~~
 
-Все клиента, которых нет на [Зеркале](https://mirror.gravitlauncher.com/5.4.x/clients/) можно собрать через [Этот модуль](https://github.com/GravitLauncher/LauncherModules/tree/master/MirrorHelper_module)
+Все клиенты, которых нет на [Зеркале](https://mirror.gravitlauncher.com/5.4.x/clients/) можно собрать через [Этот модуль](https://github.com/GravitLauncher/LauncherModules/tree/master/MirrorHelper_module)
 
 ::: tip Установка модуля на LaunchServer
 - Установка symlink (Если LaunchServer установлен скриптом с исходниками)
