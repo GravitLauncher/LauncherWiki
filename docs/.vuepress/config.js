@@ -1,5 +1,6 @@
 import { defineUserConfig } from 'vuepress'
 import { defaultTheme } from '@vuepress/theme-default'
+import { searchPlugin } from '@vuepress/plugin-search'
 
 export default defineUserConfig({
     head: [
@@ -77,7 +78,12 @@ export default defineUserConfig({
         },
     }),
     plugins: [
-        [
-        ],
+        searchPlugin({
+            locales: {
+                '/': {
+                    placeholder: 'Поиск',
+                },
+            },
+        }),
     ]
 })
