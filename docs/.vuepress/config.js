@@ -1,11 +1,11 @@
-import { defineUserConfig } from 'vuepress'
-import { defaultTheme } from '@vuepress/theme-default'
-import { searchPlugin } from '@vuepress/plugin-search'
+import { defineUserConfig } from "vuepress";
+import { defaultTheme } from "@vuepress/theme-default";
+import { docsearchPlugin } from "@vuepress/plugin-docsearch";
 
 export default defineUserConfig({
     head: [
-        ['link', {rel: 'icon', type: 'image/png', sizes: '16x16', href: `/images/icons/favicon-16x16.png`,}],
-        ['link', {rel: 'icon', type: 'image/png', sizes: '32x32', href: `/images/icons/favicon-32x32.png`,}],
+        ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: `/images/icons/favicon-16x16.png`, }],
+        ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: `/images/icons/favicon-32x32.png`, }],
     ],
     lang: 'ru_RU',
     title: 'GravitLauncher Wiki',
@@ -78,10 +78,19 @@ export default defineUserConfig({
         },
     }),
     plugins: [
-        searchPlugin({
+        docsearchPlugin({
+            appId: 'H9GISVMWXN',
+            apiKey: '256b831b5e9c45c225d0a55f2de0d4b0',
+            indexName: 'gravitlauncher1',
+            debug: false,
             locales: {
                 '/': {
                     placeholder: 'Поиск',
+                    translations: {
+                        button: {
+                            buttonText: 'Поиск',
+                        },
+                    },
                 },
             },
         }),
