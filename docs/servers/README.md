@@ -173,7 +173,7 @@ java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
-::: details Установка командой wget
+::: details Установка командой Wget
 ```bash{1}:no-line-numbers
 wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
@@ -222,7 +222,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
-::: details Установка командой wget
+::: details Установка командой Wget
 ```bash{1}:no-line-numbers
 wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
