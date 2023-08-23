@@ -57,7 +57,7 @@
 Для привязки ServerWrapper к вашему серверу выполните следующие действия:
 
 ::: tip Создание токена для сервера
-- Откройте лаунчсервер и введите команду `token server HiTech`, где HiTech - название вашего сервера. Скопируйте получившийся токен.
+- Откройте ЛаунчСервер и введите команду `token server HiTech`, где HiTech - название вашего сервера. Скопируйте получившийся токен.
 ```java{1}:no-line-numbers
 token server <profile-title> [auth-id]
 ```
@@ -76,9 +76,9 @@ Options:
 ::: tip Примечания:
 
 - Для привязки сервера с fabric-loader 0.14.X и выше не забудьте пропатчить или взять с клиента библиотеку fabric-loader
-- Правильно указывайте имя сервера при установке ServerWrapper. Имя сервера это название сервера в поле `servers` вашего полфиля. По умолчанию название первого сервера совпадает с `title` профиля
+- Правильно указывайте имя сервера при установке ServerWrapper. Имя сервера — это название сервера в поле `servers` вашего профиля. По умолчанию название первого сервера совпадает с `title` профиля
 - Привязка нескольких серверов по одному токену возможна только если эти сервера относятся к одному профилю
-- При смене ключей лаунчсервера(например при настройке заново на новом хостинге) или `authId` вам необходимо **обязательно** пересоздать токен сервера
+- При смене ключей ЛаунчСервера (например, при настройке заново на новом хостинге) или `authId` вам необходимо **обязательно** пересоздать токен сервера
 - Для запуска сервера 1.19.1 и выше нужно установить параметр `enforce-secure-profile` в `false` в файле `server.properties`
 
 :::
@@ -173,7 +173,7 @@ java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
-::: details Установка командой Wget
+::: details Установка командой wget
 ```bash{1}:no-line-numbers
 wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
@@ -182,7 +182,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 
 ## Ручная установка AuthLib
 
-Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Каждое ядро реализует процесс своего старта по своему, поэтому если одна инструкция не подходит, попробуйте другую.
+Для привязки всех остальных ядер (в том числе находящихся за прокси) необходимо заменить authlib. Каждое ядро реализует процесс своего старта по-своему, поэтому если одна инструкция не подходит, попробуйте другую.
 
 :::: code-group
 ::: code-group-item [ Classpath ]
@@ -194,7 +194,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 :::
 ::: code-group-item [ Jar ]
 ::: tip Информация:
-Распакуйте содержимое authlib клиента в временную папку. Откройте ```jar``` файл вашего ядра или сервера minecraft(если разделены) архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
+Распакуйте содержимое authlib клиента в временную папку. Откройте ```jar``` файл вашего ядра или сервера minecraft (если разделены) архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
 
 **Примеры ядер:** Forge/Sponge до 1.16.5, Fabric/Vanilla до 1.18
 :::
@@ -222,7 +222,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
 Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
-::: details Установка командой Wget
+::: details Установка командой wget
 ```bash{1}:no-line-numbers
 wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
 ```
@@ -233,7 +233,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 
 ```json
 {
-  "projectname": "MineCraft", // Название проекта
+  "projectname": "Minecraft", // Название проекта
   "address": "ws://ADDRESS/api", // Адрес лаунчсервера
   "serverName": "Vanilla1.19.2", // Название сервера в профиле
   "autoloadLibraries": false, // Автозагрузка библиотек из папки libraries
