@@ -41,13 +41,13 @@
 | [AdditionalHash] | Необходим для хеша пароля PHPASS<br>[\[Конфигурация PasswordVerifier\]](../auth/README.md#конфигурация-passwordverifier) |
 | [DiscordBotConsole] | Модуль позволяет взаимодействовать с [LaunchServer] через Discord клиент |
 | [FileAuthSystem] **<Badge type="tip" text="1" vertical="top" />** | Система авторизации с хранением базы пользователей в файле json<br>[\[Метод FileAuthSystem\]](../auth/README.md#метод-fileauthsystem) |
-| [GenerateCertificate] | Создает сертификаты для подписи бинарных файлов лаунчера (.jar/.exe) |
+| [GenerateCertificate] | Создает сертификаты для подписи бинарных файлов Лаунчера (.jar/.exe) |
 | [MirrorHelper] | Сборка клиентов с патчем authlib для [GravitLauncher] |
 | [MojangSupport] | Добавляет поддержку лицензионных аккаунтов **Mojang/Microsoft** |
 | [OpenSSLSignCode] | Позволяет подписывать `.exe` файлы своим сертификатом |
 | [RemoteControl] | Позволяет выполнять консольные команды [LaunchServer] при помощи HTTP протокола |
 | [S3Updates] | Синхронизация папки `updates` с Хранилищем объектов S3 |
-| [SentryProGuardUpload] | Снятие ProGuard маппингов с приходящих стактрейсов со стороны лаунчера |
+| [SentryProGuardUpload] | Снятие ProGuard маппингов с приходящих стактрейсов со стороны Лаунчера |
 | [Sentry LaunchServer] | Интеграция [LaunchServer] с системой отслеживания ошибок **Sentry** |
 | [SystemdNotifer] | Служит для правильного порядка загрузки [LaunchServer] через службу **systemd** |
 | [TelegramBotConsole] | Модуль позволяет взаимодействовать с [LaunchServer] через Telegram клиент. |

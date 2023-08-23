@@ -3,7 +3,7 @@ home: true
 title: Главная
 heroImage: /images/hero.png
 heroText: GravitLauncher Wiki
-tagline: Лучший лаунчер майнкрафт для вашего проекта.
+tagline: Лучший Лаунчер майнкрафт для вашего проекта.
 actions:
   - text: Начать установку
     link: /install/

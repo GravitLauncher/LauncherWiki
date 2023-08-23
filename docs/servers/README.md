@@ -68,7 +68,7 @@ Options:
 ```
 :::
 - Перейдите в папку с вашим сервером, скопируйте туда ServerWrapper.jar из артефактов сборки и выполните команду `java -jar ServerWrapper.jar setup`
-- Укажите название jar файла вашего серверного ядра, название сервера, адрес лаунчсервера и токен, полученный на первом этапе
+- Укажите название jar файла вашего серверного ядра, название сервера, адрес ЛаунчСервера и токен, полученный на первом этапе
 - Обязательно включите `online-mode=true` в вашем `server.properties`
 
 Дальнейшие действия зависят от вашего серверного ядра
@@ -234,7 +234,7 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 ```json
 {
   "projectname": "Minecraft", // Название проекта
-  "address": "ws://ADDRESS/api", // Адрес лаунчсервера
+  "address": "ws://ADDRESS/api", // Адрес ЛаунчСервера
   "serverName": "Vanilla1.19.2", // Название сервера в профиле
   "autoloadLibraries": false, // Автозагрузка библиотек из папки libraries
   "classpath": [], // Дополнительный classpath (1.18+)

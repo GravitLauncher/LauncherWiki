@@ -19,7 +19,7 @@
 - При создании проекта используйте самую новую версию Minecraft, доступную для ключевых модов в вашей сборке
 - Используйте **Fabric** вместо Forge для проектов на minecraft 1.16.5 и выше
 - Используйте [Sodium](https://github.com/CaffeineMC/sodium-fabric) и [Iris](https://github.com/IrisShaders/Iris) вместо Optifine начиная с Minecraft 1.16.5  
-Избегайте использования Optifabric - он создает в корне клиента скрытую папку с .jar внутри, которая не будет проверяться лаунчером
+Избегайте использования Optifabric - он создает в корне клиента скрытую папку с .jar внутри, которая не будет проверяться Лаунчером
 - Избегайте использования модов из непроверенных источников. Скачивайте моды с [Curseforge](https://www.curseforge.com/minecraft/mc-mods?filter-sort=5)/[Modrinth](https://modrinth.com/) или напрямую с GitHub разработчика
 
 ## Скачивание ассетов
@@ -93,7 +93,7 @@ Options:
 Все клиенты, которых нет на [Зеркале](https://mirror.gravitlauncher.com/5.4.x/clients/) можно собрать через [Этот модуль](https://github.com/GravitLauncher/LauncherModules/tree/master/MirrorHelper_module)
 
 ::: tip Установка модуля на LaunchServer
-- Установка симлинка (Если LaunchServer установлен скриптом с исходниками)
+- Установка симлинка (Если ЛаунчСервер установлен скриптом с исходниками)
   ```bash
   cd modules
   ln -s ../src/modules/MirrorHelper_module/build/libs/MirrorHelper_module.jar
@@ -287,7 +287,7 @@ Options:
         { //Первое действие
           "files": {
             "mods/1.7.10/NotEnoughItems-1.7.10-1.0.5.118-universal.jar": "", //Простое добавление файла без переименований
-            "mods/SuperStrangeMod0.jar": "mods/SuperStrangeMod.jar", //Добавление файла с перемещением. на стороне лаунчсервера файл находится по пути "mods/SuperStrangeMod0.jar", а в клиент он попадет сюда "mods/SuperStrangeMod.jar"
+            "mods/SuperStrangeMod0.jar": "mods/SuperStrangeMod.jar", //Добавление файла с перемещением. на стороне ЛаунчСервера файл находится по пути "mods/SuperStrangeMod0.jar", а в клиент он попадет сюда "mods/SuperStrangeMod.jar"
             "mods2/LowStrangeMod.jar": "mods/LowStrangeMod.jar", //Между папками перемещение тоже работает
             "config2/ic2": "config/ic2" //Перемещение папок тоже работает
           },
