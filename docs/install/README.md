@@ -4,7 +4,7 @@
 
 Для работы ЛаунчСервера необходим  **виртуальный (VDS/VPS)**  или  **выделенный (Dedicated)**  сервер на дистрибутиве Linux (Для [Windows](../install/#установка-на-windows-только-для-тестирования)) , а так же:
 
--  Один из актуальных дистрибутивов: **Ubuntu 22.04**, **Debian 11**, **CentOS 8**, **ArchLinux** и другие
+-  Один из актуальных дистрибутивов: **Ubuntu 22.04**, **Debian 12**, **CentOS 8**, **ArchLinux** и другие
 -  Веб-сервер  **Nginx**  для раздачи статического контента
 -  Минимум  **300Мб свободной оперативной памяти**  для работы ЛаунчСервера
 -  При сборке ЛаунчСервера из исходников прямо на машине может потребоваться до 1 Гб свободной оперативной памяти для работы Gradle
@@ -20,7 +20,7 @@
 -  Хостинги, предоставляющие VDS/VPS на основе виртуализации OpenVZ не позволяют использовать некоторые программы и нагружать процессор выше определенного уровня длительное время
 -  Старые версии дистрибутивов могут содержать уязвимости или слишком старые версии ПО с большим количеством багов. В таком случае рекомендуется обновиться до последней версии или сменить хостинг провайдера
 
-Если вы хотите установить ЛаунчСервер на Windows для локального тестирования следуйте [этой](../install/#установка-на-windows-только-для-тестирования) инструкции.
+Инструкция по установке на Windows больше недоступна, однако вы можете использовать [WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install) для установки для тестирования и отладки
 
 ## Настройка хостинга
 
@@ -32,8 +32,8 @@
   - Настроить проксирование через Nginx с поддоменом
   - Установить сертификат SSL на поддомен
 
-### Установка JDK FULL 17
-Для запуска ЛаунчСервера необходима Java 17. Она так же подходит для запуска майнкрафт сервера 1.18+
+### Установка JDK 21
+Для запуска ЛаунчСервера необходима Java 21. Она так же подходит для запуска майнкрафт сервера 1.18+
 Для запуска майнкрафт сервера 1.17.x необходима - Java 16.
 Для запуска майнкрафт сервера 1.16.5 и ниже - Java 8.
 Необходимо установить их все, если вы собираетесь держать ЛаунчСервер и сервера на одной машине.
@@ -43,10 +43,15 @@
 ```bash:no-line-numbers
 sudo apt-get update ;
 sudo apt-get install gnupg2 wget apt-transport-https -y ;
-wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | sudo apt-key add - ;
-echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list ;
+sudo mkdir -p /etc/apt/keyrings ;
+sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc ;
+echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list ;
 sudo apt-get update ;
-sudo apt-get install -y bellsoft-java17-full
+sudo apt-get install temurin-21-jdk ;
+wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip ;
+unzip openjfx-21_linux-x64_bin-jmods.zip ;
+sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
+rm -r javafx-jmods-21
 ```
 :::
 ::: tip Смена Java по умолчанию
@@ -54,56 +59,27 @@ sudo apt-get install -y bellsoft-java17-full
 sudo update-alternatives --config java
 ```
 :::
-:::: details Целевые архитектуры процессоров: <Badge type="warning" text="Важно" vertical="top" />
-::: warning Описание:
-- **amd64** является более распространённой архитектурой на текущее время
-- Если **amd64** не является целевой архитектурой, замените его в скрипте выше в поле **[arch=amd64]**
 
-Список возможных архитектур:
-```bash:no-line-numbers
-amd64, i386, arm64, armhf
-```
-- Сопоставление:
-  - **amd64** - x86 (64 бит)
-  - **i386** - x86 (32 бит)
-  - **arm64** - aarch64
-:::
-::: tip Узнать архитектуру ядра:
-```bash:no-line-numbers
-uname -m | awk '{print(substr($0,0,3))}'
-```
-:::
-::: tip Узнать битность ядра:
-```bash:no-line-numbers
-getconf LONG_BIT
-```
-:::
-::: tip Удалить из sources.list
-- Необходимо, если ошибочно добавили неправильную архитектуру
-  - Ошибка в консоли: `E: Unable to locate package bellsoft-java17-full`
-```bash:no-line-numbers
-rm -f /etc/apt/sources.list.d/bellsoft.list
-```
-- Измените архитектуру в скрипте и повторите добавление и установку
-:::
-::::
 :::::
 ::::: code-group-item CENTOS
-::: tip Добавить репозиторий BellSoft и установить
+::: tip Добавить репозиторий Adoptium и установить
 ```bash:no-line-numbers
-echo | tee /etc/yum.repos.d/bellsoft.repo > /dev/null << EOF
-[BellSoft]
-name=BellSoft Repository
-baseurl=https://yum.bell-sw.com
+export DISTRIBUTION_NAME=rhel
+cat <<EOF > /etc/yum.repos.d/adoptium.repo
+[Adoptium]
+name=Adoptium
+baseurl=https://packages.adoptium.net/artifactory/rpm/${DISTRIBUTION_NAME:-$(. /etc/os-release; echo $ID)}/\$releasever/\$basearch
 enabled=1
 gpgcheck=1
-gpgkey=https://download.bell-sw.com/pki/GPG-KEY-bellsoft
-priority=1
+gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
 EOF
 ```
 ```bash
-yum update
-yum install bellsoft-java17-full
+dnf update
+dnf install temurin-21-jdk
+wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip ;
+unzip openjfx-21_linux-x64_bin-jmods.zip ;
+sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
 alternatives --config java
 ```
 :::
@@ -123,9 +99,9 @@ Set-ExecutionPolicy remotesigned
 ```bash:no-line-numbers
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
-- Установите пакет **JDK 17 FULL** содержащий **JavaFX**
+- Установите пакет **JDK 21 FULL** содержащий **JavaFX**
 ```bash:no-line-numbers
-choco install liberica17jdkfull
+choco install liberica21jdkfull
 ```
 :::
 :::: details Обновление ENV запущенного терминала
@@ -464,27 +440,6 @@ chown -R launcher:launcher /home/launcher
 -   Ждите результата
 
 При достижении определенного числа скачиваний проблема уйдет "сама собой", а некоторые пользователи могут её вовсе не заметить.
-
-## Установка на Windows (ТОЛЬКО ДЛЯ ТЕСТИРОВАНИЯ)
-
-Настройте окружение: [Установите JDK FULL по инструкции выше](#установка-jdk-full-17)
-
-Далее вам необходимо установить ЛаунчСервер ВРУЧНУЮ, без использования скрипта установки
-
--   На странице  [Launcher releases](https://github.com/GravitLauncher/Launcher/releases)  найдите последний релиз и скачайте его
--   Распакуйте библиотеки и LaunchServer.jar из архива
--   Создайте ```start.bat``` с таким содержимым:
-
-    ```bash:no-line-numbers
-    @ECHO OFF
-    "ПУТЬ_ДО_JDK_17/bin/java.exe" -javaagent:LaunchServer.jar -jar LaunchServer.jar
-    PAUSE
-    ```
-
--   Запустите ```start.bat``` и при первом запуске укажите свой projectName и localhost в качестве адреса
--   Скачайте рантайм для вашей версии Лаунчера:  [LauncherRuntime releases](https://github.com/GravitLauncher/LauncherRuntime/releases)
--   Скопируйте папку runtime в папку с установленным ЛаунчСервером, а .jar файл модуля в папку launcher-modules
--   Запустите ЛаунчСервер и выполните команду build для запуска сборки. После окончания готовый Лаунчер появится в папке ```updates```
 
 ## Установка dev версий ЛаунчСервера
 

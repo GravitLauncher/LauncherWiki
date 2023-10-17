@@ -37,6 +37,40 @@ Options:
 - Загрузка происходит с серверов Mojang
 - При скачивании нескольких версий ассетов в одну папку будут скачаны только недостающие
 
+## Настройка MirrorHelper
+
+В актуальных версиях лаунчера рекомендуемым способом установки является MirrorHelper. Это модуль для лаунчсервера, позволяющий скачивать клиенты напрямую с серверов mojang, устанавливать forge/fabric, скачивать моды с Modrinh и CurseForge и т.д.  
+К сожалению некоторые файлы не могут быть скачаны автоматически (например forge installer и optifine) и вам придется скачать их вручную. Так же Forge, в отличии от Fabric, не предоставляет возможности ставить клиент автоматически без участия пользователя. Поэтому установки Forge вам понадобится иметь GUI на машине с лаунчсервером, либо применить X forwarding
+- Установите модуль MirrorHelper
+- Установите git на вашу машину если его еще нет
+- Пропишите команду `applyworkspace`
+- Установите клиент
+:::: code-group
+::: code-group-item [ Vanilla ]
+```
+installclient 1.20.2 MyVanillaClient VANILLA
+```
+- *1.20.2* - версия Minecraft
+- *MyVanillaClient* - название вашего клиента
+:::
+::: code-group-item [ Fabric ]
+```
+installclient 1.20.2 MyFabricClient FABRIC
+```
+- *1.20.2* - версия Minecraft
+- *MyFabricClient* - название вашего клиента
+:::
+::: code-group-item [ Forge ]
+- Скачайте forge-installer с сайта [до 1.20](https://files.minecraftforge.net/net/minecraftforge/forge/)/[после 1.20](https://neoforged.net/)
+- Поместите его в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/installers/forge-VERSION-installer.jar`, где VERSION - версия Minecraft
+- Если вы хотите установить Forge на сервере где отсутствует GUI следуйте инструкции для вашего SSH клиента []
+```
+installclient 1.20.2 MyFabricClient FABRIC
+```
+- *1.20.2* - версия Minecraft
+- *MyFabricClient* - название вашего клиента
+:::
+::::
 ## Скачивание клиента с зеркала
 
 Список клиентов, доступных на нашем зеркале можно посмотреть тут: [Клиенты](https://mirror.gravitlauncher.com/5.4.x/clients/)
