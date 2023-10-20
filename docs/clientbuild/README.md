@@ -40,58 +40,80 @@ Options:
 ## Настройка MirrorHelper
 
 В актуальных версиях лаунчера рекомендуемым способом установки является MirrorHelper. Это модуль для лаунчсервера, позволяющий скачивать клиенты напрямую с серверов mojang, устанавливать forge/fabric, скачивать моды с Modrinh и CurseForge и т.д.  
-К сожалению некоторые файлы не могут быть скачаны автоматически (например forge installer и optifine) и вам придется скачать их вручную. Так же Forge, в отличии от Fabric, не предоставляет возможности ставить клиент автоматически без участия пользователя. Поэтому установки Forge вам понадобится иметь GUI на машине с лаунчсервером, либо применить X forwarding
+К сожалению некоторые файлы не могут быть скачаны автоматически (например forge installer и optifine) и вам придется скачать их вручную. Так же Forge, в отличии от Fabric, не предоставляет возможности ставить клиент автоматически без участия пользователя. Поэтому установки Forge вам понадобится иметь GUI на машине с лаунчсервером, либо применить X11 forwarding
 - Установите модуль MirrorHelper
 - Установите git на вашу машину если его еще нет
 - Пропишите команду `applyworkspace`
 - Установите клиент
-:::: code-group
-::: code-group-item [ Vanilla ]
+:::::: code-group
+::::: code-group-item [ Vanilla ]
+::: tip Установка Vanilla клиента
 ```
 installclient 1.20.2 MyVanillaClient VANILLA
 ```
 - *1.20.2* - версия Minecraft
 - *MyVanillaClient* - название вашего клиента
-:::
-::: code-group-item [ Fabric ]
+:::::
+::::: code-group-item [ Fabric ]
+::: tip Установка Fabric клиента
 ```
 installclient 1.20.2 MyFabricClient FABRIC
 ```
 - *1.20.2* - версия Minecraft
 - *MyFabricClient* - название вашего клиента
-:::
-::: code-group-item [ Forge ]
-- Скачайте forge-installer с сайта [до 1.20](https://files.minecraftforge.net/net/minecraftforge/forge/)/[после 1.20](https://neoforged.net/)
+:::::
+::::: code-group-item [ Forge ]
+::: tip Установка Forge клиента
+- Скачайте forge-installer с сайта [Classic Forge](https://files.minecraftforge.net/net/minecraftforge/forge/)/[NeoForge](https://neoforged.net/)
 - Поместите его в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/installers/forge-VERSION-installer.jar`, где VERSION - версия Minecraft
-- Если вы хотите установить Forge на сервере где отсутствует GUI следуйте инструкции для вашего SSH клиента []
+- Если вы хотите установить Forge на сервере где отсутствует GUI следуйте инструкции для вашего SSH клиента ниже
 ```
-installclient 1.20.2 MyFabricClient FABRIC
+installclient 1.7.10 MyForgeClient FORGE
 ```
-- *1.20.2* - версия Minecraft
-- *MyFabricClient* - название вашего клиента
-:::
-::::
-## Скачивание клиента с зеркала
+*1.7.10* - версия Minecraft  
+*MyForgeClient* - название вашего клиента
+- В консоли лаунчсервера вы увидите путь, который вам нужно будет выбрать в установщике Forge
+- После успешной установки докачайте необходимые моды [Optifine](https://optifine.net/downloads)/[Rubidium 1.16.5+](https://www.curseforge.com/minecraft/mc-mods/rubidium)
+:::::
+::::::
 
-Список клиентов, доступных на нашем зеркале можно посмотреть тут: [Клиенты](https://mirror.gravitlauncher.com/5.4.x/clients/)
-
-Для скачивания клиентов игры выполните команду:
-- Пример: `downloadclient 1.20.0-fabric 1.20.0-fabric`
-```java{1}:no-line-numbers
-downloadclient <client-name> <output-folder>
-```
-```java
-Options:
-      <client-name> Имя архива клиента игры с зеркала (без .zip) [default: null]
-      <output-folder> Папка назначения для клиента игры [default: null]
-      (mirror) Включение скачивания json профиля игры с зеркала [default: false]
-```
-::: tip Примечания:
--   Для скачивания версии c Forge/Fabric допишите в конец версии `-forge`/`-fabric`, например `1.16.5-fabric`
--   Для скачки клиента с стороннего зеркала вместе с профилем вам нужно использовать такую команду: `downloadclient ВЕРСИЯ НАЗВАНИЕ mirror`
--   ~~Название папки ассетов как правило записывается в виде `assetВЕРСИЯ`, например:  **asset1.7.10**,  **asset1.17.1**~~
--   По умолчанию все клиенты содержат в себе пропатченную **AuthLib**
-:::
+## Использование X11 Forwarding
+Для установки Forge версий клиентов вам может понадобится использование X11 Forwarding
+- Установите пакет `xauth` на ваш сервер
+- Добавьте или измените параметр `X11Forwarding` на `yes` в `sshd_config` на вашем сервере
+- Перезапутсите sshd
+- Следуйте инструкции для вашего SSH клиента:
+:::::: code-group
+::::: code-group-item [ WSL 2 ]
+::: tip Использование WSL 2 (рекомендуется)
+- Установите WSL 2 если вы еще этого не сделали по этому [гайду](https://learn.microsoft.com/ru-ru/windows/wsl/install)
+- Находясь в WSL выполните команду `ssh -XYC yourusername@SERVER_IP`
+- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+:::::
+::::: code-group-item [ Linux ]
+::: tip Использование Linux (рекомендуется)
+- Выполните команду `ssh -XYC yourusername@SERVER_IP`
+- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+:::::
+::::: code-group-item [ Putty ]
+::: tip Использование Putty
+- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/)
+- Включите X11 Forwarding в настройках соеденения Putty и подключитесь к серверу
+- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+:::::
+::::: code-group-item [ Windows SSH Client ]
+::: tip Использование стандартного клиента SSH в Windows
+- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/)
+- Если у вас не работает команда `ssh` в терминале Windows [установите компонент](https://learn.microsoft.com/ru-ru/windows/terminal/tutorials/ssh)
+- Выполните команду `set DISPLAY=:0`
+- Не закрывая терминал выполните команду `ssh -XYC yourusername@SERVER_IP`
+- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+:::::
+::::::
 
 ## Команды синхронизации
 
@@ -118,23 +140,6 @@ syncupdates [folder]
 Options:
       [folder] Выбрать папку для синхронизации [default: all]
 ```
-:::
-
-## Сборка клиента модулем MirrorHelper
-
-- ~~Информация нуждается в дополнении~~
-
-Все клиенты, которых нет на [Зеркале](https://mirror.gravitlauncher.com/5.4.x/clients/) можно собрать через [Этот модуль](https://github.com/GravitLauncher/LauncherModules/tree/master/MirrorHelper_module)
-
-::: tip Установка модуля на LaunchServer
-- Установка симлинка (Если ЛаунчСервер установлен скриптом с исходниками)
-  ```bash
-  cd modules
-  ln -s ../src/modules/MirrorHelper_module/build/libs/MirrorHelper_module.jar
-  ```
-- Скачивание с релизов:
-  - Скачать файл [LaunchServerModules.zip](https://github.com/GravitLauncher/Launcher/releases/latest/download/LaunchServerModules.zip) (Ссылка ведёт всегда на последний релиз)
-  - Поместить файл **MirrorHelper_module.jar** в папку **modules/**
 :::
 
 ## Сборка AuthLib

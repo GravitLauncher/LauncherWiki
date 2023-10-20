@@ -64,11 +64,10 @@ sudo update-alternatives --config java
 ::::: code-group-item CENTOS
 ::: tip Добавить репозиторий Adoptium и установить
 ```bash:no-line-numbers
-export DISTRIBUTION_NAME=rhel
 cat <<EOF > /etc/yum.repos.d/adoptium.repo
 [Adoptium]
 name=Adoptium
-baseurl=https://packages.adoptium.net/artifactory/rpm/${DISTRIBUTION_NAME:-$(. /etc/os-release; echo $ID)}/\$releasever/\$basearch
+baseurl=https://packages.adoptium.net/artifactory/rpm/rhel/\$releasever/\$basearch
 enabled=1
 gpgcheck=1
 gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
@@ -91,30 +90,18 @@ sudo alternatives --config java
 :::::
 ::::: code-group-item WINDOWS
 ::: tip Откройте PowerShell (От имени Администратора)
-- Снимите проверку подписи, для правильной работы дальнейшего скрипта:
+- Установите пакет **Adoptium JDK 21** с помощью **winget**
 ```bash:no-line-numbers
-Set-ExecutionPolicy remotesigned
+winget install EclipseAdoptium.Temurin.21.JDK
 ```
-- Установите **Chocolatey**
-```bash:no-line-numbers
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-```
-- Установите пакет **JDK 21 FULL** содержащий **JavaFX**
-```bash:no-line-numbers
-choco install liberica21jdkfull
-```
+- Откройте [сайт OpenJFX](https://gluonhq.com/products/javafx/) и скачайте последнюю версию **SDK** и **jmods** для Java 21
+- Распакуйте файлы с расширением jmod из архива с **jmods** в `C:\Program Files\Eclipse Adoptium\ВАША_JDK\jmods`
+- Распакуйте файлы из архива *SDK* (внутри будет папка с названием версии, распакуйте её содержимое а не саму папку) в `C:\Program Files\Eclipse Adoptium\ВАША_JDK\`
 :::
-:::: details Обновление ENV запущенного терминала
-- Для быстрой смены Переменных среды
-- Возможность предоставляется только при установленном **Chocolatey**
-```bash:no-line-numbers
-refreshenv
-```
-::::
 :::::
 ::::: code-group-item OTHER
-::: tip Перейти по ссылке и ознакомится с гайдом
-Посетите [BELLSOFT Installation Guide](https://bell-sw.com/pages/liberica_install_guide-17.0.7/)
+::: tip Установка для других систем
+Посетите сайт JDK [Adoptium](https://adoptium.net/) и [OpenJFX](https://gluonhq.com/products/javafx/)
 :::
 :::::
 ::::::
