@@ -144,3 +144,61 @@ beautiful codesign, Jan 16, 2023, PrivateKeyEntry,
 ::: tip Обратите внимание
 Пароли `keyStorePass` и `keyPass` должны совпадать
 :::
+
+## MixProvider
+
+MixProvider - это метод расширения AuthCoreProvider дополнительной функциональностью
+
+### Расширение uploadAsset
+
+Работоспособный пример реализации: [PHP](https://github.com/GravitLauncher/TextureLoader)
+
+Это расширение для загрузки скинов и плащей прямо в лаунчере без использования сайта
+
+```json:no-line-numbers
+"mixes": {
+  "textureLoader": {
+    "urls": {
+      "SKIN": "http://example.com/assetloader/upload.php?type=SKIN",
+      "CAPE": "http://example.com/assetloader/upload.php?type=CAPE"
+    },
+    "slimSupportConf": "USER",
+    "type": "uploadAsset"
+  }
+}
+```
+
+На указанный url придет POST запрос с содержимым `form/multipart`
+- `file` (`Content-Type`: `image/png`) - предоставляет PNG скин который пользователь хочет загрузить
+- `options` (`Content-Type`: `application/json`) - предоставляет настройки, выбранные пользователем для загрузки
+```json:no-line-numbers
+{
+  "modelSlim": true
+}
+```
+- Так же будет передан заголовок `Authorization: Bearer USER_ACCESS_TOKEN` который вы должны проверить
+
+Вы можете указать поддерживает ли ваш метод загрузку `slim` скинов, и если да - то как
+- `USER` - `slim` поддерживается, пользователь сам ставит галочку `slim` скин или нет
+- `SERVER` - `slim` поддерживается, тип скина определяет скрипт
+- `UNSPOORTED` - `slim` не поддерживается
+
+При успешной загрузке скина вы должны отправить следующий ответ с кодом 200:
+
+```json:no-line-numbers
+{
+  "url": "ASSET URL",
+  "hash": "SHA256 HEX HASH",
+  "metadata": {
+    "model": "skim"
+  }
+}
+```
+
+При ошибке вы должны вернуть код >=400 и следующий ответ:
+
+```json:no-line-numbers
+{
+  "error": "Access denied"
+}
+```
