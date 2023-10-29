@@ -78,7 +78,7 @@ dnf update
 dnf install temurin-21-jdk
 wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip ;
 unzip openjfx-21_linux-x64_bin-jmods.zip ;
-sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
+sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk/jmods ;
 alternatives --config java
 ```
 :::
@@ -427,6 +427,9 @@ chown -R launcher:launcher /home/launcher
 -   Ждите результата
 
 При достижении определенного числа скачиваний проблема уйдет "сама собой", а некоторые пользователи могут её вовсе не заметить.
+
+### Установка LauncherPrestarter
+Начииная с версии 5.5 лаунчер требует Java 17+ для работы. Что бы избавить игроков от необходимости устанавливать Java самостоятельно был создан LauncherPrestarter. Перейдите на [страницу проекта на GitHub](https://github.com/GravitLauncher/LauncherPrestarter) что бы узнать больше
 
 ## Установка dev версий ЛаунчСервера
 

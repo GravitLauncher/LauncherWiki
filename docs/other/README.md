@@ -53,6 +53,7 @@ TextureProvider нужен при отсутствии поддержки ски
 :::
 ::: details Комьюнити реализации:
 [\[PHP\] microwin7/GravitLauncher-TextureProvider](https://github.com/microwin7/GravitLauncher-TextureProvider)
+[\[PHP\] GravitLauncher/TextureLoader](https://github.com/GravitLauncher/TextureLoader)
 :::
 
 Пример ответа:
@@ -60,14 +61,14 @@ TextureProvider нужен при отсутствии поддержки ски
 {
   "SKIN": {
     "url": "http://example.com/skins/Gravita.png",
-    "digest": "BASE64 ENCODED MD5 HASH",
+    "digest": "SHA256 HASH (HEX)",
     "metadata": {
       "model": "slim"
     }
   },
   "CAPE": {
     "url": "http://example.com/cloaks/Gravita.png",
-    "digest": "BASE64 ENCODED MD5 HASH"
+    "digest": "SHA256 HASH (HEX)"
   }
 }
 ```
@@ -151,7 +152,7 @@ MixProvider - это метод расширения AuthCoreProvider допол
 
 ### Расширение uploadAsset
 
-Работоспособный пример реализации: [PHP](https://github.com/GravitLauncher/TextureLoader)
+Работоспособная реализация: [PHP](https://github.com/GravitLauncher/TextureLoader)
 
 Это расширение для загрузки скинов и плащей прямо в лаунчере без использования сайта
 
