@@ -189,7 +189,7 @@ MixProvider - это метод расширения AuthCoreProvider допол
 ```json:no-line-numbers
 {
   "url": "ASSET URL",
-  "hash": "SHA256 HEX HASH",
+  "digest": "SHA256 HEX HASH",
   "metadata": {
     "model": "skim"
   }

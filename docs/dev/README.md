@@ -8,9 +8,10 @@
   <CodeGroupItem title="Gradle (Short)" active>
 
 ```properties:no-line-numbers
-implementation "pro.gravit.launcher:launcher-core:5.4.0"
-implementation "pro.gravit.launcher:launcher-ws-api:5.4.0"
-implementation "pro.gravit.launcher:launchserver-api:5.4.0"
+implementation "pro.gravit.launcher:launcher-core:5.5.0"
+implementation "pro.gravit.launcher:launcher-modern-core:5.5.0"
+implementation "pro.gravit.launcher:launcher-ws-api:5.5.0"
+implementation "pro.gravit.launcher:launchserver-api:5.5.0"
 ```
 
   </CodeGroupItem>
@@ -20,21 +21,28 @@ implementation "pro.gravit.launcher:launchserver-api:5.4.0"
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launcher-core</artifactId>
-    <version>5.4.0</version>
+    <version>5.5.0</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launcher-modern-core</artifactId>
+    <version>5.5.0</version>
     <type>pom</type>
     <scope>import</scope>
 </dependency>
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launcher-ws-api</artifactId>
-    <version>5.4.0</version>
+    <version>5.5.0</version>
     <type>pom</type>
     <scope>import</scope>
 </dependency>
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launchserver-api</artifactId>
-    <version>5.4.0</version>
+    <version>5.5.0</version>
     <type>pom</type>
     <scope>import</scope>
 </dependency>
@@ -49,9 +57,10 @@ implementation "pro.gravit.launcher:launchserver-api:5.4.0"
   <CodeGroupItem title="Gradle (Short)" active>
 
 ```properties:no-line-numbers
-implementation "pro.gravit.launcher:launcher-core:5.4.0"
-implementation "pro.gravit.launcher:launcher-ws-api:5.4.0"
-implementation "pro.gravit.launcher:launcher-client-api:5.4.0"
+implementation "pro.gravit.launcher:launcher-core:5.5.0"
+implementation "pro.gravit.launcher:launcher-modern-core:5.5.0"
+implementation "pro.gravit.launcher:launcher-ws-api:5.5.0"
+implementation "pro.gravit.launcher:launcher-client-api:5.5.0"
 ```
 
   </CodeGroupItem>
@@ -61,21 +70,28 @@ implementation "pro.gravit.launcher:launcher-client-api:5.4.0"
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launcher-core</artifactId>
-    <version>5.4.0</version>
+    <version>5.5.0</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+<dependency>
+    <groupId>pro.gravit.launcher</groupId>
+    <artifactId>launcher-modern-core</artifactId>
+    <version>5.5.0</version>
     <type>pom</type>
     <scope>import</scope>
 </dependency>
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launcher-ws-api</artifactId>
-    <version>5.4.0</version>
+    <version>5.5.0</version>
     <type>pom</type>
     <scope>import</scope>
 </dependency>
 <dependency>
     <groupId>pro.gravit.launcher</groupId>
     <artifactId>launcher-client-api</artifactId>
-    <version>5.4.0</version>
+    <version>5.5.0</version>
     <type>pom</type>
     <scope>import</scope>
 </dependency>
@@ -96,6 +112,10 @@ init(LauncherInitContext initContext)
 логику внутри метода init  **запрещено**. Внутри метода init разрешается обращаться только к методам modulesManager и
 initContext, при этом при статической загрузке модуля initContext = null, а при динамической загрузке модуля через
 команду loadModule он будет содержать инстанс контекста, из которого можно получить доступ к LaunchServer
+
+:::: tip Примечание:
+Если вы собираетесь использовать в модуле для лаунчера **ЛЮБЫЕ** классы из пакетов `launcher-client-api`, `launcher-modern-core` то вы должны запретить загрузку модуля если версия Java ниже 17. Для этого установите в манифесте параметр `Required-Modern-Java` в `true`
+::::
 
 ## События(ивенты)
 
@@ -127,6 +147,30 @@ initContext, при этом при статической загрузке мо
 - **pro.gravit.launcher.events**  - ответы на запросы к ЛаунчСерверу и отдельные события
 - **pro.gravit.launcher.request**  - запросы к ЛаунчСерверу
 - **pro.gravit.launcher.api**  - Информация о текущем пользователе и профиле
+
+## Отладка клиента с лаунчером
+
+Вы можете писать собственные моды используя API лаунчера - иметь доступ к скинам, плащам и входу на сервер с `online-mode` `true`. Для этого настройте свое окружение (на примере fabric):
+- Добавьте библиотеки лаунчера как при разработке модуля
+- Вместо подключения `fabric-loader` добавьте туда его патченую версию с клиента:
+```
+modImplementation files("YOUR_CLIENT/libraries/net/fabricmc/fabric-loader/VERSION/fabric-loader-VERSION.jar")
+```
+- Откройте проект в `IDEA`. Дублируйте существующую конфигнурацию для запуска клиента и добавьте туда:
+```
+-Dlauncher.debug=true
+-Dlauncher.stacktrace=true
+-Dlauncher.dev=true
+-Dlauncher.runtime.auth.authid=std
+-Dlauncher.runtime.mainclass=net.fabricmc.devlaunchinjector.Main
+-Dlauncher.runtime.username=YOUR_USERNAME
+-Dlauncher.runtime.password=YOUR_PASSWORD
+```
+- Укажите MainClass `pro.gravit.launcher.debug.DebugMain`
+
+### Как войти на сервер с отладочного клиента
+
+Используйте `protectHandler` `none` (**только для тестирования, это сделает ваш сервер незащищенным**)
 
 ## Написание AuthCoreProvider
 
