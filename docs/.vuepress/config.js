@@ -49,7 +49,7 @@ export default defineUserConfig({
                 contributorsText: "Спонсоры",
             },
         },
-        logo: 'images/hero.png',
+        logo: 'images/logo.png',
         navbar: [
             {
                 text: 'Руководство',
