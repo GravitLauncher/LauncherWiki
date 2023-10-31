@@ -4,9 +4,9 @@
 
 На текущий момент поддерживается запуск:
 
--   Любой Vanilla версии с 1.7.10 до 1.20.1
+-   Любой Vanilla версии с 1.7.10 до 1.20.2
 -   Любой Forge версии с 1.7.10 до 1.16.5
--   Любой Fabric версии с 1.13 до 1.20.1
+-   Любой Fabric версии с 1.13 до 1.20.2
 
 В экспериментальном режиме так же имеется поддержка
 
@@ -49,7 +49,7 @@ Options:
 ::::: code-group-item [ Vanilla ]
 ::: tip Установка Vanilla клиента
 ```
-installclient 1.20.2 MyVanillaClient VANILLA
+installclient MyVanillaClient 1.20.2 VANILLA
 ```
 - *1.20.2* - версия Minecraft
 - *MyVanillaClient* - название вашего клиента
@@ -57,7 +57,7 @@ installclient 1.20.2 MyVanillaClient VANILLA
 ::::: code-group-item [ Fabric ]
 ::: tip Установка Fabric клиента
 ```
-installclient 1.20.2 MyFabricClient FABRIC
+installclient MyFabricClient 1.20.2 FABRIC
 ```
 - *1.20.2* - версия Minecraft
 - *MyFabricClient* - название вашего клиента
@@ -68,7 +68,7 @@ installclient 1.20.2 MyFabricClient FABRIC
 - Поместите его в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/installers/forge-VERSION-installer.jar`, где VERSION - версия Minecraft
 - Если вы хотите установить Forge на сервере где отсутствует GUI следуйте инструкции для вашего SSH клиента ниже
 ```
-installclient 1.7.10 MyForgeClient FORGE
+installclient MyForgeClient 1.7.10 FORGE
 ```
 *1.7.10* - версия Minecraft  
 *MyForgeClient* - название вашего клиента
