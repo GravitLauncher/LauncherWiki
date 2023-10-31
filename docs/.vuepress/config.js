@@ -7,7 +7,7 @@ export default defineUserConfig({
         ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: `/images/icons/favicon-16x16.png`, }],
         ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: `/images/icons/favicon-32x32.png`, }],
         ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `/images/icons/apple-touch-icon.png`, }],
-        ['link', { rel: 'manifest', href: `/images/icons/manifest.webmanifest`, }],
+        ['link', { rel: 'manifest', href: `/manifest.webmanifest`, }],
         ['link', { rel: 'mask-icon', color: '#5bbad5', href: `/images/icons/safari-pinned-tab.svg`, }],
         ['link', { rel: 'shortcut icon', href: `/images/icons/favicon.ico`, }],
         ['meta', { name: 'apple-mobile-web-app-title', content: 'GravitLauncher Wiki' }],
