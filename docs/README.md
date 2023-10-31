@@ -1,7 +1,7 @@
 ---
 home: true
 title: Главная
-heroImage: /images/hero.png
+heroImage: /images/logo.png
 heroText: GravitLauncher Wiki
 tagline: Лучший Лаунчер майнкрафт для вашего проекта.
 actions:
