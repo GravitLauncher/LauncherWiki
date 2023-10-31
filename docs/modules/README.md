@@ -15,7 +15,7 @@
 - Устанавливать в папку **`launcher-modules/`** <Badge type="tip" text="Перепроверь себя" vertical="top" />
 - Где найти?
   - В архиве **LauncherModules.zip** из [Releases]
-  - При установке скриптом из исходников, модули можно установить с помощью команды `./install_launcher.module.sh MODULE_NAME` (суффикс `_lmodule.jar` **не входит** в имя модуля)
+  - При установке скриптом из исходников, модули можно установить с помощью команды `./install_launcher_module.sh MODULE_NAME` (суффикс `_lmodule.jar` **не входит** в имя модуля)
 
 | Модуль | Описание |
 | ------ | ------ |
@@ -30,7 +30,7 @@
 - Устанавливать в папку **`modules/`** <Badge type="tip" text="Перепроверь себя" vertical="top" />
 - Где найти?
   - В архиве **LaunchServerModules.zip** из [Releases]
-  - При установке скриптом из исходников, модули можно установить с помощью команды `./install_launchserver.module.sh MODULE_NAME` (суффикс `_module.jar` **не входит** в имя модуля)
+  - При установке скриптом из исходников, модули можно установить с помощью команды `./install_launchserver_module.sh MODULE_NAME` (суффикс `_module.jar` **не входит** в имя модуля)
 
 | Модуль | Описание |
 | ------ | ------ |
