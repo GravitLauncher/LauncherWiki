@@ -57,6 +57,7 @@ rm -r javafx-jmods-21
 ::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
 sudo update-alternatives --config java
+sudo update-alternatives --config javac
 ```
 :::
 
@@ -80,11 +81,13 @@ wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip
 unzip openjfx-21_linux-x64_bin-jmods.zip ;
 sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk/jmods ;
 alternatives --config java
+alternatives --config javac
 ```
 :::
 :::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
 sudo alternatives --config java
+sudo alternatives --config javac
 ```
 ::::
 :::::
