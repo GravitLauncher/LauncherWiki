@@ -243,7 +243,10 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
   "args": ["nogui"], // Аргументы запуска
   "oauthExpireTime": 0,
   "extendedTokens": { // Токены доступа
-    "checkServer": "TOKEN"
+    "checkServer": {
+      "token": "TOKEN",
+      "expire": 0
+    }
   },
   "env": "STD"
 }
