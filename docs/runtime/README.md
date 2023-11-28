@@ -53,7 +53,15 @@
     "java17-linux-x86-64": "Java 17 b6 linux X86_64 javafx false",
     "java17-linux-arm-64": "Java 17 b6 linux ARM64 javafx false",
     "java17-macosx-64": "Java 17 b6 macosx X86_64 javafx false",
-    "java17-macosx-arm-64": "Java 17 b6 macosx ARM64 javafx false"
+    "java17-macosx-arm-64": "Java 17 b6 macosx ARM64 javafx false",
+    "java21-windows-x86": "Java 21 b6 mustdie X86 javafx false",
+    "java21-windows-x86-64": "Java 21 b6 mustdie X86_64 javafx false",
+    "java21-windows-arm-64": "Java 21 b6 mustdie ARM64 javafx false",
+    "java21-linux-x86": "Java 21 b6 linux X86 javafx false",
+    "java21-linux-x86-64": "Java 21 b6 linux X86_64 javafx false",
+    "java21-linux-arm-64": "Java 21 b6 linux ARM64 javafx false",
+    "java21-macosx-64": "Java 21 b6 macosx X86_64 javafx false",
+    "java21-macosx-arm-64": "Java 21 b6 macosx ARM64 javafx false"
   },
 ```
 - `"forceDownloadJava": true,` для скачивания принудительно только с вашего ЛаунчСервера
@@ -81,7 +89,10 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
       "java11-macosx-64", "java11-macosx-arm-64",
       "java17-windows-x86", "java17-windows-x86-64", "java17-windows-arm-64",
       "java17-linux-x86", "java17-linux-x86-64", "java17-linux-arm-64",
-      "java17-macosx-64", "java17-macosx-arm-64"
+      "java17-macosx-64", "java17-macosx-arm-64",
+      "java21-windows-x86", "java21-windows-x86-64", "java21-windows-arm-64",
+      "java21-linux-x86", "java21-linux-x86-64", "java21-linux-arm-64",
+      "java21-macosx-64", "java21-macosx-arm-64"
       ],
 ```
 
@@ -96,13 +107,16 @@ cd updates
 wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-8u392%2B9.zip ;
 wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-11.0.21%2B10.zip ;
 wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-17.0.9%2B11.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-21.0.1%2B12.zip ;
 
 unzip jre-standart-8u392+9.zip ;
 rm -f jre-standart-8u392+9.zip ;
 unzip jre-standart-11.0.21+10.zip ;
 rm -f jre-standart-11.0.21+10.zip ;
 unzip jre-standart-17.0.9+11.zip ;
-rm -f jre-standart-17.0.9+11.zip
+rm -f jre-standart-17.0.9+11.zip ;
+unzip jre-standart-21.0.1+12.zip ;
+rm -f jre-standart-21.0.1+12.zip
 ```
 :::
 -   Выполните ```syncup``` и ```build```
