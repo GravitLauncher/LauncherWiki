@@ -44,6 +44,11 @@ Options:
 - Установите модуль MirrorHelper
 - Установите git на вашу машину если его еще нет
 - Пропишите команду `applyworkspace`
+
+::: warning
+Команда `applyworkspace` не поддерживается на Windows. Используйте для установки клиента Linux или MacOS.
+:::
+
 - Установите клиент
 :::::: code-group
 ::::: code-group-item [ Vanilla ]
@@ -51,16 +56,16 @@ Options:
 ```
 installclient MyVanillaClient 1.20.2 VANILLA
 ```
-- *1.20.2* - версия Minecraft
 - *MyVanillaClient* - название вашего клиента
+- *1.20.2* - версия Minecraft
 :::::
 ::::: code-group-item [ Fabric ]
 ::: tip Установка Fabric клиента
 ```
 installclient MyFabricClient 1.20.2 FABRIC
 ```
-- *1.20.2* - версия Minecraft
 - *MyFabricClient* - название вашего клиента
+- *1.20.2* - версия Minecraft
 :::::
 ::::: code-group-item [ Forge ]
 ::: tip Установка Forge клиента
@@ -70,8 +75,8 @@ installclient MyFabricClient 1.20.2 FABRIC
 ```
 installclient MyForgeClient 1.7.10 FORGE
 ```
-*1.7.10* - версия Minecraft  
-*MyForgeClient* - название вашего клиента
+- *MyForgeClient* - название вашего клиента
+- *1.7.10* - версия Minecraft  
 - В консоли лаунчсервера вы увидите путь, который вам нужно будет выбрать в установщике Forge
 - После успешной установки докачайте необходимые моды [Optifine](https://optifine.net/downloads)/[Rubidium 1.16.5+](https://www.curseforge.com/minecraft/mc-mods/rubidium)
 :::::
