@@ -93,16 +93,16 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
 cd updates
 ```
 ```bash:no-line-numbers
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-8u362%2B9.zip ;
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-11.0.18%2B10.zip ;
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-17.0.6%2B10.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-8u392%2B9.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-11.0.21%2B10.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-17.0.9%2B11.zip ;
 
-unzip jre-standart-8u362+9.zip ;
-rm -f jre-standart-8u362+9.zip ;
-unzip jre-standart-11.0.18+10.zip ;
-rm -f jre-standart-11.0.18+10.zip ;
-unzip jre-standart-17.0.6+10.zip ;
-rm -f jre-standart-17.0.6+10.zip
+unzip jre-standart-8u392+9.zip ;
+rm -f jre-standart-8u392+9.zip ;
+unzip jre-standart-11.0.21+10.zip ;
+rm -f jre-standart-11.0.21+10.zip ;
+unzip jre-standart-17.0.9+11.zip ;
+rm -f jre-standart-17.0.9+11.zip
 ```
 :::
 -   Выполните ```syncup``` и ```build```
