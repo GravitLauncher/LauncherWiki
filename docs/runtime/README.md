@@ -85,29 +85,6 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
       ],
 ```
 
-::: tip Инструкция с предподготовленными сборками джав
-- Джавы не содержат JavaFX, являются минимальными для клиентов
-- Если у вас уже есть с другой версией джавы, удалите их в `updates`
-- Разделы выше сделаны как пример и подходят для данных сборок 
-```bash:no-line-numbers
-cd updates
-```
-```bash:no-line-numbers
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-8u362%2B9.zip ;
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-11.0.18%2B10.zip ;
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-17.0.6%2B10.zip ;
-
-unzip jre-standart-8u362+9.zip ;
-rm -f jre-standart-8u362+9.zip ;
-unzip jre-standart-11.0.18+10.zip ;
-rm -f jre-standart-11.0.18+10.zip ;
-unzip jre-standart-17.0.6+10.zip ;
-rm -f jre-standart-17.0.6+10.zip
-```
-:::
--   Выполните ```syncup``` и ```build```
--   Проверьте правильность работы
-
 ## Структура рантайма
 
 Файловая структура:
