@@ -113,7 +113,7 @@ installclient MyForgeClient 1.7.10 FORGE
 ::: tip Использование стандартного клиента SSH в Windows
 - Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/)
 - Если у вас не работает команда `ssh` в терминале Windows [установите компонент](https://learn.microsoft.com/ru-ru/windows/terminal/tutorials/ssh)
-- Выполните команду `set DISPLAY=:0`
+- Выполните команду для CMD `set DISPLAY=localhost:0` или для PowerShell `$env:DISPLAY = 'localhost:0'`
 - Не закрывая терминал выполните команду `ssh -XYC yourusername@SERVER_IP`
 - Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
 - Теперь вы можете установить Forge клиент командой `installclient` (см выше)
