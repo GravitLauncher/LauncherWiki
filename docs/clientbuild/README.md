@@ -104,14 +104,14 @@ installclient MyForgeClient 1.7.10 FORGE
 :::::
 ::::: code-group-item [ Putty ]
 ::: tip Использование Putty
-- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/)
+- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
 - Включите X11 Forwarding в настройках соеденения Putty и подключитесь к серверу
 - Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
 - Теперь вы можете установить Forge клиент командой `installclient` (см выше)
 :::::
 ::::: code-group-item [ Windows SSH Client ]
 ::: tip Использование стандартного клиента SSH в Windows
-- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/)
+- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
 - Если у вас не работает команда `ssh` в терминале Windows [установите компонент](https://learn.microsoft.com/ru-ru/windows/terminal/tutorials/ssh)
 - Выполните команду для CMD `set DISPLAY=localhost:0` или для PowerShell `$env:DISPLAY = 'localhost:0'`
 - Не закрывая терминал выполните команду `ssh -XYC yourusername@SERVER_IP`
