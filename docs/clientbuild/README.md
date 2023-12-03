@@ -8,18 +8,18 @@
 -   Любой Forge версии с 1.7.10 до 1.16.5
 -   Любой Fabric версии с 1.13 до 1.20.2
 
-В экспериментальном режиме так же имеется поддержка
+В экспериментальном режиме имеется поддержка:
 
 - Quilt 1.19.4 (сборка осуществляется через модуль MirrorHelper)
-- Forge 1.18.2/1.19.4 (сборка осуществляется по гайду в нашем Discord сервере)
-- Промежуточные и snapshot версии ванильного и Fabric клиента (сборка осуществляется через модуль MirrorHelper)
+- Forge с версии 1.18.2 до 1.20.2 (сборка осуществляется по гайду в нашем [Discord сервере](https://discord.gg/b9QG4ygY75))
+- Промежуточные и snapshot-версии Vanilla и Fabric клиента (сборка осуществляется через модуль MirrorHelper)
 
 ## Рекомендации
 
 - При создании проекта используйте самую новую версию Minecraft, доступную для ключевых модов в вашей сборке
-- Используйте **Fabric** вместо Forge для проектов на minecraft 1.16.5 и выше
-- Используйте [Sodium](https://github.com/CaffeineMC/sodium-fabric) и [Iris](https://github.com/IrisShaders/Iris) вместо Optifine начиная с Minecraft 1.16.5  
-Избегайте использования Optifabric - он создает в корне клиента скрытую папку с .jar внутри, которая не будет проверяться Лаунчером
+- Используйте **Fabric** вместо Forge для проектов на Minecraft 1.16.5 и выше
+- Используйте [Sodium](https://github.com/CaffeineMC/sodium-fabric) и [Iris](https://github.com/IrisShaders/Iris) вместо OptiFine для проектов на Minecraft 1.16.5 и выше 
+- Избегайте использования OptiFabric - он создает в корне клиента скрытую папку с .jar внутри, которая не будет проверяться Лаунчером
 - Избегайте использования модов из непроверенных источников. Скачивайте моды с [Curseforge](https://www.curseforge.com/minecraft/mc-mods?filter-sort=5)/[Modrinth](https://modrinth.com/) или напрямую с GitHub разработчика
 
 ## Скачивание ассетов
@@ -39,14 +39,16 @@ Options:
 
 ## Настройка MirrorHelper
 
-В актуальных версиях лаунчера рекомендуемым способом установки является MirrorHelper. Это модуль для лаунчсервера, позволяющий скачивать клиенты напрямую с серверов mojang, устанавливать forge/fabric, скачивать моды с Modrinh и CurseForge и т.д.  
-К сожалению некоторые файлы не могут быть скачаны автоматически (например forge installer и optifine) и вам придется скачать их вручную. Так же Forge, в отличии от Fabric, не предоставляет возможности ставить клиент автоматически без участия пользователя. Поэтому установки Forge вам понадобится иметь GUI на машине с лаунчсервером, либо применить X11 forwarding
+В актуальных версиях лаунчера рекомендуемым способом установки является MirrorHelper. Это модуль для лаунчсервера, позволяющий скачивать клиенты напрямую с серверов Mojang, устанавливать Forge/Fabric, скачивать моды с Modrinth и CurseForge и т.д. 
+
+К сожалению, некоторые файлы не могут быть скачаны автоматически (например установщик Forge и OptiFine) и вам придется скачать их вручную. 
+Также Forge, в отличии от Fabric, не предоставляет возможности ставить клиент автоматически без участия пользователя. Поэтому для установки Forge вам понадобится иметь GUI на машине с лаунчсервером, либо применить X11 Forwarding.
 - Установите модуль MirrorHelper
-- Установите git на вашу машину если его еще нет
+- Установите git на вашу машину, если его еще нет
 - Пропишите команду `applyworkspace`
 
 ::: warning
-Команда `applyworkspace` не поддерживается на Windows. Используйте для установки клиента Linux или MacOS.
+Команда `applyworkspace` не поддерживается на Windows. Используйте для установки клиента WSL2, Linux или MacOS.
 :::
 
 - Установите клиент
@@ -71,61 +73,61 @@ installclient MyFabricClient 1.20.2 FABRIC
 ::: tip Установка Forge клиента
 - Скачайте forge-installer с сайта [Classic Forge](https://files.minecraftforge.net/net/minecraftforge/forge/)/[NeoForge](https://neoforged.net/)
 - Поместите его в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/installers/forge-VERSION-installer.jar`, где VERSION - версия Minecraft
-- Если вы хотите установить Forge на сервере где отсутствует GUI следуйте инструкции для вашего SSH клиента ниже
+- Если вы хотите установить Forge на сервере, где отсутствует GUI, следуйте инструкции для вашего SSH клиента ниже
 ```
 installclient MyForgeClient 1.7.10 FORGE
 ```
 - *MyForgeClient* - название вашего клиента
-- *1.7.10* - версия Minecraft  
+- *1.7.10* - версия Minecraft
 - В консоли лаунчсервера вы увидите путь, который вам нужно будет выбрать в установщике Forge
-- После успешной установки докачайте необходимые моды [Optifine](https://optifine.net/downloads)/[Rubidium 1.16.5+](https://www.curseforge.com/minecraft/mc-mods/rubidium)
+- После успешной установки докачайте необходимые моды [OptiFine](https://optifine.net/downloads)/[Rubidium 1.16.5+](https://www.curseforge.com/minecraft/mc-mods/rubidium)
 :::::
 ::::::
 
 ## Использование X11 Forwarding
-Для установки Forge версий клиентов вам может понадобится использование X11 Forwarding
+Для установки Forge версий клиентов вам может понадобиться использование X11 Forwarding:
 - Установите пакет `xauth` на ваш сервер
 - Добавьте или измените параметр `X11Forwarding` на `yes` в `sshd_config` на вашем сервере
-- Перезапутсите sshd
+- Перезапустите sshd
 - Следуйте инструкции для вашего SSH клиента:
 :::::: code-group
 ::::: code-group-item [ WSL 2 ]
 ::: tip Использование WSL 2 (рекомендуется)
-- Установите WSL 2 если вы еще этого не сделали по этому [гайду](https://learn.microsoft.com/ru-ru/windows/wsl/install)
-- Находясь в WSL выполните команду `ssh -XYC yourusername@SERVER_IP`
-- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+- Установите WSL 2 по этому [гайду](https://learn.microsoft.com/ru-ru/windows/wsl/install)
+- Находясь в WSL, выполните команду `ssh -XYC yourusername@SERVER_IP`
+- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
 :::::
 ::::: code-group-item [ Linux ]
 ::: tip Использование Linux (рекомендуется)
 - Выполните команду `ssh -XYC yourusername@SERVER_IP`
-- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
 :::::
 ::::: code-group-item [ Putty ]
 ::: tip Использование Putty
 - Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
-- Включите X11 Forwarding в настройках соеденения Putty и подключитесь к серверу
-- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+- Включите X11 Forwarding в настройках соединения Putty и подключитесь к серверу
+- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
 :::::
 ::::: code-group-item [ Windows SSH Client ]
 ::: tip Использование стандартного клиента SSH в Windows
 - Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
-- Если у вас не работает команда `ssh` в терминале Windows [установите компонент](https://learn.microsoft.com/ru-ru/windows/terminal/tutorials/ssh)
+- Если у вас не работает команда `ssh` в терминале Windows, [установите компонент](https://learn.microsoft.com/ru-ru/windows/terminal/tutorials/ssh)
 - Выполните команду для CMD `set DISPLAY=localhost:0` или для PowerShell `$env:DISPLAY = 'localhost:0'`
-- Не закрывая терминал выполните команду `ssh -XYC yourusername@SERVER_IP`
-- Находясь в этой SSH сессии запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см выше)
+- Не закрывая терминал, выполните команду `ssh -XYC yourusername@SERVER_IP`
+- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
+- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
 :::::
 ::::::
 
 ## Команды синхронизации
 
-ЛаунчСервер держит информацию о файлах и профилях в подготовленном виде.  
+ЛаунчСервер хранит информацию о файлах и профилях в подготовленном виде.  
 Первое автоматическое сохранение происходит при скачивании клиента и ассетов игры.  
-Для поддержания информации в актуальном состояние, при изменении файлов в папке `updates` и профилях в папке `profiles`,
-необходимо их синхронизировать с кэш файлом ЛаунчСервера
+Для поддержания информации в актуальном состоянии при изменении файлов в папке `updates` и профилях в папке `profiles`
+их необходимо синхронизировать с кэш файлом ЛаунчСервера.
 
 ::: tip Синхронизация всех клиентов и профилей:
 ```java{1}:no-line-numbers
@@ -149,22 +151,18 @@ Options:
 
 ## Сборка AuthLib
 
-::: warning
-- Все клиенты с [Зеркала](https://mirror.gravitlauncher.com/5.4.x/) уже содержат в себе патч AuthLib
-:::
-
 Для сборки **AuthLib** следуйте инструкции:
 ::::: code-group
 :::: code-group-item [ 1.7.10 - 1.16.3 ]
 
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib1.jar)
+-  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib1.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/1.x.xx/authlib-1.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 
 ::: details Примечания:
--  В файле [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib1.jar) содержаться изменённые классы оригинальной **AuthLib** 1.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib1.jar) содержатся изменённые классы оригинальной **AuthLib** 1.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
@@ -172,13 +170,13 @@ Options:
 :::: code-group-item [ 1.16.4 - 1.17.x ]
 
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib2.jar)
+-  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib2.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/2.x.xx/authlib-2.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 
 ::: details Примечания:
--  В файле [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib2.jar) содержаться изменённые классы оригинальной **AuthLib** 2.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib2.jar) содержатся изменённые классы оригинальной **AuthLib** 2.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
@@ -192,7 +190,7 @@ Options:
 :::
 
 ::: details Примечания:
--  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar) содержатся изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
@@ -206,7 +204,7 @@ Options:
 :::
 
 ::: details Примечания:
--  В файле [LauncherAuthlib3-1.19.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib3-1.19.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.jar) содержатся изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
@@ -214,27 +212,41 @@ Options:
 :::: code-group-item [ 1.19.1 - 1.19.4 ]
 
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib3-1.19.1.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.1.jar)
+-  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib3.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/3.x.xx/authlib-3.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 
 ::: details Примечания:
--  В файле [LauncherAuthlib3-1.19.1.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.1.jar) содержаться изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib3.jar) содержатся изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
 ::::
-:::: code-group-item [ 1.20.x ]
+:::: code-group-item [ 1.20 - 1.20.1 ]
 
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib4.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib4.jar)
+-  Скачайте файл [LauncherAuthlib4.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib4.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/4.x.xx/authlib-4.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
 
 ::: details Примечания:
--  В файле [LauncherAuthlib4.jar](https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib4.jar) содержаться изменённые классы оригинальной **AuthLib** 4.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  В файле [LauncherAuthlib4.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib4.jar) содержатся изменённые классы оригинальной **AuthLib** 4.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
+:::
+
+::::
+:::: code-group-item [ 1.20.2 ]
+
+::: tip Информация:
+-  Скачайте файл [LauncherAuthlib5.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib5.jar)
+-  Откройте его архиватором и распакуйте папку com в отдельную папку
+-  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/5.x.xx/authlib-5.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
+:::
+
+::: details Примечания:
+-  В файле [LauncherAuthlib5.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib5.jar) содержатся изменённые классы оригинальной **AuthLib** 5.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
@@ -243,8 +255,7 @@ Options:
 
 ## Применение патчей Fabric-Loader
 
-Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravitlauncher.com/5.2.x/compat/FabricLoader.patch)  
-Клиенты зеркала **уже содержат в себе патченый fabric-loader**
+Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravitlauncher.com/5.5.x/patches/FabricLoader.patch) командой ```git apply FabricLoader.patch```
 
 ## Настройка профиля
 

@@ -2,13 +2,13 @@
 
 ## Описание рантайма
 
-Рантайм в Лаунчере — это модуль для Лаунчера и набор ресурсов (fxml/css/png), отвечающие за взаимодействие с пользователем. Рантайм основан на  [JavaFX](https://openjfx.io/).
+Рантайм в Лаунчере — это модуль для Лаунчера и набор ресурсов (fxml/css/png), отвечающие за взаимодействие с пользователем. Рантайм основан на [JavaFX](https://openjfx.io/).
 
 ::: tip Полезные ссылки:
 
--   [Scene Builder](https://gluonhq.com/products/scene-builder/)  — Редактор fxml файлов
--   [OpenJFX API Docs](https://openjfx.io/javadoc/17/)  — Документация JavaFX API
--   [JavaFX CSS Reference Guide](https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/doc-files/cssref.html)  — Документация JavaFX CSS
+-   [Scene Builder](https://gluonhq.com/products/scene-builder/) — Редактор FXML файлов
+-   [OpenJFX API Docs](https://openjfx.io/javadoc/17/) — Документация JavaFX API
+-   [JavaFX CSS Reference Guide](https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/doc-files/cssref.html) — Документация JavaFX CSS
 
 :::
 
@@ -18,7 +18,7 @@
 
 ## Шифрование рантайма
 
--   Скачайте библиотеку  [EnFS](https://mirror.gravitlauncher.com/5.2.x/compat/EnFS-1.0.0.jar)  и положите её в папку launcher-libraries
+-   Скачайте библиотеку [EnFS](https://mirror.gravitlauncher.com/5.5.x/libraries/EncryptedFileSystem-2.0.2-SNAPSHOT.jar) и положите её в папку launcher-libraries
 -   Включите опцию ```encryptRuntime``` в конфигурации ЛаунчСервера и сделайте ```build```
 -   Проверьте правильность работы
 
@@ -32,12 +32,12 @@
 ::: tip Пример для JRE Standart 8, 11, 17 версии от BellSoft 
 ```json:no-line-numbers
   "javaList": {
-    "java8-windows-x86": "Java 8 b362 mustdie X86 javafx false",
-    "java8-windows-x86-64": "Java 8 b362 mustdie X86_64 javafx false",
-    "java8-linux-64": "Java 8 b362 linux X86_64 javafx false",
-    "java8-linux-arm-64": "Java 8 b362 linux ARM64 javafx false",
-    "java8-macosx-64": "Java 8 b362 macosx X86_64 javafx false",
-    "java8-macosx-arm-64": "Java 8 b362 macosx ARM64 javafx false",
+    "java8-windows-x86": "Java 8 b392 mustdie X86 javafx false",
+    "java8-windows-x86-64": "Java 8 b392 mustdie X86_64 javafx false",
+    "java8-linux-64": "Java 8 b392 linux X86_64 javafx false",
+    "java8-linux-arm-64": "Java 8 b392 linux ARM64 javafx false",
+    "java8-macosx-64": "Java 8 b392 macosx X86_64 javafx false",
+    "java8-macosx-arm-64": "Java 8 b392 macosx ARM64 javafx false",
     "java11-windows-x86": "Java 11 b18 mustdie X86 javafx false",
     "java11-windows-x86-64": "Java 11 b18 mustdie X86_64 javafx false",
     "java11-windows-arm-64": "Java 11 b18 mustdie ARM64 javafx false",
