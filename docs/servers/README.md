@@ -12,11 +12,11 @@
 ## Рекомендации
 
 - При создании проекта используйте самую новую версию Minecraft, доступную для ключевых модов в вашей сборке
-- Используйте **Fabric** вместо Forge для проектов на minecraft 1.16.5 и выше
+- Используйте **Fabric** вместо Forge для проектов на Minecraft 1.16.5 и выше
 - Избегайте использования модов и плагинов из непроверенных источников
-- Используйте [Velocity](https://velocitypowered.com) вместо BungeeCord и Waterfall
-- Убедитесь что в вашем ядре установлена защита от уязвимости Log4J
-- Если ваш сервер находится за прокси(напр. velocity) его всё равно необходимо привязать к ServerWrapper с заменой authlib, так как в противном случае могут быть проблемы с скинами и плащами
+- Используйте [Velocity](https://papermc.io/software/velocity) вместо BungeeCord и Waterfall
+- Убедитесь, что в вашем ядре установлена защита от уязвимости Log4J
+- Если ваш сервер находится за прокси (например, Velocity), его всё равно необходимо привязать к ServerWrapper с заменой AuthLib, так как в противном случае могут быть проблемы с скинами и плащами
 
 ## Рекомендуемые ядра
 
@@ -35,7 +35,7 @@
 ::: code-group-item [ 1.16.5 ]
 ::: tip Список:
 - [Fabric](https://fabricmc.net/) 
-- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.16.5/docs/README_EN.md)
+- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.16.5/docs/README_RU.md)
 - [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
 :::
 :::
@@ -75,9 +75,9 @@ Options:
 
 ::: tip Примечания:
 
-- Для привязки сервера с fabric-loader 0.14.X и выше не забудьте пропатчить или взять с клиента библиотеку fabric-loader
+- Для привязки сервера с Fabric 0.14.X и выше не забудьте [пропатчить](../clientbuild/#применение-патчеи-fabric-loader) или взять с клиента библиотеку fabric-loader (место ее расположения - libraries/net/fabricmc/fabric-loader/%VERSION%/fabric-loader-%VERSION%.jar)
 - Правильно указывайте имя сервера при установке ServerWrapper. Имя сервера — это название сервера в поле `servers` вашего профиля. По умолчанию название первого сервера совпадает с `title` профиля
-- Привязка нескольких серверов по одному токену возможна только если эти сервера относятся к одному профилю
+- Привязка нескольких серверов по одному токену возможна, только если эти сервера относятся к одному профилю
 - При смене ключей ЛаунчСервера (например, при настройке заново на новом хостинге) или `authId` вам необходимо **обязательно** пересоздать токен сервера
 - Для запуска сервера 1.19.1 и выше нужно установить параметр `enforce-secure-profile` в `false` в файле `server.properties`
 
@@ -85,11 +85,11 @@ Options:
 
 ## Привязка прокси
 
-Прокси серверы напрямую обращаются к серверам Mojang, минуя authlib, поэтому вы должны пропатчить их
+Прокси серверы напрямую обращаются к серверам Mojang, минуя AuthLib, поэтому вы должны пропатчить их
 
--   **Waterfall**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите waterfall командой ```./waterfall build```
--   **BungeeCord**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите bungeecord командой ```mvn package -Dcheckstyle.skip```  
--   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravitlauncher.com/5.4.x/compat/patch/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите velocity командой ```./gradlew assemble```
+-   **Waterfall**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите Waterfall командой ```./waterfall build```
+-   **BungeeCord**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите BungeeCord командой ```mvn package -Dcheckstyle.skip```  
+-   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravitlauncher.com/5.5.x/patches/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите Velocity командой ```./gradlew assemble```
 
 
 ## Привязка дополнительных средств
@@ -102,7 +102,7 @@ Options:
 
 ## Использование installAuthlib
 
-Для привязки всех остальных ядер(в том числе находящихся за прокси) необходимо заменить authlib. Начиная с версии 5.2.13 вы можете привязать authlib к серверу одной командой:
+Для привязки всех остальных ядер (в том числе находящихся за прокси) необходимо заменить AuthLib. Начиная с версии 5.2.13 вы можете привязать AuthLib к серверу одной командой:
 
 :::::: code-group
 ::::: code-group-item [ По ссылке ]
@@ -111,7 +111,7 @@ Options:
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib1.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib1.jar
 ```
 :::
 :::
@@ -119,7 +119,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib2.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib2.jar
 ```
 :::
 :::
@@ -143,15 +143,23 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.1.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib3.jar
 ```
 :::
 :::
-::: code-group-item [ 1.20.x ]
+::: code-group-item [ 1.20 - 1.20.1 ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib4.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib4.jar
+```
+:::
+:::
+::: code-group-item [ 1.20.2 ]
+::: tip Информация:
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib5.jar
 ```
 :::
 :::
@@ -159,7 +167,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4
 :::::
 ::::: code-group-item [ Локально ]
 ::: tip Информация:
-Скопируйте authlib с клиента в любое удобное для вас место и пропишите команду
+Скопируйте AuthLib с клиента в любое удобное для вас место и пропишите команду
 ```bash{1}:no-line-numbers
 java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib
 ```
@@ -168,45 +176,45 @@ java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib
 ::::::
 
 ::: warning Примечание:
-Перед привязкой запустить чистый сервер 1 раз и остановить
+Перед привязкой запустите сервер, подождите, пока он полностью запустится и остановите его
 :::
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
-Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
+Скопируйте [этот](https://mirror.gravitlauncher.com/5.5.x/libraries/launchwrapper-1.12-5.5.x.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
 ::: details Установка командой Wget
 ```bash{1}:no-line-numbers
-wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
+wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.5.x/libraries/launchwrapper-1.12-5.5.x.jar
 ```
 :::
 ::::
 
 ## Ручная установка AuthLib
 
-Для привязки всех остальных ядер (в том числе находящихся за прокси) необходимо заменить authlib. Каждое ядро реализует процесс своего старта по-своему, поэтому если одна инструкция не подходит, попробуйте другую.
+Для привязки всех остальных ядер (в том числе находящихся за прокси) необходимо заменить AuthLib. Каждое ядро реализует процесс своего старта по-своему, поэтому если одна инструкция не подходит, попробуйте другую.
 
 :::: code-group
 ::: code-group-item [ Classpath ]
 ::: tip Информация:
-Скопируйте authlib в папку с ServerWrapper'ом и измените ваш setup.sh: ```-cp ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper``` замените на ```-cp authlib-XXXX.jar:ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper```
+Скопируйте AuthLib в папку с ServerWrapper'ом и измените ваш setup.sh: ```-cp ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper``` замените на ```-cp authlib-XXXX.jar:ServerWrapper.jar:server.jar pro.gravit.launcher.server.ServerWrapper```
 
 **Примеры ядер:** Forge 1.7.10, Vanilla до 1.18
 :::
 :::
 ::: code-group-item [ Jar ]
 ::: tip Информация:
-Распакуйте содержимое authlib клиента в временную папку. Откройте ```jar``` файл вашего ядра или сервера minecraft (если разделены) архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
+Распакуйте содержимое AuthLib клиента в временную папку. Откройте ```jar``` файл вашего ядра или сервера minecraft (если разделены) архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
 
 **Примеры ядер:** Forge/Sponge до 1.16.5, Fabric/Vanilla до 1.18
 :::
 :::
 ::: code-group-item [ Library ]
 ::: tip Информация:
-Скопируйте файл вашего authlib по пути ```libraries/com/mojang/ВЕРСИЯ/authlib-ВЕРСИЯ.jar``` с заменой
+Скопируйте файл вашего AuthLib по пути ```libraries/com/mojang/ВЕРСИЯ/authlib-ВЕРСИЯ.jar``` с заменой
 :::
 :::
 ::: code-group-item [ MinecraftExtra ]
 ::: tip Информация:
-Распакуйте содержимое authlib клиента в временную папку. Откройте файл ```libraries/net/minecraft/server/ВЕРСИЯ/server-ВЕРСИЯ-extra.jar``` архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
+Распакуйте содержимое AuthLib клиента в временную папку. Откройте файл ```libraries/net/minecraft/server/ВЕРСИЯ/server-ВЕРСИЯ-extra.jar``` архиватором и скопируйте с заменой файлы, распакованные на предыдущем этапе
 
 **Примеры ядер:** Forge 1.16.5
 :::
@@ -221,10 +229,10 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 ::::
 
 :::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
-Скопируйте [этот](https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
+Скопируйте [этот](https://mirror.gravitlauncher.com/5.5.x/libraries/launchwrapper-1.12-5.5.x.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
 ::: details Установка командой Wget
 ```bash{1}:no-line-numbers
-wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.2.x/compat/launchwrapper-1.12-5.0.x-fixed.jar
+wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.5.x/libraries/launchwrapper-1.12-5.5.x.jar
 ```
 :::
 ::::
@@ -233,13 +241,13 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
 
 ```json
 {
-  "projectname": "Minecraft", // Название проекта
-  "address": "ws://ADDRESS/api", // Адрес ЛаунчСервера
-  "serverName": "Vanilla1.19.2", // Название сервера в профиле
+  "address": "ws://address:port/api", // Адрес ЛаунчСервера
+  "serverName": "Vanilla", // Название сервера в профиле
   "autoloadLibraries": false, // Автозагрузка библиотек из папки libraries
   "classpath": [], // Дополнительный classpath (1.18+)
-  "classLoaderConfig": "SYSTEM_ARGS", // Системные аргументы запуска
-  "mainclass": "io.papermc.paperclip.Paperclip", // Main-Class вашего ядра сервера
+  "classLoaderConfig": "LAUNCHER", // Системные аргументы запуска
+  "mainclass": "net.fabricmc.loader.impl.launch.server.FabricServerLauncher", // Main-Class вашего ядра сервера
+  "nativesDir": "natives", 
   "args": ["nogui"], // Аргументы запуска
   "oauthExpireTime": 0,
   "extendedTokens": { // Токены доступа
@@ -248,6 +256,17 @@ wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwr
       "expire": 0
     }
   },
-  "env": "STD"
+  "env": "STD",
+  "moduleConf": {
+    "modules": [],
+    "modulePath": [],
+    "exports": {},
+    "opens": {},
+    "reads": {}
+  },
+  "encodedServerRsaPublicKey": "KEY",
+  "encodedServerEcPublicKey": "KEY",
+  "enableHacks": false,
+  "properties": {}
 }
 ```
