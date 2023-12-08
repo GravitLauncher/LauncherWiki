@@ -4,13 +4,13 @@
 
 На текущий момент поддерживается запуск:
 
--   Любой Vanilla версии с 1.7.10 до 1.20.2
+-   Любой Vanilla версии с 1.7.10 до 1.20.4
 -   Любой Forge версии с 1.7.10 до 1.16.5
--   Любой Fabric версии с 1.13 до 1.20.2
+-   Любой Fabric версии с 1.13 до 1.20.4
 
 В экспериментальном режиме имеется поддержка:
 
-- Quilt 1.19.4 (сборка осуществляется через модуль MirrorHelper)
+- Quilt 1.19.4+ (сборка осуществляется через модуль MirrorHelper)
 - Forge с версии 1.18.2 до 1.20.2 (сборка осуществляется по гайду в нашем [Discord сервере](https://discord.gg/b9QG4ygY75))
 - Промежуточные и snapshot-версии Vanilla и Fabric клиента (сборка осуществляется через модуль MirrorHelper)
 
@@ -251,11 +251,25 @@ Options:
 :::
 
 ::::
+:::: code-group-item [ 1.20.3+ ]
+
+::: tip Информация:
+-  Скачайте файл [LauncherAuthlib5.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib6.jar)
+-  Откройте его архиватором и распакуйте папку com в отдельную папку
+-  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/5.x.xx/authlib-6.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
+:::
+
+::: details Примечания:
+-  В файле [LauncherAuthlib6.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib6.jar) содержатся изменённые классы оригинальной **AuthLib** 6.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
+-  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
+:::
+
+::::
 :::::
 
 ## Применение патчей Fabric-Loader
 
-Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravitlauncher.com/5.5.x/patches/FabricLoader.patch) командой ```git apply FabricLoader.patch```
+Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravitlauncher.com/5.5.x/patches/FabricLoader.patch) командой ```git apply -3 FabricLoader.patch```
 
 ## Настройка профиля
 
