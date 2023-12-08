@@ -254,7 +254,7 @@ Options:
 :::: code-group-item [ 1.20.3+ ]
 
 ::: tip Информация:
--  Скачайте файл [LauncherAuthlib5.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib6.jar)
+-  Скачайте файл [LauncherAuthlib6.jar](https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib6.jar)
 -  Откройте его архиватором и распакуйте папку com в отдельную папку
 -  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/5.x.xx/authlib-6.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
 :::
