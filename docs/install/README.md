@@ -43,7 +43,6 @@
 ::: tip Копировать и вставлять целиком
 ```bash:no-line-numbers
 sudo apt-get update ;
-apt install  libfreetype-dev;
 sudo apt-get install gnupg2 wget apt-transport-https -y ;
 sudo mkdir -p /etc/apt/keyrings ;
 sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc ;
@@ -55,6 +54,26 @@ unzip openjfx-21_linux-x64_bin-jmods.zip ;
 sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
 rm -r javafx-jmods-21
 ```
+::: warning Примечание:
+```sh
+java.lang.UnsatisfiedLinkError: /usr/lib/jvm/temurin-21-jdk-amd64/lib/libfontmanager.so: libfreetype.so: cannot open shared object file: No such file or directory
+        at java.base/jdk.internal.loader.NativeLibraries.load(Native Method)
+        at java.base/jdk.internal.loader.NativeLibraries$NativeLibraryImpl.open(NativeLibraries.java:331)
+        at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:197)
+        at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:139)
+        at java.base/jdk.internal.loader.NativeLibraries.findFromPaths(NativeLibraries.java:259)
+        at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:249)
+        at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2427)
+        at java.base/java.lang.Runtime.loadLibrary0(Runtime.java:916)
+        at java.base/java.lang.System.loadLibrary(System.java:2063)
+        at java.desktop/sun.font.FontManagerNativeLibrary$1.run(FontManagerNativeLibrary.java:58)
+        at java.base/java.security.AccessController.doPrivileged(AccessController.java:319)
+```
+если у вас вылитает такая ошибка скачайте такую либу
+```sh
+sudo apt-get libfreetype-dev
+```
+:::
 :::
 ::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
