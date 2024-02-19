@@ -43,6 +43,7 @@
 ::: tip Копировать и вставлять целиком
 ```bash:no-line-numbers
 sudo apt-get update ;
+apt install  libfreetype-dev;
 sudo apt-get install gnupg2 wget apt-transport-https -y ;
 sudo mkdir -p /etc/apt/keyrings ;
 sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc ;
