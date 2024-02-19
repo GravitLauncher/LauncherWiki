@@ -54,7 +54,11 @@ unzip openjfx-21_linux-x64_bin-jmods.zip ;
 sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
 rm -r javafx-jmods-21
 ```
+
+:::
 ::: warning Примечание:
+если у вас вылитает такая ошибка скачайте такую либу
+
 ```sh
 java.lang.UnsatisfiedLinkError: /usr/lib/jvm/temurin-21-jdk-amd64/lib/libfontmanager.so: libfreetype.so: cannot open shared object file: No such file or directory
         at java.base/jdk.internal.loader.NativeLibraries.load(Native Method)
@@ -69,11 +73,9 @@ java.lang.UnsatisfiedLinkError: /usr/lib/jvm/temurin-21-jdk-amd64/lib/libfontman
         at java.desktop/sun.font.FontManagerNativeLibrary$1.run(FontManagerNativeLibrary.java:58)
         at java.base/java.security.AccessController.doPrivileged(AccessController.java:319)
 ```
-если у вас вылитает такая ошибка скачайте такую либу
 ```sh
 sudo apt-get libfreetype-dev
 ```
-:::
 :::
 ::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
