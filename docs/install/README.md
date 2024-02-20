@@ -8,6 +8,12 @@
 -  Веб-сервер  **Nginx**  для раздачи статического контента
 -  Минимум  **300Мб свободной оперативной памяти**  для работы ЛаунчСервера
 -  При сборке ЛаунчСервера из исходников прямо на машине может потребоваться до 1 Гб свободной оперативной памяти для работы Gradle
+::: danger Примечание:
+-  Лаунчерсервер работает исправно ИСКЛЮЧИТЕЛЬНО НА **LINUX**, при запуске его на **Windows** вам не будет оказана поддержка при решении каких либо проблем!
+   -  Такие модули как MirrorHelper не работают с путями **Windows**
+   -  Будет возникать проблема с открытиями портов, если подключений к **LaunchServer** внезапно станет очень много
+   -  Почти все команды на Wiki приведены исключительно под **Linux** системы
+:::
 
 *Опционально:*
 
@@ -53,6 +59,20 @@ unzip openjfx-21_linux-x64_bin-jmods.zip ;
 sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
 rm -r javafx-jmods-21
 ```
+
+:::
+::: warning Примечание:
+При наличии следующей ошибки:
+
+```sh
+java.lang.UnsatisfiedLinkError: /usr/lib/jvm/temurin-21-jdk-amd64/lib/libfontmanager.so: libfreetype.so: cannot open shared object file: No such file or directory
+        at java.base/jdk.internal.loader.NativeLibraries.load(Native Method)
+```
+Установите необходимую библиотеку:
+```sh
+sudo apt-get libfreetype-dev
+```
+- Обычна такая ошибка встречается на Ubuntu 22.04
 :::
 ::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
