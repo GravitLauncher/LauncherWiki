@@ -121,7 +121,7 @@ installclient MyForgeClient 1.7.10 FORGE
 - Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
 :::::
 ::::::
-::: warning Примечание:
+::: details Примечание:
 Следуя инструкции на вики по установке LaunchServer, создание пользователя не по умолчанию в WSL, делает встроенное vGPU недоступным т.к не установлена переменная окружения ``DISPLAY``.
 
 Workaround есть на [странице](https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg#display-environment-variable) вики wsl что бы решить проблему.
