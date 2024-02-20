@@ -4,11 +4,16 @@
 
 Для работы ЛаунчСервера необходим  **виртуальный (VDS/VPS)**  или  **выделенный (Dedicated)**  сервер на дистрибутиве Linux (для  локального тестирования воспользуйтесь [WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install)) , а так же:
 
--  Лаунчерсервер работает исправно ИСКЛЮЧИТЕЛЬНО НА LINUX, при запуске его на Windows вам не будет оказана поддержка при решении каких либо проблем!
--  Один из актуальных дистрибутивов: **Ubuntu 22.04**, **Debian 12**, **CentOS 8**, **ArchLinux** и другие **КРОМЕ ВИНДОВС**
+-  Один из актуальных дистрибутивов: **Ubuntu 22.04**, **Debian 12**, **CentOS 8**, **ArchLinux** и другие
 -  Веб-сервер  **Nginx**  для раздачи статического контента
 -  Минимум  **300Мб свободной оперативной памяти**  для работы ЛаунчСервера
 -  При сборке ЛаунчСервера из исходников прямо на машине может потребоваться до 1 Гб свободной оперативной памяти для работы Gradle
+::: warning Примечание:
+-  Лаунчерсервер работает исправно ИСКЛЮЧИТЕЛЬНО НА **LINUX**, при запуске его на **Windows** вам не будет оказана поддержка при решении каких либо проблем!
+   -  Такие модули как MirrorHelper не работают с путями **Windows**
+   -  Будет возникать проблема с открытиями портов, если подключений к **LaunchServer** внезапно станет очень много
+   -  Почти все команды на Wiki приведены исключительно под **Linux** системы
+:::
 
 *Опционально:*
 
@@ -57,25 +62,17 @@ rm -r javafx-jmods-21
 
 :::
 ::: warning Примечание:
-если у вас вылитает такая ошибка скачайте такую либу
+При наличии следующей ошибки:
 
 ```sh
 java.lang.UnsatisfiedLinkError: /usr/lib/jvm/temurin-21-jdk-amd64/lib/libfontmanager.so: libfreetype.so: cannot open shared object file: No such file or directory
         at java.base/jdk.internal.loader.NativeLibraries.load(Native Method)
-        at java.base/jdk.internal.loader.NativeLibraries$NativeLibraryImpl.open(NativeLibraries.java:331)
-        at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:197)
-        at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:139)
-        at java.base/jdk.internal.loader.NativeLibraries.findFromPaths(NativeLibraries.java:259)
-        at java.base/jdk.internal.loader.NativeLibraries.loadLibrary(NativeLibraries.java:249)
-        at java.base/java.lang.ClassLoader.loadLibrary(ClassLoader.java:2427)
-        at java.base/java.lang.Runtime.loadLibrary0(Runtime.java:916)
-        at java.base/java.lang.System.loadLibrary(System.java:2063)
-        at java.desktop/sun.font.FontManagerNativeLibrary$1.run(FontManagerNativeLibrary.java:58)
-        at java.base/java.security.AccessController.doPrivileged(AccessController.java:319)
 ```
+Установите необходимую библиотеку:
 ```sh
 sudo apt-get libfreetype-dev
 ```
+- Обычна такая ошибка встречается на Ubuntu 22.04
 :::
 ::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
