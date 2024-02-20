@@ -1,4 +1,5 @@
 import { defineUserConfig } from "vuepress";
+import { viteBundler } from "@vuepress/bundler-vite";
 import { defaultTheme } from "@vuepress/theme-default";
 import { docsearchPlugin } from "@vuepress/plugin-docsearch";
 
@@ -26,6 +27,7 @@ export default defineUserConfig({
     title: 'GravitLauncher Wiki',
     description: 'GravitLauncher Wiki',
     port: '8080', //Порт на котором запускается VuePress
+    bundler: viteBundler({}),
     theme: defaultTheme({
         repo: 'GravitLauncher/Launcher',
         docsRepo: 'https://github.com/GravitLauncher/LauncherWiki',
