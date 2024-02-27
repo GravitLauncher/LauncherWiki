@@ -48,9 +48,9 @@
 ::: tip Копировать и вставлять целиком
 ```bash:no-line-numbers
 sudo apt-get update ;
-sudo apt-get install gnupg2 wget apt-transport-https -y ;
+sudo apt-get install gnupg2 wget apt-transport-https unzip -y ;
 sudo mkdir -p /etc/apt/keyrings ;
-sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc ;
+sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /etc/apt/keyrings/adoptium.asc ;
 echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list ;
 sudo apt-get update ;
 sudo apt-get install temurin-21-jdk ;
