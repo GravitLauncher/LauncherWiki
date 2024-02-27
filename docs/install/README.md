@@ -69,13 +69,13 @@ java.lang.UnsatisfiedLinkError: /usr/lib/jvm/temurin-21-jdk-amd64/lib/libfontman
         at java.base/jdk.internal.loader.NativeLibraries.load(Native Method)
 ```
 Установите необходимую библиотеку:
-```sh
+```sh:no-line-numbers
 sudo apt-get libfreetype-dev
 ```
-- Обычна такая ошибка встречается на Ubuntu 22.04
+- Обычно такая ошибка встречается на Ubuntu 22.04
 :::
 ::: tip Смена Java по умолчанию
-```bash:no-line-numbers
+```bash
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
 ```
