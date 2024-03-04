@@ -367,7 +367,8 @@ Options:
        "visible": true, //Видимость
        "mark": true, //Включен по умолчанию
        "limited": false, //Ограничен permissions
-       "name": "NotEnoughItems" //Имя
+       "name": "NotEnoughItems", //Имя
+       "category": "Интерфейс" //Категория мода. По умолчанию GLOBAL, если не указано
     },
     {
        "actions": [
