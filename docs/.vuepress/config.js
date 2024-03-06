@@ -23,7 +23,7 @@ export default defineUserConfig({
         ['meta', { property: 'og:image:width', content: '512' }],
         ['meta', { property: 'og:image:height', content: '512' }],
     ],
-    lang: 'ru_RU',
+    lang: 'ru-RU',
     title: 'GravitLauncher Wiki',
     description: 'GravitLauncher Wiki',
     port: '8080', //Порт на котором запускается VuePress
