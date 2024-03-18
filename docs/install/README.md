@@ -57,7 +57,8 @@ sudo apt-get install temurin-21-jdk ;
 wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip ;
 unzip openjfx-21_linux-x64_bin-jmods.zip ;
 sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
-rm -r javafx-jmods-21
+rm -r javafx-jmods-21 ;
+rm -rf openjfx-21_linux-x64_bin-jmods.zip
 ```
 
 :::
