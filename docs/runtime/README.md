@@ -22,6 +22,10 @@
 -   Включите опцию ```encryptRuntime``` в конфигурации ЛаунчСервера и сделайте ```build```
 -   Проверьте правильность работы
 
+## Темы оформления
+
+В рантайме темы оформления применяются путём виртуальной "замены" файлов стандартной темы на необходимую. Для замены файла `styles/variables.css` для темы `dark` вам необходимо поместить файл с изменениями в `themes/dark/styles/variables.css`. Для работы тем **необходима** библиотека [EnFS](https://mirror.gravitlauncher.com/5.5.x/libraries/EncryptedFileSystem-2.0.2-SNAPSHOT.jar)
+
 ## Скачивание своей Java
 
 -   Скачайте  **архивы**  с JRE/JDK с [Adoptium](https://adoptium.net/) или другого поставщика сборок OpenJDK

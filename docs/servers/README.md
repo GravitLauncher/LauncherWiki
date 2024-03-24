@@ -89,7 +89,7 @@ Options:
 
 -   **Waterfall**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите Waterfall командой ```./waterfall build```
 -   **BungeeCord**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.2.x/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите BungeeCord командой ```mvn package -Dcheckstyle.skip```  
--   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravitlauncher.com/5.5.x/patches/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите Velocity командой ```./gradlew assemble```
+-   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravitlauncher.com/5.6.x/patches/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите Velocity командой ```./gradlew assemble```
 
 
 ## Привязка дополнительных средств
@@ -111,7 +111,7 @@ Options:
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib1.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib1.jar
 ```
 :::
 :::
@@ -119,7 +119,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib2.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib2.jar
 ```
 :::
 :::
@@ -127,7 +127,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3.jar
 ```
 :::
 :::
@@ -135,7 +135,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4.x/compat/authlib/LauncherAuthlib3-1.19.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar
 ```
 :::
 :::
@@ -143,7 +143,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.4
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib3.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar
 ```
 :::
 :::
@@ -151,15 +151,23 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib4.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib4.jar
 ```
 :::
 :::
-::: code-group-item [ 1.20.2 ]
+::: code-group-item [ 1.20.2-1.20.3 ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
-java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.5.x/authlib/LauncherAuthlib5.jar
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib5.jar
+```
+:::
+:::
+::: code-group-item [ 1.20.4 ]
+::: tip Информация:
+Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
+```bash{1}:no-line-numbers
+java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib6.jar
 ```
 :::
 :::

@@ -38,6 +38,7 @@
 | [DiscordBotConsole] | Модуль позволяет взаимодействовать с [LaunchServer] через Discord клиент |
 | [FileAuthSystem] **<Badge type="tip" text="1" vertical="top" />** | Система авторизации с хранением базы пользователей в файле json<br>[\[Метод FileAuthSystem\]](../auth/README.md#метод-fileauthsystem) |
 | [GenerateCertificate] | Создает сертификаты для подписи бинарных файлов Лаунчера (.jar/.exe) |
+| [FxRuntimeOptimizer] | Оптимизирует файлы дизайна из папки `runtime` при сборке лаунчера |
 | [MirrorHelper] | Сборка клиентов с патчем authlib для [GravitLauncher] |
 | [MojangSupport] | Добавляет поддержку лицензионных аккаунтов **Mojang/Microsoft** |
 | [OpenSSLSignCode] | Позволяет подписывать `.exe` файлы своим сертификатом |
@@ -62,6 +63,7 @@
 [DiscordGame]: https://github.com/GravitLauncher/LauncherModules/tree/master/DiscordGame_lmodule
 [FileAuthSystem]: https://github.com/GravitLauncher/LauncherModules/tree/master/FileAuthSystem_module
 [GenerateCertificate]: https://github.com/GravitLauncher/LauncherModules/tree/master/GenerateCertificate_module
+[FxRuntimeOptimizer]: https://github.com/GravitLauncher/LauncherModules/tree/master/FxRuntimeOptimizer_module
 [LauncherGuard]: https://github.com/GravitLauncher/LauncherModules/tree/master/LauncherGuard_lmodule
 [LauncherStartScreen]: https://github.com/GravitLauncher/LauncherModules/tree/master/LauncherStartScreen_lmodule
 [MirrorHelper]: https://github.com/GravitLauncher/LauncherModules/tree/master/MirrorHelper_module
