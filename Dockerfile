@@ -7,6 +7,6 @@ RUN yarn install --frozen-lockfile
 COPY ./docs ./docs
 RUN yarn docs:build
 
-FROM nginx:latest-alpine
+FROM nginx:stable-alpine
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/docs/.vuepress/dist /app
