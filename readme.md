@@ -36,3 +36,13 @@ services:
     ports:
       - 8080:80
 ```
+
+Что бы запустить: 
+```shell
+docker compose up wiki -d
+```
+
+Что бы обновить: 
+```shell
+docker compose up wiki -d --build
+```
