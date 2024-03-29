@@ -87,8 +87,8 @@ Options:
 
 Прокси серверы напрямую обращаются к серверам Mojang, минуя AuthLib, поэтому вы должны пропатчить их
 
--   **Waterfall**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.6.x/compat/patch/Waterfall.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите Waterfall командой ```./waterfall build```
--   **BungeeCord**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.6.x/compat/patch/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите BungeeCord командой ```mvn package -Dcheckstyle.skip```  
+-   **Waterfall**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.6.x/patches/BungeeCord.patch), переименуйте его в 0099-Waterfall.patch и скопируйте его в папку BungeeCord-Patches. Соберите Waterfall командой ```./waterfall build```
+-   **BungeeCord**  - Скачайте [патч](https://mirror.gravitlauncher.com/5.6.x/patches/BungeeCord.patch), скопируйте его в папку с репозиторием, примените его командой ```git am BungeeCord.patch```. Соберите BungeeCord командой ```mvn package -Dcheckstyle.skip```  
 -   **Velocity**  (рекомендуется) - Скачайте [патч](https://mirror.gravitlauncher.com/5.6.x/patches/Velocity.patch), скопируйте его в папку с репозиторием, примените его командой ```git am Velocity.patch```. Соберите Velocity командой ```./gradlew assemble```
 
 
