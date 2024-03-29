@@ -23,3 +23,26 @@ yarn docs:build
 Собранные файлы будут тут
 
 `docs/.vuepress/dist`
+
+### Использование в связке с Docker
+
+Этот репозиторий можно использовать как путь до образа, например (`docker-compose.yaml`):
+
+```yaml
+services:
+  wiki:
+    build: https://github.com/GravitLauncher/LauncherWiki.git
+    restart: always
+    ports:
+      - 8080:80
+```
+
+Что бы запустить: 
+```shell
+docker compose up wiki -d
+```
+
+Что бы обновить: 
+```shell
+docker compose up wiki -d --build
+```
