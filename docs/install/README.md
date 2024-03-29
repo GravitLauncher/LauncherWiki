@@ -128,14 +128,6 @@ winget install EclipseAdoptium.Temurin.21.JDK
 :::::
 ::::::
 
-::: warning Примечание:
-- Такие архитектуры как **arm64** и **armhf** не поддерживают сборку EXE - бинарного файла Лаунчера, через launch4j
----
-- Если ваша архитектура **amd64** или **i386**, включите сборку EXE в конфигурации `LaunchServer.json`:
-  - launch4j: 
-    - enabled: true
-:::
-
 ### Создание пользователя launcher
 
 Создание пользователя **launcher**:
@@ -432,7 +424,7 @@ chown -R launcher:launcher /home/launcher
 -   Соберите Лаунчер командой ```build``` и проверьте работоспособность
 -   Закройте порт 9274 (если он был открыт), так как теперь ЛаунчСервер будет получать и передавать данные через nginx по портам 80 и 443
 
-В качестве дополнительных мер безопасности можно настроить сертификат подписи кода (CodeSign), который помогает уменьшить ложноположительные срабатывания антивирусов на Launch4J обертку (для .exe файла). Установите модуль  [OSSLCodeSignModule](https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module)  для подписи. Получить сертификат подписи кода можно несколькими способами:
+В качестве дополнительных мер безопасности можно настроить сертификат подписи кода (CodeSign), который помогает уменьшить ложноположительные срабатывания антивирусов на Launcher.exe (Который собирается из Launcher.jar и Prestarter.exe). Установите модуль  [OSSLCodeSignModule](https://github.com/GravitLauncher/LauncherModules/tree/master/OpenSSLSignCode_module)  для подписи. Получить сертификат подписи кода можно несколькими способами:
 
 -   Сгенерировать самоподписанный сертификат с помощью модуля  [GenerateCertificateModule](https://github.com/GravitLauncher/LauncherModules/tree/master/GenerateCertificate_module)
 -   Создать себе самоподписанные сертификаты с помощью утилиты  [XCA](https://github.com/chris2511/xca/releases)
