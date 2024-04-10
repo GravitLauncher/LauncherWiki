@@ -155,7 +155,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6
 ```
 :::
 :::
-::: code-group-item [ 1.20.2-1.20.3 ]
+::: code-group-item [ 1.20.2 ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
@@ -163,7 +163,7 @@ java -jar ServerWrapper.jar installAuthlib https://mirror.gravitlauncher.com/5.6
 ```
 :::
 :::
-::: code-group-item [ 1.20.4 ]
+::: code-group-item [ 1.20.3+ ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
