@@ -59,12 +59,13 @@
 ::: tip Создание токена для сервера
 - Откройте ЛаунчСервер и введите команду `token server HiTech`, где HiTech - название вашего сервера. Скопируйте получившийся токен.
 ```java{1}:no-line-numbers
-token server <profile-title> [auth-id]
+token server <profile-title> [auth-id] [public-only]
 ```
 ```java
 Options:
       <profile-title> Title имя профиля клиента [default: null]
       [auth-id] Опциональное значение Auth ID [default: (Первый AuthId)]
+      [public-only] Сгенерировать публичный токен. Если вы не планируете выкладывать токен в интернет что бы ваши игроки могли создавать свои сервера на вашем лаунчере установите этот параметр в false. Иначе вы можете получить ошибку `Not connected to ServerProfile` [default: true]
 ```
 :::
 - Перейдите в папку с вашим сервером, скопируйте туда ServerWrapper.jar из артефактов сборки и выполните команду `java -jar ServerWrapper.jar setup`
