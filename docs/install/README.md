@@ -69,7 +69,7 @@ java.lang.UnsatisfiedLinkError: /usr/lib/jvm/temurin-21-jdk-amd64/lib/libfontman
 ```
 Установите необходимую библиотеку:
 ```sh:no-line-numbers
-sudo apt-get libfreetype-dev
+sudo apt-get install libfreetype-dev
 ```
 - Обычно такая ошибка встречается на Ubuntu 22.04
 :::
