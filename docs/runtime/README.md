@@ -33,39 +33,25 @@
 -   По желанию удалите из сборок JRE/JDK необязательные компоненты для уменьшения объема скачиваемых данных
 -   Откройте файл ```config/JavaRuntime/Config.json``` в текстовом редакторе, найдите строку **"javaList": {}** и приведите её к такому виду:
 
-::: tip Пример для JRE Standart 8, 11, 17 версии от BellSoft 
+::: tip Пример для JRE Standart 17 и 21 версии от BellSoft 
 ```json:no-line-numbers
   "javaList": {
-    "java8-windows-x86": "Java 8 b392 mustdie X86 javafx false",
-    "java8-windows-x86-64": "Java 8 b392 mustdie X86_64 javafx false",
-    "java8-linux-64": "Java 8 b392 linux X86_64 javafx false",
-    "java8-linux-arm-64": "Java 8 b392 linux ARM64 javafx false",
-    "java8-macosx-64": "Java 8 b392 macosx X86_64 javafx false",
-    "java8-macosx-arm-64": "Java 8 b392 macosx ARM64 javafx false",
-    "java11-windows-x86": "Java 11 b18 mustdie X86 javafx false",
-    "java11-windows-x86-64": "Java 11 b18 mustdie X86_64 javafx false",
-    "java11-windows-arm-64": "Java 11 b18 mustdie ARM64 javafx false",
-    "java11-linux-x86": "Java 11 b18 linux X86 javafx false",
-    "java11-linux-x86-64": "Java 11 b18 linux X86_64 javafx false",
-    "java11-linux-arm-64": "Java 11 b18 linux ARM64 javafx false",
-    "java11-macosx-64": "Java 11 b18 macosx X86_64 javafx false",
-    "java11-macosx-arm-64": "Java 11 b18 macosx ARM64 javafx false",
-    "java17-windows-x86": "Java 17 b6 mustdie X86 javafx false",
-    "java17-windows-x86-64": "Java 17 b6 mustdie X86_64 javafx false",
-    "java17-windows-arm-64": "Java 17 b6 mustdie ARM64 javafx false",
-    "java17-linux-x86": "Java 17 b6 linux X86 javafx false",
-    "java17-linux-x86-64": "Java 17 b6 linux X86_64 javafx false",
-    "java17-linux-arm-64": "Java 17 b6 linux ARM64 javafx false",
-    "java17-macosx-64": "Java 17 b6 macosx X86_64 javafx false",
-    "java17-macosx-arm-64": "Java 17 b6 macosx ARM64 javafx false",
-    "java21-windows-x86": "Java 21 b6 mustdie X86 javafx false",
-    "java21-windows-x86-64": "Java 21 b6 mustdie X86_64 javafx false",
-    "java21-windows-arm-64": "Java 21 b6 mustdie ARM64 javafx false",
-    "java21-linux-x86": "Java 21 b6 linux X86 javafx false",
-    "java21-linux-x86-64": "Java 21 b6 linux X86_64 javafx false",
-    "java21-linux-arm-64": "Java 21 b6 linux ARM64 javafx false",
-    "java21-macosx-64": "Java 21 b6 macosx X86_64 javafx false",
-    "java21-macosx-arm-64": "Java 21 b6 macosx ARM64 javafx false"
+    "java17-windows-x86": "Java 17 b12 mustdie X86 javafx false",
+    "java17-windows-x86-64": "Java 17 b12 mustdie X86_64 javafx false",
+    "java17-windows-arm-64": "Java 17 b12 mustdie ARM64 javafx false",
+    "java17-linux-x86": "Java 17 b12 linux X86 javafx false",
+    "java17-linux-x86-64": "Java 17 b12 linux X86_64 javafx false",
+    "java17-linux-arm-64": "Java 17 b12 linux ARM64 javafx false",
+    "java17-macosx-64": "Java 17 b12 macosx X86_64 javafx false",
+    "java17-macosx-arm-64": "Java 17 b12 macosx ARM64 javafx false",
+    "java21-windows-x86": "Java 21 b4 mustdie X86 javafx false",
+    "java21-windows-x86-64": "Java 21 b4 mustdie X86_64 javafx false",
+    "java21-windows-arm-64": "Java 21 b4 mustdie ARM64 javafx false",
+    "java21-linux-x86": "Java 21 b4 linux X86 javafx false",
+    "java21-linux-x86-64": "Java 21 b4 linux X86_64 javafx false",
+    "java21-linux-arm-64": "Java 21 b4 linux ARM64 javafx false",
+    "java21-macosx-64": "Java 21 b4 macosx X86_64 javafx false",
+    "java21-macosx-arm-64": "Java 21 b4 macosx ARM64 javafx false"
   },
 ```
 - `"forceDownloadJava": true,` для скачивания принудительно только с вашего ЛаунчСервера
@@ -85,12 +71,6 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
 -   Добавьте названия ваших папок с JRE/JDK в **"protectHandler": {}** конфигурации ЛаунчСервера LaunchServer.json
 ```json:no-line-numbers
     "allowUpdates": [
-      "java8-windows-x86", "java8-windows-x86-64",
-      "java8-linux-64", "java8-linux-arm-64",
-      "java8-macosx-64", "java8-macosx-arm-64",
-      "java11-windows-x86", "java11-windows-x86-64", "java11-windows-arm-64",
-      "java11-linux-x86", "java11-linux-x86-64", "java11-linux-arm-64",
-      "java11-macosx-64", "java11-macosx-arm-64",
       "java17-windows-x86", "java17-windows-x86-64", "java17-windows-arm-64",
       "java17-linux-x86", "java17-linux-x86-64", "java17-linux-arm-64",
       "java17-macosx-64", "java17-macosx-arm-64",
@@ -108,19 +88,13 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
 cd updates
 ```
 ```bash:no-line-numbers
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-8u392%2B9.zip ;
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-11.0.21%2B10.zip ;
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-17.0.9%2B11.zip ;
-wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-21.0.1%2B12.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-17.0.12%2B10.zip ;
+wget https://mirror.gravit-support.ru/unofficial/jvm/jre-standart-21.0.4%2B9.zip ;
 
-unzip jre-standart-8u392+9.zip ;
-rm -f jre-standart-8u392+9.zip ;
-unzip jre-standart-11.0.21+10.zip ;
-rm -f jre-standart-11.0.21+10.zip ;
-unzip jre-standart-17.0.9+11.zip ;
-rm -f jre-standart-17.0.9+11.zip ;
-unzip jre-standart-21.0.1+12.zip ;
-rm -f jre-standart-21.0.1+12.zip
+unzip jre-standart-17.0.12+10.zip ;
+rm -f jre-standart-17.0.12+10.zip ;
+unzip jre-standart-21.0.4+9.zip ;
+rm -f jre-standart-21.0.4+9.zip
 ```
 :::
 -   Выполните ```syncup``` и ```build```
