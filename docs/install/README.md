@@ -29,6 +29,14 @@
 
 Инструкция по установке на Windows больше недоступна, однако вы можете использовать [WSL](https://learn.microsoft.com/ru-ru/windows/wsl/install) для установки для тестирования и отладки
 
+## Установка с помощью [Docker](https://www.docker.com/)
+
+GravitLauncher 5.6.4 и выше может быть установлен с помощью docker. Для этого выполните следующие действия:
+- Установите Docker
+- Скачайте репозиторий [LauncherDockered](https://github.com/GravitLauncher/LauncherDockered) с помощью git clone или скачав и распаковав zip
+- Измените в `setup-docker.sh` версию рантайма и лаунчера при необходимости
+- Изучите команды работы с лаунчсервером в docker в [README](https://github.com/GravitLauncher/LauncherDockered/blob/main/README.md)
+
 ## Настройка хостинга
 
 - Первым шагом необходимо подготовить окружение:
