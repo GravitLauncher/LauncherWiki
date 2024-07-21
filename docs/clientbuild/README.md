@@ -86,7 +86,7 @@ installclient MyFabricClient 1.20.2 FABRIC
 - Скачайте forge-installer с сайта [Classic Forge](https://files.minecraftforge.net/net/minecraftforge/forge/)/[NeoForge](https://neoforged.net/)
 - Поместите его в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/installers/` с именем `forge-VERSION-installer.jar`(для тех версий которые не поддерживают установку без gui) или `forge-VERSION-installer-nogui.jar`(для тех которые поддерживают), где VERSION - версия Minecraft
 - Установку без gui не поддерживает Forge 1.7.10  (следуйте инструкциям для вашего SSH клиента ниже)
-- Если по какой то причине у вас не получается использовать X11 Forwarding вы можете скачать и распаковать [forge_install_dir.zip](https://mirror.gravitlauncher.com/5.6.x/forge_install_dir.zip) и установить forge локально, а после загрузить получившуюся папку в `LAUNCHSERVER_DIR/config/MirrorHelper/clients/forge/VERISON`, где VERSION - версия Minecraft
+- Если по какой то причине у вас не получается использовать X11 Forwarding вы можете скачать и распаковать [forge_install_dir.zip](https://mirror.gravitlauncher.com/5.6.x/forge_install_dir.zip) и установить forge локально, а после загрузить получившуюся папку в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/clients/forge/VERISON`, где VERSION - версия Minecraft
 ```
 installclient MyForgeClient 1.7.10 FORGE
 ```
