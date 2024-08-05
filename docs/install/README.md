@@ -49,9 +49,10 @@ GravitLauncher 5.6.4 и выше может быть установлен с п�
 
 ### Установка JDK 21
 Для запуска ЛаунчСервера необходима Java 21. Она так же подходит для запуска майнкрафт сервера
-:::::: code-group
-::::: code-group-item DEBIAN / UBUNTU
-::: tip Копировать и вставлять целиком
+:::::::: code-group
+::::::: code-group-item DEBIAN / UBUNTU
+:::::: tip Копировать и вставлять целиком
+::: tip Установка пакетов и Temurin JDK 21 (Часть 1)
 ```bash:no-line-numbers
 sudo apt-get update ;
 sudo apt-get install gnupg2 wget apt-transport-https unzip -y ;
@@ -59,14 +60,38 @@ sudo mkdir -p /etc/apt/keyrings ;
 sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /etc/apt/keyrings/adoptium.asc ;
 echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list ;
 sudo apt-get update ;
-sudo apt-get install temurin-21-jdk -y ;
-wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip ;
-unzip openjfx-21_linux-x64_bin-jmods.zip ;
-sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
-rm -r javafx-jmods-21 ;
-rm -rf openjfx-21_linux-x64_bin-jmods.zip
+sudo apt-get install temurin-21-jdk -y
 ```
-
+:::
+::::: code-group
+:::: code-group-item [ X86_64 ]
+::: tip Установка OpenJFX 22 (Часть 2)
+```bash:no-line-numbers
+wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-x64_bin-jmods.zip ;
+unzip openjfx-22.0.2_linux-x64_bin-jmods.zip ;
+sudo cp javafx-jmods-22.0.2/* /usr/lib/jvm/temurin-21-jdk-amd64/jmods ;
+rm -r javafx-jmods-22.0.2 ;
+rm -rf openjfx-22.0.2_linux-x64_bin-jmods.zip
+```
+:::
+::::
+:::: code-group-item [ ARM64 ]
+::: tip Установка OpenJFX 22 (Часть 2)
+```bash:no-line-numbers
+wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
+unzip openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
+sudo cp javafx-jmods-22.0.2/* /usr/lib/jvm/temurin-21-jdk-arm64/jmods ;
+rm -r javafx-jmods-22.0.2 ;
+rm -rf openjfx-22.0.2_linux-aarch64_bin-jmods.zip
+```
+:::
+::::
+:::::
+::: tip Смена Java по умолчанию
+```bash
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+```
 :::
 ::: warning Примечание:
 При наличии следующей ошибки:
@@ -81,16 +106,11 @@ sudo apt-get install libfreetype-dev
 ```
 - Обычно такая ошибка встречается на Ubuntu 22.04
 :::
-::: tip Смена Java по умолчанию
-```bash
-sudo update-alternatives --config java
-sudo update-alternatives --config javac
-```
-:::
-
-:::::
-::::: code-group-item CENTOS
-::: tip Добавить репозиторий Adoptium и установить
+::::::
+:::::::
+::::::: code-group-item CENTOS
+:::::: tip Копировать и вставлять целиком
+::: tip Добавление репозитория Adoptium и установка Temurin JDK 21 (Часть 1)
 ```bash:no-line-numbers
 cat <<EOF > /etc/yum.repos.d/adoptium.repo
 [Adoptium]
@@ -101,24 +121,43 @@ gpgcheck=1
 gpgkey=https://packages.adoptium.net/artifactory/api/gpg/key/public
 EOF
 ```
-```bash
-dnf update
+```bash:no-line-numbers
 dnf install temurin-21-jdk
-wget https://download2.gluonhq.com/openjfx/21/openjfx-21_linux-x64_bin-jmods.zip ;
-unzip openjfx-21_linux-x64_bin-jmods.zip ;
-sudo cp javafx-jmods-21/* /usr/lib/jvm/temurin-21-jdk/jmods ;
-alternatives --config java
-alternatives --config javac
 ```
 :::
+::::: code-group
+:::: code-group-item [ X86_64 ]
+::: tip Установка OpenJFX 22 (Часть 2)
+```bash:no-line-numbers
+wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-x64_bin-jmods.zip ;
+unzip openjfx-22.0.2_linux-x64_bin-jmods.zip ;
+sudo cp javafx-jmods-22.0.2/* /usr/lib/jvm/temurin-21-jdk/jmods ;
+rm -r javafx-jmods-22.0.2 ;
+rm -rf openjfx-22.0.2_linux-x64_bin-jmods.zip
+```
+:::
+::::
+:::: code-group-item [ ARM64 ]
+::: tip Установка OpenJFX 22 (Часть 2)
+```bash:no-line-numbers
+wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
+unzip openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
+sudo cp javafx-jmods-22.0.2/* /usr/lib/jvm/temurin-21-jdk/jmods ;
+rm -r javafx-jmods-22.0.2 ;
+rm -rf openjfx-22.0.2_linux-aarch64_bin-jmods.zip
+```
+:::
+::::
+:::::
 :::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
 sudo alternatives --config java
 sudo alternatives --config javac
 ```
 ::::
-:::::
-::::: code-group-item WINDOWS
+::::::
+:::::::
+::::::: code-group-item WINDOWS
 ::: tip Откройте PowerShell (От имени Администратора)
 - Установите пакет **Adoptium JDK 21** с помощью **winget**
 ```bash:no-line-numbers
@@ -128,13 +167,13 @@ winget install EclipseAdoptium.Temurin.21.JDK
 - Распакуйте файлы с расширением jmod из архива с **jmods** в `C:\Program Files\Eclipse Adoptium\ВАША_JDK\jmods`
 - Распакуйте файлы из архива *SDK* (внутри будет папка с названием версии, распакуйте её содержимое а не саму папку) в `C:\Program Files\Eclipse Adoptium\ВАША_JDK\`
 :::
-:::::
-::::: code-group-item OTHER
+:::::::
+::::::: code-group-item OTHER
 ::: tip Установка для других систем
 Посетите сайт JDK [Adoptium](https://adoptium.net/) и [OpenJFX](https://gluonhq.com/products/javafx/)
 :::
-:::::
-::::::
+:::::::
+::::::::
 
 ### Создание пользователя launcher
 
