@@ -440,6 +440,242 @@ UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 Начиная с 5.2.9 метод PostgreSQL генерирует access и refresh токены. Refresh токен генерируется на основе имени пользователя, хеша пароля и секретной соли (legacySalt). После смены пароля access токен продолжит действовать в течении определенного в конфигурации времени и только после потребуется повторный вход. Если вы потеряете файлы в папке ```.keys``` ЛаунчСервера игроки будут вынуждены перелогиниться.
 :::
 
+## Метод SQL
+
+Метод SQL является универсальным методам для большинства баз данных, включая PostgreSQL, MariaDB, MySQL, H2 и другие. Этот метод подходит если:
+
+- Ваш сайт не предоставляет каких либо интеграций с нашим лаунчером
+- Пароль хранится в таблице пользователей, рядом с именем пользователя в Minecraft
+- Пароль хеширован одним из поддерживаемых типов хеша
+
+Выполните следующий код для подготовки вашей таблицы пользователей к работе.  
+**Внимание: Обязательно замените название таблицы и уже существующих полей на свои**
+
+:::: code-group
+::: code-group-item [ PostgreSQL ]
+```sql:no-line-numbers
+-- Добавляет недостающие поля в таблицу
+ALTER TABLE users
+ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
+ADD COLUMN accessToken CHAR(32) DEFAULT NULL,
+ADD COLUMN serverID VARCHAR(41) DEFAULT NULL
+ADD COLUMN hwidid BIGINT DEFAULT NULL;
+
+-- Добавляет расширение для генерации UUID
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- Добавляет триггер для генерации UUID
+CREATE OR REPLACE FUNCTION public.users_uuid_trigger_func()
+    RETURNS TRIGGER
+AS
+$function$
+    BEGIN
+        IF (new.uuid IS NULL) THEN
+		new.uuid = (SELECT uuid_generate_v4());
+	END IF;
+        return new;
+    END;
+$function$ LANGUAGE plpgsql;
+
+CREATE TRIGGER users_uuid_trigger
+    BEFORE INSERT ON users
+    FOR EACH ROW
+EXECUTE PROCEDURE public.users_uuid_trigger_func();
+
+-- Генерирует UUID для уже существующих пользователей
+UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
+
+-- Добавляет поле hwidid для поддержки HWID
+
+-- Добавляет таблицу hwids
+CREATE TABLE public.hwids (
+	id serial8 NOT NULL,
+	publickey bytea NULL,
+	hwdiskid varchar NULL,
+	baseboardserialnumber varchar NULL,
+	graphiccard varchar NULL,
+	displayid bytea NULL,
+	bitness int NULL,
+	totalmemory bigint NULL,
+	logicalprocessors int NULL,
+	physicalprocessors int NULL,
+	processormaxfreq bigint NULL,
+	battery boolean NULL,
+	banned boolean NULL
+);
+
+-- Создает индексы для быстрого доступа к данным
+ALTER TABLE public.hwids ADD CONSTRAINT hwids_pk PRIMARY KEY (id);
+CREATE UNIQUE INDEX hwids_publickey_idx ON public.hwids (publickey);
+
+-- Создает связь между таблицами
+ALTER TABLE public.users ADD CONSTRAINT users_hwids_fk FOREIGN KEY (hwidid) REFERENCES public.hwids(id);
+```
+:::
+::: code-group-item [ MySQL/MariaDB ]
+```sql:no-line-numbers
+-- Добавляет недостающие поля в таблицу
+ALTER TABLE users
+ADD COLUMN uuid CHAR(36) UNIQUE DEFAULT NULL,
+ADD COLUMN accessToken CHAR(32) DEFAULT NULL,
+ADD COLUMN serverID VARCHAR(41) DEFAULT NULL,
+ADD COLUMN hwidId BIGINT DEFAULT NULL;
+
+-- Создаёт триггер на генерацию UUID для новых пользователей
+DELIMITER //
+CREATE TRIGGER setUUID BEFORE INSERT ON users
+FOR EACH ROW BEGIN
+IF NEW.uuid IS NULL THEN
+SET NEW.uuid = UUID();
+END IF;
+END; //
+DELIMITER ;
+
+-- Генерирует UUID для уже существующих пользователей
+UPDATE users SET uuid=(SELECT UUID()) WHERE uuid IS NULL;
+
+CREATE TABLE `hwids` (
+`id` bigint(20) NOT NULL,
+`publickey` blob,
+`hwDiskId` varchar(255) DEFAULT NULL,
+`baseboardSerialNumber` varchar(255) DEFAULT NULL,
+`graphicCard` varchar(255) DEFAULT NULL,
+`displayId` blob,
+`bitness` int(11) DEFAULT NULL,
+`totalMemory` bigint(20) DEFAULT NULL,
+`logicalProcessors` int(11) DEFAULT NULL,
+`physicalProcessors` int(11) DEFAULT NULL,
+`processorMaxFreq` bigint(11) DEFAULT NULL,
+`battery` tinyint(1) NOT NULL DEFAULT "0",
+`banned` tinyint(1) NOT NULL DEFAULT "0"
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `hwids`
+ADD PRIMARY KEY (`id`),
+ADD UNIQUE KEY `publickey` (`publickey`(255));
+ALTER TABLE `hwids`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
+```
+:::
+::::
+
+:::: code-group
+::: code-group-item [ PostgreSQL ]
+```json:no-line-numbers
+    "std": {
+      "isDefault": true,
+      "core": {
+        "holder": {
+          "driverClass": "org.postgresql.Driver",
+          "jdbcUrl": "jdbc:postgresql://localhost:5432/database",
+          "username": "username",
+          "password": "password",
+          "hikariMaxLifetime": 1800000
+        },
+        "expireSeconds": 3600,
+        "uuidColumn": "uuid",
+        "usernameColumn": "username",
+        "accessTokenColumn": "accesstoken",
+        "passwordColumn": "password",
+        "serverIDColumn": "serverid",
+        "hardwareIdColumn": "hwidId",
+        "tableHWID": "hwids",
+        "tableHWIDLog": "hwidLog",
+        "table": "users",
+        "passwordVerifier": {
+          "algo": "SHA256",
+          "type": "digest"
+        },
+        "type": "sql"
+      },
+      "textureProvider": {
+        "skinURL": "http://example.com/skins/%username%.png",
+        "cloakURL": "http://example.com/cloaks/%username%.png",
+        "type": "request"
+      },
+      "displayName": "Default",
+      "visible": true
+    },
+```
+:::
+::: code-group-item [ MariaDB ]
+```json:no-line-numbers
+    "std": {
+      "isDefault": true,
+      "core": {
+        "holder": {
+          "driverClass": "org.mariadb.jdbc.Driver",
+          "jdbcUrl": "jdbc:mariadb://localhost:3306/database",
+          "username": "username",
+          "password": "password",
+          "hikariMaxLifetime": 1800000
+        },
+        "expireSeconds": 3600,
+        "uuidColumn": "uuid",
+        "usernameColumn": "username",
+        "accessTokenColumn": "accesstoken",
+        "passwordColumn": "password",
+        "serverIDColumn": "serverid",
+        "hardwareIdColumn": "hwidId",
+        "tableHWID": "hwids",
+        "tableHWIDLog": "hwidLog",
+        "table": "users",
+        "passwordVerifier": {
+          "algo": "SHA256",
+          "type": "digest"
+        },
+        "type": "sql"
+      },
+      "textureProvider": {
+        "skinURL": "http://example.com/skins/%username%.png",
+        "cloakURL": "http://example.com/cloaks/%username%.png",
+        "type": "request"
+      },
+      "displayName": "Default",
+      "visible": true
+    },
+```
+:::
+::: code-group-item [ MySQL ]
+```json:no-line-numbers
+    "std": {
+      "isDefault": true,
+      "core": {
+        "holder": {
+          "driverClass": "com.mysql.cj.jdbc.Driver",
+          "jdbcUrl": "jdbc:mysql://localhost:3306/database",
+          "username": "username",
+          "password": "password",
+          "hikariMaxLifetime": 1800000
+        },
+        "expireSeconds": 3600,
+        "uuidColumn": "uuid",
+        "usernameColumn": "username",
+        "accessTokenColumn": "accesstoken",
+        "passwordColumn": "password",
+        "serverIDColumn": "serverid",
+        "hardwareIdColumn": "hwidId",
+        "tableHWID": "hwids",
+        "tableHWIDLog": "hwidLog",
+        "table": "users",
+        "passwordVerifier": {
+          "algo": "SHA256",
+          "type": "digest"
+        },
+        "type": "sql"
+      },
+      "textureProvider": {
+        "skinURL": "http://example.com/skins/%username%.png",
+        "cloakURL": "http://example.com/cloaks/%username%.png",
+        "type": "request"
+      },
+      "displayName": "Default",
+      "visible": true
+    },
+```
+:::
+::::
+
 ## Метод http
 
 Следуйте инструкции к вашему скрипту или обратитесь к [этой](../dev/#реализация-oauth)  инструкции для создания собственного скрипта
