@@ -64,9 +64,8 @@ sudo apt-get update ;
 sudo apt-get install temurin-21-jdk -y
 ```
 :::
-::::: code-group
-:::: code-group-item [ X86_64 ]
-::: tip Установка OpenJFX 22 (Часть 2)
+
+::: tip Для X86_64
 ```bash:no-line-numbers
 wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-x64_bin-jmods.zip ;
 unzip openjfx-22.0.2_linux-x64_bin-jmods.zip ;
@@ -75,9 +74,8 @@ rm -r javafx-jmods-22.0.2 ;
 rm -rf openjfx-22.0.2_linux-x64_bin-jmods.zip
 ```
 :::
-::::
-:::: code-group-item [ ARM64 ]
-::: tip Установка OpenJFX 22 (Часть 2)
+
+::: tip Для ARM64
 ```bash:no-line-numbers
 wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
 unzip openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
@@ -86,8 +84,7 @@ rm -r javafx-jmods-22.0.2 ;
 rm -rf openjfx-22.0.2_linux-aarch64_bin-jmods.zip
 ```
 :::
-::::
-:::::
+
 ::: tip Смена Java по умолчанию
 ```bash
 sudo update-alternatives --config java
@@ -125,9 +122,8 @@ EOF
 dnf install temurin-21-jdk
 ```
 :::
-::::: code-group
-:::: code-group-item [ X86_64 ]
-::: tip Установка OpenJFX 22 (Часть 2)
+
+::: tip Для X86_64
 ```bash:no-line-numbers
 wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-x64_bin-jmods.zip ;
 unzip openjfx-22.0.2_linux-x64_bin-jmods.zip ;
@@ -136,9 +132,8 @@ rm -r javafx-jmods-22.0.2 ;
 rm -rf openjfx-22.0.2_linux-x64_bin-jmods.zip
 ```
 :::
-::::
-:::: code-group-item [ ARM64 ]
-::: tip Установка OpenJFX 22 (Часть 2)
+
+::: tip Для ARM64
 ```bash:no-line-numbers
 wget https://download2.gluonhq.com/openjfx/22.0.2/openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
 unzip openjfx-22.0.2_linux-aarch64_bin-jmods.zip ;
@@ -147,8 +142,7 @@ rm -r javafx-jmods-22.0.2 ;
 rm -rf openjfx-22.0.2_linux-aarch64_bin-jmods.zip
 ```
 :::
-::::
-:::::
+
 :::: tip Смена Java по умолчанию
 ```bash:no-line-numbers
 sudo alternatives --config java
