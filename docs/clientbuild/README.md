@@ -64,24 +64,23 @@ Options:
 :::
 
 - Установите клиент
-:::::: code-group
-::::: code-group-item [ Vanilla ]
+
+:::: tabs
+@tab [ Vanilla ]
 ::: tip Установка Vanilla клиента
 ```
 installclient MyVanillaClient 1.20.2 VANILLA
 ```
 - *MyVanillaClient* - название вашего клиента
 - *1.20.2* - версия Minecraft
-:::::
-::::: code-group-item [ Fabric ]
+@tab [ Fabric ]
 ::: tip Установка Fabric клиента
 ```
 installclient MyFabricClient 1.20.2 FABRIC
 ```
 - *MyFabricClient* - название вашего клиента
 - *1.20.2* - версия Minecraft
-:::::
-::::: code-group-item [ Forge ]
+@tab [ Forge ]
 ::: tip Установка Forge клиента
 - Скачайте forge-installer с сайта [Classic Forge](https://files.minecraftforge.net/net/minecraftforge/forge/)/[NeoForge](https://neoforged.net/)
 - Поместите его в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/installers/` с именем `forge-VERSION-installer.jar`(для тех версий которые не поддерживают установку без gui) или `forge-VERSION-installer-nogui.jar`(для тех которые поддерживают), где VERSION - версия Minecraft
@@ -94,8 +93,7 @@ installclient MyForgeClient 1.7.10 FORGE
 - *1.7.10* - версия Minecraft
 - В консоли лаунчсервера вы увидите путь, который вам нужно будет выбрать в установщике Forge
 - После успешной установки докачайте необходимые моды
-:::::
-::::::
+::::
 
 ## Использование X11 Forwarding
 Для установки некоторых Forge версий клиентов вам может понадобиться использование X11 Forwarding:
@@ -103,28 +101,25 @@ installclient MyForgeClient 1.7.10 FORGE
 - Добавьте или измените параметр `X11Forwarding` на `yes` в `sshd_config` на вашем сервере
 - Перезапустите sshd
 - Следуйте инструкции для вашего SSH клиента:
-:::::: code-group
-::::: code-group-item [ WSL 2 ]
+:::: tabs
+@tab [ WSL 2 ]
 ::: tip Использование WSL 2 (рекомендуется)
 - Установите WSL 2 по этому [гайду](https://learn.microsoft.com/ru-ru/windows/wsl/install)
 - Находясь в WSL, выполните команду `ssh -XYC yourusername@SERVER_IP`
 - Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
 - Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-:::::
-::::: code-group-item [ Linux ]
+@tab [ Linux ]
 ::: tip Использование Linux (рекомендуется)
 - Выполните команду `ssh -XYC yourusername@SERVER_IP`
 - Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
 - Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-:::::
-::::: code-group-item [ Putty ]
+@tab [ Putty ]
 ::: tip Использование Putty
 - Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
 - Включите X11 Forwarding в настройках соединения Putty и подключитесь к серверу
 - Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
 - Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-:::::
-::::: code-group-item [ Windows SSH Client ]
+@tab [ Windows SSH Client ]
 ::: tip Использование стандартного клиента SSH в Windows
 - Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
 - Если у вас не работает команда `ssh` в терминале Windows, [установите компонент](https://learn.microsoft.com/ru-ru/windows/terminal/tutorials/ssh)
@@ -132,8 +127,7 @@ installclient MyForgeClient 1.7.10 FORGE
 - Не закрывая терминал, выполните команду `ssh -XYC yourusername@SERVER_IP`
 - Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
 - Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-:::::
-::::::
+::::
 
 ## Команды синхронизации
 
@@ -165,8 +159,9 @@ Options:
 ## Сборка AuthLib
 
 Для сборки **AuthLib** следуйте инструкции:
-::::: code-group
-:::: code-group-item [ 1.7.10 - 1.16.3 ]
+
+:::: tabs
+@tab [ 1.7.10 - 1.16.3 ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib1.jar)
@@ -179,8 +174,7 @@ Options:
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
-::::
-:::: code-group-item [ 1.16.4 - 1.17.x ]
+@tab [ 1.16.4 - 1.17.x ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib2.jar)
@@ -193,8 +187,7 @@ Options:
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
-::::
-:::: code-group-item [ 1.18.x ]
+@tab [ 1.18.x ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3.jar)
@@ -207,8 +200,7 @@ Options:
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
-::::
-:::: code-group-item [ 1.19 ]
+@tab [ 1.19 ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib3-1.19.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar)
@@ -221,8 +213,7 @@ Options:
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
-::::
-:::: code-group-item [ 1.19.1 - 1.19.4 ]
+@tab [ 1.19.1 - 1.19.4 ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar)
@@ -235,8 +226,7 @@ Options:
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
-::::
-:::: code-group-item [ 1.20 - 1.20.1 ]
+@tab [ 1.20 - 1.20.1 ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib4.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib4.jar)
@@ -249,8 +239,7 @@ Options:
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
-::::
-:::: code-group-item [ 1.20.2 ]
+@tab [ 1.20.2 ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib5.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib5.jar)
@@ -263,8 +252,7 @@ Options:
 -  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
 :::
 
-::::
-:::: code-group-item [ 1.20.3+ ]
+@tab [ 1.20.3+ ]
 
 ::: tip Информация:
 -  Скачайте файл [LauncherAuthlib6.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib6.jar)
@@ -278,7 +266,6 @@ Options:
 :::
 
 ::::
-:::::
 
 ## Применение патчей Fabric-Loader
 
@@ -432,8 +419,8 @@ Options:
 ```
 Триггеры - возможность включать опциональный мод при выполнении некоторых условий
 
-:::: code-group
-::: code-group-item [ Тип OS ]
+:::: tabs
+@tab [ Тип OS ]
 ```json
 "triggersList": [
 {
@@ -444,8 +431,7 @@ Options:
 }
 ],
 ```
-:::
-::: code-group-item [ Тип Java ]
+@tab [ Тип Java ]
 ```json  
 "triggersList": [
 {
@@ -457,8 +443,7 @@ Options:
   }
 ],
 ```
-:::
-::: code-group-item [ Тип Arch ]
+@tab [ Тип Arch ]
 ```json  
 "triggersList": [
 {
@@ -469,7 +454,6 @@ Options:
   }
 ],
 ```
-:::
 ::::
 
 ## Полезные инструкции

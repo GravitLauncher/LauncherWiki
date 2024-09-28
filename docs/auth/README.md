@@ -96,8 +96,8 @@ FROM users WHERE name = '<ник>';
 Выполните следующий код для подготовки вашей таблицы пользователей к работе.  
 **Внимание: Обязательно замените название таблицы и уже существующих полей на свои**
 
-:::: code-group
-::: code-group-item [ PostgreSQL ]
+::: tabs
+@tab [ PostgreSQL ]
 ```sql:no-line-numbers
 -- Добавляет недостающие поля в таблицу
 ALTER TABLE users
@@ -155,8 +155,8 @@ CREATE UNIQUE INDEX hwids_publickey_idx ON public.hwids (publickey);
 -- Создает связь между таблицами
 ALTER TABLE public.users ADD CONSTRAINT users_hwids_fk FOREIGN KEY (hwidid) REFERENCES public.hwids(id);
 ```
-:::
-::: code-group-item [ MySQL/MariaDB ]
+@tab [ MySQL/MariaDB ]
+
 ```sql:no-line-numbers
 -- Добавляет недостающие поля в таблицу
 ALTER TABLE users
@@ -202,12 +202,11 @@ ALTER TABLE `users`
 ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 ```
 :::
-::::
 
 Поместите в раздел **"auth": {}** в LaunchServer.json
 
-:::: code-group
-::: code-group-item [ PostgreSQL ]
+::: tabs
+@tab [ PostgreSQL ]
 ```json:no-line-numbers
     "std": {
       "isDefault": true,
@@ -245,8 +244,7 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
       "visible": true
     },
 ```
-:::
-::: code-group-item [ MariaDB ]
+@tab [ MariaDB ]
 ```json:no-line-numbers
     "std": {
       "isDefault": true,
@@ -284,8 +282,7 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
       "visible": true
     },
 ```
-:::
-::: code-group-item [ MySQL ]
+@tab [ MySQL ]
 ```json:no-line-numbers
     "std": {
       "isDefault": true,
@@ -324,7 +321,6 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
     },
 ```
 :::
-::::
 
 ::: tip Настройте следующие конфигурации:
 - [\[ PasswordVerifier \]](#конфигурация-passwordverifier)
@@ -368,8 +364,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 
 Для настройки большинства способов авторизации через БД вам необходимо указать passwordVerifier, соответствующий вашей CMS на сайте. (секцию passwordVerifier можно встретить при конфигурировании метода [mysql](#метод-mysql) либо [postgresql](#метод-postgresql))
 
-:::::: code-group
-::::: code-group-item [ DOUBLE DIGESET ]
+::::: tabs
+@tab [ DOUBLE DIGESET ]
 ```json:no-line-numbers
 "passwordVerifier": {
    "algo": "SHA256",
@@ -382,8 +378,7 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 -  Список доступных алгоритмов аналогичен способу digest
 -  Применяется в старых версиях DLE (алгоритм MD5) и в некоторых других CMS
 :::
-:::::
-::::: code-group-item [ DIGEST ]
+@tab [ DIGEST ]
 ```json:no-line-numbers
 "passwordVerifier": {
    "algo": "SHA256",
@@ -394,8 +389,7 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 -  Алгоритм digest **один раз** хеширует пароль одним алгоритмом без соли
 -  Метод поддерживает любые алгоритмы хеширования, реализованные в вашей JDK или библиотеки BouncyCastle. Самые распространенные из них: MD5, SHA1, SHA256, SHA512
 :::
-:::::
-::::: code-group-item [ PHP BCRYPT ]
+@tab [ PHP BCRYPT ]
 ```json:no-line-numbers
 "passwordVerifier": {
    "type": "bcrypt"
@@ -405,8 +399,7 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 -  Проверяет пароль аналогично функции ```password_verify``` в языке PHP
 -  Большинство современных CMS использует именно этот тип хеширования пароля
 :::
-:::::
-::::: code-group-item [ WORDPRESS PHPASS ]
+@tab [ WORDPRESS PHPASS ]
 ```json:no-line-numbers
 "passwordVerifier": {
    "type": "phpass"
@@ -434,7 +427,8 @@ ln -s ../src/modules/AdditionalHash_module/build/libs/AdditionalHash_module.jar
 -  Используется в WordPress
 :::
 :::::
-::::::
+
+
 ::: details Комьюнити реализации, метод JSON:
 [\[PHP\] microwin7/GravitLauncher-PasswordVerifier](https://github.com/microwin7/GravitLauncher-PasswordVerifier)
 - Bcrypt

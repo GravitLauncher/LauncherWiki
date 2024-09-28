@@ -10,8 +10,8 @@ TextureProvider нужен при отсутствии поддержки ски
   - **%hash%**  UUID пользователя без разделителей
 
 ### Метод Request
-::::: code-group
-:::: code-group-item [ REMOTE ]
+:::: tabs
+@tab [ REMOTE ]
 ```json:no-line-numbers
       "textureProvider": {
         "skinURL": "http://example.com/skins/%username%.png",
@@ -23,8 +23,7 @@ TextureProvider нужен при отсутствии поддержки ски
 - Если скины хранятся не на этой машине
 - Выполняется дополнительный запрос в ЛаунчСервере на подсчёт хеш суммы и передаче её в AuthLib
 :::
-::::
-:::: code-group-item [ LOCAL ]
+@tab [ LOCAL ]
 ```json:no-line-numbers
       "textureProvider": {
         "skinURL": "http://example.com/skins/%username%.png",
@@ -39,7 +38,6 @@ TextureProvider нужен при отсутствии поддержки ски
 - ЛаунчСерверу не нужно выполнять дополнительный запрос, так как файл считывается локально
 :::
 ::::
-:::::
 
 ### Метод JSON
 ```json:no-line-numbers

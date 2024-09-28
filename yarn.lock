@@ -194,7 +194,7 @@
     "@docsearch/react" "3.6.2"
     preact "^10.0.0"
 
-"@docsearch/react@3.6.2", "@docsearch/react@^3.5.2", "@docsearch/react@^3.6.1":
+"@docsearch/react@3.6.2", "@docsearch/react@^3.6.1":
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-3.6.2.tgz#32b16dd7d5614f0d39e6bc018549816b68d171b8"
   integrity sha512-rtZce46OOkVflCQH71IdbXSFK+S8iJZlUF56XBW5rIgx/eG5qoomC7Ag3anZson1bBac/JFQn7XOBfved/IMRA==
@@ -708,7 +708,7 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.5.10.tgz#066f7dde31e09d700123e92e63eaa126cda21a17"
   integrity sha512-VkkBhU97Ki+XJ0xvl4C9YJsIZ2uIlQ7HqPpZOS3m9VCvmROPaChZU6DexdMJqvz9tbgG+4EtFVrSuailUq5KGQ==
 
-"@vuepress/bundler-vite@^2.0.0-rc.8":
+"@vuepress/bundler-vite@^2.0.0-rc.15":
   version "2.0.0-rc.15"
   resolved "https://registry.yarnpkg.com/@vuepress/bundler-vite/-/bundler-vite-2.0.0-rc.15.tgz#b14619ea14d025c93a9c5073e5fb5d13edc762d6"
   integrity sha512-xPJBOvrt9hn+3dkMuWIpVy1Jb3a29ZPkEZ0nE10ULzLaGvN+Lv6tB7FPTN9d67LGT4wi09X0EXSvWg9Eun+6pQ==
@@ -740,7 +740,7 @@
     envinfo "^7.13.0"
     esbuild "~0.21.5"
 
-"@vuepress/client@2.0.0-rc.15", "@vuepress/client@^2.0.0-rc.8":
+"@vuepress/client@2.0.0-rc.15":
   version "2.0.0-rc.15"
   resolved "https://registry.yarnpkg.com/@vuepress/client/-/client-2.0.0-rc.15.tgz#b4f505cedd97c11ac3472e6aef9adf388d91467f"
   integrity sha512-73TWRIFKFqDRI+JHFjVWUJNfeExBYUxR7QuB5ZrtbntvN7Tu+Qr6wMwTU9bwDttRIaxUzoTBuTN5wfAiijokHg==
@@ -826,7 +826,7 @@
     "@vueuse/core" "^11.1.0"
     vue "^3.5.8"
 
-"@vuepress/plugin-docsearch@^2.0.0-rc.14":
+"@vuepress/plugin-docsearch@2.0.0-rc.47":
   version "2.0.0-rc.47"
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-docsearch/-/plugin-docsearch-2.0.0-rc.47.tgz#071f197e8963463a4be54d85067950853a0dd805"
   integrity sha512-Eh1FKLIa+WwSbY8A/rp5RFU1QXQH5nJ+1bFojSFMgblaPr0K0J4b74Ro9HQeCDnvH/zjIO4Ho9qwJtmJ8Jhgwg==
@@ -939,7 +939,7 @@
   dependencies:
     "@mdit-vue/types" "^2.1.0"
 
-"@vuepress/theme-default@^2.0.0-rc.14":
+"@vuepress/theme-default@^2.0.0-rc.49":
   version "2.0.0-rc.49"
   resolved "https://registry.yarnpkg.com/@vuepress/theme-default/-/theme-default-2.0.0-rc.49.tgz#5bc9eb6d969b72563163ef8ec054a7fa2484066c"
   integrity sha512-eQCCBLB4M3adyFVApWASRKHPc1vQBtDWYW15XQJPTnPuMt4y/gdCJsXaQ2nRTTdZ1UJYQ8VSuszkCu/aJdRjPQ==
@@ -2202,7 +2202,7 @@ vue-router@^4.4.3:
   dependencies:
     "@vue/devtools-api" "^6.6.4"
 
-vue@^3.4.19, vue@^3.4.37, vue@^3.5.8:
+vue@^3.4.37, vue@^3.5.8:
   version "3.5.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.5.10.tgz#14be9d4655e07be8d5e8295d017815ed14337f96"
   integrity sha512-Vy2kmJwHPlouC/tSnIgXVg03SG+9wSqT1xu1Vehc+ChsXsRd7jLkKgMltVEFOzUdBr3uFwBCG+41LJtfAcBRng==
@@ -2213,7 +2213,7 @@ vue@^3.4.19, vue@^3.4.37, vue@^3.5.8:
     "@vue/server-renderer" "3.5.10"
     "@vue/shared" "3.5.10"
 
-vuepress@^2.0.0-rc.8:
+vuepress@^2.0.0-rc.15:
   version "2.0.0-rc.15"
   resolved "https://registry.yarnpkg.com/vuepress/-/vuepress-2.0.0-rc.15.tgz#b1ae43ad5db76ba40d70143919843f46f9ee2433"
   integrity sha512-8DRaONwIaG0Jn3P8OKBysTfcO1yPO1UwfUUNQjbToLrbYSsGFiFwpuTMSL3HbdaX7ou6TuJHgK/wuslsUV8jCQ==
