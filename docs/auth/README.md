@@ -217,7 +217,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
           "jdbcUrl": "jdbc:postgresql://localhost:5432/database",
           "username": "username",
           "password": "password",
-          "hikariMaxLifetime": 1800000
+          "hikariMaxLifetime": 1800000,
+          "initializeAtStart": false
         },
         "expireSeconds": 3600,
         "uuidColumn": "uuid",
@@ -230,8 +231,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
         "tableHWIDLog": "hwidLog",
         "table": "users",
         "passwordVerifier": {
-          "algo": "SHA256",
-          "type": "digest"
+          "cost": 10,
+          "type": "bcrypt"
         },
         "type": "sql"
       },
@@ -255,7 +256,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
           "jdbcUrl": "jdbc:mariadb://localhost:3306/database",
           "username": "username",
           "password": "password",
-          "hikariMaxLifetime": 1800000
+          "hikariMaxLifetime": 1800000,
+          "initializeAtStart": false
         },
         "expireSeconds": 3600,
         "uuidColumn": "uuid",
@@ -268,8 +270,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
         "tableHWIDLog": "hwidLog",
         "table": "users",
         "passwordVerifier": {
-          "algo": "SHA256",
-          "type": "digest"
+          "cost": 10,
+          "type": "bcrypt"
         },
         "type": "sql"
       },
@@ -293,7 +295,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
           "jdbcUrl": "jdbc:mysql://localhost:3306/database",
           "username": "username",
           "password": "password",
-          "hikariMaxLifetime": 1800000
+          "hikariMaxLifetime": 1800000,
+          "initializeAtStart": false
         },
         "expireSeconds": 3600,
         "uuidColumn": "uuid",
@@ -306,8 +309,8 @@ ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
         "tableHWIDLog": "hwidLog",
         "table": "users",
         "passwordVerifier": {
-          "algo": "SHA256",
-          "type": "digest"
+          "cost": 10,
+          "type": "bcrypt"
         },
         "type": "sql"
       },
