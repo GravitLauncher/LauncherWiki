@@ -50,8 +50,8 @@ GravitLauncher 5.6.4 и выше может быть установлен с п�
 ### Установка JDK 21
 Для запуска ЛаунчСервера необходима Java 21. Она так же подходит для запуска майнкрафт сервера
 
-:::::::: code-group
-::::::: code-group-item DEBIAN / UBUNTU
+:::::::: tabs
+@tab DEBIAN / UBUNTU
 :::::: tip Копировать и вставлять целиком
 ::: tip Установка пакетов и Temurin JDK 21 (Часть 1)
 ```bash:no-line-numbers
@@ -108,8 +108,7 @@ sudo apt-get install libfreetype-dev
 - Обычно такая ошибка встречается на Ubuntu 22.04
 :::
 ::::::
-:::::::
-::::::: code-group-item CENTOS
+@tab CENTOS
 :::::: tip Копировать и вставлять целиком
 ::: tip Добавление репозитория Adoptium и установка Temurin JDK 21 (Часть 1)
 ```bash:no-line-numbers
@@ -157,8 +156,7 @@ sudo alternatives --config javac
 ```
 ::::
 ::::::
-:::::::
-::::::: code-group-item WINDOWS
+@tab WINDOWS
 ::: tip Откройте PowerShell (От имени Администратора)
 - Установите пакет **Adoptium JDK 21** с помощью **winget**
 ```bash:no-line-numbers
@@ -168,12 +166,10 @@ winget install EclipseAdoptium.Temurin.21.JDK
 - Распакуйте файлы с расширением jmod из архива с **jmods** в `C:\Program Files\Eclipse Adoptium\ВАША_JDK\jmods`
 - Распакуйте файлы из архива *SDK* (внутри будет папка с названием версии, распакуйте её содержимое а не саму папку) в `C:\Program Files\Eclipse Adoptium\ВАША_JDK\`
 :::
-:::::::
-::::::: code-group-item OTHER
+@tab OTHER
 ::: tip Установка для других систем
 Посетите сайт JDK [Adoptium](https://adoptium.net/) и [OpenJFX](https://gluonhq.com/products/javafx/)
 :::
-:::::::
 ::::::::
 
 ### Создание пользователя launcher
@@ -273,8 +269,8 @@ stop
 nano /etc/nginx/conf.d/default.conf
 ```
 :::
-:::: code-group
-::: code-group-item [ На DNS имени ]
+:::: tabs
+@tab [ На DNS имени ]
 ```nginx{10,12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
@@ -315,8 +311,7 @@ server {
     }
 }
 ```
-:::
-::: code-group-item [ На IP ]
+@tab [ На IP ]
 ```nginx{12-13,15}:no-line-numbers
 upstream gravitlauncher {
     server 127.0.0.1:9274;
@@ -357,8 +352,7 @@ server {
     }
 }
 ```
-:::
-::: code-group-item [ Под Docker ]
+@tab [ Под Docker ]
 ::: tip Для главного nginx, не в контейнере
 - Получить IPAddress контейнера. Где `<container id>` это UUID контейнера
 ```bash:no-line-numbers
@@ -406,7 +400,6 @@ server {
 }
 ```
 :::
-:::
 ::::
 
 ::::: tip Проверить конфигурацию и перезагрузить Nginx:
@@ -424,17 +417,15 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 systemctl enable nginx
 ```
 Перезагрузка сервиса:
-:::: code-group
-::: code-group-item Systemd
+:::: code-tabs
+@tab Systemd
 ```bash:no-line-numbers
 systemctl restart nginx
 ```
-:::
-::: code-group-item init.d
+@tab init.d
 ```bash:no-line-numbers
 service nginx restart
 ```
-:::
 ::::
 :::::
 
