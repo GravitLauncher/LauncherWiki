@@ -186,7 +186,7 @@ Cкопируйте туда файл ```serverButton.fxml```, переимен�
 
 -   Модуль: `JavaRuntime.main`
 -   Аргументы jvm: `-Dlauncherdebug.modules=pro.gravit.launcher.client.JavaRuntimeModule` (если параметры не отображаются, нажмите `Modify Options —> Add VM options`)
--   Main Class: `pro.gravit.launcher.debug.DebugMain`
+-   Main Class: `pro.gravit.launcher.runtime.debug.DebugMain`
 
 Ограничения отладочного режима:
 
