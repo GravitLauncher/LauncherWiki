@@ -10,7 +10,7 @@
   "author": "XJIuPa",
   "license": "ISC",
   "devDependencies": {
-    "@algolia/client-search": "^4.22.1",
+    "@algolia/client-search": "^5.20.0",
     "@vuepress/bundler-vite": "^2.0.0-rc.15",
     "@vuepress/plugin-docsearch": "2.0.0-rc.47",
     "@vuepress/theme-default": "^2.0.0-rc.49",
