@@ -56,6 +56,7 @@ export default defineUserConfig({
             {
                 text: 'Руководство',
                 children: [
+                    '/quickstart/README.md',
                     '/install/README.md',
                     '/auth/README.md',
                     '/clientbuild/README.md',
@@ -63,6 +64,8 @@ export default defineUserConfig({
                     '/runtime/README.md',
                     '/other/README.md',
                     '/modules/README.md',
+                    '/scriptinstall/README.md',
+                    '/nerdinfo/README.md',
                     '/dev/README.md',
                 ],
             },
@@ -81,13 +84,15 @@ export default defineUserConfig({
                     text: 'Руководство',
                     collapsible: false,
                     children: [
-                        '/install/README.md',
+                        '/quickstart/README.md',
                         '/auth/README.md',
                         '/clientbuild/README.md',
                         '/servers/README.md',
                         '/runtime/README.md',
                         '/other/README.md',
                         '/modules/README.md',
+                        '/scriptinstall/README.md',
+                        '/nerdinfo/README.md',
                         '/dev/README.md',
                     ],
                 },

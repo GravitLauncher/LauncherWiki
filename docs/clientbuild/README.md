@@ -6,14 +6,15 @@
 
 На текущий момент поддерживается запуск:
 
--   Любой Vanilla версии с 1.13 до 1.20.4, включая snapshot
+-   Любой Vanilla версии с 1.13 до 1.24.5, включая snapshot
 -   Forge 1.7.10 с lwjgl3ify
--   Любой Fabric версии с 1.13 до 1.20.4, включая snapshot
+-   Forge 1.12.2 с cleanroom
+-   NeoForge/Forge 1.21+
+-   Любой Fabric версии с 1.13 до 1.24.5, включая snapshot
 
 Необходимы ручные действия для сборки:
--   Forge 1.12.2 с cleanroom
 -   Forge 1.16.5 с аргументами для поддержки Java 17
--   Forge 1.18+ по гайду в нашем Discord сервере
+-   Forge с 1.18 до 1.21 требует ручной сборки библиотек
 
 
 Подробную информацию о том как собрать 1.7.10 с lwjgl3ify, 1.12.2 cleanroom и forge 1.18+ можно получить на нашем [Discord сервере](https://discord.gg/b9QG4ygY75) в канале guides
@@ -44,7 +45,7 @@ downloadasset <minecraft-version>
 ```java
 Options:
       <minecraft-version> Версия Minecraft [default: null]
-      [assets-folder] Deprecated папка назначения [default: "assets"]
+      [assets-folder] Папка назначения [default: "assets"]
 ```
 - Загрузка происходит с серверов Mojang
 - При скачивании нескольких версий ассетов в одну папку будут скачаны только недостающие
@@ -94,182 +95,6 @@ installclient MyForgeClient 1.7.10 FORGE
 - В консоли лаунчсервера вы увидите путь, который вам нужно будет выбрать в установщике Forge
 - После успешной установки докачайте необходимые моды
 ::::
-
-## Использование X11 Forwarding
-Для установки некоторых Forge версий клиентов вам может понадобиться использование X11 Forwarding:
-- Установите пакет `xauth` на ваш сервер
-- Добавьте или измените параметр `X11Forwarding` на `yes` в `sshd_config` на вашем сервере
-- Перезапустите sshd
-- Следуйте инструкции для вашего SSH клиента:
-:::: tabs
-@tab [ WSL 2 ]
-::: tip Использование WSL 2 (рекомендуется)
-- Установите WSL 2 по этому [гайду](https://learn.microsoft.com/ru-ru/windows/wsl/install)
-- Находясь в WSL, выполните команду `ssh -XYC yourusername@SERVER_IP`
-- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-@tab [ Linux ]
-::: tip Использование Linux (рекомендуется)
-- Выполните команду `ssh -XYC yourusername@SERVER_IP`
-- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-@tab [ Putty ]
-::: tip Использование Putty
-- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
-- Включите X11 Forwarding в настройках соединения Putty и подключитесь к серверу
-- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-@tab [ Windows SSH Client ]
-::: tip Использование стандартного клиента SSH в Windows
-- Установите X Server на Windows: [vcxsrv](https://sourceforge.net/projects/vcxsrv/) и запустите его с настройками по умолчанию
-- Если у вас не работает команда `ssh` в терминале Windows, [установите компонент](https://learn.microsoft.com/ru-ru/windows/terminal/tutorials/ssh)
-- Выполните команду для CMD `set DISPLAY=localhost:0` или для PowerShell `$env:DISPLAY = 'localhost:0'`
-- Не закрывая терминал, выполните команду `ssh -XYC yourusername@SERVER_IP`
-- Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
-- Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
-::::
-
-## Команды синхронизации
-
-ЛаунчСервер хранит информацию о файлах и профилях в подготовленном виде.  
-Первое автоматическое сохранение происходит при скачивании клиента и ассетов игры.  
-Для поддержания информации в актуальном состоянии при изменении файлов в папке `updates` и профилях в папке `profiles`
-их необходимо синхронизировать с кэш файлом ЛаунчСервера.
-
-::: tip Синхронизация всех клиентов и профилей:
-```java{1}:no-line-numbers
-sync up
-```
-:::
-::: tip Синхронизация всех профилей:
-```java{1}:no-line-numbers
-sync profiles
-```
-:::
-::: tip Синхронизация клиентов игры:
-```java{1}:no-line-numbers
-sync updates [folder]
-```
-```java
-Options:
-      [folder] Выбрать папку для синхронизации [default: all]
-```
-:::
-
-## Сборка AuthLib
-
-Для сборки **AuthLib** следуйте инструкции:
-
-:::: tabs
-@tab [ 1.7.10 - 1.16.3 ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib1.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/1.x.xx/authlib-1.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib1.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib1.jar) содержатся изменённые классы оригинальной **AuthLib** 1.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-@tab [ 1.16.4 - 1.17.x ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib2.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/2.x.xx/authlib-2.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib2.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib2.jar) содержатся изменённые классы оригинальной **AuthLib** 2.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-@tab [ 1.18.x ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/3.x.xx/authlib-3.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3.jar) содержатся изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-@tab [ 1.19 ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib3-1.19.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/3.5.41/authlib-3.5.41.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib3-1.19.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar) содержатся изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-@tab [ 1.19.1 - 1.19.4 ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/3.x.xx/authlib-3.x.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib3.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib3-1.19.jar) содержатся изменённые классы оригинальной **AuthLib** 3.x.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-@tab [ 1.20 - 1.20.1 ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib4.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib4.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/4.0.43/authlib-4.0.43.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib4.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib4.jar) содержатся изменённые классы оригинальной **AuthLib** 4.0.43, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-@tab [ 1.20.2 ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib5.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib5.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/5.0.47/authlib-5.0.47.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib5.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib5.jar) содержатся изменённые классы оригинальной **AuthLib** 5.0.47, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-@tab [ 1.20.3+ ]
-
-::: tip Информация:
--  Скачайте файл [LauncherAuthlib6.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib6.jar)
--  Откройте его архиватором и распакуйте папку com в отдельную папку
--  Откройте ваш **AuthLib** файл архиватором по пути ```libraries/com/mojang/authlib/6.0.xx/authlib-6.0.xx.jar``` и вставьте все файлы с заменой, распакованные на предыдущем этапе
-:::
-
-::: details Примечания:
--  В файле [LauncherAuthlib6.jar](https://mirror.gravitlauncher.com/5.6.x/authlib/LauncherAuthlib6.jar) содержатся изменённые классы оригинальной **AuthLib** 6.0.xx, которые предоставляют обработку AuthCoreProvider для GravitLauncher
--  При замене файлов `.class`, остальные файлы не трогайте. Файлы должны быть перезаписаны и некоторые будут добавлены
-:::
-
-::::
-
-## Применение патчей Fabric-Loader
-
-Для клиентов Fabric с версией fabric-loader 0.14.X и выше необходимо применить следующий [патч](https://mirror.gravitlauncher.com/5.6.x/patches/FabricLoader.patch) командой ```git apply -3 FabricLoader.patch```
 
 ## Настройка профиля
 

@@ -1,4 +1,6 @@
-# Привязка сервера Minecraft
+# Привязка сервера
+
+Этот раздел посвящен ручной сборки сервера без использования [ServersDockered](https://github.com/GravitLauncher/ServersDockered)
 
 ## Совместимость
 
@@ -17,35 +19,6 @@
 - Используйте [Velocity](https://papermc.io/software/velocity) вместо BungeeCord и Waterfall
 - Убедитесь, что в вашем ядре установлена защита от уязвимости Log4J
 - Если ваш сервер находится за прокси (например, Velocity), сервер всё равно необходимо привязать к ServerWrapper с заменой AuthLib, так как в противном случае могут быть проблемы с скинами и плащами
-
-## Рекомендуемые ядра
-
-:::: tabs
-@tab [ 1.7.10 ]
-::: tip Список:
-- [Crucible](https://github.com/CrucibleMC/Crucible)
-:::
-@tab [ 1.12.2]
-::: tip Список:
-- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.12.2/docs/README_RU.md)
-- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.12.2)
-:::
-@tab [ 1.16.5 ]
-::: tip Список:
-- [Fabric](https://fabricmc.net/) 
-- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.16.5/docs/README_RU.md)
-- [SpongeForge](https://www.spongepowered.org/downloads/spongeforge?minecraft=1.16.5)
-:::
-@tab [ 1.17.X ]
-::: tip Список:
-- [Fabric](https://fabricmc.net/)
-:::
-@tab [ 1.18.2 ]
-::: tip Список:
-- [Fabric](https://fabricmc.net/)
-- [CatServer](https://github.com/Luohuayu/CatServer/blob/1.18.2/docs/README.md)
-:::
-::::
 
 ## Использование ServerWrapper
 
@@ -79,6 +52,22 @@ Options:
 
 :::
 
+## Inline режим работы ServerWrapper
+
+Начиная с 5.6.15 доступен новый режим работы ServerWrapper, позволяющий привязать сервер имеющий сложный алгоритм запуска(такой как Forge 1.18+). Для этого вместо выполнения патчей, переноса аргументов выполните следующие действия:
+
+- Выполните installAuthlib
+- Поместите ServerWrapper-inline.jar в classpath аналогичный authlib (либо слейте файл authlib с ServerWrapper-inline)
+- Добавьте аргументы
+```
+-Dlauncher.authlib.inlineClass=pro.gravit.launcher.server.ServerWrapperInlineInitializer
+-Dlauncher.useSlf4j=true
+```
+- Убедитесь что вы используете последнюю authlib 5.6 совместимую с launcher.authlib.inlineClass
+- Запустите сервер как обычно стандартным способом без ServerWrapper
+
+Для Forge/NeoForge 1.18+ добавить ServerWrapper-inline нужно в unix_args.txt в строчку `-DlegacyClassPath`
+
 ## Привязка прокси
 
 Прокси серверы напрямую обращаются к серверам Mojang, минуя AuthLib, поэтому вы должны пропатчить их
@@ -101,7 +90,7 @@ Options:
 Для привязки всех остальных ядер (в том числе находящихся за прокси) необходимо заменить AuthLib. Начиная с версии 5.2.13 вы можете привязать AuthLib к серверу одной командой:
 
 ::::: tabs
-@tav [ 1.7.10 - 1.16.3 ]
+@tab [ 1.7.10 - 1.16.3 ]
 ::: tip Информация:
 Скопируйте ссылку на LauncherAuthlib для вашей версии Minecraft и выполните команду
 ```bash{1}:no-line-numbers
@@ -170,13 +159,9 @@ java -jar ServerWrapper.jar installAuthlib ПутьКAuthlib
 Перед привязкой запустите сервер, подождите, пока он полностью запустится и остановите его
 :::
 
-:::: tip Для 1.12.2 forge/sponge дополнительно замените launchwrapper
-Скопируйте [этот](https://mirror.gravitlauncher.com/5.5.x/libraries/launchwrapper-1.12-5.5.x.jar) файл в ```libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar``` с заменой
-::: details Установка командой Wget
-```bash{1}:no-line-numbers
-wget --show-progress -q -O ./libraries/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar https://mirror.gravitlauncher.com/5.5.x/libraries/launchwrapper-1.12-5.5.x.jar
-```
-::::
+::: warning Примечание:
+В некоторых случаях может помочь выполнение команды installAuthlib два раза вместо одного
+:::
 
 ## Конфигурация ServerWrapper
 
