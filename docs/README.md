@@ -6,7 +6,7 @@ heroText: GravitLauncher Wiki
 tagline: Лучший Лаунчер майнкрафт для вашего проекта.
 actions:
   - text: Начать установку
-    link: /quickstart
+    link: /quickstart/
     type: primary
 features:
   - title: 🔥 Версии
