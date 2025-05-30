@@ -152,11 +152,20 @@ initContext, при этом при статической загрузке мо
 
 Вы можете писать собственные моды используя API лаунчера - иметь доступ к скинам, плащам и входу на сервер с `online-mode` `true`. Для этого настройте свое окружение (на примере fabric):
 - Добавьте библиотеки лаунчера как при разработке модуля
-- Вместо подключения `fabric-loader` добавьте туда его патченую версию с клиента:
+- Добавьте патченую authlib:
 ```
-modImplementation files("YOUR_CLIENT/libraries/net/fabricmc/fabric-loader/VERSION/fabric-loader-VERSION.jar")
+modImplementation files("PATH_TO_AUTHLIB/authlib-VERSION.jar")
 ```
+- Создайте новую сессию из консоли LaunchServer
+
+```
+config auth.std.core newSession USERNAME true
+```
+
+И сохраните вывод этой команды. Если такая команда отсутствует, убедитесь что вы используете актуальную версию лаунчера(5.6.16 и выше), а так же что ваш AuthCoreProvider поддерживает операции sudo(вход под пользователем без пароля). Если же ваш AuthCoreProvider не поддерживает эту команду вам необходимо достать токены другим способом(например через режим отладки для получения токена доступа для Minecraft)
+
 - Откройте проект в `IDEA`. Дублируйте существующую конфигнурацию для запуска клиента и добавьте туда:
+
 ```
 -Dlauncher.debug=true
 -Dlauncher.stacktrace=true
@@ -166,11 +175,13 @@ modImplementation files("YOUR_CLIENT/libraries/net/fabricmc/fabric-loader/VERSIO
 -Dlauncher.runtime.username=YOUR_USERNAME
 -Dlauncher.runtime.password=YOUR_PASSWORD
 ```
+
 - Укажите MainClass `pro.gravit.launcher.debug.DebugMain`
 
 ### Как войти на сервер с отладочного клиента
 
-Используйте `protectHandler` `none` (**только для тестирования, это сделает ваш сервер незащищенным**)
+- **Рекомендуемый способ**: Выдайте себе permission `launchserver.debug.joinserver`
+- Либо переключите `protectHandler` в режим `none` (**это сделает ваш сервер незащищенным**)
 
 ## Написание AuthCoreProvider
 

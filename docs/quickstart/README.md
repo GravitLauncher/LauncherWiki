@@ -192,7 +192,7 @@ pacman -S docker
 docker compose exec gravitlauncher /app/install_launchserver_module.sh MirrorHelper
 docker compose exec gravitlauncher /app/install_launchserver_module.sh GenerateCertificate
 docker compose exec gravitlauncher bash -c "cd /app/data && wget https://github.com/GravitLauncher/LauncherPrestarter/releases/latest/download/Prestarter.exe"
-docker compose exec gravitlauncher bash -c "cd /app/data/modules && https://github.com/GravitLauncher/LauncherPrestarter/releases/latest/download/Prestarter_module.jar"
+docker compose exec gravitlauncher bash -c "cd /app/data/modules && wget https://github.com/GravitLauncher/LauncherPrestarter/releases/latest/download/Prestarter_module.jar"
 docker compose restart gravitlauncher
 sleep 10
 echo "applyworkspace" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
