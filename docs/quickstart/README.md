@@ -159,18 +159,10 @@ table inet filter {
 - Запустите firewall `systemctl restart nftables`
 
 ### Установка Docker
-
-Перейдите по ссылке [Docker Install](https://docs.docker.com/engine/install/) и установите Docker в соответствии с вашим дистрибутивом
-
-:::: details ArchLinux
-Вы можете просто установить docker из официального репозитория
 ```bash
-pacman -S docker
+curl -sSL https://get.docker.com/ | bash
 ```
-
-Запустите docker командой `systemctl enable --now docker`
-
-::::
+- Поддерживаемые дистрибутивы и архитектуры: [Docker Install](https://docs.docker.com/engine/install/)
 
 ## Выбор CMS
 
