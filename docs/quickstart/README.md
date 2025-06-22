@@ -159,9 +159,19 @@ table inet filter {
 - Запустите firewall `systemctl restart nftables`
 
 ### Установка Docker
+
+:::: tabs
+@tab [ UBUNTU | DEBIAN | CentOS 8/7 | Fedora 41^ ]
 ```bash
 curl -sSL https://get.docker.com/ | bash
 ```
+@tab [ ArchLinux]
+Вы можете просто установить docker из официального репозитория
+```bash
+pacman -S docker
+```
+Запустите docker командой `systemctl enable --now docker`
+::::
 - Поддерживаемые дистрибутивы и архитектуры: [Docker Install](https://docs.docker.com/engine/install/)
 
 ## Выбор CMS
