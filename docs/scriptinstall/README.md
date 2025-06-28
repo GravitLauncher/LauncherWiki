@@ -213,3 +213,198 @@ stop
 - Находясь в этой SSH сессии, запустите лаунчсервер без использования screen, docker, tmux и других средств
 - Теперь вы можете установить Forge клиент командой `installclient` (см. выше)
 ::::
+
+## Настройка Nginx
+
+Для достижения оптимальной производительности отдачи файлов нужно настроить Nginx
+
+- Посетите сайт [\[NGINX\]](https://nginx.org/ru/linux_packages.html) и установите Nginx в соответствии с вашей системой
+
+- Создайте в пространстве имён своего домена **A** запись, вида `launcher.ИМЯ_ВАШЕГО_ДОМЕНА.ru`, с вашим **IP** машины с ЛаунчСервером
+::: details Путь к конфигурации Nginx:
+Предпочтительно создавать отдельный файл конфигурации для каждого домена отдельно:
+(Воспользуйтесь SFTP клиентом)
+```
+/etc/nginx/conf.d/launcher.ВАШ_ДОМЕН.conf
+```
+Если у вас на машине будет только одна настройка, можете отредактировать конфигурацию по умолчанию:
+```bash:no-line-numbers
+nano /etc/nginx/conf.d/default.conf
+```
+:::
+:::: tabs
+@tab [ На DNS имени ]
+```nginx{10,12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+    server_name launcher.ВАШ_ДОМЕН;
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
+    
+    root /путь/до/updates; # Example: /home/launcher/updates
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+@tab [ На IP ]
+```nginx{12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.access.log;
+    #error_log  /var/log/nginx/launcher.error.log notice;
+    
+    root /путь/до/updates; # Example: /home/launcher/updates
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+@tab [ Под Docker ]
+::: tip Для главного nginx, не в контейнере
+- Получить IPAddress контейнера. Где `<container id>` это UUID контейнера
+```bash:no-line-numbers
+docker inspect <container id> | grep "IPAddress"
+```
+- Заменить `127.0.0.1` адрес на локальный IP от вашего интерфейса для Docker, полученный выше
+```nginx{2,10,12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+    server_name ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА;
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
+    
+    root /путь/до/updates;
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+:::
+::::
+
+::::: tip Проверить конфигурацию и перезагрузить Nginx:
+
+```bash:no-line-numbers
+nginx -t
+```
+Должны увидеть:
+```log
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+Включить Nginx как службу Systemd:
+```bash:no-line-numbers
+systemctl enable nginx
+```
+Перезагрузка сервиса:
+:::: code-tabs
+@tab Systemd
+```bash:no-line-numbers
+systemctl restart nginx
+```
+@tab init.d
+```bash:no-line-numbers
+service nginx restart
+```
+::::
+:::::
+
+::: warning
+ - Без доменного имени перенос Лаунчера на другую машину привёдёт к отказу самообновления.
+ - Так же SSL сертификат невозможно выдать на IP. В последствии соединение будет незащищённым и может быть скомпрометировано.
+:::
+::: details Заметки по правам: <Badge type="warning" text="Важно" vertical="top" />
+Если у nginx нет прав для чтения директорий, выдайте:
+```bash:no-line-numbers
+chmod +x /home/launcher &&
+find /home/launcher/updates -type d -exec chmod 755 {} \; &&
+find /home/launcher/updates -type f -exec chmod 644 {} \;
+```
+Изменить группу и пользователя на всё содержимое домашней директории **launcher**:
+```bash:no-line-numbers
+chown -R launcher:launcher /home/launcher
+```
+:::
