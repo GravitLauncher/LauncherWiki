@@ -37,7 +37,7 @@ CREATE TABLE user_permissions (
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4;
-CREATE UNIQUE INDEX `uk_user_permissions_uuid_name`  USING BTREE ON user_permissions (`uuid`, `name`);
+CREATE UNIQUE INDEX uk_user_permissions_uuid_name  USING BTREE ON user_permissions (uuid, name);
 ```
 После создания таблицы, добавьте в конфигурацию AuthCoreProvider следующие строки:
 ```json:no-line-numbers
