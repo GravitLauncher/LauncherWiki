@@ -34,10 +34,8 @@ AUTH ID это название блока авторизации, наприм�
 CREATE TABLE user_permissions (
     uuid varchar(36) NOT NULL,
     name varchar(100) NOT NULL
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4;
-CREATE UNIQUE INDEX uk_user_permissions_uuid_name  USING BTREE ON user_permissions (uuid, name);
+);
+CREATE UNIQUE INDEX uk_user_permissions_uuid_name ON user_permissions (uuid, name);
 ```
 После создания таблицы, добавьте в конфигурацию AuthCoreProvider следующие строки:
 ```json:no-line-numbers
