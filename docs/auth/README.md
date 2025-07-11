@@ -32,12 +32,12 @@ AUTH ID это название блока авторизации, наприм�
 Для работы permissions требуется создать таблицу ```user_permissions```
 ```sql:no-line-numbers
 CREATE TABLE user_permissions (
-    uuid varchar(100) NOT NULL,
+    uuid varchar(36) NOT NULL,
     name varchar(100) NOT NULL
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4;
-CREATE INDEX user_permissions_uuid_IDX USING BTREE ON user_permissions (uuid);
+CREATE UNIQUE INDEX `uk_user_permissions_uuid_name`  USING BTREE ON user_permissions (`uuid`, `name`);
 ```
 После создания таблицы, добавьте в конфигурацию AuthCoreProvider следующие строки:
 ```json:no-line-numbers
