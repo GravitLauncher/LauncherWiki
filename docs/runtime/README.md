@@ -18,13 +18,12 @@
 
 ## Шифрование рантайма
 
--   Скачайте библиотеку [EnFS](https://mirror.gravitlauncher.com/5.5.x/libraries/EncryptedFileSystem-2.0.2-SNAPSHOT.jar) и положите её в папку launcher-libraries
 -   Включите опцию ```encryptRuntime``` в конфигурации ЛаунчСервера и сделайте ```build```
 -   Проверьте правильность работы
 
 ## Темы оформления
 
-В рантайме темы оформления применяются путём виртуальной "замены" файлов стандартной темы на необходимую. Для замены файла `styles/variables.css` для темы `dark` вам необходимо поместить файл с изменениями в `themes/dark/styles/variables.css`. Для работы тем **необходима** библиотека [EnFS](https://mirror.gravitlauncher.com/5.5.x/libraries/EncryptedFileSystem-2.0.2-SNAPSHOT.jar)
+В рантайме темы оформления применяются путём виртуальной "замены" файлов стандартной темы на необходимую. Для замены файла `styles/variables.css` для темы `dark` вам необходимо поместить файл с изменениями в `themes/dark/styles/variables.css`.
 
 ## Скачивание своей Java
 
@@ -35,15 +34,7 @@
 
 ::: tip Пример для JRE Standart 17 и 21 версии от BellSoft 
 ```json:no-line-numbers
-  "javaList": {
-    "java17-windows-x86": "Java 17 b12 mustdie X86 javafx false",
-    "java17-windows-x86-64": "Java 17 b12 mustdie X86_64 javafx false",
-    "java17-windows-arm-64": "Java 17 b12 mustdie ARM64 javafx false",
-    "java17-linux-x86": "Java 17 b12 linux X86 javafx false",
-    "java17-linux-x86-64": "Java 17 b12 linux X86_64 javafx false",
-    "java17-linux-arm-64": "Java 17 b12 linux ARM64 javafx false",
-    "java17-macosx-64": "Java 17 b12 macosx X86_64 javafx false",
-    "java17-macosx-arm-64": "Java 17 b12 macosx ARM64 javafx false",
+  "customJavaDownload": {
     "java21-windows-x86": "Java 21 b4 mustdie X86 javafx false",
     "java21-windows-x86-64": "Java 21 b4 mustdie X86_64 javafx false",
     "java21-windows-arm-64": "Java 21 b4 mustdie ARM64 javafx false",
@@ -67,18 +58,6 @@ Java {номер версии} b{номер сборки} {mustdie (это windo
 - ARM32 (32 разрядные ARM)
 - ARM64 (64 разрядные ARM)
 :::
-
--   Добавьте названия ваших папок с JRE/JDK в **"protectHandler": {}** конфигурации ЛаунчСервера LaunchServer.json
-```json:no-line-numbers
-    "allowUpdates": [
-      "java17-windows-x86", "java17-windows-x86-64", "java17-windows-arm-64",
-      "java17-linux-x86", "java17-linux-x86-64", "java17-linux-arm-64",
-      "java17-macosx-64", "java17-macosx-arm-64",
-      "java21-windows-x86", "java21-windows-x86-64", "java21-windows-arm-64",
-      "java21-linux-x86", "java21-linux-x86-64", "java21-linux-arm-64",
-      "java21-macosx-64", "java21-macosx-arm-64"
-      ],
-```
 
 ::: tip Инструкция с предподготовленными сборками джав
 - Джавы не содержат JavaFX, являются минимальными для клиентов
