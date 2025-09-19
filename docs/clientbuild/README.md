@@ -6,95 +6,65 @@
 
 На текущий момент поддерживается запуск:
 
--   Любой Vanilla версии с 1.13 до 1.24.5, включая snapshot
+-   Любой Vanilla версии с 1.13 до 1.21.8(на момент написания документации), включая snapshot
 -   Forge 1.7.10 с lwjgl3ify
 -   Forge 1.12.2 с cleanroom
--   NeoForge/Forge 1.21+
--   Любой Fabric версии с 1.13 до 1.24.5, включая snapshot
-
-Необходимы ручные действия для сборки:
--   Forge 1.16.5 с аргументами для поддержки Java 17
--   Forge с 1.18 до 1.21 требует ручной сборки библиотек
+-   Forge 1.16.5
+-   NeoForge/Forge 1.18+
+-   Любой Fabric версии с 1.13 до 1.21.8(на момент написания документации), включая snapshot
 
 
-Подробную информацию о том как собрать 1.7.10 с lwjgl3ify, 1.12.2 cleanroom и forge 1.18+ можно получить на нашем [Discord сервере](https://discord.gg/b9QG4ygY75) в канале guides
+Если у вас возникли проблемы с установкой или работой клиента, или вы хотите попытаться запустить неподдерживаемые клиенты, добро пожаловать в наш [Discord сервере](https://discord.gg/b9QG4ygY75)
 
 ## Рекомендации
 
 - При создании проекта используйте самую новую версию Minecraft, доступную для ключевых модов в вашей сборке
 - Используйте **Fabric** вместо Forge для проектов на Minecraft 1.16.5 и выше
 - Используйте [Sodium](https://github.com/CaffeineMC/sodium-fabric) и [Iris](https://github.com/IrisShaders/Iris) вместо OptiFine для проектов на Minecraft 1.16.5 и выше
-- Избегайте использования OptiFabric - он создает в корне клиента скрытую папку с .jar внутри, которая не будет проверяться Лаунчером
+- Избегайте использования OptiFabric
 - Избегайте использования модов из непроверенных источников. Скачивайте моды с [Curseforge](https://www.curseforge.com/minecraft/mc-mods?filter-sort=5)/[Modrinth](https://modrinth.com/) или напрямую с GitHub разработчика
 
-## Работа модов 1.7.10 на Java 17+
+## Работа модов 1.7.10
 
 Начиная с версии 5.6.0 лаунчер работает только с клиентами, поддерживающими запуск на Java 17 и выше. Forge 1.7.10 и 1.12.2 были портированы на Java 17+ сторонними разработчиками, что привело к несовместимости с некоторыми грязными трюками, которые применяли мододелы в своих модах на эту версию. Вот что вам нужно сделать для портирования своей сборки на Java 17+:
+
 - Установите мод [Hodgepodge](https://github.com/GTNewHorizons/Hodgepodge)
 - Установите библиотеку [GTNHLib](https://github.com/GTNewHorizons/GTNHLib) и при желании [Angelica](https://github.com/GTNewHorizons/Angelica)
 - Проверьте наличие актуальной исправленной версии ваших модов при помощи поиска в [репозитории GTNH](https://github.com/GTNewHorizons) и обновите их
 - Если проблема остается актуальной обратитесь в наш Discord сервер в канал support
 
-## Скачивание ассетов
+## Работа модов 1.12.2
 
-Для скачивания ассетов выполните команду:
-- Пример: `downloadasset 1.20.0`
-```java{1}:no-line-numbers
-downloadasset <minecraft-version>
+Cleanroom имеет аналогичные проекты патчей модов для 1.12.2. Они значительно менее развиты чем для 1.7.10, однако позволяют запустить большинство популярных модов
+
+- Установите мод [Fugue](https://github.com/CleanroomMC/Fugue)
+- Установите мод [Scalar](https://github.com/CleanroomMC/Scalar)
+
+## Установка клиента
+
+- Установите модуль MirrorHelper если вы еще этого не сделали (выполните один раз)
+
 ```
-```java
-Options:
-      <minecraft-version> Версия Minecraft [default: null]
-      [assets-folder] Папка назначения [default: "assets"]
+modules load MirrorHelper_module
 ```
-- Загрузка происходит с серверов Mojang
-- При скачивании нескольких версий ассетов в одну папку будут скачаны только недостающие
 
-## Настройка MirrorHelper
+- Примените workspace (выполните один раз)
 
-В актуальных версиях лаунчера рекомендуемым способом установки является MirrorHelper. Это модуль для лаунчсервера, позволяющий скачивать клиенты напрямую с серверов Mojang, устанавливать Forge/Fabric, скачивать моды с Modrinth и CurseForge и т.д. 
+```
+applyworkspace
+```
 
-К сожалению, некоторые файлы не могут быть скачаны автоматически (например установщик Forge и OptiFine) и вам придется скачать их вручную. 
-Также Forge, в отличии от Fabric, не предоставляет возможности ставить клиент автоматически без участия пользователя. Поэтому для установки Forge вам понадобится иметь GUI на машине с лаунчсервером, либо применить X11 Forwarding.
-- Установите модуль MirrorHelper
-- Установите git на вашу машину, если его еще нет
-- Пропишите команду `applyworkspace`
+- Скачайте установщик Forge/NeoForge (только для Forge/NeoForge 1.18+) (выполните один раз для необходимых вам версий Minecraft 1.18+ Forge/NeoForge)
 
-::: warning
-Команда `applyworkspace` не поддерживается на Windows. Используйте для установки клиента WSL2, Linux или MacOS.
-:::
+```
+downloadinstaller NEOFORGE 1.21.8
+```
 
 - Установите клиент
 
-:::: tabs
-@tab [ Vanilla ]
-::: tip Установка Vanilla клиента
 ```
-installclient MyVanillaClient 1.20.2 VANILLA
+installclient MyGreatClient 1.21.8 NEOFORGE
 ```
-- *MyVanillaClient* - название вашего клиента
-- *1.20.2* - версия Minecraft
-@tab [ Fabric ]
-::: tip Установка Fabric клиента
-```
-installclient MyFabricClient 1.20.2 FABRIC
-```
-- *MyFabricClient* - название вашего клиента
-- *1.20.2* - версия Minecraft
-@tab [ Forge ]
-::: tip Установка Forge клиента
-- Скачайте forge-installer с сайта [Classic Forge](https://files.minecraftforge.net/net/minecraftforge/forge/)/[NeoForge](https://neoforged.net/)
-- Поместите его в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/installers/` с именем `forge-VERSION-installer.jar`(для тех версий которые не поддерживают установку без gui) или `forge-VERSION-installer-nogui.jar`(для тех которые поддерживают), где VERSION - версия Minecraft
-- Установку без gui не поддерживает Forge 1.7.10  (следуйте инструкциям для вашего SSH клиента ниже)
-- Если по какой то причине у вас не получается использовать X11 Forwarding вы можете скачать и распаковать [forge_install_dir.zip](https://mirror.gravitlauncher.com/5.6.x/forge_install_dir.zip) и установить forge локально, а после загрузить получившуюся папку в `LAUNCHSERVER_DIR/config/MirrorHelper/workspace/clients/forge/VERISON`, где VERSION - версия Minecraft
-```
-installclient MyForgeClient 1.7.10 FORGE
-```
-- *MyForgeClient* - название вашего клиента
-- *1.7.10* - версия Minecraft
-- В консоли лаунчсервера вы увидите путь, который вам нужно будет выбрать в установщике Forge
-- После успешной установки докачайте необходимые моды
-::::
 
 ## Настройка профиля
 
