@@ -184,11 +184,288 @@ pacman -S docker
 ::::
 - Поддерживаемые дистрибутивы и архитектуры: [Docker Install](https://docs.docker.com/engine/install/)
 
-После установки Docker выполните скрипт:
+#### Установка через LauncherDockered
+
+Этот проект позволяет запустить лаунчер вместе с корректной конфигурацией nginx если вы используете собственное подключение к БД
+
+- Установите git
+- После установки Docker и git выполните команду:
 
 ```bash
-
+git clone https://github.com/GravitLauncher/LauncherDockered.git
+cd LauncherDockered
 ```
+
+- Отредактируйте `docker-compose.yml` указав **внешний** адрес лаунчсервера и желаемое имя проекта
+- Запустите лаунчсервер командой `docker compose up -d`
+- После завершения инициализации(подождите около 5-10 секунд) выполните базовую настройку:
+
+```bash
+echo "modules load MirrorHelper" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "modules load GenerateCertificate" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "applyworkspace" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "generatecertificate" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+docker compose exec gravitlauncher wget https://github.com/GravitLauncher/LauncherRuntime/releases/latest/download/JavaRuntime.jar
+docker compose exec gravitlauncher bash -c "mkdir runtime && cd runtime && wget https://github.com/GravitLauncher/LauncherRuntime/releases/latest/download/runtime.zip && unzip runtime.zip && rm runtime.zip && cd .."
+echo "modules launcher-load JavaRuntime.jar" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "modules load Prestarter" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+docker compose exec gravitlauncher wget https://github.com/GravitLauncher/LauncherPrestarter/releases/latest/download/Prestarter.exe
+```
+
+#### Установка через SimpleCabinetDockered
+
+Этот проект позволяет запустить лаунчер вместе с SimpleCabinet - готовым кабинетом с сменой скинов, плащей, пагазином и другими функциями для вашего проекта Minecraft. Не поддерживает привязку к вашей CMS (без дополнительной работы)
+
+- Установите git
+- После установки Docker и git выполните команду:
+
+```bash
+git clone https://github.com/SimpleCabinet/SimpleCabinetDockered.git
+cd SimpleCabinetDockered
+```
+
+- Отредактируйте `docker-compose.yml` указав **только** желаемое имя проекта
+- Отредактируйте `setup.sh` указав внешний адрес кабинета в `SIMPLECABINET_REMOTE`
+- Запустите установку командой `chmod +x setup.sh && ./setup.sh`
+- После завершения инициализации(подождите около 5-10 секунд) выполните базовую настройку:
+
+```bash
+echo "modules load MirrorHelper" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "modules load GenerateCertificate" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "applyworkspace" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "generatecertificate" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+docker compose exec gravitlauncher wget https://github.com/GravitLauncher/LauncherRuntime/releases/latest/download/JavaRuntime.jar
+docker compose exec gravitlauncher bash -c "mkdir runtime && cd runtime && wget https://github.com/GravitLauncher/LauncherRuntime/releases/latest/download/runtime.zip && unzip runtime.zip && rm runtime.zip && cd .."
+echo "modules launcher-load JavaRuntime.jar" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+echo "modules load Prestarter" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
+docker compose exec gravitlauncher wget https://github.com/GravitLauncher/LauncherPrestarter/releases/latest/download/Prestarter.exe
+```
+
+#### Конфигурация nginx
+
+В обоих случаях конфигурация nginx будет одинаковой:
+
+:::: tabs
+@tab Без SSL
+
+```nginx
+upstream gravitlauncher {
+    server 127.0.0.1:17549;
+}
+
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+
+server {
+    listen 80;
+    server_name launcher.mydomain.ru;
+
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.access.log;
+    #error_log  /var/log/nginx/launcher.error.log notice;
+
+    location / {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+@tab С SSL
+
+```nginx
+upstream gravitlauncher {
+    server 127.0.0.1:17549;
+}
+
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+
+server {
+    listen 80;
+	listen 443 ssl;
+    server_name launcher.mydomain.ru;
+    ssl_certificate     /path/to/cartificate/cert.crt;
+    ssl_certificate_key /path/to/cartificate/cert.key;
+
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.access.log;
+    #error_log  /var/log/nginx/launcher.error.log notice;
+
+    location / {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+::::
+
+### Установка с помощью скрипта
+
+Для разработки и тестирования, а так же если вы не умеете работать с средой Docker вы можете использовать установку лаунчсервера напрямую с помощью скрипта установки
+
+- Выполните следующий скрипт:
+
+:::: tabs
+@tab Git
+```bash
+curl -o install_plain_git.sh https://mirror.gravitlauncher.com/5.7.x/scripts/install_plain_git.sh && chmod +x install_plain_git.sh && ./install_plain_git.sh
+```
+@tab Zip
+```bash
+curl -o install_plain.sh https://mirror.gravitlauncher.com/5.7.x/scripts/install_plain.sh && chmod +x install_plain.sh && ./install_plain.sh
+```
+::::
+
+#### Настройка nginx для установки скриптом
+
+:::: tabs
+@tab [ На DNS имени ]
+```nginx{10,12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+    server_name launcher.ВАШ_ДОМЕН;
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
+    
+    root /путь/до/updates; # Example: /home/launcher/updates
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+@tab [ На IP ]
+```nginx{12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.access.log;
+    #error_log  /var/log/nginx/launcher.error.log notice;
+    
+    root /путь/до/updates; # Example: /home/launcher/updates
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+@tab [ Под Docker ]
+::: tip Для главного nginx, не в контейнере
+- Получить IPAddress контейнера. Где `<container id>` это UUID контейнера
+```bash:no-line-numbers
+docker inspect <container id> | grep "IPAddress"
+```
+- Заменить `127.0.0.1` адрес на локальный IP от вашего интерфейса для Docker, полученный выше
+```nginx{2,10,12-13,15}:no-line-numbers
+upstream gravitlauncher {
+    server 127.0.0.1:9274;
+}
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+server {
+    listen 80;
+    server_name ВАШ_ПОДДОМЕН_ДЛЯ_ЛАУНЧЕРА;
+    charset utf-8;
+    #access_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.access.log;
+    #error_log  /var/log/nginx/launcher.ВАШ_ДОМЕН.error.log notice;
+    
+    root /путь/до/updates;
+    
+    location / {
+    }
+    location /api {
+        proxy_pass http://gravitlauncher;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location /webapi/ {
+        proxy_pass http://127.0.0.1:9274/webapi/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+:::
+::::
 
 ## Защита лаунчера
 
