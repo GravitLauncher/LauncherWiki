@@ -48,7 +48,7 @@ java -jar ServerWrapper.jar installAuthlib ServerWrapperInline.jar
 ```bash
 export SERVERWRAPPER_ADDRESS="ws://localhost:9274/api"
 export SERVERWRAPPER_CHECK_SERVER_TOKEN="YOUR CHECKSERVER TOKEN"
-export _JAVA_OPTIONS: "-Dlauncher.authlib.inlineClass=pro.gravit.launcher.server.ServerWrapperInlineInitializer -Dlauncher.useSlf4j=true"
+export _JAVA_OPTIONS="-Dlauncher.authlib.inlineClass=pro.gravit.launcher.server.ServerWrapperInlineInitializer -Dlauncher.useSlf4j=true"
 ```
 
 Замените адрес лаунчсервера и токен на ваш

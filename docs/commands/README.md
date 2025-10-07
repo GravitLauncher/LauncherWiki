@@ -18,7 +18,7 @@
 - Изменение секции `sign` лаунчсервера
 - Приминение модулей работающих с лаунчером, например `Prestarter` или `OSSLSignModule`
 
-### config profilesprovider sync
+### config profileprovider sync
 
 Это команда ручной синхронизации директории `updates` и профилей в папке `profiles` в конфигурации по умолчанию.
 
