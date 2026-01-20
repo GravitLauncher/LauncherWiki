@@ -266,6 +266,9 @@ server {
     #access_log  /var/log/nginx/launcher.access.log;
     #error_log  /var/log/nginx/launcher.error.log notice;
 
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
     location / {
         proxy_pass http://gravitlauncher;
         proxy_http_version 1.1;
@@ -301,6 +304,9 @@ server {
     #access_log  /var/log/nginx/launcher.access.log;
     #error_log  /var/log/nginx/launcher.error.log notice;
 
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
     location / {
         proxy_pass http://gravitlauncher;
         proxy_http_version 1.1;
@@ -314,6 +320,44 @@ server {
 ```
 
 ::::
+
+#### Конфигурация SSL через Certbot
+
+Установка Certbot и быстрая настройка сертификатов через плагин nginx
+
+:::: tabs
+@tab Ubuntu / Debian
+
+```bash
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+```
+
+@tab Fedora / CentOS / RHEL
+
+```bash
+sudo dnf install certbot python3-certbot-nginx
+```
+
+@tab Arch Linux
+
+```bash
+sudo pacman -S certbot certbot-nginx
+```
+::::
+
+Интерактивная установка сертификата (рекомендуется для первого запуска)
+
+- При выполнении вы введёте email, согласитесь с ToS и выберете опцию для EFF
+```bash
+sudo certbot --nginx
+```
+
+Быстрая установка для конкретного поддомена (без интерактива)
+
+```bash
+sudo certbot --nginx -d launcher.ВАШ_ДОМЕН --email ВАШ_EMAIL --agree-tos --no-eff-email
+```
 
 ### Установка с помощью скрипта
 
