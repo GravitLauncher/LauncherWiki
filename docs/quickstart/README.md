@@ -196,21 +196,9 @@ git clone https://github.com/GravitLauncher/LauncherDockered.git
 cd LauncherDockered
 ```
 
-- Отредактируйте `docker-compose.yml` указав **внешний** адрес лаунчсервера и желаемое имя проекта
-- Запустите лаунчсервер командой `docker compose up -d`
-- После завершения инициализации(подождите около 5-10 секунд) выполните базовую настройку:
-
-```bash
-echo "modules load MirrorHelper" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
-echo "modules load GenerateCertificate" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
-echo "applyworkspace" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
-echo "generatecertificate" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
-docker compose exec gravitlauncher wget https://github.com/GravitLauncher/LauncherRuntime/releases/latest/download/JavaRuntime.jar
-docker compose exec gravitlauncher bash -c "mkdir runtime && cd runtime && wget https://github.com/GravitLauncher/LauncherRuntime/releases/latest/download/runtime.zip && unzip runtime.zip && rm runtime.zip && cd .."
-echo "modules launcher-load JavaRuntime.jar" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
-echo "modules load Prestarter" | docker compose exec -T gravitlauncher socat UNIX-CONNECT:control-file -
-docker compose exec gravitlauncher wget https://github.com/GravitLauncher/LauncherPrestarter/releases/latest/download/Prestarter.exe
-```
+- Отредактируйте `.env` указав **внешний** адрес лаунчсервера и желаемое имя проекта
+- Запустите скрипт `install.sh`
+- Управляйте лаунчсервером с помощью скрипта `glctl.sh`
 
 #### Установка через SimpleCabinetDockered
 
