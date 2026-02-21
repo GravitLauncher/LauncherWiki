@@ -84,7 +84,7 @@ java -jar ServerWrapper.jar save
 
 - 
 - Если вы используете хостинг Minecraft серверов вы должны запустить мост на своей машине с лаунчсервером, так как ServerWrapper требует Java 21+. После чего откройте порт **только для IP сервера**. Открывать порт моста наружу в общий доступ **небезопасно**
-- Скачайте ServerWrapper и ServerWrapperInline
+- Скачайте ServerWrapper
 
 ```bash
 wget https://github.com/GravitLauncher/Launcher/releases/latest/download/ServerWrapper.jar
