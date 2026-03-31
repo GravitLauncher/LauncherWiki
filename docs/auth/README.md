@@ -97,6 +97,7 @@ ADD COLUMN hwidid BIGINT DEFAULT NULL;
 
 -- Добавляет расширение для генерации UUID
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- Добавляет триггер для генерации UUID
 CREATE OR REPLACE FUNCTION public.users_uuid_trigger_func()
     RETURNS TRIGGER
@@ -104,8 +105,8 @@ AS
 $function$
     BEGIN
         IF (new.uuid IS NULL) THEN
-		new.uuid = (SELECT uuid_generate_v4());
-	END IF;
+            new.uuid = (SELECT uuid_generate_v4());
+        END IF;
         return new;
     END;
 $function$ LANGUAGE plpgsql;
@@ -118,28 +119,37 @@ EXECUTE PROCEDURE public.users_uuid_trigger_func();
 -- Генерирует UUID для уже существующих пользователей
 UPDATE users SET uuid=(SELECT uuid_generate_v4()) WHERE uuid IS NULL;
 
--- Добавляет поле hwidid для поддержки HWID
-
 -- Добавляет таблицу hwids
 CREATE TABLE public.hwids (
-	id serial8 NOT NULL,
-	publickey bytea NULL,
-	hwdiskid varchar NULL,
-	baseboardserialnumber varchar NULL,
-	graphiccard varchar NULL,
-	displayid bytea NULL,
-	bitness int NULL,
-	totalmemory bigint NULL,
-	logicalprocessors int NULL,
-	physicalprocessors int NULL,
-	processormaxfreq bigint NULL,
-	battery boolean NULL,
-	banned boolean NULL
+    id serial8 NOT NULL,
+    publickey bytea NULL,
+    hwdiskid varchar NULL,
+    baseboardserialnumber varchar NULL,
+    graphiccard varchar NULL,
+    displayid bytea NULL,
+    bitness int NULL,
+    totalmemory bigint NULL,
+    logicalprocessors int NULL,
+    physicalprocessors int NULL,
+    processormaxfreq bigint NULL,
+    battery boolean NULL,
+    banned boolean NULL
 );
 
 -- Создает индексы для быстрого доступа к данным
 ALTER TABLE public.hwids ADD CONSTRAINT hwids_pk PRIMARY KEY (id);
 CREATE UNIQUE INDEX hwids_publickey_idx ON public.hwids (publickey);
+
+-- Добавляет таблицу hwidLog
+CREATE TABLE public.hwidLog (
+    id serial8 NOT NULL,
+    hwidId bigint NOT NULL,
+    newPublicKey bytea NOT NULL
+);
+
+ALTER TABLE public.hwidLog ADD CONSTRAINT hwidlog_pk PRIMARY KEY (id);
+ALTER TABLE public.hwidLog
+    ADD CONSTRAINT hwidlog_hwids_fk FOREIGN KEY (hwidId) REFERENCES public.hwids(id);
 
 -- Создает связь между таблицами
 ALTER TABLE public.users ADD CONSTRAINT users_hwids_fk FOREIGN KEY (hwidid) REFERENCES public.hwids(id);
@@ -167,28 +177,50 @@ DELIMITER ;
 -- Генерирует UUID для уже существующих пользователей
 UPDATE users SET uuid=(SELECT UUID()) WHERE uuid IS NULL;
 
+-- Добавляет таблицу hwids
 CREATE TABLE `hwids` (
-`id` bigint(20) NOT NULL,
-`publickey` blob,
-`hwDiskId` varchar(255) DEFAULT NULL,
-`baseboardSerialNumber` varchar(255) DEFAULT NULL,
-`graphicCard` varchar(255) DEFAULT NULL,
-`displayId` blob,
-`bitness` int(11) DEFAULT NULL,
-`totalMemory` bigint(20) DEFAULT NULL,
-`logicalProcessors` int(11) DEFAULT NULL,
-`physicalProcessors` int(11) DEFAULT NULL,
-`processorMaxFreq` bigint(11) DEFAULT NULL,
-`battery` tinyint(1) NOT NULL DEFAULT "0",
-`banned` tinyint(1) NOT NULL DEFAULT "0"
+    `id` bigint(20) NOT NULL,
+    `publickey` blob,
+    `hwDiskId` varchar(255) DEFAULT NULL,
+    `baseboardSerialNumber` varchar(255) DEFAULT NULL,
+    `graphicCard` varchar(255) DEFAULT NULL,
+    `displayId` blob,
+    `bitness` int(11) DEFAULT NULL,
+    `totalMemory` bigint(20) DEFAULT NULL,
+    `logicalProcessors` int(11) DEFAULT NULL,
+    `physicalProcessors` int(11) DEFAULT NULL,
+    `processorMaxFreq` bigint(11) DEFAULT NULL,
+    `battery` tinyint(1) NOT NULL DEFAULT '0',
+    `banned` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 ALTER TABLE `hwids`
-ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `publickey` (`publickey`(255));
+    ADD PRIMARY KEY (`id`),
+    ADD UNIQUE KEY `publickey` (`publickey`(255));
+
 ALTER TABLE `hwids`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+-- Добавляет таблицу hwidLog
+CREATE TABLE `hwidLog` (
+    `id` bigint(20) NOT NULL,
+    `hwidId` bigint(20) NOT NULL,
+    `newPublicKey` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `hwidLog`
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `hwidId` (`hwidId`);
+
+ALTER TABLE `hwidLog`
+    MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `hwidLog`
+    ADD CONSTRAINT `hwidLog_ibfk_1` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
+
+-- Создает связь между таблицами
 ALTER TABLE `users`
-ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
+    ADD CONSTRAINT `users_hwidfk` FOREIGN KEY (`hwidId`) REFERENCES `hwids` (`id`);
 ```
 :::
 
