@@ -66,6 +66,12 @@ export default defineUserConfig({
                 ],
             },
             {
+                text: 'Разработчикам',
+                children: [
+                    '/dev/http/README.md',
+                ],
+            },
+            {
                 text: 'Зеркало',
                 link: 'https://mirror.gravitlauncher.com/',
             },
@@ -87,6 +93,13 @@ export default defineUserConfig({
                         '/runtime/README.md',
                         '/serverwrapper/README.md',
                         '/other/README.md',
+                    ],
+                },
+                {
+                    text: 'Разработчикам',
+                    collapsible: true,
+                    children: [
+                        '/dev/http/README.md',
                     ],
                 },
             ],
