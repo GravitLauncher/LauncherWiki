@@ -100,7 +100,7 @@ downloadinstaller FORGE 1.20.1 47.4.8 - скачать версию 47.4.8 Forge
 ```
 help - вывести список всех команд
 help config - вывести список подкоманд команды config
-help profiles - вывести список подкоманд команды profiles
+help profile - вывести список подкоманд команды profile
 ```
 
 ### debug
