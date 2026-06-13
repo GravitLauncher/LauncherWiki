@@ -39,7 +39,7 @@ CREATE UNIQUE INDEX uk_user_permissions_uuid_name ON user_permissions (uuid, nam
 ::: tip ПРИМЕР ВЫДАЧИ ПРАВ
 ```sql:no-line-numbers
 INSERT INTO user_permissions (uuid, name)
-SELECT uuid, 'launchserver.profile.hitech.*'
+SELECT uuid, 'launchserver.profile.00000000-0000-0000-0000-000000000000.*'
 FROM users WHERE name = '<ник>';
 ```
 :::
@@ -47,8 +47,6 @@ FROM users WHERE name = '<ник>';
 
 - Все профили по умолчанию доступны всем, вне зависимости от permissions. Установите в профиле поле ```limited``` в true, чтобы ограничить доступ к профилю по permissions
 - Все опциональные моды по умолчанию доступны всем, вне зависимости от permissions. Установите в опциональном моде поле ```limited``` в true, чтобы ограничить доступ к профилю по permissions
-- ```profileWhitelist``` не относится к привилегиям, но для его работы, требуется установить в профиле поле ```limited``` в true
-- Профиль может записываться с помощью title в нижнем регистре (hitech) или с помощью его UUID (f210e1f0-c24e-41b6-9214-cee9a9139823). Второй вариант записи предпочтительней, так как не зависит от языка и не содержит спец. символов
 
 :::
 

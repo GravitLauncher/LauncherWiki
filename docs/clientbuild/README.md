@@ -149,10 +149,6 @@ installclient MyGreatClient 1.21.8 NEOFORGE
 }
 ```
 
-::: tip Примечание:
--   ```limited``` так-же должен быть ```true```, для работы ```profileWhitelist```
-:::
-
 ## Опциональные моды
 
 ```json
